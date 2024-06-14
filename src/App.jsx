@@ -32,7 +32,7 @@ const App = () => {
   const [listType, setListType] = useState("");
   const [name, setName] = useState("");
   const { isError, setIsError } = useModal(togglePopup, actionConfirmedMessage);
-
+  console.log("test")
   useEffect(() => {
     if (selectedRuleset.rulesetId != undefined) {
       if (selectedRuleset.name == null) {
