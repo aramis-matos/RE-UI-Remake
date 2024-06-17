@@ -183,25 +183,27 @@ const App = () => {
         setIsError={setIsError}
       />
       <div className="left-panel">
-        <button id="newRuleset" onClick={handleNew}>
-          NEW
-        </button>
-        <button
-          id="openRuleset"
-          data-testid="openRuleset"
-          onClick={() => toggleModal("myModal", "flex")}
-        >
-          OPEN
-        </button>
-        <button
-          id="saveRuleset"
-          data-testid="saveRuleset"
-          disabled={selectedRuleset.rulesetId === undefined ? true : false}
-          onClick={handleSave}
-        >
-          SAVE
-        </button>
-        <PreferencesModal onSave={applyPreferences} listType={listType} />
+        <div className="content">
+          <button id="newRuleset" onClick={handleNew}>
+            NEW
+          </button>
+          <button
+            id="openRuleset"
+            data-testid="openRuleset"
+            onClick={() => toggleModal("myModal", "flex")}
+          >
+            OPEN
+          </button>
+          <button
+            id="saveRuleset"
+            data-testid="saveRuleset"
+            disabled={selectedRuleset.rulesetId === undefined ? true : false}
+            onClick={handleSave}
+          >
+            SAVE
+          </button>
+          <PreferencesModal onSave={applyPreferences} listType={listType} />
+        </div>
       </div>
       <div className="nitf-headers" key={reset}>
         <button
@@ -282,10 +284,12 @@ const App = () => {
         data-testid="rulesetPreview"
         ref={rulesetPreview}
       >
+        {/*
         <SearchBar
           handleSearch={(value) => handleSearch(value)}
           className="search"
         />
+        */}
         <RulesetPreviewModal
           initialData={initialData}
           data={currentlyEditing}
