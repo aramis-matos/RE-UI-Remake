@@ -85,7 +85,7 @@ h4 {
 }
 p,
 span {
-  color: white;
+  color: var(--n850);
   font-family: "Roboto-Medium";
   margin: 10px;
   font-size: 16px;
@@ -104,6 +104,12 @@ button {
   font-size: 18px;
   margin-bottom: 8px;
   transition: 0.2s;
+  min-height: 60px;
+}
+#helpButton {
+  background-color: var(--c100);
+  height: 44px;
+  width: 44px;
 }
 button:hover {
   background-color: var(--p700);
@@ -347,7 +353,6 @@ button:disabled {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 44px;
   width: 50px;
   background-color: var(--c100);
 }
@@ -606,20 +611,21 @@ button:disabled {
   margin: 10px;
   border-radius: 15px;
   text-align: center;
-  background-color: var(--n850);
+  color: var(--n850);
+  background-color: var(--c100);
   border: 3px solid var(--n400);
 }
 .redact-div {
   height: 500px;
 }
 .redact-div h2 {
-  color: red;
+  color: var(--n850);
 }
 
 /*PREFERENCES ON PAGE (BY JACK)*/
 
 .preferences-div h2 {
-  color:rgb(255, 255, 255)
+  color: var(--n850);
 }
 .preferences-div {
   height: 300px;
@@ -644,7 +650,7 @@ button:disabled {
   height: 300px;
 }
 .modify-div h2 {
-  color: orange;
+  color: var(--n850);
 }
 
 .modify-div > .selections {
@@ -825,6 +831,7 @@ button.back-nav {
   max-width: 300px;
 }
 .helpSearch{
+  height: 60px;
   margin: 0px;
   display: flex;
   flex-direction: horizontal;
@@ -837,7 +844,7 @@ button.back-nav {
   outline-width: 0px;
   outline-color: var(--n500);
   width: 250px;
-  height: 44px;
+  height: 50px;
   text-align: center;
   color: var(--n100);
   margin: 0px 10px 0px 0px;
