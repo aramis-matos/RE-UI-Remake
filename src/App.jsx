@@ -29,7 +29,7 @@ const App = () => {
   const [listType, setListType] = useState("");
   const [name, setName] = useState("");
   const { isError, setIsError } = useModal(togglePopup, actionConfirmedMessage);
-
+  console.log("test")
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
       if (selectedRuleset.name == null) {
@@ -142,6 +142,9 @@ const App = () => {
     resetAll();
   };
 
+  const handleHelp = () => {
+    showPopup("hello World!");
+  }
   //export updates and run PUT request
   const handleSave = () => {
     getAllUpdates();
@@ -195,10 +198,33 @@ const App = () => {
           SAVE
         </button>
         <PreferencesModal onSave={applyPreferences} listType={listType} />
-        <SearchBar handleSearch={handleSearch} className="search" />
+          
+          
+          
+          
+
+        <div className = "helpSearch">
+          <SearchBar
+            handleSearch={(value) => handleSearch(value)}
+            className="search"
+          />
+          <button
+            className= "help-page"
+            id="helpButton"
+            data-testid="openHelp"
+            onClick={handleHelp}
+          >
+          ?
+          </button>
+        </div>
         <PreferencesOnPage></PreferencesOnPage>
-        <FiltersOnPage></FiltersOnPage>=
+        <FiltersOnPage></FiltersOnPage>
       </div>
+
+
+
+
+
 
       <div className="nitf-headers" key={reset}>
         <button
@@ -292,6 +318,7 @@ const App = () => {
           listType={listType}
         />
       </div>
+
 
       <div
         className="right-panel"

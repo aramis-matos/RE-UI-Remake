@@ -41,6 +41,8 @@
   --p800: #3c225e;
   --p900: #240f3d;
 
+  --c100: #e9b77c;
+
   --success: #6be67f;
   --error: #e66b6b;
 }
@@ -100,7 +102,7 @@ button {
   height: 80px;
   text-align: center;
   font-size: 18px;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   transition: 0.2s;
 }
 button:hover {
@@ -343,12 +345,11 @@ button:disabled {
 /* HELP PAGE */
 .help-page {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100%;
-  margin: 20px;
+  height: 44px;
+  width: 50px;
+  background-color: var(--c100);
 }
 .faq {
   display: flex;
@@ -823,19 +824,23 @@ button.back-nav {
   width: 20%;
   max-width: 300px;
 }
+.helpSearch{
+  margin: 0px;
+  display: flex;
+  flex-direction: horizontal;
+}
 .search {
   border: 0;
-  background-color: var(--n800);
+  background-color: var(--c100);
   border-radius: 8px;
   outline: solid;
-  outline-width: 2px;
+  outline-width: 0px;
   outline-color: var(--n500);
-
-  width: 300px;
-  height: 48px;
+  width: 250px;
+  height: 44px;
   text-align: center;
   color: var(--n100);
-  margin: 20px 0px 10px 0px;
+  margin: 0px 10px 0px 0px;
 }
 .search-match {
   display: flex;
@@ -850,14 +855,14 @@ button.back-nav {
 }
 /* Style the buttons that are used to open and close the accordion panel */
 .accordion {
-  background-color: var(--n700);
+  background-color: var(--p500);
   width: 100%;
   height: 60px;
   transition: 0.2s;
 }
 /* Add a background color to the button when you move the mouse over it (hover) */
 .accordion:hover {
-  background-color: var(--n500);
+  background-color: var(--c100);
 }
 .accordion-open {
   border-radius: 10px 10px 0px 0px;
