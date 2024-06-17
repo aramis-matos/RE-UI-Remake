@@ -206,78 +206,90 @@ const App = () => {
         </div>
       </div>
       <div className="nitf-headers" key={reset}>
-        <button
-          id="fileHeader"
-          className="accordion"
-          onClick={() => showTable("fileHeader", "filePanel")}
-        >
-          NITF FILE HEADER
-        </button>
-        <FileHeader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-        <button
-          id="imageSubheader"
-          className="accordion"
-          onClick={() => showTable("imageSubheader", "imagePanel")}
-        >
-          IMAGE SUBHEADER
-        </button>
-        <ImageSubheader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-        <button
-          id="graphicSubheader"
-          className="accordion"
-          onClick={() => showTable("graphicSubheader", "graphicPanel")}
-        >
-          GRAPHIC SUBHEADER
-        </button>
-        <GraphicSubheader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-        <button
-          id="textSubheader"
-          className="accordion"
-          onClick={() => showTable("textSubheader", "textPanel")}
-        >
-          TEXT SUBHEADER
-        </button>
-        <TextSubheader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-        <button
-          id="desSubheader"
-          className="accordion"
-          onClick={() => showTable("desSubheader", "desPanel")}
-        >
-          DES SUBHEADER
-        </button>
-        <DesSubheader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-        <button
-          id="TRE"
-          className="accordion"
-          onClick={() => showTable("TRE", "trePanel")}
-        >
-          TRE
-        </button>
-        <TRE
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
+        <div>
+          <button
+            id="fileHeader"
+            className="accordion"
+            onClick={() => showTable("fileHeader", "filePanel")}
+          >
+            NITF FILE HEADER
+          </button>
+          <FileHeader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="imageSubheader"
+            className="accordion"
+            onClick={() => showTable("imageSubheader", "imagePanel")}
+          >
+            IMAGE SUBHEADER
+          </button>
+          <ImageSubheader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="graphicSubheader"
+            className="accordion"
+            onClick={() => showTable("graphicSubheader", "graphicPanel")}
+          >
+            GRAPHIC SUBHEADER
+          </button>
+          <GraphicSubheader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="textSubheader"
+            className="accordion"
+            onClick={() => showTable("textSubheader", "textPanel")}
+          >
+            TEXT SUBHEADER
+          </button>
+          <TextSubheader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="desSubheader"
+            className="accordion"
+            onClick={() => showTable("desSubheader", "desPanel")}
+          >
+            DES SUBHEADER
+          </button>
+          <DesSubheader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="TRE"
+            className="accordion"
+            onClick={() => showTable("TRE", "trePanel")}
+          >
+            TRE
+          </button>
+          <TRE
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
       </div>
       <div
         className="right-panel"
