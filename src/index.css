@@ -545,7 +545,7 @@ button:disabled {
   width: 100%;
   color: white;
   flex-shrink: 1;
-  top: 0;
+  top:5px;
 }
 .content {
   position: sticky;
