@@ -548,6 +548,7 @@ button:disabled {
   top:5px;
 }
 .content {
+  position: -webkit-sticky;
   position: sticky;
   align-self:flex-start;
 }
@@ -802,6 +803,7 @@ button.back-nav {
   margin-bottom: 0px;
   transition: 0.2s;
   top: 0;
+  position: -webkit-sticky;
   position:sticky;
 
 }
@@ -861,6 +863,7 @@ button.back-nav {
   text-align: left;
 }
 .file-name {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   font-size: 1.75vw;
