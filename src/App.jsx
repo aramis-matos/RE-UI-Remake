@@ -143,7 +143,7 @@ const App = () => {
   };
 
   const handleHelp = () => {
-    showPopup("hello World!");
+    showPopup("Hello World!");
   }
   //export updates and run PUT request
   const handleSave = () => {
@@ -209,7 +209,6 @@ const App = () => {
             className="search"
           />
           <button
-            className= "help-page"
             id="helpButton"
             data-testid="openHelp"
             onClick={handleHelp}
