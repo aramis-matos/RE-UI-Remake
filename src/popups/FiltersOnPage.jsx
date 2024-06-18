@@ -4,9 +4,12 @@ const FiltersOnPage = () => {
   const [checkedItems, setCheckedItems] = useState({});
 
   const items = [
-    { id: 1, label: 'Item 1' },
-    { id: 2, label: 'Item 2' },
-    { id: 3, label: 'Item 3' },
+    { id: 1, label: 'NITF FILE HEADER' },
+    { id: 2, label: 'IMAGE SUBHEADER' },
+    { id: 3, label: 'GRAPHIC SUBHEADER' },
+    { id: 4, label: 'TEXT SUBHEADER' },
+    { id: 5, label: 'DES SUBHEADER' },
+    { id: 6, label: 'TRE' },
   ];
 
   const handleChange = (event) => {
@@ -26,7 +29,6 @@ const FiltersOnPage = () => {
 
 
 
-//dffrvd
 
 
 
@@ -38,9 +40,22 @@ const FiltersOnPage = () => {
               <h2>FILTERS</h2>
               <div>
                 <form onSubmit={handleSubmit}>
-                
+                  {items.map((item) => (
+                    <div key = {item.id}>
+                      <label>
+                        <input
+                        type = "checkbox"
+                        name={item.label}
+                        checked={!!checkedItems[[item.label]]}
+                        onChange={handleChange}
+                        >
+                        </input>
+                        {item.label}
+                      </label>
+                    </div>
+                ))}
+                <button className = "filterSaveButton" type = "submit">Save</button>
                 </form>
-
               </div>
             </div>
         </div>

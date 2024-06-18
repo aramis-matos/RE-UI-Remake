@@ -178,6 +178,10 @@ const App = () => {
         isError={isError}
         setIsError={setIsError}
       />
+
+
+
+
       <div className="left-panel">
         <div className="content">
           <button id="newRuleset" onClick={handleNew}>
@@ -213,11 +217,15 @@ const App = () => {
             ?
             </button>
           </div>
-        
-            <PreferencesOnPage></PreferencesOnPage>
-            <FiltersOnPage></FiltersOnPage>
+          <FiltersOnPage></FiltersOnPage>
+          <PreferencesOnPage></PreferencesOnPage>
         </div>
       </div>
+
+
+
+
+      
 
       <div className="nitf-headers" key={reset}>
         <div>

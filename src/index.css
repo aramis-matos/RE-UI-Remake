@@ -557,6 +557,9 @@ button:disabled {
   position: -webkit-sticky;
   position: sticky;
   align-self:flex-start;
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .preferences_preview_modal {
   width: 100%;
@@ -581,7 +584,7 @@ button:disabled {
   flex-direction: column;
   border-radius: 15px;
   width: 100%;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .preferences_preview_modal .content .preferences-div input[type="text"] {
@@ -604,9 +607,35 @@ button:disabled {
   padding: 8px;
   margin-top: 10px;
   box-sizing: border-box;
+  
 }
 
-.prefSaveButton {
+.filters-div {
+  form {
+  margin: 15px;
+  
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+button {
+  margin-top: 20px;
+}
+}
+
+.prefSaveButton, 
+.filterSaveButton {
   text-align: center;
   width: 100px;
   height: 40px;
@@ -630,11 +659,20 @@ button:disabled {
   color: var(--n850);
   background-color: var(--c100);
   border: 3px solid var(--n400);
+  width: 300px;
+  h2 {
+    color: var(--n850);
+  }
+
 }
 .redact-div {
   height: 500px;
 }
 .redact-div h2 {
+  color: var(--n850);
+}
+
+.filters_preview_modal h2 {
   color: var(--n850);
 }
 
@@ -648,7 +686,7 @@ button:disabled {
 }
 
 .filters-div h2 {
-  color:rgb(255, 255, 255)
+  color:rgb(0, 0, 0)
 }
 .filters-div {
   height: 300px;
