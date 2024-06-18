@@ -31,7 +31,6 @@ const App = () => {
   const [name, setName] = useState("");
   const { isError, setIsError } = useModal(togglePopup, actionConfirmedMessage);
   const [isRulesetModalOpen, setIsRulesetModalOpen] = useState(false);
-  console.log("test")
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
       if (selectedRuleset.name == null) {
@@ -197,10 +196,10 @@ const App = () => {
       <div className="left-panel">
         <div className="content">
           <div className="ruleset-modal">
-            <button onClick={openRulesetModal}>NEW NEW</button>
+            <button className = "ruleset-open-button" onClick={openRulesetModal}>NEW NEW</button>
             <RulesetModalOnPage isOpen={isRulesetModalOpen} onClose={closeRulesetModal}>
-            <h2>Modal Title</h2>
-            <p>This is a modal content!</p>
+            <h2>New Ruleset</h2>
+            <p></p>
           </RulesetModalOnPage>
         </div>
 
