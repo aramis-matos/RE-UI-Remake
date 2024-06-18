@@ -975,10 +975,9 @@ button.back-nav {
   background-color: var(--n850);
   border: 3px solid var(--n400);
   border-radius: 0px 0px 15px 15px;
-  padding: 20px 0px 20px 20px;
+  padding: 20px 0px 10px 20px;
   margin-bottom: 20px;
   display: none;
-  max-height: 500px;
   flex-direction: column;
 }
 /* RULES EDITOR: Preferences Modal */
@@ -1017,9 +1016,7 @@ button.back-nav {
   border-radius: 0px 0px 15px 15px;
 }
 /* RULESET EDITOR: TRE section */
-.tre-panel {
-  max-height: 2000px;
-}
+
 .tre-fields-list {
   display: none;
   max-height: 350px;
