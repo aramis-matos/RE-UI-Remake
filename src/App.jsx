@@ -179,165 +179,149 @@ const App = () => {
         setIsError={setIsError}
       />
       <div className="left-panel">
-        <button id="newRuleset" onClick={handleNew}>
-          NEW
-        </button>
-        <button
-          id="openRuleset"
-          data-testid="openRuleset"
-          onClick={() => toggleModal("myModal", "flex")}
-        >
-          OPEN
-        </button>
-        <button
-          id="saveRuleset"
-          data-testid="saveRuleset"
-          disabled={selectedRuleset.rulesetId === undefined}
-          onClick={handleSave}
-        >
-          SAVE
-        </button>
-        <PreferencesModal onSave={applyPreferences} listType={listType} />
-          
-          
-          
-          
-
-        <div className = "helpSearch">
-          <SearchBar
-            handleSearch={(value) => handleSearch(value)}
-            className="search"
-          />
-          <button
-            id="helpButton"
-            data-testid="openHelp"
-            onClick={handleHelp}
-          >
-          ?
+        <div className="content">
+          <button id="newRuleset" onClick={handleNew}>
+            NEW
           </button>
+          <button
+            id="openRuleset"
+            data-testid="openRuleset"
+            onClick={() => toggleModal("myModal", "flex")}
+          >
+            OPEN
+          </button>
+          <button
+            id="saveRuleset"
+            data-testid="saveRuleset"
+            disabled={selectedRuleset.rulesetId === undefined ? true : false}
+            onClick={handleSave}
+         >
+            SAVE
+          </button>
+          <PreferencesModal onSave={applyPreferences} listType={listType} />
+          <div className = "helpSearch">
+            <SearchBar
+              handleSearch={(value) => handleSearch(value)}
+              className="search"
+            />
+            <button
+              className= "help-page"
+              id="helpButton"
+              data-testid="openHelp"
+              onClick={handleHelp}
+            >
+            ?
+            </button>
+          </div>
+        
+            <PreferencesOnPage></PreferencesOnPage>
+            <FiltersOnPage></FiltersOnPage>
         </div>
-        <PreferencesOnPage></PreferencesOnPage>
-        <FiltersOnPage></FiltersOnPage>
       </div>
-
-
-
-
-
       <div className="nitf-headers" key={reset}>
-        <button
-          id="fileHeader"
-          className="accordion"
-          onClick={() => showTable("fileHeader", "filePanel")}
+        <div>
+          <button
+            id="fileHeader"
+            className="accordion"
+            onClick={() => showTable("fileHeader", "filePanel")}
           style={{ position: 'relative', textAlign: 'center' }}
           >
           <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-          NTIF FILE HEADER
+          NITF FILE HEADER
           <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-      </button>
-        <FileHeader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="imageSubheader"
-          className="accordion"
-          onClick={() => showTable("imageSubheader", "imagePanel")}
-          style={{ position: 'relative', textAlign: 'center' }}
+          </button>
+          <FileHeader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="imageSubheader"
+            className="accordion"
+            onClick={() => showTable("imageSubheader", "imagePanel")}
+            style={{ position: 'relative', textAlign: 'center' }}
           >
-            <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-            IMAGE SUBHEADER
-            <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-        </button>
-        <ImageSubheader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="graphicSubheader"
-          className="accordion"
-          onClick={() => showTable("graphicSubheader", "graphicPanel")}
-          style={{ position: 'relative', textAlign: 'center' }}
+          <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+          IMAGE SUBHEADER
+          <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+          </button>
+          <ImageSubheader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="graphicSubheader"
+            className="accordion"
+            onClick={() => showTable("graphicSubheader", "graphicPanel")}
+            style={{ position: 'relative', textAlign: 'center' }}
           >
-            <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-            GRAPHIC SUBHEADER
-            <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-        </button>
-        <GraphicSubheader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="textSubheader"
-          className="accordion"
-          onClick={() => showTable("textSubheader", "textPanel")}
-          style={{ position: 'relative', textAlign: 'center' }}
+          <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+          GRAPHIC SUBHEADER
+          <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+          </button>
+          <GraphicSubheader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="textSubheader"
+            className="accordion"
+            onClick={() => showTable("textSubheader", "textPanel")}
+            style={{ position: 'relative', textAlign: 'center' }}
           >
-            <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-            TEXT SUBHEADER
-            <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-        </button>
-        <TextSubheader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="desSubheader"
-          className="accordion"
-          onClick={() => showTable("desSubheader", "desPanel")}
-          style={{ position: 'relative', textAlign: 'center' }}
+          <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+          TEXT SUBHEADER
+          <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+          </button>
+          <TextSubheader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="desSubheader"
+            className="accordion"
+            onClick={() => showTable("desSubheader", "desPanel")}
+            style={{ position: 'relative', textAlign: 'center' }}
           >
-            <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-            DES SUBHEADER
-            <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-        </button>
-        <DesSubheader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="TRE"
-          className="accordion"
-          onClick={() => showTable("TRE", "trePanel")}
-          style={{ position: 'relative', textAlign: 'center' }}
+          <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+          DES SUBHEADER
+          <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+          </button>
+          <DesSubheader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="TRE"
+            className="accordion"
+            onClick={() => showTable("TRE", "trePanel")}
+            style={{ position: 'relative', textAlign: 'center' }}
           >
-            <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-            TRE
-            <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-        </button>
-        <TRE
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="TestHeader"
-          className="accordion"
-          onClick={() => showTable("TestHeader", "testPanel")}
-          style={{ position: 'relative', textAlign: 'center' }}
-          >
-            <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-            TRIANGLES ARE DOPE
-            <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-        </button>
-        <TestHeader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
+          <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+          TRE
+          <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+          </button>
+          <TRE
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
       </div>
-
 
       <div
         className="right-panel"
