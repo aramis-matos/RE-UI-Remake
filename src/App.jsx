@@ -224,15 +224,17 @@ const App = () => {
 
 
 
-
       <div className="nitf-headers" key={reset}>
         <button
           id="fileHeader"
           className="accordion"
           onClick={() => showTable("fileHeader", "filePanel")}
-        >
-          NITF FILE HEADER
-        </button>
+          style={{ position: 'relative', textAlign: 'center' }}
+          >
+          <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+          NTIF FILE HEADER
+          <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+      </button>
         <FileHeader
           data={initialData}
           onChange={recordCheckboxChange}
@@ -243,8 +245,11 @@ const App = () => {
           id="imageSubheader"
           className="accordion"
           onClick={() => showTable("imageSubheader", "imagePanel")}
-        >
-          IMAGE SUBHEADER
+          style={{ position: 'relative', textAlign: 'center' }}
+          >
+            <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+            IMAGE SUBHEADER
+            <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
         </button>
         <ImageSubheader
           data={initialData}
@@ -256,8 +261,11 @@ const App = () => {
           id="graphicSubheader"
           className="accordion"
           onClick={() => showTable("graphicSubheader", "graphicPanel")}
-        >
-          GRAPHIC SUBHEADER
+          style={{ position: 'relative', textAlign: 'center' }}
+          >
+            <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+            GRAPHIC SUBHEADER
+            <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
         </button>
         <GraphicSubheader
           data={initialData}
@@ -269,8 +277,11 @@ const App = () => {
           id="textSubheader"
           className="accordion"
           onClick={() => showTable("textSubheader", "textPanel")}
-        >
-          TEXT SUBHEADER
+          style={{ position: 'relative', textAlign: 'center' }}
+          >
+            <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+            TEXT SUBHEADER
+            <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
         </button>
         <TextSubheader
           data={initialData}
@@ -282,8 +293,11 @@ const App = () => {
           id="desSubheader"
           className="accordion"
           onClick={() => showTable("desSubheader", "desPanel")}
-        >
-          DES SUBHEADER
+          style={{ position: 'relative', textAlign: 'center' }}
+          >
+            <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+            DES SUBHEADER
+            <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
         </button>
         <DesSubheader
           data={initialData}
@@ -295,8 +309,11 @@ const App = () => {
           id="TRE"
           className="accordion"
           onClick={() => showTable("TRE", "trePanel")}
-        >
-          TRE
+          style={{ position: 'relative', textAlign: 'center' }}
+          >
+            <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+            TRE
+            <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
         </button>
         <TRE
           data={initialData}
@@ -308,8 +325,11 @@ const App = () => {
           id="TestHeader"
           className="accordion"
           onClick={() => showTable("TestHeader", "testPanel")}
-        >
-          TEST HEADER
+          style={{ position: 'relative', textAlign: 'center' }}
+          >
+            <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+            TRIANGLES ARE DOPE
+            <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
         </button>
         <TestHeader
           data={initialData}
