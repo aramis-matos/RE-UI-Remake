@@ -149,6 +149,9 @@ const App = () => {
     resetAll();
   };
 
+  const handleHelp = () => {
+    showPopup("hello World!");
+  }
   //export updates and run PUT request
   const handleSave = () => {
     getAllUpdates();
@@ -199,10 +202,24 @@ const App = () => {
             data-testid="saveRuleset"
             disabled={selectedRuleset.rulesetId === undefined ? true : false}
             onClick={handleSave}
-          >
+         >
             SAVE
           </button>
           <PreferencesModal onSave={applyPreferences} listType={listType} />
+          <div className = "helpSearch">
+            <SearchBar
+              handleSearch={(value) => handleSearch(value)}
+              className="search"
+            />
+            <button
+              className= "help-page"
+              id="helpButton"
+              data-testid="openHelp"
+              onClick={handleHelp}
+            >
+            ?
+            </button>
+          </div>
         </div>
       </div>
       <div className="nitf-headers" key={reset}>
@@ -291,17 +308,12 @@ const App = () => {
           />
         </div>
       </div>
+
       <div
         className="right-panel"
         data-testid="rulesetPreview"
         ref={rulesetPreview}
       >
-        {/*
-        <SearchBar
-          handleSearch={(value) => handleSearch(value)}
-          className="search"
-        />
-        */}
         <RulesetPreviewModal
           initialData={initialData}
           data={currentlyEditing}
