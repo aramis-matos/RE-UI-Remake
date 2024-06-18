@@ -41,6 +41,8 @@
   --p800: #3c225e;
   --p900: #240f3d;
 
+  --c100: #e9b77c;
+
   --success: #6be67f;
   --error: #e66b6b;
 }
@@ -83,7 +85,7 @@ h4 {
 }
 p,
 span {
-  color: white;
+  color: var(--n850);
   font-family: "Roboto-Medium";
   margin: 10px;
   font-size: 16px;
@@ -97,11 +99,17 @@ button {
   border: none;
   border-radius: 10px;
   width: 100%;
-  height: 48px;
+  height: 80px;
   text-align: center;
   font-size: 18px;
-  margin-bottom: 27px;
+  margin-bottom: 8px;
   transition: 0.2s;
+  min-height: 60px;
+}
+#helpButton {
+  background-color: var(--c100);
+  height: 44px;
+  width: 44px;
 }
 button:hover {
   background-color: var(--p700);
@@ -343,12 +351,10 @@ button:disabled {
 /* HELP PAGE */
 .help-page {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100%;
-  margin: 20px;
+  width: 50px;
+  background-color: var(--c100);
 }
 .faq {
   display: flex;
@@ -543,29 +549,110 @@ button:disabled {
   width: 100%;
   color: white;
 }
+.preferences_preview_modal {
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+}
+.preferences_preview_modal > .content {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  width: 100%;
+  color: white;
+}
+
+.filters_preview_modal {
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+}
+.filters_preview_modal > .content {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  width: 100%;
+  color: white;
+}
+
+.preferences_preview_modal .content .preferences-div input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  box-sizing: border-box;
+}
+
+.preferences_preview_modal .content .preferences-div input[type="radio"] {
+  margin-right: 5px;
+}
+
+.preferences_preview_modal .content .preferences-div label {
+  margin-right: 20px;
+}
+
+.filters_preview_modal .content .filters-div input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  box-sizing: border-box;
+}
+
+.filters_preview_modal .content .filters-div input[type="radio"] {
+  margin-right: 5px;
+}
+
+.filters_preview_modal .content .filters-div label {
+  margin-right: 20px;
+}
+
 .redact-div,
-.modify-div {
+.modify-div, 
+.preferences-div {
   margin: 10px;
   border-radius: 15px;
   text-align: center;
-  background-color: var(--n850);
+  color: var(--n850);
+  background-color: var(--c100);
   border: 3px solid var(--n400);
 }
 .redact-div {
   height: 500px;
 }
 .redact-div h2 {
-  color: red;
+  color: var(--n850);
 }
+
+/*PREFERENCES ON PAGE (BY JACK)*/
+
+.preferences-div h2 {
+  color: var(--n850);
+}
+.preferences-div {
+  height: 300px;
+}
+
+.filters-div h2 {
+  color:rgb(255, 255, 255)
+}
+.filters-div {
+  height: 300px;
+}
+
+
+
 .redact-div > .selections {
   max-height: 450px;
+}
+.preferences-div {
+  height: 300px;
 }
 .modify-div {
   height: 300px;
 }
 .modify-div h2 {
-  color: orange;
+  color: var(--n850);
 }
+
 .modify-div > .selections {
   max-height: 250px;
 }
@@ -743,19 +830,24 @@ button.back-nav {
   width: 20%;
   max-width: 300px;
 }
+.helpSearch{
+  height: 60px;
+  margin: 0px;
+  display: flex;
+  flex-direction: horizontal;
+}
 .search {
   border: 0;
-  background-color: var(--n800);
+  background-color: var(--c100);
   border-radius: 8px;
   outline: solid;
-  outline-width: 2px;
+  outline-width: 0px;
   outline-color: var(--n500);
-
-  width: 350px;
-  height: 48px;
+  width: 250px;
+  height: 50px;
   text-align: center;
   color: var(--n100);
-  margin: 20px 0px 10px 0px;
+  margin: 0px 10px 0px 0px;
 }
 .search-match {
   display: flex;
@@ -770,14 +862,14 @@ button.back-nav {
 }
 /* Style the buttons that are used to open and close the accordion panel */
 .accordion {
-  background-color: var(--n700);
+  background-color: var(--p500);
   width: 100%;
   height: 60px;
   transition: 0.2s;
 }
 /* Add a background color to the button when you move the mouse over it (hover) */
 .accordion:hover {
-  background-color: var(--n500);
+  background-color: var(--c100);
 }
 .accordion-open {
   border-radius: 10px 10px 0px 0px;

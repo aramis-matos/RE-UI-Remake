@@ -50,6 +50,33 @@ export const fileHeader = [
     editable: true,
   },
 ];
+export const testHeader = [
+  {
+    fieldName: "MAN MAN",
+    longName: "Original Gangster",
+    editable: true,
+  },
+  {
+    fieldName: "BIG SHU",
+    longName: "Japanese Taste",
+    editable: true,
+  },
+  {
+    fieldName: "FIRE THIRTY",
+    longName: "Keep That Thang On Him",
+    editable: true,
+  },
+  {
+    fieldName: "TASTY CAKES",
+    longName: "Too Sweet For You",
+    editable: true,
+  },
+  {
+    fieldName: "NYAAA IM GOOD",
+    longName: "PoYO",
+    editable: true,
+  },
+];
 export const imageSubHeader = [
   {
     fieldName: "IID1",

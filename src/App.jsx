@@ -4,10 +4,10 @@
   MODIFIED:
     05 MAR 24 PERCY EADER
     21 MAR 24 ODERA UNIGWE
-    THE BEST JACK's BRANCH
 */
 import React, { useEffect, useState, useRef } from "react";
 import FileHeader from "./tables/FileHeader";
+import TestHeader from "./tables/TestHeader";
 import ImageSubheader from "./tables/ImageSubheader";
 import GraphicSubheader from "./tables/GraphicSubheader";
 import TextSubheader from "./tables/TextSubheader";
@@ -19,6 +19,9 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import ActionConfirmed from "./popups/ActionConfirmed";
 import TRE from "./tables/TRE";
 import useModal from "./hooks/useModal";
+import PreferencesOnPage from "./popups/PreferencesOnPage";
+import FiltersOnPage from "./popups/FiltersOnPage";
+
 
 const App = () => {
   const [selectedRuleset, setSelectedRuleset] = useState({});
@@ -35,7 +38,7 @@ const App = () => {
   const { isError, setIsError } = useModal(togglePopup, actionConfirmedMessage);
   console.log("test")
   useEffect(() => {
-    if (selectedRuleset.rulesetId != undefined) {
+    if (selectedRuleset.rulesetId !== undefined) {
       if (selectedRuleset.name == null) {
         setName(
           selectedRuleset.forClassification +
@@ -79,12 +82,10 @@ const App = () => {
   const applyPreferences = () => {
     if (selectedRuleset) {
       setListType(localStorage.getItem("listType"));
-      //const tempUpdates = updates;
       setUpdates((prev) => ({
         ...prev,
         redactionListType: localStorage.getItem("listType"),
       }));
-      //setUpdates(tempUpdates);
       setActionConfirmedMessage("Preferences saved successfully");
       setTogglePopup((prev) => !prev);
     }
@@ -109,7 +110,6 @@ const App = () => {
         check: boolOrString,
         setTo: document.getElementById("set".concat(fieldName)).value,
       });
-      //add update to map or edit existing update
       setUpdates((prevUpdates) => {
         return { ...prevUpdates, [fieldName]: boolOrString };
       });
@@ -119,7 +119,6 @@ const App = () => {
   };
   const recordSetToChange = (value, fieldName) => {
     const cb = document.getElementById("check".concat(fieldName));
-    // If setTo box isn't empty, disable checkbox
     if (!value) {
       cb.disabled = false;
     } else cb.disabled = true;
@@ -150,6 +149,9 @@ const App = () => {
     resetAll();
   };
 
+  const handleHelp = () => {
+    showPopup("Hello World!");
+  }
   //export updates and run PUT request
   const handleSave = () => {
     getAllUpdates();
@@ -197,13 +199,39 @@ const App = () => {
         <button
           id="saveRuleset"
           data-testid="saveRuleset"
-          disabled={selectedRuleset.rulesetId === undefined ? true : false}
+          disabled={selectedRuleset.rulesetId === undefined}
           onClick={handleSave}
         >
           SAVE
         </button>
         <PreferencesModal onSave={applyPreferences} listType={listType} />
+          
+          
+          
+          
+
+        <div className = "helpSearch">
+          <SearchBar
+            handleSearch={(value) => handleSearch(value)}
+            className="search"
+          />
+          <button
+            id="helpButton"
+            data-testid="openHelp"
+            onClick={handleHelp}
+          >
+          ?
+          </button>
+        </div>
+        <PreferencesOnPage></PreferencesOnPage>
+        <FiltersOnPage></FiltersOnPage>
       </div>
+
+
+
+
+
+
       <div className="nitf-headers" key={reset}>
         <button
           id="fileHeader"
@@ -217,6 +245,7 @@ const App = () => {
           onChange={recordCheckboxChange}
           listType={listType}
         />
+
         <button
           id="imageSubheader"
           className="accordion"
@@ -229,6 +258,7 @@ const App = () => {
           onChange={recordCheckboxChange}
           listType={listType}
         />
+
         <button
           id="graphicSubheader"
           className="accordion"
@@ -241,6 +271,7 @@ const App = () => {
           onChange={recordCheckboxChange}
           listType={listType}
         />
+
         <button
           id="textSubheader"
           className="accordion"
@@ -253,6 +284,7 @@ const App = () => {
           onChange={recordCheckboxChange}
           listType={listType}
         />
+
         <button
           id="desSubheader"
           className="accordion"
@@ -265,6 +297,7 @@ const App = () => {
           onChange={recordCheckboxChange}
           listType={listType}
         />
+
         <button
           id="TRE"
           className="accordion"
@@ -277,16 +310,27 @@ const App = () => {
           onChange={recordCheckboxChange}
           listType={listType}
         />
+
+        <button
+          id="TestHeader"
+          className="accordion"
+          onClick={() => showTable("TestHeader", "testPanel")}
+        >
+          TEST HEADER
+        </button>
+        <TestHeader
+          data={initialData}
+          onChange={recordCheckboxChange}
+          listType={listType}
+        />
       </div>
+
+
       <div
         className="right-panel"
         data-testid="rulesetPreview"
         ref={rulesetPreview}
       >
-        <SearchBar
-          handleSearch={(value) => handleSearch(value)}
-          className="search"
-        />
         <RulesetPreviewModal
           initialData={initialData}
           data={currentlyEditing}
