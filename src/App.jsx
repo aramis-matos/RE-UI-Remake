@@ -143,7 +143,7 @@ const App = () => {
   };
 
   const handleHelp = () => {
-    showPopup("hello World!");
+    showPopup("Hello World!");
   }
   //export updates and run PUT request
   const handleSave = () => {
@@ -179,146 +179,132 @@ const App = () => {
         setIsError={setIsError}
       />
       <div className="left-panel">
-        <button id="newRuleset" onClick={handleNew}>
-          NEW
-        </button>
-        <button
-          id="openRuleset"
-          data-testid="openRuleset"
-          onClick={() => toggleModal("myModal", "flex")}
-        >
-          OPEN
-        </button>
-        <button
-          id="saveRuleset"
-          data-testid="saveRuleset"
-          disabled={selectedRuleset.rulesetId === undefined}
-          onClick={handleSave}
-        >
-          SAVE
-        </button>
-        <PreferencesModal onSave={applyPreferences} listType={listType} />
-          
-          
-          
-          
-
-        <div className = "helpSearch">
-          <SearchBar
-            handleSearch={(value) => handleSearch(value)}
-            className="search"
-          />
-          <button
-            className= "help-page"
-            id="helpButton"
-            data-testid="openHelp"
-            onClick={handleHelp}
-          >
-          ?
+        <div className="content">
+          <button id="newRuleset" onClick={handleNew}>
+            NEW
           </button>
+          <button
+            id="openRuleset"
+            data-testid="openRuleset"
+            onClick={() => toggleModal("myModal", "flex")}
+          >
+            OPEN
+          </button>
+          <button
+            id="saveRuleset"
+            data-testid="saveRuleset"
+            disabled={selectedRuleset.rulesetId === undefined ? true : false}
+            onClick={handleSave}
+         >
+            SAVE
+          </button>
+          <PreferencesModal onSave={applyPreferences} listType={listType} />
+          <div className = "helpSearch">
+            <SearchBar
+              handleSearch={(value) => handleSearch(value)}
+              className="search"
+            />
+            <button
+              className= "help-page"
+              id="helpButton"
+              data-testid="openHelp"
+              onClick={handleHelp}
+            >
+            ?
+            </button>
+          </div>
+        
+            <PreferencesOnPage></PreferencesOnPage>
+            <FiltersOnPage></FiltersOnPage>
         </div>
-        <PreferencesOnPage></PreferencesOnPage>
-        <FiltersOnPage></FiltersOnPage>
       </div>
-
-
-
-
-
 
       <div className="nitf-headers" key={reset}>
-        <button
-          id="fileHeader"
-          className="accordion"
-          onClick={() => showTable("fileHeader", "filePanel")}
-        >
-          NITF FILE HEADER
-        </button>
-        <FileHeader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="imageSubheader"
-          className="accordion"
-          onClick={() => showTable("imageSubheader", "imagePanel")}
-        >
-          IMAGE SUBHEADER
-        </button>
-        <ImageSubheader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="graphicSubheader"
-          className="accordion"
-          onClick={() => showTable("graphicSubheader", "graphicPanel")}
-        >
-          GRAPHIC SUBHEADER
-        </button>
-        <GraphicSubheader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="textSubheader"
-          className="accordion"
-          onClick={() => showTable("textSubheader", "textPanel")}
-        >
-          TEXT SUBHEADER
-        </button>
-        <TextSubheader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="desSubheader"
-          className="accordion"
-          onClick={() => showTable("desSubheader", "desPanel")}
-        >
-          DES SUBHEADER
-        </button>
-        <DesSubheader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="TRE"
-          className="accordion"
-          onClick={() => showTable("TRE", "trePanel")}
-        >
-          TRE
-        </button>
-        <TRE
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="TestHeader"
-          className="accordion"
-          onClick={() => showTable("TestHeader", "testPanel")}
-        >
-          TEST HEADER
-        </button>
-        <TestHeader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
+        <div>
+          <button
+            id="fileHeader"
+            className="accordion"
+            onClick={() => showTable("fileHeader", "filePanel")}
+          >
+            NITF FILE HEADER
+          </button>
+          <FileHeader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="imageSubheader"
+            className="accordion"
+            onClick={() => showTable("imageSubheader", "imagePanel")}
+          >
+            IMAGE SUBHEADER
+          </button>
+          <ImageSubheader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="graphicSubheader"
+            className="accordion"
+            onClick={() => showTable("graphicSubheader", "graphicPanel")}
+          >
+            GRAPHIC SUBHEADER
+          </button>
+          <GraphicSubheader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="textSubheader"
+            className="accordion"
+            onClick={() => showTable("textSubheader", "textPanel")}
+          >
+            TEXT SUBHEADER
+          </button>
+          <TextSubheader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="desSubheader"
+            className="accordion"
+            onClick={() => showTable("desSubheader", "desPanel")}
+          >
+            DES SUBHEADER
+          </button>
+          <DesSubheader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="TRE"
+            className="accordion"
+            onClick={() => showTable("TRE", "trePanel")}
+          >
+            TRE
+          </button>
+          <TRE
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
       </div>
-
 
       <div
         className="right-panel"
