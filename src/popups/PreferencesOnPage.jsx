@@ -54,7 +54,7 @@ Classification Secuirty System: ${inputSecuritySystem}`);
                 placeholder="Enter something..."
               />
             </div>
-            <button type="submit">Save</button>
+            <button className = "prefSaveButton" type="submit">Save</button>
           </form>
         </div>
       </div>

@@ -592,6 +592,12 @@ button:disabled {
   box-sizing: border-box;
 }
 
+.prefSaveButton {
+  text-align: center;
+  width: 100px;
+  height: 40px;
+}
+
 .filters_preview_modal .content .filters-div input[type="radio"] {
   margin-right: 5px;
 }
@@ -602,7 +608,8 @@ button:disabled {
 
 .redact-div,
 .modify-div, 
-.preferences-div {
+.preferences-div,
+.filters_preview_modal {
   margin: 10px;
   border-radius: 15px;
   text-align: center;
