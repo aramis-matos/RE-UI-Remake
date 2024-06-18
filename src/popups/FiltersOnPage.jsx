@@ -26,7 +26,7 @@ const FiltersOnPage = () => {
 
 
 
-
+//dffrvd
 
 
 
@@ -38,7 +38,7 @@ const FiltersOnPage = () => {
               <h2>FILTERS</h2>
               <div>
                 <form onSubmit={handleSubmit}>
-                  {items.map((item) =>  )}
+                
                 </form>
 
               </div>
