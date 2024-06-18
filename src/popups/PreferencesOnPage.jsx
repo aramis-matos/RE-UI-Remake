@@ -47,6 +47,9 @@ Classification Secuirty System: ${inputSecuritySystem}`);
               <label htmlFor="blackList">Black List</label>
             </div>
             <div>
+              <div>
+              </div>
+              <label>Classification System:</label>
               <input
                 type="text"
                 value={inputSecuritySystem}
