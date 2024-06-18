@@ -14,6 +14,7 @@ import TRE from "./tables/TRE";
 import useModal from "./hooks/useModal";
 import PreferencesOnPage from "./popups/PreferencesOnPage";
 import FiltersOnPage from "./popups/FiltersOnPage";
+import RulesetModalOnPage from "./popups/RulesetModalOnPage";
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
   const [listType, setListType] = useState("");
   const [name, setName] = useState("");
   const { isError, setIsError } = useModal(togglePopup, actionConfirmedMessage);
+  const [isRulesetModalOpen, setIsRulesetModalOpen] = useState(false);
   console.log("test")
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
@@ -70,6 +72,14 @@ const App = () => {
         element.style = {};
       }
     }
+  };
+
+  const openRulesetModal = () => {
+    setIsRulesetModalOpen(true);
+  };
+
+  const closeRulesetModal = () => {
+    setIsRulesetModalOpen(false);
   };
 
   const applyPreferences = () => {
@@ -165,6 +175,8 @@ const App = () => {
     setTogglePopup(!togglePopup);
   };
 
+
+
   return (
     <div className="editor">
       <SavedRulesetModal
@@ -184,6 +196,22 @@ const App = () => {
 
       <div className="left-panel">
         <div className="content">
+          <div className="ruleset-modal">
+            <button onClick={openRulesetModal}>NEW NEW</button>
+            <RulesetModalOnPage isOpen={isRulesetModalOpen} onClose={closeRulesetModal}>
+            <h2>Modal Title</h2>
+            <p>This is a modal content!</p>
+          </RulesetModalOnPage>
+        </div>
+
+
+
+
+
+
+
+
+          
           <button id="newRuleset" onClick={handleNew}>
             NEW
           </button>

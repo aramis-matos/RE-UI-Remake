@@ -28,11 +28,6 @@ const FiltersOnPage = () => {
 
 
 
-
-
-
-
-
   return (
     <div id = "filtersOnPage"className='filters_preview_modal'>
         <div className='content'>
