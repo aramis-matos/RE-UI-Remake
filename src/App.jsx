@@ -1,12 +1,6 @@
-/*
- RULESEDITOR.JS
-  CREATED: 21 JUL 22 DENNIS DUONG
-  MODIFIED:
-    05 MAR 24 PERCY EADER
-    21 MAR 24 ODERA UNIGWE
-*/
 import React, { useEffect, useState, useRef } from "react";
 import FileHeader from "./tables/FileHeader";
+import TestHeader from "./tables/TestHeader";
 import ImageSubheader from "./tables/ImageSubheader";
 import GraphicSubheader from "./tables/GraphicSubheader";
 import TextSubheader from "./tables/TextSubheader";
@@ -18,6 +12,9 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import ActionConfirmed from "./popups/ActionConfirmed";
 import TRE from "./tables/TRE";
 import useModal from "./hooks/useModal";
+import PreferencesOnPage from "./popups/PreferencesOnPage";
+import FiltersOnPage from "./popups/FiltersOnPage";
+
 
 const App = () => {
   const [selectedRuleset, setSelectedRuleset] = useState({});
@@ -34,7 +31,7 @@ const App = () => {
   const { isError, setIsError } = useModal(togglePopup, actionConfirmedMessage);
   console.log("test")
   useEffect(() => {
-    if (selectedRuleset.rulesetId != undefined) {
+    if (selectedRuleset.rulesetId !== undefined) {
       if (selectedRuleset.name == null) {
         setName(
           selectedRuleset.forClassification +
@@ -78,12 +75,10 @@ const App = () => {
   const applyPreferences = () => {
     if (selectedRuleset) {
       setListType(localStorage.getItem("listType"));
-      //const tempUpdates = updates;
       setUpdates((prev) => ({
         ...prev,
         redactionListType: localStorage.getItem("listType"),
       }));
-      //setUpdates(tempUpdates);
       setActionConfirmedMessage("Preferences saved successfully");
       setTogglePopup((prev) => !prev);
     }
@@ -108,7 +103,6 @@ const App = () => {
         check: boolOrString,
         setTo: document.getElementById("set".concat(fieldName)).value,
       });
-      //add update to map or edit existing update
       setUpdates((prevUpdates) => {
         return { ...prevUpdates, [fieldName]: boolOrString };
       });
@@ -118,7 +112,6 @@ const App = () => {
   };
   const recordSetToChange = (value, fieldName) => {
     const cb = document.getElementById("check".concat(fieldName));
-    // If setTo box isn't empty, disable checkbox
     if (!value) {
       cb.disabled = false;
     } else cb.disabled = true;
@@ -150,7 +143,7 @@ const App = () => {
   };
 
   const handleHelp = () => {
-    showPopup("hello World!");
+    showPopup("Hello World!");
   }
   //export updates and run PUT request
   const handleSave = () => {
@@ -221,7 +214,10 @@ const App = () => {
             </button>
           </div>
         </div>
+        <PreferencesOnPage></PreferencesOnPage>
+        <FiltersOnPage></FiltersOnPage>
       </div>
+
       <div className="nitf-headers" key={reset}>
         <div>
           <button
