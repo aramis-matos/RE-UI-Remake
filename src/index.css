@@ -886,7 +886,7 @@ button.back-nav {
   transition: 0.2s;
 }
 /* Add a background color to the button when you move the mouse over it (hover) */
-.accordion:hover {
+.accordion:hover, .accordion-open:hover {
   background-color: var(--c100);
 }
 .accordion-open {
@@ -897,7 +897,7 @@ button.back-nav {
   top: 0;
   position: -webkit-sticky;
   position:sticky;
-
+  background-color: var(--p700)
 }
 /* Style the accordion panel. Note: hidden by default */
 .button-panel {

@@ -213,9 +213,10 @@ const App = () => {
             ?
             </button>
           </div>
+        
+            <PreferencesOnPage></PreferencesOnPage>
+            <FiltersOnPage></FiltersOnPage>
         </div>
-        <PreferencesOnPage></PreferencesOnPage>
-        <FiltersOnPage></FiltersOnPage>
       </div>
 
       <div className="nitf-headers" key={reset}>
