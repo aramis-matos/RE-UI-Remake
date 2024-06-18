@@ -937,23 +937,28 @@ button.back-nav {
   justify-content: flex-start;
   align-items: center;
 }
-.field-table {
+/*.field-table {
   background-color: var(--n850);
   display: flex;
   flex-direction: column;
   padding-right: 10px;
   overflow: auto;
   scrollbar-gutter: stable;
-}
+}*/
 .field-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   overflow: auto;
-  margin-bottom: 10px;
   padding-left: 5px;
   flex-shrink: 0;
   color: var(--n0);
+  background-color: silver;
+}
+#set-to-box{
+  background-color: rgb(130, 127, 127);
+  position: relative;
+  left: -120px
 }
 .field-row:hover {
   background-color: var(--n600);
@@ -974,7 +979,7 @@ button.back-nav {
 }
 .field-panel,
 .tre-panel {
-  background-color: var(--n850);
+  background-color: silver;
   border: 3px solid var(--n400);
   border-radius: 0px 0px 15px 15px;
   padding: 20px 0px 20px 20px;
