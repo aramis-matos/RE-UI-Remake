@@ -96,8 +96,8 @@ span {
 button {
   color: var(--n0);
   background-color: var(--p500);
-  border: none;
-  border-radius: 10px;
+  border: 3px solid var(--n400);
+  border-radius: 15px;
   width: 100%;
   height: 80px;
   text-align: center;
@@ -107,6 +107,8 @@ button {
   min-height: 60px;
 }
 #helpButton {
+  border: 3px solid var(--n400);
+  border-radius: 15px;
   background-color: var(--c100);
   height: 44px;
   width: 44px;
@@ -862,9 +864,9 @@ button.back-nav {
   flex-direction: horizontal;
 }
 .search {
-  border: 0;
+  border: 3px solid var(--n400);
   background-color: var(--c100);
-  border-radius: 8px;
+  border-radius: 15px;
   outline: solid;
   outline-width: 0px;
   outline-color: var(--n500);
