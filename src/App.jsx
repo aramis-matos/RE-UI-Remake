@@ -227,9 +227,7 @@ const App = () => {
             onClick={() => showTable("fileHeader", "filePanel")}
          
           >
-          <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-          NITF FILE HEADER
-          <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+          <span>&#9660;</span> NITF FILE HEADER <span>&#9660;</span>
           </button>
           <FileHeader
             data={initialData}
@@ -244,9 +242,7 @@ const App = () => {
             onClick={() => showTable("imageSubheader", "imagePanel")}
            
           >
-          <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-          IMAGE SUBHEADER
-          <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+          <span>&#9660;</span> IMAGE SUBHEADER <span>&#9660;</span>
           </button>
           <ImageSubheader
             data={initialData}
@@ -261,9 +257,7 @@ const App = () => {
             onClick={() => showTable("graphicSubheader", "graphicPanel")}
            
           >
-          <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-          GRAPHIC SUBHEADER
-          <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+          <span>&#9660;</span> GRAPHIC SUBHEADER <span>&#9660;</span>
           </button>
           <GraphicSubheader
             data={initialData}
@@ -278,9 +272,7 @@ const App = () => {
             onClick={() => showTable("textSubheader", "textPanel")}
            
           >
-          <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-          TEXT SUBHEADER
-          <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+          <span>&#9660;</span> TEXT SUBHEADER <span>&#9660;</span>
           </button>
           <TextSubheader
             data={initialData}
@@ -295,9 +287,7 @@ const App = () => {
             onClick={() => showTable("desSubheader", "desPanel")}
            
           >
-          <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-          DES SUBHEADER
-          <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+          <span>&#9660;</span> DES SUBHEADER <span>&#9660;</span>
           </button>
           <DesSubheader
             data={initialData}
@@ -312,9 +302,7 @@ const App = () => {
             onClick={() => showTable("TRE", "trePanel")}
            
           >
-          <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
-          TRE
-          <span style={{ position: 'absolute', right: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
+          <span>&#9660;</span> TRE <span>&#9660;</span>
           </button>
           <TRE
             data={initialData}
