@@ -1019,10 +1019,11 @@ button.back-nav {
 
 .tre-fields-list {
   display: none;
-  max-height: 350px;
   overflow: auto;
   background-color: var(--n800);
-  border-left: 3px solid var(--p300);
+  border: 3px solid var(--p300);
+  border-top:0px;
+  padding-right:10px;
 }
 .tre-header {
   height: 38px;
