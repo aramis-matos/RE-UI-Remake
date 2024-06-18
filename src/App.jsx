@@ -218,13 +218,14 @@ const App = () => {
             <FiltersOnPage></FiltersOnPage>
         </div>
       </div>
+      
       <div className="nitf-headers" key={reset}>
         <div>
           <button
             id="fileHeader"
             className="accordion"
             onClick={() => showTable("fileHeader", "filePanel")}
-          style={{ position: 'relative', textAlign: 'center' }}
+         
           >
           <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
           NITF FILE HEADER
@@ -241,7 +242,7 @@ const App = () => {
             id="imageSubheader"
             className="accordion"
             onClick={() => showTable("imageSubheader", "imagePanel")}
-            style={{ position: 'relative', textAlign: 'center' }}
+           
           >
           <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
           IMAGE SUBHEADER
@@ -258,7 +259,7 @@ const App = () => {
             id="graphicSubheader"
             className="accordion"
             onClick={() => showTable("graphicSubheader", "graphicPanel")}
-            style={{ position: 'relative', textAlign: 'center' }}
+           
           >
           <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
           GRAPHIC SUBHEADER
@@ -275,7 +276,7 @@ const App = () => {
             id="textSubheader"
             className="accordion"
             onClick={() => showTable("textSubheader", "textPanel")}
-            style={{ position: 'relative', textAlign: 'center' }}
+           
           >
           <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
           TEXT SUBHEADER
@@ -292,7 +293,7 @@ const App = () => {
             id="desSubheader"
             className="accordion"
             onClick={() => showTable("desSubheader", "desPanel")}
-            style={{ position: 'relative', textAlign: 'center' }}
+           
           >
           <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
           DES SUBHEADER
@@ -309,7 +310,7 @@ const App = () => {
             id="TRE"
             className="accordion"
             onClick={() => showTable("TRE", "trePanel")}
-            style={{ position: 'relative', textAlign: 'center' }}
+           
           >
           <span style={{ position: 'absolute', left: '375px', top: '0px', fontSize: '30px', color: '#c9c9c9' }}>&#9660;</span>
           TRE

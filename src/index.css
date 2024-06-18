@@ -391,7 +391,8 @@ button:disabled {
 .redact,
 .compare,
 .templates-manager {
-  display: flex;
+  display: grid;
+  
   flex-direction: row;
   justify-content: space-between;
   width: auto;
@@ -843,7 +844,6 @@ button.back-nav {
   margin: 20px;
   display: flex;
   flex-direction: column;
-  width: 20%;
   max-width: 300px;
   margin-top: 0px;
 }
@@ -880,7 +880,6 @@ button.back-nav {
 .nitf-headers {
   display: flex;
   flex-direction: column;
-  width: 65%;
   min-width: 600px;
   margin: 20px;
 }
@@ -1022,8 +1021,8 @@ button.back-nav {
   overflow: auto;
   background-color: var(--n800);
   border: 3px solid var(--p300);
-  border-top:0px;
-  padding-right:10px;
+  border-top: 0px;
+  padding-right: 10px;
 }
 .tre-header {
   height: 38px;
