@@ -560,6 +560,9 @@ button:disabled {
   position: -webkit-sticky;
   position: sticky;
   align-self:flex-start;
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .preferences_preview_modal {
   width: 100%;
@@ -584,7 +587,7 @@ button:disabled {
   flex-direction: column;
   border-radius: 15px;
   width: 100%;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .preferences_preview_modal .content .preferences-div input[type="text"] {
@@ -607,9 +610,35 @@ button:disabled {
   padding: 8px;
   margin-top: 10px;
   box-sizing: border-box;
+  
 }
 
-.prefSaveButton {
+.filters-div {
+  form {
+  margin: 15px;
+  
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+button {
+  margin-top: 20px;
+}
+}
+
+.prefSaveButton, 
+.filterSaveButton {
   text-align: center;
   width: 100px;
   height: 40px;
@@ -633,6 +662,13 @@ button:disabled {
   color: var(--n850);
   background-color: var(--c100);
   border: 3px solid var(--n400);
+  width: 100%;
+  position: relative;
+  left: -12px;
+  h2 {
+    color: var(--n850);
+  }
+
 }
 .redact-div {
   height: 500px;
@@ -641,7 +677,11 @@ button:disabled {
   color: var(--n850);
 }
 
-/*PREFERENCES ON PAGE (BY JACK)*/
+.filters_preview_modal h2 {
+  color: var(--n850);
+}
+
+/*PREFERENCES ON PAGE (BY JACK L.)*/
 
 .preferences-div h2 {
   color: var(--n850);
@@ -651,11 +691,91 @@ button:disabled {
 }
 
 .filters-div h2 {
-  color:rgb(255, 255, 255)
+  color:rgb(0, 0, 0)
 }
 .filters-div {
   height: 300px;
 }
+
+/*RULESET MODAL ON PAGE*/
+.ruleset-modal {
+  max-width: 1000px;
+  max-height: 500px;
+}
+
+.ruleset-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(165, 150, 150, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  
+}
+
+.ruleset-modal-content {
+  background: rgb(68, 59, 59);
+  padding: 20px;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  height: 400px;
+
+  p {
+    color: white;
+    margin: auto;
+    font-family: "Roboto";
+    font-size: 36px;
+  font-weight: bold;
+
+  }
+}
+
+.ruleset-close-button {
+  position: absolute;
+  top: 85%;
+  right: 1%;
+  width:20%;
+  height: 10%;
+  background: solid;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.ruleset-open-button {
+  color: var(--n0);
+  background-color: var(--p500);
+  border: none;
+  border-radius: 10px;
+  width: 300px;
+  height: 60px;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 8px;
+  transition: 0.2s;
+  min-height: 60px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

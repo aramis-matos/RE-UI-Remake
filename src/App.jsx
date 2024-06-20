@@ -14,6 +14,7 @@ import TRE from "./tables/TRE";
 import useModal from "./hooks/useModal";
 import PreferencesOnPage from "./popups/PreferencesOnPage";
 import FiltersOnPage from "./popups/FiltersOnPage";
+import RulesetModalOnPage from "./popups/RulesetModalOnPage";
 
 
 const App = () => {
@@ -29,7 +30,7 @@ const App = () => {
   const [listType, setListType] = useState("");
   const [name, setName] = useState("");
   const { isError, setIsError } = useModal(togglePopup, actionConfirmedMessage);
-  console.log("test")
+  const [isRulesetModalOpen, setIsRulesetModalOpen] = useState(false);
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
       if (selectedRuleset.name == null) {
@@ -70,6 +71,14 @@ const App = () => {
         element.style = {};
       }
     }
+  };
+
+  const openRulesetModal = () => {
+    setIsRulesetModalOpen(true);
+  };
+
+  const closeRulesetModal = () => {
+    setIsRulesetModalOpen(false);
   };
 
   const applyPreferences = () => {
@@ -165,6 +174,8 @@ const App = () => {
     setTogglePopup(!togglePopup);
   };
 
+
+
   return (
     <div className="editor">
       <SavedRulesetModal
@@ -178,8 +189,28 @@ const App = () => {
         isError={isError}
         setIsError={setIsError}
       />
+
+
+
+
       <div className="left-panel">
         <div className="content">
+          <div className="ruleset-modal">
+            <button className = "ruleset-open-button" onClick={openRulesetModal}>NEW NEW</button>
+            <RulesetModalOnPage isOpen={isRulesetModalOpen} onClose={closeRulesetModal}>
+            <h2>New Ruleset</h2>
+            <p></p>
+          </RulesetModalOnPage>
+        </div>
+
+
+
+
+
+
+
+
+          
           <button id="newRuleset" onClick={handleNew}>
             NEW
           </button>
@@ -213,12 +244,12 @@ const App = () => {
             ?
             </button>
           </div>
-        
-            <PreferencesOnPage></PreferencesOnPage>
-            <FiltersOnPage></FiltersOnPage>
+          <FiltersOnPage></FiltersOnPage>
+          <PreferencesOnPage></PreferencesOnPage>
         </div>
       </div>
       
+
       <div className="nitf-headers" key={reset}>
         <div>
           <button
