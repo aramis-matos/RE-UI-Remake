@@ -79,7 +79,6 @@ h3 {
 }
 h4 {
   margin: 5px;
-  color: white;
   font-family: "Roboto";
   font-size: 20px;
 }
@@ -1081,18 +1080,15 @@ button.back-nav {
 }*/
 .field-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  overflow: auto;
   padding-left: 5px;
-  flex-shrink: 0;
-  color: var(--n0);
+  flex-shrink: 1;
+  color: black;
   background-color: silver;
+  margin-left: 10px;
 }
-#set-to-box{
-  background-color: rgb(130, 127, 127);
-  position: relative;
-  left: -120px
+.field-row div {
+  margin-left: 10px;
 }
 .field-row:hover {
   background-color: var(--n600);

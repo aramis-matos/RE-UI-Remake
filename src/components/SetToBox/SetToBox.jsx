@@ -35,7 +35,7 @@ const SetToBox = (props) => {
       setErrMsg(fields[props.fieldName].message);
     } else {
       setValue(input);
-      setStyle({ color: "white", marginTop: "5%"});
+      setStyle({ color: "black", marginTop: "5%"});
       setErrMsg("");
       props.onChange(input, props.fieldName);
     }
