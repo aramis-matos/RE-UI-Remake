@@ -1,7 +1,15 @@
 import React, {useState} from 'react'
 
 const FiltersOnPage = () => {
-  const [checkedItems, setCheckedItems] = useState({});
+  const defaultChecked =
+    {'NITF FILE HEADER': false,
+    'IMAGE SUBHEADER': false,
+    'GRAPHIC SUBHEADER': false,
+    'TEXT SUBHEADER': false,
+    'DES SUBHEADER': false,
+    'TRE': false,}
+
+  const [checkedItems, setCheckedItems] = useState(defaultChecked);
 
   const items = [
     { id: 1, label: 'NITF FILE HEADER' },
@@ -11,6 +19,8 @@ const FiltersOnPage = () => {
     { id: 5, label: 'DES SUBHEADER' },
     { id: 6, label: 'TRE' },
   ];
+
+
 
   const handleChange = (event) => {
     const { name, checked } = event.target;
