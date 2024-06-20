@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { fields } from "./inputValidation";
 
 const SetToBox = (props) => {
-  const [style, setStyle] = useState({ color: "black", marginTop: "5%" });
+  const [style, setStyle] = useState({ position: "center", color: "black", marginTop: "5%" });
   const [errMsg, setErrMsg] = useState("");
   const [value, setValue] = useState("");
 
@@ -35,7 +35,7 @@ const SetToBox = (props) => {
       setErrMsg(fields[props.fieldName].message);
     } else {
       setValue(input);
-      setStyle({ color: "black", marginTop: "5%" });
+      setStyle({ color: "white", marginTop: "5%"});
       setErrMsg("");
       props.onChange(input, props.fieldName);
     }
