@@ -256,8 +256,6 @@ const App = () => {
             id="fileHeader"
             className="accordion"
             onClick={() => showTable("fileHeader", "filePanel")}
-            style={{ position: 'relative', textAlign: 'center' }}
-
           >
           <span>&#9660;</span> NITF FILE HEADER <span>&#9660;</span>
           </button>
