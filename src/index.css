@@ -393,7 +393,8 @@ button:disabled {
 .redact,
 .compare,
 .templates-manager {
-  display: flex;
+  display: grid;
+  
   flex-direction: row;
   justify-content: space-between;
   width: auto;
@@ -845,7 +846,6 @@ button.back-nav {
   margin: 20px;
   display: flex;
   flex-direction: column;
-  width: 20%;
   max-width: 300px;
   margin-top: 0px;
 }
@@ -882,7 +882,6 @@ button.back-nav {
 .nitf-headers {
   display: flex;
   flex-direction: column;
-  width: 65%;
   min-width: 600px;
   margin: 20px;
 }
@@ -892,7 +891,21 @@ button.back-nav {
   width: 100%;
   height: 60px;
   transition: 0.2s;
+  text-align: center;
 }
+/*Traingle styling*/
+.accordion span, .accordion-open span {
+  font-size: 27px;
+  color: #c9c9c9;
+  display:inline-block;
+
+  margin: 0 auto;
+}
+.accordion-open span {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+
 /* Add a background color to the button when you move the mouse over it (hover) */
 .accordion:hover, .accordion-open:hover {
   background-color: var(--c100);
@@ -905,7 +918,8 @@ button.back-nav {
   top: 0;
   position: -webkit-sticky;
   position:sticky;
-  background-color: var(--p700)
+  background-color: var(--p700);
+
 }
 /* Style the accordion panel. Note: hidden by default */
 .button-panel {
@@ -982,10 +996,9 @@ button.back-nav {
   background-color: silver;
   border: 3px solid var(--n400);
   border-radius: 0px 0px 15px 15px;
-  padding: 20px 0px 20px 20px;
+  padding: 20px 0px 10px 20px;
   margin-bottom: 20px;
   display: none;
-  max-height: 500px;
   flex-direction: column;
 }
 /* RULES EDITOR: Preferences Modal */
@@ -1024,15 +1037,14 @@ button.back-nav {
   border-radius: 0px 0px 15px 15px;
 }
 /* RULESET EDITOR: TRE section */
-.tre-panel {
-  max-height: 2000px;
-}
+
 .tre-fields-list {
   display: none;
-  max-height: 350px;
   overflow: auto;
   background-color: var(--n800);
-  border-left: 3px solid var(--p300);
+  border: 3px solid var(--p300);
+  border-top: 0px;
+  padding-right: 10px;
 }
 .tre-header {
   height: 38px;
