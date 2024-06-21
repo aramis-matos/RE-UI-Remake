@@ -52,16 +52,18 @@ const RulesetPreviewModal = ({ initialData, data, listType }) => {
   const addToArrays = (data) => {
     if (data.setTo) {
       setModified((prevModified) =>
-        prevModified.indexOf(data.fieldName) === -1
-          ? [...prevModified, data.fieldName]
-          : prevModified
+        prevModified.some((item) => item.fieldName === data.fieldName)
+          ? prevModified.map((item) =>
+              item.fieldName === data.fieldName ? { ...item, setTo: data.setTo } : item
+            )
+          : [...prevModified, { fieldName: data.fieldName, setTo: data.setTo }]
       );
       setRedacted((prevRedacted) =>
         prevRedacted.filter((fieldName) => fieldName !== data.fieldName)
       );
     } else {
       setModified((prevModified) =>
-        prevModified.filter((fieldName) => fieldName !== data.fieldName)
+        prevModified.filter((item) => item.fieldName !== data.fieldName)
       );
       if (listType === "white list") {
         setRedacted((prevRedacted) =>
@@ -81,25 +83,29 @@ const RulesetPreviewModal = ({ initialData, data, listType }) => {
 
   return (
     <div id="previewRuleset" className="ruleset_preview_modal">
-      <div className="content">
-        <div className="redact-div">
-          <h2>REDACT</h2>
-          <div className="selections">
-            {redacted.length === 0 && <span>No ruleset selected</span>}
-            {redacted.length > 0 &&
-              redacted.map((field) => <p key={field + uuidv4()}>{field}</p>)}
-          </div>
+    <div className="content">
+      <div className="redact-div">
+        <h2>REDACT</h2>
+        <div className="selections">
+          {redacted.length === 0 && <span>No ruleset selected</span>}
+          {redacted.length > 0 &&
+            redacted.map((field) => <p key={field + uuidv4()}>{field}</p>)}
         </div>
-        <div className="modify-div">
-          <h2>MODIFY</h2>
-          <div className="selections">
-            {modified.length === 0 && <span>No ruleset selected</span>}
-            {modified.length > 0 &&
-              modified.map((field) => <p key={field + uuidv4()}>{field}</p>)}
-          </div>
+      </div>
+      <div className="modify-div">
+        <h2>MODIFY</h2>
+        <div className="selections">
+          {modified.length === 0 && <span>No ruleset selected</span>}
+          {modified.length > 0 &&
+            modified.map((item) => (
+              <p key={item.fieldName + uuidv4()}>
+                {item.fieldName} <span className="arrow">→</span> {item.setTo}
+              </p>
+            ))}
         </div>
       </div>
     </div>
+  </div>
   );
 };
 
