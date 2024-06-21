@@ -183,9 +183,6 @@ const App = () => {
     setActionConfirmedMessage(message);
     setTogglePopup(!togglePopup);
   };
-
-
-
   return (
     <div className="editor">
       <SavedRulesetModal
@@ -199,24 +196,13 @@ const App = () => {
         isError={isError}
         setIsError={setIsError}
       />
-
-
-
-
       <div className="left-panel">
         <div className="content">
-
-
-
-
-
           <div className="ruleset-modal">
             <button className = "ruleset-open-button" onClick={openRulesetModal}>NEW</button>
             <RulesetModalOnPage isOpen={isRulesetModalOpen} onClose={closeRulesetModal}>
             <div className ="rulesetOnPageModalContent">
               <h2>New Ruleset</h2>
-
-
               <div className = "rulesetObject" >
                 <h4>Classification</h4>
                 <select>
@@ -254,24 +240,11 @@ const App = () => {
                     for it is not the same river, and he is not the same man.
                   </option>
                 </select>
-                <button className="ruleset-save-button">Save</button>
+                <button className="ruleset-save-button">Create</button>
               </div>
-
-
-
-              
             </div>
-
-
           </RulesetModalOnPage>
         </div>
-
-
-
-
-
-          
-          
           <button
             id="openRuleset"
             data-testid="openRuleset"
@@ -316,8 +289,6 @@ const App = () => {
           <PreferencesOnPage></PreferencesOnPage>
         </div>
       </div>
-      
-
       <div className="nitf-headers" key={reset}>
         <div>
           <button
