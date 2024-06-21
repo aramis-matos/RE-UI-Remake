@@ -763,10 +763,7 @@ button {
 
 
 /*Help MODAL ON PAGE*/
-.help-modal {
-  width: 1000px;
-  height: 500px;
-}
+
 
 .help-page-modal-overlay {
   position: fixed;
@@ -1030,6 +1027,7 @@ button.back-nav {
 }
 .helpSearch{
   height: 60px;
+  max-width: 300px;
   margin: 0px;
   display: flex;
   flex-direction: horizontal;
