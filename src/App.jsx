@@ -1,10 +1,3 @@
-/*
- RULESEDITOR.JS
-  CREATED: 21 JUL 22 DENNIS DUONG
-  MODIFIED:
-    05 MAR 24 PERCY EADER
-    21 MAR 24 ODERA UNIGWE
-*/
 import React, { useEffect, useState, useRef } from "react";
 import FileHeader from "./tables/FileHeader";
 import TestHeader from "./tables/TestHeader";
