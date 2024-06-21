@@ -835,19 +835,18 @@ button {
 }
 .modify-div {
   height: 400px;
+  overflow-y: auto;
 }
 .modify-div h2 {
   color: var(--n850);
 }
 
 .modify-div > .selections {
-  max-height: 250px;
-}
-.selections {
-  color: white;
-  overflow: auto;
+  position: relative;
   text-align: center;
+  overflow-y: auto;
 }
+
 /* SAVED RULESET MODAL */
 .modal,
 .optionPaneModal,
@@ -1525,4 +1524,8 @@ button.back-nav {
 .submitBtn {
   margin: 0;
   border-radius: 0px 0px 15px 15px;
+}
+
+.arrow{
+  font-size: 150%;
 }
