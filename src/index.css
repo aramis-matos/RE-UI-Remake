@@ -570,7 +570,7 @@ button:disabled {
   align-self:flex-start;
   display:flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: normal;
 }
 .preferences_preview_modal {
   width: 100%;
@@ -653,7 +653,7 @@ button {
 }
 
 .filters_preview_modal .content .filters-div input[type="radio"] {
-  margin-right: 5px;
+  /*margin-right: 5px;*/
 }
 
 .filters_preview_modal .content .filters-div label {
@@ -680,13 +680,6 @@ button {
 }
 .redact-div {
   height: 600px;
-}
-.redact-div h2 {
-  color: var(--n850);
-}
-
-.filters_preview_modal h2 {
-  color: var(--n850);
 }
 
 /*PREFERENCES ON PAGE (BY JACK L.)*/
