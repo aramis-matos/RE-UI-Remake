@@ -121,7 +121,7 @@ const App = () => {
       setCurrentlyEditing({
         fieldName,
         check: boolOrString,
-        setTo: document.getElementById("set".concat(fieldName)).value,
+        setTo: document.getElementById("set".concat(fieldName)),
       });
       setUpdates((prevUpdates) => {
         return { ...prevUpdates, [fieldName]: boolOrString };
