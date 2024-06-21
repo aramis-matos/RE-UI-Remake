@@ -40,6 +40,7 @@ const App = () => {
   const { isError, setIsError } = useModal(togglePopup, actionConfirmedMessage);
   const [isRulesetModalOpen, setIsRulesetModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
       if (selectedRuleset.name == null) {
@@ -191,6 +192,18 @@ const App = () => {
     setTogglePopup(!togglePopup);
   };
 
+  let defaultChecked = [false, false, false, false, false, false]
+  /*NITF, Image, Graphic, Text, DES, TRE*/
+  const [checkedItems, setCheckedItems] = useState(defaultChecked);
+  const updateCheckedArr = (index, booleanVal) => {
+    const updatedArr = [...checkedItems];
+    updatedArr[index] = booleanVal;
+    setCheckedItems(updatedArr);
+  }
+const handleCheckChange = (e) => {
+  const {checked, id} = e.target;
+  updateCheckedArr(Number(id-1), checked)
+}
 
 
   return (
@@ -206,13 +219,15 @@ const App = () => {
         isError={isError}
         setIsError={setIsError}
       />
-
-
-
-
       <div className="left-panel">
         <div className="content">
+
+
+
+
+
           <div className="ruleset-modal">
+<<<<<<< HEAD
             {/*<button className = "newRuleset" onClick={openRulesetModal}>NEW</button>*/}
             <RulesetModalOnPage isOpen={isRulesetModalOpen} onClose={closeRulesetModal}>
               <h2>New Ruleset</h2>
@@ -227,6 +242,59 @@ const App = () => {
             onClick={openRulesetModal}
             >NEW
             </button>
+=======
+            <button className = "ruleset-open-button" onClick={openRulesetModal}>NEW</button>
+            <RulesetModalOnPage isOpen={isRulesetModalOpen} onClose={closeRulesetModal}>
+            <div className ="rulesetOnPageModalContent">
+              <h2>New Ruleset</h2>
+
+
+              <div className = "rulesetObject" >
+                <h4>Classification</h4>
+                <select>
+                  <option value="unclassifiedOp">Unclassified</option>
+                  <option value="confidentialOp">Confidential</option>
+                  <option value="secretOp">Secret</option>
+                  <option value="topSecretOp">Top Secret</option>
+                </select>
+              </div>
+              <div className = "rulesetObject" >
+                <h4>Country</h4>
+                <select>
+                  <option value="op">United States of America</option>
+                  <option value="op">Canada</option>
+                  <option value="op">Mexico</option>
+                  <option value="op">France</option>
+                  <option value="op">Newfoundland</option>
+                </select>
+              </div>
+              <div className = "rulesetObject" >
+                <h4>Releaseability</h4>
+                <select>
+                  <option value="op">An Option</option>
+                  <option value="op">Another Option </option>
+                  <option value="op">Some Other Option</option>
+                </select>
+              </div>
+              <div className = "rulesetObject" >
+                <h4>Sensor</h4>
+                <select>
+                  <option value="op">Yet Another Option</option>
+                  <option value="op">Lawd it's an Option</option>
+                  <option value="op">Too Many Options</option>
+                  <option value="op">A man cannot step into the same river twice,
+                    for it is not the same river, and he is not the same man.
+                  </option>
+                </select>
+                <button className="ruleset-save-button">Save</button>
+              </div>
+            </div>
+
+
+          </RulesetModalOnPage>
+        </div>
+          
+>>>>>>> 0f7f9c5decb283ea73ab86c45f33366f359f4443
           <button
             id="openRuleset"
             data-testid="openRuleset"
@@ -240,7 +308,10 @@ const App = () => {
             onClick={handleSave}
           >SAVE
           </button>
+<<<<<<< HEAD
           {/* <PreferencesModal onSave={applyPreferences} listType={listType} /> */}
+=======
+>>>>>>> 0f7f9c5decb283ea73ab86c45f33366f359f4443
           <div className = "helpSearch">
             <SearchBar
               handleSearch={(value) => handleSearch(value)}
@@ -265,13 +336,14 @@ const App = () => {
               </HelpModalOnPage>
             </div>
           </div>
-          <FiltersOnPage></FiltersOnPage>
+          <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage>
           <PreferencesOnPage></PreferencesOnPage>
         </div>
       </div>
       
 
       <div className="nitf-headers" key={reset}>
+        {(checkedItems[0] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
         <div>
           <button
             id="fileHeader"
@@ -280,12 +352,13 @@ const App = () => {
           >
           <span>&#9660;</span> NITF FILE HEADER <span>&#9660;</span>
           </button>
-          <FileHeader
+            <FileHeader
             data={initialData}
             onChange={recordCheckboxChange}
             listType={listType}
           />
-        </div>
+        </div> }
+        { (checkedItems[1] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
         <div>
           <button
             id="imageSubheader"
@@ -300,7 +373,8 @@ const App = () => {
             onChange={recordCheckboxChange}
             listType={listType}
           />
-        </div>
+        </div> }
+        {(checkedItems[2] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
         <div>
           <button
             id="graphicSubheader"
@@ -315,7 +389,8 @@ const App = () => {
             onChange={recordCheckboxChange}
             listType={listType}
           />
-        </div>
+        </div> }
+        {(checkedItems[3] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
         <div>
           <button
             id="textSubheader"
@@ -330,7 +405,8 @@ const App = () => {
             onChange={recordCheckboxChange}
             listType={listType}
           />
-        </div>
+        </div> }
+        {(checkedItems[4] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
         <div>
           <button
             id="desSubheader"
@@ -345,7 +421,8 @@ const App = () => {
             onChange={recordCheckboxChange}
             listType={listType}
           />
-        </div>
+        </div> }
+        {(checkedItems[5] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
         <div>
           <button
             id="TRE"
@@ -360,7 +437,7 @@ const App = () => {
             onChange={recordCheckboxChange}
             listType={listType}
           />
-        </div>
+        </div> }
       </div>
 
       <div

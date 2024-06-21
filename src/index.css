@@ -725,14 +725,29 @@ button {
   
 }
 
+.rulesetObject {
+  padding: 15px;
+}
+
+.rulesetOnPageModalContent h4{
+  color:rgb(255, 255, 255)
+
+}
+
+.rulesetOnPageModalContent select {
+  height: 35px;
+  width: 370px;
+  font-size: large;
+}
+
 .ruleset-modal-content {
   background: rgb(68, 59, 59);
   padding: 20px;
   border-radius: 15px;
   position: relative;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 600px;
-  height: 400px;
+  width: 820px;
+  height: 440px;
 
   p {
     color: white;
@@ -746,13 +761,25 @@ button {
 
 .ruleset-close-button {
   position: absolute;
-  top: 85%;
-  right: 1%;
-  width:20%;
+  top: 2%;
+  right: 1.2%;
+  width: 8%;
   height: 10%;
   background: solid;
   border: none;
   font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.ruleset-save-button {
+  position: absolute;
+  top: 85%;
+  right: 1.2%;
+  width: 20%;
+  height: 10%;
+  background: solid;
+  border: none;
+  font-size: 1.2rem;
   cursor: pointer;
 }
 
@@ -844,19 +871,18 @@ button {
 }
 .modify-div {
   height: 400px;
+  overflow-y: auto;
 }
 .modify-div h2 {
   color: var(--n850);
 }
 
 .modify-div > .selections {
-  max-height: 250px;
-}
-.selections {
-  color: white;
-  overflow: auto;
+  position: relative;
   text-align: center;
+  overflow-y: auto;
 }
+
 /* SAVED RULESET MODAL */
 .modal,
 .optionPaneModal,
@@ -1534,4 +1560,8 @@ button.back-nav {
 .submitBtn {
   margin: 0;
   border-radius: 0px 0px 15px 15px;
+}
+
+.arrow{
+  font-size: 150%;
 }

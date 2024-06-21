@@ -1,7 +1,15 @@
 import React, {useState} from 'react'
-
-const FiltersOnPage = () => {
-  const [checkedItems, setCheckedItems] = useState({});
+//use props below to pass the functions and checked items
+const FiltersOnPage = ({theFunc}) => {
+  const defaultChecked =
+    {'NITF FILE HEADER': false,
+    'IMAGE SUBHEADER': false,
+    'GRAPHIC SUBHEADER': false,
+    'TEXT SUBHEADER': false,
+    'DES SUBHEADER': false,
+    'TRE': false,};
+  
+  const [checkedItems, setCheckedItems] = useState(defaultChecked);
 
   const items = [
     { id: 1, label: 'NITF FILE HEADER' },
@@ -12,13 +20,17 @@ const FiltersOnPage = () => {
     { id: 6, label: 'TRE' },
   ];
 
+
+/*
   const handleChange = (event) => {
-    const { name, checked } = event.target;
+    const { name, checked, id } = event.target;
     setCheckedItems((prev) => ({
       ...prev,
       [name]: checked,
     }));
-  };
+    theFunc(Number(id)-1, checked);
+    console.log("changed" + id + checked)
+  };*/
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,8 +53,8 @@ const FiltersOnPage = () => {
                         <input
                         type = "checkbox"
                         name={item.label}
-                        checked={!!checkedItems[[item.label]]}
-                        onChange={handleChange}
+                        onChange={theFunc}
+                        id = {item.id}
                         >
                         </input>
                         {item.label}
