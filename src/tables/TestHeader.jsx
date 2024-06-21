@@ -75,7 +75,7 @@ const TestHeader = (props) => {
             <div className="fieldname-box">{field.fieldName}</div>
             <div className="longname-box">{field.longName}</div>
             <SetToBox
-              id={"set".concat(field.fieldName)}
+              id={"set-to-box"}
               value={setTo[field.fieldName]}
               onChange={(value) => props.onChange(value, field.fieldName)}
               fieldName={field.fieldName}

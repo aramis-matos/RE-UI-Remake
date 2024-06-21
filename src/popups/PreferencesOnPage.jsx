@@ -47,6 +47,9 @@ Classification Secuirty System: ${inputSecuritySystem}`);
               <label htmlFor="blackList">Black List</label>
             </div>
             <div>
+              <div>
+              </div>
+              <label>Classification System:</label>
               <input
                 type="text"
                 value={inputSecuritySystem}
@@ -54,7 +57,7 @@ Classification Secuirty System: ${inputSecuritySystem}`);
                 placeholder="Enter something..."
               />
             </div>
-            <button type="submit">Save</button>
+            <button className = "prefSaveButton" type="submit">Save</button>
           </form>
         </div>
       </div>

@@ -110,7 +110,7 @@ const TRE = (props) => {
                   <div className="fieldname-box">{field.fieldname}</div>
                   <div className="longname-box">{field.longname}</div>
                   <SetToBox
-                    id={"set".concat(field.fieldname)}
+                    id={"set-to-box"}
                     value={setTo[field.fieldname]}
                     onChange={props.onChange}
                     fieldName={field.fieldname}

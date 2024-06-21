@@ -79,7 +79,6 @@ h3 {
 }
 h4 {
   margin: 5px;
-  color: white;
   font-family: "Roboto";
   font-size: 20px;
 }
@@ -96,8 +95,8 @@ span {
 button {
   color: var(--n0);
   background-color: var(--p500);
-  border: none;
-  border-radius: 10px;
+  border: 3px solid var(--n400);
+  border-radius: 15px;
   width: 100%;
   height: 80px;
   text-align: center;
@@ -107,6 +106,8 @@ button {
   min-height: 60px;
 }
 #helpButton {
+  border: 3px solid var(--n400);
+  border-radius: 15px;
   background-color: var(--c100);
   height: 44px;
   width: 44px;
@@ -391,10 +392,12 @@ button:disabled {
 .redact,
 .compare,
 .templates-manager {
-  display: flex;
+  display: grid;
+  
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
+  width: auto;
+  grid-template-columns: 18% 60% auto;
 }
 .redact span {
   color: var(--n400);
@@ -541,6 +544,7 @@ button:disabled {
   width: 100%;
   height: 100%;
   font-size: 18px;
+  display:flex;
 }
 .ruleset_preview_modal > .content {
   display: flex;
@@ -548,6 +552,16 @@ button:disabled {
   border-radius: 15px;
   width: 100%;
   color: white;
+  flex-shrink: 1;
+  top:5px;
+}
+.content {
+  position: -webkit-sticky;
+  position: sticky;
+  align-self:flex-start;
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .preferences_preview_modal {
   width: 100%;
@@ -572,7 +586,7 @@ button:disabled {
   flex-direction: column;
   border-radius: 15px;
   width: 100%;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .preferences_preview_modal .content .preferences-div input[type="text"] {
@@ -595,6 +609,38 @@ button:disabled {
   padding: 8px;
   margin-top: 10px;
   box-sizing: border-box;
+  
+}
+
+.filters-div {
+  form {
+  margin: 15px;
+  
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+button {
+  margin-top: 20px;
+}
+}
+
+.prefSaveButton, 
+.filterSaveButton {
+  text-align: center;
+  width: 100px;
+  height: 40px;
 }
 
 .filters_preview_modal .content .filters-div input[type="radio"] {
@@ -607,22 +653,34 @@ button:disabled {
 
 .redact-div,
 .modify-div, 
-.preferences-div {
+.preferences-div,
+.filters_preview_modal {
   margin: 10px;
   border-radius: 15px;
   text-align: center;
   color: var(--n850);
   background-color: var(--c100);
   border: 3px solid var(--n400);
+  width: 100%;
+  position: relative;
+  left: -12px;
+  h2 {
+    color: var(--n850);
+  }
+
 }
 .redact-div {
-  height: 500px;
+  height: 600px;
 }
 .redact-div h2 {
   color: var(--n850);
 }
 
-/*PREFERENCES ON PAGE (BY JACK)*/
+.filters_preview_modal h2 {
+  color: var(--n850);
+}
+
+/*PREFERENCES ON PAGE (BY JACK L.)*/
 
 .preferences-div h2 {
   color: var(--n850);
@@ -632,11 +690,143 @@ button:disabled {
 }
 
 .filters-div h2 {
-  color:rgb(255, 255, 255)
+  color:rgb(0, 0, 0)
 }
 .filters-div {
   height: 300px;
 }
+
+/*RULESET MODAL ON PAGE*/
+.ruleset-modal {
+  max-width: 1000px;
+  max-height: 500px;
+}
+
+.ruleset-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(165, 150, 150, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  
+}
+
+.ruleset-modal-content {
+  background: rgb(68, 59, 59);
+  padding: 20px;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  height: 400px;
+
+  p {
+    color: white;
+    margin: auto;
+    font-family: "Roboto";
+    font-size: 36px;
+  font-weight: bold;
+
+  }
+}
+
+.ruleset-close-button {
+  position: absolute;
+  top: 85%;
+  right: 1%;
+  width:20%;
+  height: 10%;
+  background: solid;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.ruleset-open-button {
+  color: var(--n0);
+  background-color: var(--p500);
+  border: none;
+  border-radius: 10px;
+  width: 300px;
+  height: 60px;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 8px;
+  transition: 0.2s;
+  min-height: 60px;
+}
+
+
+/*Help MODAL ON PAGE*/
+.help-modal {
+  width: 1000px;
+  height: 500px;
+}
+
+.help-page-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(165, 150, 150, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  
+}
+
+.help-page-modal-content {
+  background: rgb(68, 59, 59);
+  padding: 20px;
+  border-radius: 15px;
+  position: absolute;
+  top: 25px;
+  left: 379px;
+  width: 1060px;
+  height: 1000px;
+  text-align: center;
+  
+  h1{
+    color: var(--c100);
+    padding: 20px 0px 50px 0px;
+    font-size: 60px;
+  }
+  h2{
+    color: var(--c100);
+    padding: 20px 0px 20px 0px;
+    font-size: 40px;
+  }
+  p {
+    color: #cbcbcb;
+    padding: 20px 0px 20px 0px;
+    text-align: center;
+    margin: auto;
+    font-family: "Roboto";
+    font-size: 30px;
+    font-weight: bold;
+
+  }
+}
+
+.help-page-close-button {
+  position: absolute;
+  top: 85%;
+  right: 1%;
+  width:20%;
+  height: 10%;
+  background: solid;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 
 
 
@@ -647,7 +837,7 @@ button:disabled {
   height: 300px;
 }
 .modify-div {
-  height: 300px;
+  height: 400px;
 }
 .modify-div h2 {
   color: var(--n850);
@@ -827,8 +1017,16 @@ button.back-nav {
   margin: 20px;
   display: flex;
   flex-direction: column;
-  width: 20%;
   max-width: 300px;
+  margin-top: 0px;
+}
+.left-panel > .content {
+  display:flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  top: 0;
+  padding-top: 20px;
+  width: 100%
 }
 .helpSearch{
   height: 60px;
@@ -837,14 +1035,13 @@ button.back-nav {
   flex-direction: horizontal;
 }
 .search {
-  border: 0;
+  border: 3px solid var(--n400);
   background-color: var(--c100);
-  border-radius: 8px;
+  border-radius: 15px;
   outline: solid;
   outline-width: 0px;
   outline-color: var(--n500);
   width: 250px;
-  height: 50px;
   text-align: center;
   color: var(--n100);
   margin: 0px 10px 0px 0px;
@@ -856,7 +1053,6 @@ button.back-nav {
 .nitf-headers {
   display: flex;
   flex-direction: column;
-  width: 65%;
   min-width: 600px;
   margin: 20px;
 }
@@ -866,15 +1062,35 @@ button.back-nav {
   width: 100%;
   height: 60px;
   transition: 0.2s;
+  text-align: center;
 }
+/*Traingle styling*/
+.accordion span, .accordion-open span {
+  font-size: 27px;
+  color: #c9c9c9;
+  display:inline-block;
+
+  margin: 0 auto;
+}
+.accordion-open span {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+
 /* Add a background color to the button when you move the mouse over it (hover) */
-.accordion:hover {
+.accordion:hover, .accordion-open:hover {
   background-color: var(--c100);
 }
 .accordion-open {
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 0px 0px 0px 0px;
+  /*was 10 10 0 0px*/
   margin-bottom: 0px;
   transition: 0.2s;
+  top: 0;
+  position: -webkit-sticky;
+  position:sticky;
+  background-color: var(--p700);
+
 }
 /* Style the accordion panel. Note: hidden by default */
 .button-panel {
@@ -906,23 +1122,25 @@ button.back-nav {
   justify-content: flex-start;
   align-items: center;
 }
-.field-table {
+/*.field-table {
   background-color: var(--n850);
   display: flex;
   flex-direction: column;
   padding-right: 10px;
   overflow: auto;
   scrollbar-gutter: stable;
-}
+}*/
 .field-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  overflow: auto;
-  margin-bottom: 10px;
   padding-left: 5px;
-  flex-shrink: 0;
-  color: var(--n0);
+  flex-shrink: 1;
+  color: black;
+  background-color: silver;
+  margin-left: 10px;
+}
+.field-row div {
+  margin-left: 10px;
 }
 .field-row:hover {
   background-color: var(--n600);
@@ -932,6 +1150,7 @@ button.back-nav {
   text-align: left;
 }
 .file-name {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   font-size: 1.75vw;
@@ -942,13 +1161,12 @@ button.back-nav {
 }
 .field-panel,
 .tre-panel {
-  background-color: var(--n850);
+  background-color: silver;
   border: 3px solid var(--n400);
   border-radius: 0px 0px 15px 15px;
-  padding: 20px 0px 20px 20px;
+  padding: 20px 0px 10px 20px;
   margin-bottom: 20px;
   display: none;
-  max-height: 500px;
   flex-direction: column;
 }
 /* RULES EDITOR: Preferences Modal */
@@ -987,15 +1205,14 @@ button.back-nav {
   border-radius: 0px 0px 15px 15px;
 }
 /* RULESET EDITOR: TRE section */
-.tre-panel {
-  max-height: 2000px;
-}
+
 .tre-fields-list {
   display: none;
-  max-height: 350px;
   overflow: auto;
   background-color: var(--n800);
-  border-left: 3px solid var(--p300);
+  border: 3px solid var(--p300);
+  border-top: 0px;
+  padding-right: 10px;
 }
 .tre-header {
   height: 38px;
@@ -1034,8 +1251,9 @@ button.back-nav {
   flex-direction: column;
   justify-content: left;
   align-items: center;
-  height: 100%;
+  /*height: 100%;
   /* margin: 20px; */
+  flex-shrink: 1;
 }
 .manager {
   display: flex;

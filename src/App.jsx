@@ -21,6 +21,8 @@ import TRE from "./tables/TRE";
 import useModal from "./hooks/useModal";
 import PreferencesOnPage from "./popups/PreferencesOnPage";
 import FiltersOnPage from "./popups/FiltersOnPage";
+import RulesetModalOnPage from "./popups/RulesetModalOnPage";
+import HelpModalOnPage from "./popups/HelpModalOnPage";
 
 
 const App = () => {
@@ -36,7 +38,8 @@ const App = () => {
   const [listType, setListType] = useState("");
   const [name, setName] = useState("");
   const { isError, setIsError } = useModal(togglePopup, actionConfirmedMessage);
-  console.log("test")
+  const [isRulesetModalOpen, setIsRulesetModalOpen] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
       if (selectedRuleset.name == null) {
@@ -77,6 +80,22 @@ const App = () => {
         element.style = {};
       }
     }
+  };
+
+  const openRulesetModal = () => {
+    setIsRulesetModalOpen(true);
+  };
+
+  const closeRulesetModal = () => {
+    setIsRulesetModalOpen(false);
+  };
+
+  const openHelpModal = () => {
+    setIsHelpModalOpen(true);
+  };
+
+  const closeHelpModal = () => {
+    setIsHelpModalOpen(false);
   };
 
   const applyPreferences = () => {
@@ -172,6 +191,8 @@ const App = () => {
     setTogglePopup(!togglePopup);
   };
 
+
+
   return (
     <div className="editor">
       <SavedRulesetModal
@@ -185,146 +206,161 @@ const App = () => {
         isError={isError}
         setIsError={setIsError}
       />
+
+
+
+
       <div className="left-panel">
-        <button id="newRuleset" onClick={handleNew}>
-          NEW
-        </button>
-        <button
-          id="openRuleset"
-          data-testid="openRuleset"
-          onClick={() => toggleModal("myModal", "flex")}
-        >
-          OPEN
-        </button>
-        <button
-          id="saveRuleset"
-          data-testid="saveRuleset"
-          disabled={selectedRuleset.rulesetId === undefined}
-          onClick={handleSave}
-        >
-          SAVE
-        </button>
-        <PreferencesModal onSave={applyPreferences} listType={listType} />
-          
-          
-          
-          
-
-        <div className = "helpSearch">
-          <SearchBar
-            handleSearch={(value) => handleSearch(value)}
-            className="search"
-          />
-          <button
-            id="helpButton"
-            data-testid="openHelp"
-            onClick={handleHelp}
-          >
-          ?
-          </button>
+        <div className="content">
+          <div className="ruleset-modal">
+            <button className = "ruleset-open-button" onClick={openRulesetModal}>NEW NEW</button>
+            <RulesetModalOnPage isOpen={isRulesetModalOpen} onClose={closeRulesetModal}>
+            <h2>New Ruleset</h2>
+            <p></p>
+          </RulesetModalOnPage>
         </div>
-        <PreferencesOnPage></PreferencesOnPage>
-        <FiltersOnPage></FiltersOnPage>
+          
+          <button id="newRuleset" onClick={handleNew}>
+            NEW
+          </button>
+          <button
+            id="openRuleset"
+            data-testid="openRuleset"
+            onClick={() => toggleModal("myModal", "flex")}
+          >
+            OPEN
+          </button>
+          <button
+            id="saveRuleset"
+            data-testid="saveRuleset"
+            disabled={selectedRuleset.rulesetId === undefined ? true : false}
+            onClick={handleSave}
+         >
+            SAVE
+          </button>
+          <PreferencesModal onSave={applyPreferences} listType={listType} />
+          <div className = "helpSearch">
+            <SearchBar
+              handleSearch={(value) => handleSearch(value)}
+              className="search"
+            />
+            <div className = "help-modal">
+              <button
+                className= "help-page"
+                id="helpButton"
+                data-testid="openHelp"
+                onClick={openHelpModal}
+              >
+              ?
+              </button>
+              <HelpModalOnPage isOpen={isHelpModalOpen} onClose= {closeHelpModal}>
+              <h1>Frequently Asked Questions</h1>
+                <hr/>
+                <h2>What is GWER (GEOINT Workflow Enhancement Redaction)</h2>
+                <p>GWER is a web based redaction service for Geospatial-intelligence (GEOINT) Workflow Enhancement that allows a user to edit information within a NITF.</p>
+                <hr/>
+                <h2>What is a NITF?</h2>
+                <p>Not If There's Fondue!!!</p>
+              </HelpModalOnPage>
+            </div>
+          </div>
+          <FiltersOnPage></FiltersOnPage>
+          <PreferencesOnPage></PreferencesOnPage>
+        </div>
       </div>
-
-
-
-
-
+      
 
       <div className="nitf-headers" key={reset}>
-        <button
-          id="fileHeader"
-          className="accordion"
-          onClick={() => showTable("fileHeader", "filePanel")}
-        >
-          NITF FILE HEADER
-        </button>
-        <FileHeader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="imageSubheader"
-          className="accordion"
-          onClick={() => showTable("imageSubheader", "imagePanel")}
-        >
-          IMAGE SUBHEADER
-        </button>
-        <ImageSubheader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="graphicSubheader"
-          className="accordion"
-          onClick={() => showTable("graphicSubheader", "graphicPanel")}
-        >
-          GRAPHIC SUBHEADER
-        </button>
-        <GraphicSubheader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="textSubheader"
-          className="accordion"
-          onClick={() => showTable("textSubheader", "textPanel")}
-        >
-          TEXT SUBHEADER
-        </button>
-        <TextSubheader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="desSubheader"
-          className="accordion"
-          onClick={() => showTable("desSubheader", "desPanel")}
-        >
-          DES SUBHEADER
-        </button>
-        <DesSubheader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="TRE"
-          className="accordion"
-          onClick={() => showTable("TRE", "trePanel")}
-        >
-          TRE
-        </button>
-        <TRE
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
-
-        <button
-          id="TestHeader"
-          className="accordion"
-          onClick={() => showTable("TestHeader", "testPanel")}
-        >
-          TEST HEADER
-        </button>
-        <TestHeader
-          data={initialData}
-          onChange={recordCheckboxChange}
-          listType={listType}
-        />
+        <div>
+          <button
+            id="fileHeader"
+            className="accordion"
+            onClick={() => showTable("fileHeader", "filePanel")}
+          >
+          <span>&#9660;</span> NITF FILE HEADER <span>&#9660;</span>
+          </button>
+          <FileHeader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="imageSubheader"
+            className="accordion"
+            onClick={() => showTable("imageSubheader", "imagePanel")}
+           
+          >
+          <span>&#9660;</span> IMAGE SUBHEADER <span>&#9660;</span>
+          </button>
+          <ImageSubheader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="graphicSubheader"
+            className="accordion"
+            onClick={() => showTable("graphicSubheader", "graphicPanel")}
+           
+          >
+          <span>&#9660;</span> GRAPHIC SUBHEADER <span>&#9660;</span>
+          </button>
+          <GraphicSubheader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="textSubheader"
+            className="accordion"
+            onClick={() => showTable("textSubheader", "textPanel")}
+           
+          >
+          <span>&#9660;</span> TEXT SUBHEADER <span>&#9660;</span>
+          </button>
+          <TextSubheader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="desSubheader"
+            className="accordion"
+            onClick={() => showTable("desSubheader", "desPanel")}
+           
+          >
+          <span>&#9660;</span> DES SUBHEADER <span>&#9660;</span>
+          </button>
+          <DesSubheader
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
+        <div>
+          <button
+            id="TRE"
+            className="accordion"
+            onClick={() => showTable("TRE", "trePanel")}
+           
+          >
+          <span>&#9660;</span> TRE <span>&#9660;</span>
+          </button>
+          <TRE
+            data={initialData}
+            onChange={recordCheckboxChange}
+            listType={listType}
+          />
+        </div>
       </div>
-
 
       <div
         className="right-panel"
