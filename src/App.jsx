@@ -213,32 +213,34 @@ const App = () => {
       <div className="left-panel">
         <div className="content">
           <div className="ruleset-modal">
-            <button className = "ruleset-open-button" onClick={openRulesetModal}>NEW NEW</button>
+            {/*<button className = "newRuleset" onClick={openRulesetModal}>NEW</button>*/}
             <RulesetModalOnPage isOpen={isRulesetModalOpen} onClose={closeRulesetModal}>
-            <h2>New Ruleset</h2>
-            <p></p>
-          </RulesetModalOnPage>
-        </div>
-          
-          <button id="newRuleset" onClick={handleNew}>
+              <h2>New Ruleset</h2>
+              <p></p>
+            </RulesetModalOnPage>
+          </div>   
+          {/*<button id="newRuleset" onClick={handleNew}>
             NEW
-          </button>
+          </button> <<< OLD NEW BUTTON*/}
+          <button
+            id="newRuleset"
+            onClick={openRulesetModal}
+            >NEW
+            </button>
           <button
             id="openRuleset"
             data-testid="openRuleset"
             onClick={() => toggleModal("myModal", "flex")}
-          >
-            OPEN
+            >OPEN
           </button>
           <button
             id="saveRuleset"
             data-testid="saveRuleset"
             disabled={selectedRuleset.rulesetId === undefined ? true : false}
             onClick={handleSave}
-         >
-            SAVE
+          >SAVE
           </button>
-          <PreferencesModal onSave={applyPreferences} listType={listType} />
+          {/* <PreferencesModal onSave={applyPreferences} listType={listType} /> */}
           <div className = "helpSearch">
             <SearchBar
               handleSearch={(value) => handleSearch(value)}
@@ -250,8 +252,7 @@ const App = () => {
                 id="helpButton"
                 data-testid="openHelp"
                 onClick={openHelpModal}
-              >
-              ?
+              >?
               </button>
               <HelpModalOnPage isOpen={isHelpModalOpen} onClose= {closeHelpModal}>
               <h1>Frequently Asked Questions</h1>
