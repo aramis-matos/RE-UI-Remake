@@ -79,7 +79,6 @@ h3 {
 }
 h4 {
   margin: 5px;
-  color: white;
   font-family: "Roboto";
   font-size: 20px;
 }
@@ -671,7 +670,7 @@ button {
 
 }
 .redact-div {
-  height: 500px;
+  height: 600px;
 }
 .redact-div h2 {
   color: var(--n850);
@@ -763,18 +762,67 @@ button {
 }
 
 
+/*Help MODAL ON PAGE*/
 
 
+.help-page-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(165, 150, 150, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  
+}
 
+.help-page-modal-content {
+  background: rgb(68, 59, 59);
+  padding: 20px;
+  border-radius: 15px;
+  position: absolute;
+  top: 25px;
+  left: 379px;
+  width: 1060px;
+  height: 1000px;
+  text-align: center;
+  
+  h1{
+    color: var(--c100);
+    padding: 20px 0px 50px 0px;
+    font-size: 60px;
+  }
+  h2{
+    color: var(--c100);
+    padding: 20px 0px 20px 0px;
+    font-size: 40px;
+  }
+  p {
+    color: #cbcbcb;
+    padding: 20px 0px 20px 0px;
+    text-align: center;
+    margin: auto;
+    font-family: "Roboto";
+    font-size: 30px;
+    font-weight: bold;
 
+  }
+}
 
-
-
-
-
-
-
-
+.help-page-close-button {
+  position: absolute;
+  top: 85%;
+  right: 1%;
+  width:20%;
+  height: 10%;
+  background: solid;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
 
 
 
@@ -786,7 +834,7 @@ button {
   height: 300px;
 }
 .modify-div {
-  height: 300px;
+  height: 400px;
 }
 .modify-div h2 {
   color: var(--n850);
@@ -979,6 +1027,7 @@ button.back-nav {
 }
 .helpSearch{
   height: 60px;
+  max-width: 300px;
   margin: 0px;
   display: flex;
   flex-direction: horizontal;
@@ -1081,18 +1130,15 @@ button.back-nav {
 }*/
 .field-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  overflow: auto;
   padding-left: 5px;
-  flex-shrink: 0;
-  color: var(--n0);
+  flex-shrink: 1;
+  color: black;
   background-color: silver;
+  margin-left: 10px;
 }
-#set-to-box{
-  background-color: rgb(130, 127, 127);
-  position: relative;
-  left: -120px
+.field-row div {
+  margin-left: 10px;
 }
 .field-row:hover {
   background-color: var(--n600);

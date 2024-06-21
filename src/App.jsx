@@ -15,6 +15,7 @@ import useModal from "./hooks/useModal";
 import PreferencesOnPage from "./popups/PreferencesOnPage";
 import FiltersOnPage from "./popups/FiltersOnPage";
 import RulesetModalOnPage from "./popups/RulesetModalOnPage";
+import HelpModalOnPage from "./popups/HelpModalOnPage";
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
   const [name, setName] = useState("");
   const { isError, setIsError } = useModal(togglePopup, actionConfirmedMessage);
   const [isRulesetModalOpen, setIsRulesetModalOpen] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
       if (selectedRuleset.name == null) {
@@ -79,6 +81,14 @@ const App = () => {
 
   const closeRulesetModal = () => {
     setIsRulesetModalOpen(false);
+  };
+
+  const openHelpModal = () => {
+    setIsHelpModalOpen(true);
+  };
+
+  const closeHelpModal = () => {
+    setIsHelpModalOpen(false);
   };
 
   const applyPreferences = () => {
@@ -202,14 +212,6 @@ const App = () => {
             <p></p>
           </RulesetModalOnPage>
         </div>
-
-
-
-
-
-
-
-
           
           
           <button
@@ -232,14 +234,25 @@ const App = () => {
               handleSearch={(value) => handleSearch(value)}
               className="search"
             />
-            <button
-              className= "help-page"
-              id="helpButton"
-              data-testid="openHelp"
-              onClick={handleHelp}
-            >
-            ?
-            </button>
+            <div className = "help-modal">
+              <button
+                className= "help-page"
+                id="helpButton"
+                data-testid="openHelp"
+                onClick={openHelpModal}
+              >
+              ?
+              </button>
+              <HelpModalOnPage isOpen={isHelpModalOpen} onClose= {closeHelpModal}>
+              <h1>Frequently Asked Questions</h1>
+                <hr/>
+                <h2>What is GWER (GEOINT Workflow Enhancement Redaction)</h2>
+                <p>GWER is a web based redaction service for Geospatial-intelligence (GEOINT) Workflow Enhancement that allows a user to edit information within a NITF.</p>
+                <hr/>
+                <h2>What is a NITF?</h2>
+                <p>Not If There's Fondue!!!</p>
+              </HelpModalOnPage>
+            </div>
           </div>
           <FiltersOnPage></FiltersOnPage>
           <PreferencesOnPage></PreferencesOnPage>
@@ -253,8 +266,6 @@ const App = () => {
             id="fileHeader"
             className="accordion"
             onClick={() => showTable("fileHeader", "filePanel")}
-            style={{ position: 'relative', textAlign: 'center' }}
-
           >
           <span>&#9660;</span> NITF FILE HEADER <span>&#9660;</span>
           </button>
