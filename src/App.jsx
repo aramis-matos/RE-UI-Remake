@@ -15,6 +15,7 @@ import useModal from "./hooks/useModal";
 import PreferencesOnPage from "./popups/PreferencesOnPage";
 import FiltersOnPage from "./popups/FiltersOnPage";
 import RulesetModalOnPage from "./popups/RulesetModalOnPage";
+import HelpModalOnPage from "./popups/HelpModalOnPage";
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
   const [name, setName] = useState("");
   const { isError, setIsError } = useModal(togglePopup, actionConfirmedMessage);
   const [isRulesetModalOpen, setIsRulesetModalOpen] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
 
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
@@ -80,6 +82,14 @@ const App = () => {
 
   const closeRulesetModal = () => {
     setIsRulesetModalOpen(false);
+  };
+
+  const openHelpModal = () => {
+    setIsHelpModalOpen(true);
+  };
+
+  const closeHelpModal = () => {
+    setIsHelpModalOpen(false);
   };
 
   const applyPreferences = () => {
@@ -204,17 +214,63 @@ const handleCheckChange = (e) => {
       />
       <div className="left-panel">
         <div className="content">
+
+
+
+
+
           <div className="ruleset-modal">
-            <button className = "ruleset-open-button" onClick={openRulesetModal}>NEW NEW</button>
+            <button className = "ruleset-open-button" onClick={openRulesetModal}>NEW</button>
             <RulesetModalOnPage isOpen={isRulesetModalOpen} onClose={closeRulesetModal}>
-            <h2>New Ruleset</h2>
-            <p></p>
+            <div className ="rulesetOnPageModalContent">
+              <h2>New Ruleset</h2>
+
+
+              <div className = "rulesetObject" >
+                <h4>Classification</h4>
+                <select>
+                  <option value="unclassifiedOp">Unclassified</option>
+                  <option value="confidentialOp">Confidential</option>
+                  <option value="secretOp">Secret</option>
+                  <option value="topSecretOp">Top Secret</option>
+                </select>
+              </div>
+              <div className = "rulesetObject" >
+                <h4>Country</h4>
+                <select>
+                  <option value="op">United States of America</option>
+                  <option value="op">Canada</option>
+                  <option value="op">Mexico</option>
+                  <option value="op">France</option>
+                  <option value="op">Newfoundland</option>
+                </select>
+              </div>
+              <div className = "rulesetObject" >
+                <h4>Releaseability</h4>
+                <select>
+                  <option value="op">An Option</option>
+                  <option value="op">Another Option </option>
+                  <option value="op">Some Other Option</option>
+                </select>
+              </div>
+              <div className = "rulesetObject" >
+                <h4>Sensor</h4>
+                <select>
+                  <option value="op">Yet Another Option</option>
+                  <option value="op">Lawd it's an Option</option>
+                  <option value="op">Too Many Options</option>
+                  <option value="op">A man cannot step into the same river twice,
+                    for it is not the same river, and he is not the same man.
+                  </option>
+                </select>
+                <button className="ruleset-save-button">Save</button>
+              </div>
+            </div>
+
+
           </RulesetModalOnPage>
         </div>
           
-          <button id="newRuleset" onClick={handleNew}>
-            NEW
-          </button>
           <button
             id="openRuleset"
             data-testid="openRuleset"
@@ -230,20 +286,30 @@ const handleCheckChange = (e) => {
          >
             SAVE
           </button>
-          <PreferencesModal onSave={applyPreferences} listType={listType} />
           <div className = "helpSearch">
             <SearchBar
               handleSearch={(value) => handleSearch(value)}
               className="search"
             />
-            <button
-              className= "help-page"
-              id="helpButton"
-              data-testid="openHelp"
-              onClick={handleHelp}
-            >
-            ?
-            </button>
+            <div className = "help-modal">
+              <button
+                className= "help-page"
+                id="helpButton"
+                data-testid="openHelp"
+                onClick={openHelpModal}
+              >
+              ?
+              </button>
+              <HelpModalOnPage isOpen={isHelpModalOpen} onClose= {closeHelpModal}>
+              <h1>Frequently Asked Questions</h1>
+                <hr/>
+                <h2>What is GWER (GEOINT Workflow Enhancement Redaction)</h2>
+                <p>GWER is a web based redaction service for Geospatial-intelligence (GEOINT) Workflow Enhancement that allows a user to edit information within a NITF.</p>
+                <hr/>
+                <h2>What is a NITF?</h2>
+                <p>Not If There's Fondue!!!</p>
+              </HelpModalOnPage>
+            </div>
           </div>
           <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage>
           <PreferencesOnPage></PreferencesOnPage>
