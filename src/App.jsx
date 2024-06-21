@@ -227,22 +227,6 @@ const handleCheckChange = (e) => {
 
 
           <div className="ruleset-modal">
-<<<<<<< HEAD
-            {/*<button className = "newRuleset" onClick={openRulesetModal}>NEW</button>*/}
-            <RulesetModalOnPage isOpen={isRulesetModalOpen} onClose={closeRulesetModal}>
-              <h2>New Ruleset</h2>
-              <p></p>
-            </RulesetModalOnPage>
-          </div>   
-          {/*<button id="newRuleset" onClick={handleNew}>
-            NEW
-          </button> <<< OLD NEW BUTTON*/}
-          <button
-            id="newRuleset"
-            onClick={openRulesetModal}
-            >NEW
-            </button>
-=======
             <button className = "ruleset-open-button" onClick={openRulesetModal}>NEW</button>
             <RulesetModalOnPage isOpen={isRulesetModalOpen} onClose={closeRulesetModal}>
             <div className ="rulesetOnPageModalContent">
@@ -294,7 +278,6 @@ const handleCheckChange = (e) => {
           </RulesetModalOnPage>
         </div>
           
->>>>>>> 0f7f9c5decb283ea73ab86c45f33366f359f4443
           <button
             id="openRuleset"
             data-testid="openRuleset"
@@ -308,10 +291,6 @@ const handleCheckChange = (e) => {
             onClick={handleSave}
           >SAVE
           </button>
-<<<<<<< HEAD
-          {/* <PreferencesModal onSave={applyPreferences} listType={listType} /> */}
-=======
->>>>>>> 0f7f9c5decb283ea73ab86c45f33366f359f4443
           <div className = "helpSearch">
             <SearchBar
               handleSearch={(value) => handleSearch(value)}
