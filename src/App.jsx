@@ -211,9 +211,7 @@ const App = () => {
 
 
           
-          <button id="newRuleset" onClick={handleNew}>
-            NEW
-          </button>
+          
           <button
             id="openRuleset"
             data-testid="openRuleset"
@@ -229,7 +227,6 @@ const App = () => {
          >
             SAVE
           </button>
-          <PreferencesModal onSave={applyPreferences} listType={listType} />
           <div className = "helpSearch">
             <SearchBar
               handleSearch={(value) => handleSearch(value)}
