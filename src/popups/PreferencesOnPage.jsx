@@ -50,12 +50,14 @@ Classification Security System: ${inputSecuritySystem}`);
               <div>
               </div>
               <label>Classification System:</label>
-              <input
-                type="text"
-                value={inputSecuritySystem}
-                onChange={handleInputChange}
-                placeholder="Enter something..."
-              />
+              <div className='classificationSystemInput'>
+                <input
+                  type="text"
+                  value={inputSecuritySystem}
+                  onChange={handleInputChange}
+                  placeholder="Enter something..."
+                />
+              </div>
             </div>
             <button className = "prefSaveButton" type="submit">Save</button>
           </form>
