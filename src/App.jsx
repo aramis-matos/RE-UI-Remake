@@ -205,13 +205,71 @@ const App = () => {
 
       <div className="left-panel">
         <div className="content">
+
+
+
+
+
           <div className="ruleset-modal">
-            <button className = "ruleset-open-button" onClick={openRulesetModal}>NEW NEW</button>
+            <button className = "ruleset-open-button" onClick={openRulesetModal}>NEW</button>
             <RulesetModalOnPage isOpen={isRulesetModalOpen} onClose={closeRulesetModal}>
-            <h2>New Ruleset</h2>
-            <p></p>
+            <div className ="rulesetOnPageModalContent">
+              <h2>New Ruleset</h2>
+
+
+              <div className = "rulesetObject" >
+                <h4>Classification</h4>
+                <select>
+                  <option value="unclassifiedOp">Unclassified</option>
+                  <option value="confidentialOp">Confidential</option>
+                  <option value="secretOp">Secret</option>
+                  <option value="topSecretOp">Top Secret</option>
+                </select>
+              </div>
+              <div className = "rulesetObject" >
+                <h4>Country</h4>
+                <select>
+                  <option value="op">United States of America</option>
+                  <option value="op">Canada</option>
+                  <option value="op">Mexico</option>
+                  <option value="op">France</option>
+                  <option value="op">Newfoundland</option>
+                </select>
+              </div>
+              <div className = "rulesetObject" >
+                <h4>Releaseability</h4>
+                <select>
+                  <option value="op">An Option</option>
+                  <option value="op">Another Option </option>
+                  <option value="op">Some Other Option</option>
+                </select>
+              </div>
+              <div className = "rulesetObject" >
+                <h4>Sensor</h4>
+                <select>
+                  <option value="op">Yet Another Option</option>
+                  <option value="op">Lawd it's an Option</option>
+                  <option value="op">Too Many Options</option>
+                  <option value="op">A man cannot step into the same river twice,
+                    for it is not the same river, and he is not the same man.
+                  </option>
+                </select>
+                <button className="ruleset-save-button">Save</button>
+              </div>
+
+
+
+              
+            </div>
+
+
           </RulesetModalOnPage>
         </div>
+
+
+
+
+
           
           
           <button
