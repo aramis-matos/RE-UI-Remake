@@ -11,7 +11,7 @@ const PreferencesOnPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     alert(`Your Preference is: ${preference}
-Classification Secuirty System: ${inputSecuritySystem}`);
+Classification Security System: ${inputSecuritySystem}`);
   };
 
   const handleInputChange = (event) => {

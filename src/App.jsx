@@ -220,7 +220,6 @@ const handleCheckChange = (e) => {
 
 
           <div className="ruleset-modal">
-            <button className = "ruleset-open-button" onClick={openRulesetModal}>NEW</button>
             <RulesetModalOnPage isOpen={isRulesetModalOpen} onClose={closeRulesetModal}>
             <div className ="rulesetOnPageModalContent">
               <h2>New Ruleset</h2>
@@ -270,46 +269,47 @@ const handleCheckChange = (e) => {
 
           </RulesetModalOnPage>
         </div>
-          
+          <button
+            id="newRuleset"
+            onClick={openRulesetModal}
+          >NEW
+          </button>
           <button
             id="openRuleset"
             data-testid="openRuleset"
             onClick={() => toggleModal("myModal", "flex")}
-          >
-            OPEN
+          >OPEN
           </button>
           <button
             id="saveRuleset"
             data-testid="saveRuleset"
             disabled={selectedRuleset.rulesetId === undefined ? true : false}
             onClick={handleSave}
-         >
-            SAVE
+          >SAVE
           </button>
           <div className = "helpSearch">
             <SearchBar
               handleSearch={(value) => handleSearch(value)}
               className="search"
             />
-            <div className = "help-modal">
-              <button
-                className= "help-page"
-                id="helpButton"
-                data-testid="openHelp"
-                onClick={openHelpModal}
-              >
-              ?
-              </button>
-              <HelpModalOnPage isOpen={isHelpModalOpen} onClose= {closeHelpModal}>
-              <h1>Frequently Asked Questions</h1>
-                <hr/>
-                <h2>What is GWER (GEOINT Workflow Enhancement Redaction)</h2>
-                <p>GWER is a web based redaction service for Geospatial-intelligence (GEOINT) Workflow Enhancement that allows a user to edit information within a NITF.</p>
-                <hr/>
-                <h2>What is a NITF?</h2>
-                <p>Not If There's Fondue!!!</p>
+          <div className = "help-modal">
+            <button
+              className= "help-page"
+              id="helpButton"
+              data-testid="openHelp"
+              onClick={openHelpModal}
+            >?
+            </button>
+            <HelpModalOnPage isOpen={isHelpModalOpen} onClose= {closeHelpModal}>
+            <h1>Frequently Asked Questions</h1>
+              <hr/>
+              <h2>What is GWER (GEOINT Workflow Enhancement Redaction)</h2>
+              <p>GWER is a web based redaction service for Geospatial-intelligence (GEOINT) Workflow Enhancement that allows a user to edit information within a NITF.</p>
+              <hr/>
+              <h2>What is a NITF?</h2>
+              <p>Not If There's Fondue!!!</p>
               </HelpModalOnPage>
-            </div>
+          </div>
           </div>
           <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage>
           <PreferencesOnPage></PreferencesOnPage>
