@@ -31,6 +31,7 @@ const App = () => {
   const [name, setName] = useState("");
   const { isError, setIsError } = useModal(togglePopup, actionConfirmedMessage);
   const [isRulesetModalOpen, setIsRulesetModalOpen] = useState(false);
+
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
       if (selectedRuleset.name == null) {
@@ -174,6 +175,18 @@ const App = () => {
     setTogglePopup(!togglePopup);
   };
 
+  let defaultChecked = [false, false, false, false, false, false]
+  /*NITF, Image, Graphic, Text, DES, TRE*/
+  const [checkedItems, setCheckedItems] = useState(defaultChecked);
+  const updateCheckedArr = (index, booleanVal) => {
+    const updatedArr = [...checkedItems];
+    updatedArr[index] = booleanVal;
+    setCheckedItems(updatedArr);
+  }
+const handleCheckChange = (e) => {
+  const {checked, id} = e.target;
+  updateCheckedArr(Number(id-1), checked)
+}
 
 
   return (
@@ -189,10 +202,6 @@ const App = () => {
         isError={isError}
         setIsError={setIsError}
       />
-
-
-
-
       <div className="left-panel">
         <div className="content">
           <div className="ruleset-modal">
@@ -202,14 +211,6 @@ const App = () => {
             <p></p>
           </RulesetModalOnPage>
         </div>
-
-
-
-
-
-
-
-
           
           <button id="newRuleset" onClick={handleNew}>
             NEW
@@ -244,13 +245,14 @@ const App = () => {
             ?
             </button>
           </div>
-          <FiltersOnPage></FiltersOnPage>
+          <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage>
           <PreferencesOnPage></PreferencesOnPage>
         </div>
       </div>
       
 
       <div className="nitf-headers" key={reset}>
+        {(checkedItems[0] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
         <div>
           <button
             id="fileHeader"
@@ -259,12 +261,13 @@ const App = () => {
           >
           <span>&#9660;</span> NITF FILE HEADER <span>&#9660;</span>
           </button>
-          <FileHeader
+            <FileHeader
             data={initialData}
             onChange={recordCheckboxChange}
             listType={listType}
           />
-        </div>
+        </div> }
+        { (checkedItems[1] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
         <div>
           <button
             id="imageSubheader"
@@ -279,7 +282,8 @@ const App = () => {
             onChange={recordCheckboxChange}
             listType={listType}
           />
-        </div>
+        </div> }
+        {(checkedItems[2] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
         <div>
           <button
             id="graphicSubheader"
@@ -294,7 +298,8 @@ const App = () => {
             onChange={recordCheckboxChange}
             listType={listType}
           />
-        </div>
+        </div> }
+        {(checkedItems[3] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
         <div>
           <button
             id="textSubheader"
@@ -309,7 +314,8 @@ const App = () => {
             onChange={recordCheckboxChange}
             listType={listType}
           />
-        </div>
+        </div> }
+        {(checkedItems[4] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
         <div>
           <button
             id="desSubheader"
@@ -324,7 +330,8 @@ const App = () => {
             onChange={recordCheckboxChange}
             listType={listType}
           />
-        </div>
+        </div> }
+        {(checkedItems[5] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
         <div>
           <button
             id="TRE"
@@ -339,7 +346,7 @@ const App = () => {
             onChange={recordCheckboxChange}
             listType={listType}
           />
-        </div>
+        </div> }
       </div>
 
       <div
