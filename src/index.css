@@ -563,6 +563,7 @@ button:disabled {
   color: white;
   flex-shrink: 1;
   top:5px;
+  z-index: 0;
 }
 .content {
   position: -webkit-sticky;
@@ -571,6 +572,7 @@ button:disabled {
   display:flex;
   flex-direction: column;
   align-items: flex-start;
+  z-index: 100;
 }
 .preferences_preview_modal {
   width: 100%;
@@ -1123,7 +1125,7 @@ button.back-nav {
   position: -webkit-sticky;
   position:sticky;
   background-color: var(--p700);
-
+  z-index: 0;
 }
 /* Style the accordion panel. Note: hidden by default */
 .button-panel {
