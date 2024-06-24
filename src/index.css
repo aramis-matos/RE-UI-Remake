@@ -103,7 +103,7 @@ button {
   background-color: var(--p500);
   border: 3px solid var(--n400);
   border-radius: 15px;
-  width: 320px;
+  width: 100%;
   height: 80px;
   text-align: center;
   font-size: 18px;
@@ -321,6 +321,7 @@ button.delete {
 /*Search bar*/
 .helpSearch{
   height: 60px;
+  max-width: 300px;
   margin: 0px;
   display: flex;
   flex-direction: horizontal;
@@ -332,7 +333,7 @@ button.delete {
   outline: solid;
   outline-width: 0px;
   outline-color: var(--n500);
-  width: 260px;
+  width: 250px;
   text-align: center;
   color: var(--n100);
   margin: 0px 10px 0px 0px;
@@ -1004,7 +1005,7 @@ button.back-nav {
   margin: 20px;
   display: flex;
   flex-direction: column;
-  min-width: 320px;
+  max-width: 300px;
   margin-top: 0px;
 }
 .left-panel > .content {
