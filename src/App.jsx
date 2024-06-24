@@ -214,17 +214,10 @@ const handleCheckChange = (e) => {
       />
       <div className="left-panel">
         <div className="content">
-
-
-
-
-
           <div className="ruleset-modal">
             <RulesetModalOnPage isOpen={isRulesetModalOpen} onClose={closeRulesetModal}>
             <div className ="rulesetOnPageModalContent">
               <h2>New Ruleset</h2>
-
-
               <div className = "rulesetObject" >
                 <h4>Classification</h4>
                 <select>
@@ -262,13 +255,12 @@ const handleCheckChange = (e) => {
                     for it is not the same river, and he is not the same man.
                   </option>
                 </select>
-                <button className="ruleset-save-button">Save</button>
+                <button className="ruleset-save-button">Create</button>
               </div>
             </div>
-
-
           </RulesetModalOnPage>
         </div>
+
           <button
             id="newRuleset"
             onClick={openRulesetModal}
@@ -315,8 +307,6 @@ const handleCheckChange = (e) => {
           <PreferencesOnPage></PreferencesOnPage>
         </div>
       </div>
-      
-
       <div className="nitf-headers" key={reset}>
         {(checkedItems[0] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
         <div>

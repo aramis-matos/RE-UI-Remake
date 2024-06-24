@@ -24,7 +24,7 @@ Classification Security System: ${inputSecuritySystem}`);
         <div className="preferences-div">
           <h2>PREFERENCES</h2>
           <form onSubmit={handleSubmit}>
-            <div>
+            <div className="preference-option">
               <input
                 type="radio"
                 id="whiteList"
@@ -35,7 +35,7 @@ Classification Security System: ${inputSecuritySystem}`);
               />
               <label htmlFor="whiteList">White List</label>
             </div>
-            <div>
+            <div className="preference-option">
               <input
                 type="radio"
                 id="blackList"
@@ -46,9 +46,7 @@ Classification Security System: ${inputSecuritySystem}`);
               />
               <label htmlFor="blackList">Black List</label>
             </div>
-            <div>
-              <div>
-              </div>
+            <div className="preference-option">
               <label>Classification System:</label>
               <input
                 type="text"
@@ -57,7 +55,7 @@ Classification Security System: ${inputSecuritySystem}`);
                 placeholder="Enter something..."
               />
             </div>
-            <button className = "prefSaveButton" type="submit">Save</button>
+            <button className="prefSaveButton" type="submit">Save</button>
           </form>
         </div>
       </div>

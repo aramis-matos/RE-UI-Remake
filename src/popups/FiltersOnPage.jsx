@@ -1,14 +1,15 @@
-import React, {useState} from 'react'
-//use props below to pass the functions and checked items
-const FiltersOnPage = ({theFunc}) => {
-  const defaultChecked =
-    {'NITF FILE HEADER': false,
+import React, { useState } from 'react';
+
+const FiltersOnPage = ({ theFunc }) => {
+  const defaultChecked = {
+    'NITF FILE HEADER': false,
     'IMAGE SUBHEADER': false,
     'GRAPHIC SUBHEADER': false,
     'TEXT SUBHEADER': false,
     'DES SUBHEADER': false,
-    'TRE': false,};
-  
+    'TRE': false,
+  };
+
   const [checkedItems, setCheckedItems] = useState(defaultChecked);
 
   const items = [
@@ -20,54 +21,57 @@ const FiltersOnPage = ({theFunc}) => {
     { id: 6, label: 'TRE' },
   ];
 
-
-/*
-  const handleChange = (event) => {
-    const { name, checked, id } = event.target;
-    setCheckedItems((prev) => ({
-      ...prev,
-      [name]: checked,
-    }));
-    theFunc(Number(id)-1, checked);
-    console.log("changed" + id + checked)
-  };*/
-
   const handleSubmit = (event) => {
     event.preventDefault();
     alert(`Checked items: ${JSON.stringify(checkedItems, null, 2)}`);
   };
 
-
-
-
   return (
-    <div id = "filtersOnPage"className='filters_preview_modal'>
-        <div className='content'>
-            <div className = "filters-div">
-              <h2>FILTERS</h2>
-              <div>
-                <form onSubmit={handleSubmit}>
-                  {items.map((item) => (
-                    <div key = {item.id}>
-                      <label>
-                        <input
-                        type = "checkbox"
-                        name={item.label}
-                        onChange={theFunc}
-                        id = {item.id}
-                        >
-                        </input>
-                        {item.label}
-                      </label>
-                    </div>
-                ))}
-                <button className = "filterSaveButton" type = "submit">Save</button>
-                </form>
-              </div>
+    <div id="filtersOnPage" className="filters_preview_modal">
+      <div className="content">
+        <div className="filters-div">
+          <h2>FILTERS</h2>
+          <div>
+            <h5>Filter By Field/Long Name</h5>
+            <div className="filterRadioButtons">
+              <input
+                type="radio"
+                id="whiteList"
+                name="listType"
+                value="White List"
+              />
+              <label htmlFor="whiteList">Field Name</label>
             </div>
+            <div className="filterRadioButtons">
+              <input
+                type="radio"
+                id="blackList"
+                name="listType"
+                value="Black List"
+              />
+              <label htmlFor="blackList">Long Name</label>
+            </div>
+          </div>
+          <div>
+            <h5>Filter By Section</h5>
+            <form onSubmit={handleSubmit}>
+              {items.map((item) => (
+                <div className="filterCheckboxes" key={item.id}>
+                  <input
+                    type="checkbox"
+                    name={item.label}
+                    onChange={theFunc}
+                    id={item.id}
+                  />
+                  <label htmlFor={item.id}>{item.label}</label>
+                </div>
+              ))}
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default FiltersOnPage
+export default FiltersOnPage;
