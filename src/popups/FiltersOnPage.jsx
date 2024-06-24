@@ -40,7 +40,7 @@ const FiltersOnPage = ({ theFunc }) => {
                 name="listType"
                 value="White List"
               />
-              <label htmlFor="whiteList">White List</label>
+              <label htmlFor="whiteList">Field Name</label>
             </div>
             <div className="filterRadioButtons">
               <input
@@ -49,7 +49,7 @@ const FiltersOnPage = ({ theFunc }) => {
                 name="listType"
                 value="Black List"
               />
-              <label htmlFor="blackList">Black List</label>
+              <label htmlFor="blackList">Long Name</label>
             </div>
           </div>
           <div>
