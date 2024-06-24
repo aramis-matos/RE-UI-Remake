@@ -42,6 +42,7 @@
   --p900: #240f3d;
 
   --c100: #e9b77c;
+  --c150: #e7ab65;
 
   --success: #6be67f;
   --error: #e66b6b;
@@ -105,13 +106,6 @@ button {
   transition: 0.2s;
   min-height: 60px;
 }
-#helpButton {
-  border: 3px solid var(--n400);
-  border-radius: 15px;
-  background-color: var(--c100);
-  height: 44px;
-  width: 44px;
-}
 button:hover {
   background-color: var(--p700);
   color: white;
@@ -119,6 +113,21 @@ button:hover {
 button:disabled {
   color: var(--n400);
   background-color: var(--n600);
+}
+#helpButton {
+  border: 3px solid var(--n400);
+  border-radius: 15px;
+  background-color: var(--c100);
+  height: 44px;
+  width: 44px;
+}
+#helpButton:hover {
+  background-color: var(--c150);
+  color: white;
+}
+#search:hover {
+  background-color: var(--c150);
+  color: white;
 }
 .popup-content {
   /* Overrides reactjs-popup defaults */
@@ -582,10 +591,6 @@ input[type="checkbox"] {
   margin-right: 10px;
 }
 
-button {
-  margin-top: 20px;
-}
-
 
 .prefSaveButton
 {
@@ -879,7 +884,7 @@ button {
   padding: 20px;
   border-radius: 15px;
   position: absolute;
-  top: 25px;
+  top: 20px;
   left: 379px;
   width: 1060px;
   height: 1000px;
