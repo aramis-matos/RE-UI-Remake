@@ -448,31 +448,6 @@ button.delete {
   align-items: flex-start;
 }
 
-
-
-
-
-
-div {
-  margin-bottom: 10px;
-}
-
-label {
-  display: flex;
-  align-items: center;
-}
-
-input[type="checkbox"] {
-  margin-right: 10px;
-}
-
-
-
-
-
-
-
-
 /* PREFERENCES ON PAGE CSS */
 /* Preferences Preview Modal */
 .preferences_preview_modal {
