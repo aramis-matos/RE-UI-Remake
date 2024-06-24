@@ -535,15 +535,6 @@ input[type="checkbox"] {
   margin-bottom: 10px;
 }
 
-
-
-
-
-
-
-
-
-
 /*FILTER ON PAGE CSS*/
 /* Filters Preview Modal */
 .filters_preview_modal {
@@ -647,11 +638,6 @@ input[type="checkbox"] {
 .redact-div h2 {
   color: var(--n850);
 }
-
-
-
-
-
 /*RULESET ON PAGE CSS*/
 /* Ruleset Modal */
 .ruleset-modal {
@@ -672,8 +658,6 @@ input[type="checkbox"] {
   z-index: 1000;
   
 }
-
-
 .ruleset-modal-content {
   background: rgb(68, 59, 59);
   padding: 20px;
@@ -745,17 +729,7 @@ input[type="checkbox"] {
   width: 370px;
   font-size: large;
 }
-
-
-
-
-
-
-
-
-
 /*Help MODAL ON PAGE*/
-
 
 .help-page-modal-overlay {
   position: fixed;
@@ -817,9 +791,6 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-
-
-
 .redact-div > .selections {
   max-height: 450px;
 }
@@ -850,7 +821,6 @@ input[type="checkbox"] {
   width: 100%;
   height: 100%;
 
-  /* overflow: auto; Enable scroll if needed */
 }
 .optionPaneModal {
   display: flex;
