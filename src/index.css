@@ -623,29 +623,27 @@ button:disabled {
   
 }
 
-.filters-div {
-  form {
+.filters-div form {
   margin: 15px;
-  
 }
 
-div {
+.filters-div div {
   margin-bottom: 10px;
 }
 
-label {
+.filters-div label {
   display: flex;
   align-items: center;
 }
 
-input[type="checkbox"] {
+.filters-div input[type="checkbox"] {
   margin-right: 10px;
 }
 
-button {
+.filters-div button {
   margin-top: 20px;
 }
-}
+
 
 .prefSaveButton, 
 .filterSaveButton {
@@ -1172,7 +1170,6 @@ button.back-nav {
   flex-shrink: 1;
   color: black;
   background-color: silver;
-  margin-left: 10px;
 }
 .field-row div {
   margin-left: 10px;
@@ -1199,11 +1196,22 @@ button.back-nav {
   background-color: silver;
   border: 3px solid var(--n400);
   border-radius: 0px 0px 15px 15px;
-  padding: 20px 0px 10px 20px;
   margin-bottom: 20px;
   display: none;
   flex-direction: column;
 }
+.field-panel {
+  padding: 20px 0px 10px 20px;
+}
+
+.tre-panel {
+  padding: 20px 0px 10px 0px;
+}
+
+.tre-fields-list > .field-row, .tre-panel > .field-header {
+  padding-left: 10px;
+}
+
 /* RULES EDITOR: Preferences Modal */
 .prefModal {
   display: flex;
@@ -1247,7 +1255,6 @@ button.back-nav {
   background-color: var(--n800);
   border: 3px solid var(--p300);
   border-top: 0px;
-  padding-right: 10px;
 }
 .tre-header {
   height: 38px;
