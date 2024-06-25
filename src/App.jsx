@@ -67,9 +67,9 @@ const App = () => {
         if 
         (
           (value &&
-          !(new RegExp(value, "i").test(fieldName) ||
-            new RegExp(value, "i").test(longName) ||
-            new RegExp(value, "i").test(setTo)))
+          !(new RegExp(value, "i").test(fieldName.replace(/\s/g, '')) ||
+            new RegExp(value, "i").test(longName.replace(/\s/g, '')) ||
+            new RegExp(value, "i").test(setTo.replace(/\s/g, ''))))
         ) 
         {
           
