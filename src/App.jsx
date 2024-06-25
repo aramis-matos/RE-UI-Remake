@@ -33,6 +33,7 @@ const App = () => {
   const { isError, setIsError } = useModal(togglePopup, actionConfirmedMessage);
   const [isRulesetModalOpen, setIsRulesetModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
@@ -57,6 +58,7 @@ const App = () => {
   }, [reset]);
 
   const handleSearch = (value) => {
+    setSearchValue(value);
     for (const element of document.getElementsByClassName("field-row")) {
       const fieldRowElements = element.children;
       const fieldName = fieldRowElements[1].textContent;
@@ -194,6 +196,7 @@ const App = () => {
     const updatedArr = [...checkedItems];
     updatedArr[index] = booleanVal;
     setCheckedItems(updatedArr);
+    handleSearch(searchValue);
   }
 const handleCheckChange = (e) => {
   const {checked, id} = e.target;
