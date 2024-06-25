@@ -87,7 +87,6 @@ const RulesetPreviewModal = ({ initialData, data, listType }) => {
       <div className="redact-div">
         <h2>REDACT</h2>
         <div className="selections">
-          {console.log(redacted)}
           {redacted.length === 0 && <span>No ruleset selected</span>}
           {redacted.length > 0 &&
             redacted.map((field) => <p key={field + uuidv4()}>{field}</p>)}
