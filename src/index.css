@@ -695,15 +695,18 @@ button.delete {
   flex-direction: column;
   visibility: hidden;
   opacity: 0;
-  transition: max-height 05s ease;
+  transition: max-height 0.5s ease;
   max-height: 0;
+}
+
+/* Because tre-panel is so long*/
+.tre-panel {
+  transition: max-height 10s ease;
 }
 
 /* RULESET EDITOR: TRE section */
 
 .tre-fields-list {
-  display: none;
-  overflow: auto;
   background-color: var(--n800);
   border: 3px solid var(--p300);
   border-top: 0px;

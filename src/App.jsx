@@ -442,6 +442,9 @@ function showTable(header, table) {
     panel.style.visibility = "visible";
     panel.style.opacity = "1";
     panel.style.maxHeight = "500px"
+    if (table == "trePanel") {
+      panel.style.maxHeight = "64000px"
+    }
     //panel.style.padding = "20px 0px 10px 0px;"
     panel.style.paddingTop = "20px"
     panel.style.paddingBottom = "10px"
