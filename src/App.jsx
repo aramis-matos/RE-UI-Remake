@@ -71,7 +71,7 @@ const App = () => {
         element.style.backgroundColor = "var(--p300)";
         element.style.color = "var(--n900)";
       } else {
-        element.style = {};
+        element.style = {}
       }
     }
   };
