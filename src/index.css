@@ -439,8 +439,156 @@ button.delete {
 /*LEFT SIDE DONE DO NOT DELETE ABOVE THIS LINE*/
 
 
+/*MIDDLE PAGE CONTENT*/
+.nitf-headers {
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
+  margin: 20px;
+}
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: var(--p500);
+  width: 100%;
+  height: 80px;
+  transition: 0.2s;
+  text-align: center;
+}
+/*Traingle styling*/
+.accordion span, .accordion-open span {
+  font-size: 27px;
+  color: #c9c9c9;
+  display:inline-block;
+
+  margin: 0 auto;
+}
+.accordion-open span {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+
+/* Add a background color to the button when you move the mouse over it (hover) */
+.accordion:hover, .accordion-open:hover {
+  background-color: var(--c100);
+}
+.accordion-open {
+  border-radius: 0px 0px 0px 0px;
+  /*was 10 10 0 0px*/
+  margin-bottom: 0px;
+  transition: 0.2s;
+  top: 0;
+  position: -webkit-sticky;
+  position:sticky;
+  background-color: var(--p700);
+  z-index: 0;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.button-panel {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+
+.field-header {
+  display: flex;
+  flex-direction: row;
+  height: 10%;
+  max-height: 48px;
+  padding-left: 5px;
+  justify-content: left;
+  align-items: center;
+  text-align: left;
+  border-bottom: 3px dotted var(--p300);
+}
+.field-header h4 {
+  min-width: 206px;
+}
+.longName-header {
+  width: 50%;
+}
+.field-sub-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+/*.field-table {
+  background-color: var(--n850);
+  display: flex;
+  flex-direction: column;
+  padding-right: 10px;
+  overflow: auto;
+  scrollbar-gutter: stable;
+}*/
+.field-row {
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  flex-shrink: 1;
+  color: black;
+  background-color: silver;
+}
+.field-row div {
+  margin-left: 10px;
+}
+.field-row:hover {
+  background-color: var(--n600);
+}
+.fieldname-box {
+  width: 15%;
+  text-align: left;
+}
+.file-name {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  font-size: 1.75vw;
+  color: var(--p200);
+  background-color: var(--n700);
+  border-radius: 15px 15px 0px 0px;
+  text-align: center;
+}
+.field-panel,
+.tre-panel {
+  background-color: silver;
+  border: 3px solid var(--n400);
+  border-radius: 0px 0px 15px 15px;
+  margin-bottom: 20px;
+  display: none;
+  flex-direction: column;
+}
+.field-panel {
+  padding: 20px 0px 10px 20px;
+}
+
+.tre-panel {
+  padding: 20px 0px 10px 0px;
+}
+
+.tre-fields-list > .field-row, .tre-panel > .field-header {
+  padding-left: 10px;
+}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* MIDDLE CONTENT DONE*/
 .popup-content {
   /* Overrides reactjs-popup defaults */
   padding: 0px;
@@ -796,135 +944,6 @@ button.back-nav {
   width: 100%
 }
 
-.nitf-headers {
-  display: flex;
-  flex-direction: column;
-  min-width: 600px;
-  margin: 20px;
-}
-/* Style the buttons that are used to open and close the accordion panel */
-.accordion {
-  background-color: var(--p500);
-  width: 100%;
-  height: 80px;
-  transition: 0.2s;
-  text-align: center;
-}
-/*Traingle styling*/
-.accordion span, .accordion-open span {
-  font-size: 27px;
-  color: #c9c9c9;
-  display:inline-block;
-
-  margin: 0 auto;
-}
-.accordion-open span {
-  writing-mode: vertical-lr;
-  transform: rotate(180deg);
-}
-
-/* Add a background color to the button when you move the mouse over it (hover) */
-.accordion:hover, .accordion-open:hover {
-  background-color: var(--c100);
-}
-.accordion-open {
-  border-radius: 0px 0px 0px 0px;
-  /*was 10 10 0 0px*/
-  margin-bottom: 0px;
-  transition: 0.2s;
-  top: 0;
-  position: -webkit-sticky;
-  position:sticky;
-  background-color: var(--p700);
-  z-index: 0;
-}
-
-/* Style the accordion panel. Note: hidden by default */
-.button-panel {
-  justify-content: space-between;
-  display: flex;
-  flex-direction: column;
-  row-gap: 30px;
-}
-.field-header {
-  display: flex;
-  flex-direction: row;
-  height: 10%;
-  max-height: 48px;
-  padding-left: 5px;
-  justify-content: left;
-  align-items: center;
-  text-align: left;
-  border-bottom: 3px dotted var(--p300);
-}
-.field-header h4 {
-  min-width: 206px;
-}
-.longName-header {
-  width: 50%;
-}
-.field-sub-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-}
-/*.field-table {
-  background-color: var(--n850);
-  display: flex;
-  flex-direction: column;
-  padding-right: 10px;
-  overflow: auto;
-  scrollbar-gutter: stable;
-}*/
-.field-row {
-  display: flex;
-  align-items: center;
-  padding-left: 5px;
-  flex-shrink: 1;
-  color: black;
-  background-color: silver;
-}
-.field-row div {
-  margin-left: 10px;
-}
-.field-row:hover {
-  background-color: var(--n600);
-}
-.fieldname-box {
-  width: 15%;
-  text-align: left;
-}
-.file-name {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  font-size: 1.75vw;
-  color: var(--p200);
-  background-color: var(--n700);
-  border-radius: 15px 15px 0px 0px;
-  text-align: center;
-}
-.field-panel,
-.tre-panel {
-  background-color: silver;
-  border: 3px solid var(--n400);
-  border-radius: 0px 0px 15px 15px;
-  margin-bottom: 20px;
-  display: none;
-  flex-direction: column;
-}
-.field-panel {
-  padding: 20px 0px 10px 20px;
-}
-
-.tre-panel {
-  padding: 20px 0px 10px 0px;
-}
-
-.tre-fields-list > .field-row, .tre-panel > .field-header {
-  padding-left: 10px;
-}
 
 /* RULES EDITOR: Preferences Modal */
 .prefModal {
