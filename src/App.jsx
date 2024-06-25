@@ -63,16 +63,19 @@ const App = () => {
       const longName = fieldRowElements[2].textContent;
       const setTo = fieldRowElements[3].children[0].value;
 
+
       
-     
-        if (
+        if 
+        (
           (value &&
           !(new RegExp(value, "i").test(fieldName) ||
             new RegExp(value, "i").test(longName) ||
             new RegExp(value, "i").test(setTo)))
-        ) {
+        ) 
+        {
           element.style.display = "none";
-        } else {
+        } 
+        else {
           element.style = {};
         }
     }
@@ -281,13 +284,6 @@ const handleCheckChange = (e) => {
             onClick={handleSave}
           >SAVE
           </button>
-
-
-
-         
-
-
-
 
           <div className = "helpSearch">
             <SearchBar
