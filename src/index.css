@@ -415,8 +415,6 @@ button:disabled {
   z-index: 1000;
   
 }
-
-
 .ruleset-modal-content {
   background: rgb(68, 59, 59);
   padding: 20px;
@@ -488,17 +486,7 @@ button:disabled {
   width: 370px;
   font-size: large;
 }
-
-
-
-
-
-
-
-
-
 /*Help MODAL ON PAGE*/
-
 
 .help-page-modal-overlay {
   position: fixed;
@@ -559,9 +547,6 @@ button:disabled {
   cursor: pointer;
 }
 
-
-
-
 .redact-div > .selections {
   max-height: 450px;
 }
@@ -592,7 +577,6 @@ button:disabled {
   width: 100%;
   height: 100%;
 
-  /* overflow: auto; Enable scroll if needed */
 }
 .optionPaneModal {
   display: flex;

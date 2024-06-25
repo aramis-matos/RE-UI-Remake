@@ -62,17 +62,19 @@ const App = () => {
       const fieldName = fieldRowElements[1].textContent;
       const longName = fieldRowElements[2].textContent;
       const setTo = fieldRowElements[3].children[0].value;
-      if (
-        value &&
-        (new RegExp(value, "i").test(fieldName) ||
-          new RegExp(value, "i").test(longName) ||
-          new RegExp(value, "i").test(setTo))
-      ) {
-        element.style.backgroundColor = "var(--p300)";
-        element.style.color = "var(--n900)";
-      } else {
-        element.style = {}
-      }
+        if 
+        (
+          (value &&
+          !(new RegExp(value, "i").test(fieldName) ||
+            new RegExp(value, "i").test(longName) ||
+            new RegExp(value, "i").test(setTo)))
+        ) 
+        {
+          element.style.display = "none";
+        } 
+        else {
+          element.style = {};
+        }
     }
   };
 
@@ -279,11 +281,14 @@ const handleCheckChange = (e) => {
             onClick={handleSave}
           >SAVE
           </button>
+
           <div className = "helpSearch">
             <SearchBar
               handleSearch={(value) => handleSearch(value)}
               className="search"
             />
+
+
           <div className = "help-modal">
             <button
               className= "help-page"
