@@ -120,113 +120,6 @@ button:disabled {
   background-color: var(--n600);
 }
 
-/*OPEN Button --- i think all of this pertains but not sure*/
-.optionPaneModal {
-  display: flex;
-}
-.modalHeader {
-  text-align: center;
-}
-.modalOptions {
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
-  height: 40px;
-}
-.modalOptions button {
-  text-align: center;
-  width: 40px;
-  height: 40px;
-  background-color: var(--p600);
-}
-.modalOptions button:hover {
-  background-color: var(--p700);
-}
-button.modalBack {
-  all: unset;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-color: var(--n900);
-  opacity: 0.75;
-  z-index: -1;
-}
-/* Modal Content/Box */
-.modal_content {
-  display: flex;
-  flex-direction: column;
-  z-index: 2;
-  background-color: var(--p600);
-  border-radius: 15px;
-  border: 3px solid var(--n400);
-  max-width: 600px;
-  max-height: 600px;
-}
-.savedList {
-  background-color: var(--n700);
-  width: 100%;
-  padding: 10px;
-  align-items: center;
-  overflow: auto;
-}
-.savedList h4 {
-  color: var(--p100);
-  margin: 10px;
-  font-weight: bold;
-  border-bottom: 2px solid var(--p300);
-}
-.savedList span {
-  font-weight: bold;
-  border-bottom: 2px dotted var(--n50);
-}
-.rulesetContent {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 40px;
-  justify-content: space-between;
-  padding-left: 20px;
-}
-button.delete {
-  all: unset;
-  display: flex;
-  width: 48px;
-  height: 48px;
-  justify-content: center;
-}
-.delete img {
-  width: 16px;
-  height: 16px;
-  align-self: center;
-}
-.rulesetContent button {
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  background: none;
-  border: none;
-  color: var(--n0);
-}
-.rulesetContent button:hover {
-  background-color: var(--p600);
-  border-radius: 10px;
-  color: white;
-}
-/* SAVED RULESET MODAL */
-.modal,
-.optionPaneModal,
-.name-modal {
-  display: none; /* Hidden by default */
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 5; /* Sit on top */
-  width: 100%;
-  height: 100%;
-  /* overflow: auto; Enable scroll if needed */
-}
-
 /*Search bar*/
 .helpSearch{
   height: 60px;
@@ -388,10 +281,6 @@ button.delete {
   margin-right: 20px;
 }
 
-.preferences-div h2 {
-  color: var(--n850);
-}
-
 .preferences-div {
   height: 300px;
   margin: 10px;
@@ -458,7 +347,7 @@ button.delete {
 }
 
 .filters-div h2 {
-  color: black;
+  color: blue;
 }
 
 .filters-div h4 {
@@ -466,10 +355,6 @@ button.delete {
   text-align: left;
   margin-left: 10px;
   margin-bottom: 0;
-}
-
-.filters_preview_modal h2 {
-  color: var(--n850);
 }
 
 .filters-div input[type="text"] {
@@ -533,10 +418,6 @@ button.delete {
 .redact-div {
   height: 600px;
 }
-.redact-div h2 {
-  color: var(--n850);
-}
-
 
 
 /*ruleset-modal css had a copy at line 123? idk why*/
