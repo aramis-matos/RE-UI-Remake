@@ -72,6 +72,7 @@ const App = () => {
             new RegExp(value, "i").test(setTo)))
         ) 
         {
+          
           element.style.display = "none";
         } 
         else {
@@ -196,7 +197,6 @@ const App = () => {
     const updatedArr = [...checkedItems];
     updatedArr[index] = booleanVal;
     setCheckedItems(updatedArr);
-    handleSearch(searchValue);
   }
 const handleCheckChange = (e) => {
   const {checked, id} = e.target;
@@ -321,7 +321,7 @@ const handleCheckChange = (e) => {
           <button
             id="fileHeader"
             className="accordion"
-            onClick={() => showTable("fileHeader", "filePanel")}
+            onClick={() => {showTable("fileHeader", "filePanel"), handleSearch(searchValue)}}
           >
           <span>&#9660;</span> NITF FILE HEADER <span>&#9660;</span>
           </button>
@@ -336,7 +336,7 @@ const handleCheckChange = (e) => {
           <button
             id="imageSubheader"
             className="accordion"
-            onClick={() => showTable("imageSubheader", "imagePanel")}
+            onClick={() => {showTable("imageSubheader", "imagePanel"), handleSearch(searchValue)}}
            
           >
           <span>&#9660;</span> IMAGE SUBHEADER <span>&#9660;</span>
@@ -352,7 +352,7 @@ const handleCheckChange = (e) => {
           <button
             id="graphicSubheader"
             className="accordion"
-            onClick={() => showTable("graphicSubheader", "graphicPanel")}
+            onClick={() => {showTable("graphicSubheader", "graphicPanel"),handleSearch(searchValue)}}
            
           >
           <span>&#9660;</span> GRAPHIC SUBHEADER <span>&#9660;</span>
@@ -368,7 +368,7 @@ const handleCheckChange = (e) => {
           <button
             id="textSubheader"
             className="accordion"
-            onClick={() => showTable("textSubheader", "textPanel")}
+            onClick={() => {showTable("textSubheader", "textPanel"), handleSearch(searchValue)}}
            
           >
           <span>&#9660;</span> TEXT SUBHEADER <span>&#9660;</span>
@@ -384,7 +384,7 @@ const handleCheckChange = (e) => {
           <button
             id="desSubheader"
             className="accordion"
-            onClick={() => showTable("desSubheader", "desPanel")}
+            onClick={() => {showTable("desSubheader", "desPanel"), handleSearch(searchValue)}}
            
           >
           <span>&#9660;</span> DES SUBHEADER <span>&#9660;</span>
@@ -400,7 +400,7 @@ const handleCheckChange = (e) => {
           <button
             id="TRE"
             className="accordion"
-            onClick={() => showTable("TRE", "trePanel")}
+            onClick={() => {showTable("TRE", "trePanel"), handleSearch(searchValue);}}
            
           >
           <span>&#9660;</span> TRE <span>&#9660;</span>
