@@ -272,8 +272,18 @@ button:disabled {
   margin-bottom: 10px;
 }
 
+.preferences_preview_modal form {
+  margin-left: 10px;
+}
 
+.preferences_preview_modal label {
+  padding-right: 10px;
+}
 
+.preferences_preview_modal input[type="text" i] {
+  width: 85%;
+  margin-right: 5px;
+}
 
 
 
@@ -365,7 +375,7 @@ button:disabled {
 .modify-div, 
 .preferences-div,
 .filters_preview_modal {
-  margin: 10px;
+  margin-top: 10px;
   border-radius: 15px;
   text-align: center;
   color: var(--n850);
@@ -373,7 +383,6 @@ button:disabled {
   border: 3px solid var(--n400);
   width: 100%;
   position: relative;
-  left: -12px;
   h2 {
     color: var(--n850);
   }
@@ -511,7 +520,6 @@ button:disabled {
   border-radius: 15px;
   position: absolute;
   top: 20px;
-  left: 379px;
   width: 1060px;
   height: 1000px;
   text-align: center;
