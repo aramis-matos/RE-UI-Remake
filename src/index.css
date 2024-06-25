@@ -241,6 +241,8 @@ button:disabled {
   flex-shrink: 1;
   top:5px;
 }
+
+/* Used to implent the stick of the left and right panels and the center headers*/
 .content {
   position: -webkit-sticky;
   position: sticky;
@@ -258,48 +260,10 @@ button:disabled {
   font-size: 18px;
 }
 
-.preferences_preview_modal > .content {
-  display: flex;
-  flex-direction: column;
-  border-radius: 15px;
-  width: 100%;
-  color: white;
-}
-
-.preferences_preview_modal .content .preferences-div input[type="text"] {
-  width: 100%;
-  padding: 8px;
-  margin-top: 10px;
-  box-sizing: border-box;
-}
-
-.preferences_preview_modal .content .preferences-div input[type="radio"] {
-  margin-right: 5px;
-}
-
-.preferences_preview_modal .content .preferences-div label {
-  margin-right: 20px;
-}
-
-.preferences-div {
-  height: 300px;
-  margin: 10px;
-  border-radius: 15px;
-  text-align: center;
-  color: var(--n850);
-  background-color: var(--c100);
-  border: 3px solid var(--n400);
-  width: 100%;
-  position: relative;
-  left: -12px;
-  padding: 0px;
-}
-
 .prefSaveButton {
   text-align: center;
   width: 100px;
   height: 40px;
-  margin-top: 10px;
 }
 
 .preference-option {
