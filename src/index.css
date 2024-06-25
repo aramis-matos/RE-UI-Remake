@@ -119,8 +119,222 @@ button:disabled {
   color: var(--n400);
   background-color: var(--n600);
 }
+/* LEFT SIDE OF PAGE 
 
-/*Search bar*/
+GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
+                        "LEFT SIDE DONE"*/
+
+/* RULESET EDITOR */
+.left-panel {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin-top: 0px;
+}
+.left-panel > .content {
+  display:flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  top: 0;
+  padding-top: 20px;
+  width: 100%
+}
+
+/*NEW BUTTON*/
+.ruleset-modal {
+  max-width: 1000px;
+  max-height: 500px;
+}
+
+.ruleset-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(165, 150, 150, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  
+}
+
+.rulesetObject {
+  padding: 15px;
+}
+
+.rulesetOnPageModalContent h4{
+  color:rgb(255, 255, 255)
+}
+
+.rulesetOnPageModalContent select {
+  height: 35px;
+  width: 370px;
+  font-size: large;
+}
+
+.ruleset-modal-content {
+  background: rgb(68, 59, 59);
+  padding: 20px;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 820px;
+  height: 440px;
+
+  p {
+    color: white;
+    margin: auto;
+    font-family: "Roboto";
+    font-size: 36px;
+  font-weight: bold;
+
+  }
+}
+
+.ruleset-close-button {
+  position: absolute;
+  top: 2%;
+  right: 1.2%;
+  width: 8%;
+  height: 10%;
+  background: solid;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.ruleset-save-button {
+  position: absolute;
+  top: 85%;
+  right: 1.2%;
+  width: 20%;
+  height: 10%;
+  background: solid;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.ruleset-open-button {
+  color: var(--n0);
+  background-color: var(--p500);
+  border: none;
+  border-radius: 10px;
+  width: 300px;
+  height: 60px;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 8px;
+  transition: 0.2s;
+  min-height: 60px;
+}
+/*OPEN Button --- i think all of this pertains but not sure*/
+.modalHeader {
+  text-align: center;
+}
+.modalOptions {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  height: 40px;
+}
+.modalOptions button {
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--p600);
+}
+.modalOptions button:hover {
+  background-color: var(--p700);
+}
+button.modalBack {
+  all: unset;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: var(--n900);
+  opacity: 0.75;
+  z-index: -1;
+}
+/* Modal Content/Box */
+.modal_content {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  background-color: var(--p600);
+  border-radius: 15px;
+  border: 3px solid var(--n400);
+  max-width: 600px;
+  max-height: 600px;
+}
+.savedList {
+  background-color: var(--n700);
+  width: 100%;
+  padding: 10px;
+  align-items: center;
+  overflow: auto;
+}
+.savedList h4 {
+  color: var(--p100);
+  margin: 10px;
+  font-weight: bold;
+  border-bottom: 2px solid var(--p300);
+}
+.savedList span {
+  font-weight: bold;
+  border-bottom: 2px dotted var(--n50);
+}
+.rulesetContent {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 40px;
+  justify-content: space-between;
+  padding-left: 20px;
+}
+button.delete {
+  all: unset;
+  display: flex;
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+}
+.delete img {
+  width: 16px;
+  height: 16px;
+  align-self: center;
+}
+.rulesetContent button {
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: none;
+  border: none;
+  color: var(--n0);
+}
+.rulesetContent button:hover {
+  background-color: var(--p600);
+  border-radius: 10px;
+  color: white;
+}
+/* SAVED RULESET MODAL */
+.modal,
+.optionPaneModal,
+.name-modal {
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 5; /* Sit on top */
+  width: 100%;
+  height: 100%;
+  /* overflow: auto; Enable scroll if needed */
+}
+/*makes help and search horizontal*/
 .helpSearch{
   height: 60px;
   max-width: 300px;
@@ -128,6 +342,7 @@ button:disabled {
   display: flex;
   flex-direction: horizontal;
 }
+/*Search bar*/
 .search {
   border: 3px solid var(--n400);
   background-color: var(--c100);
@@ -178,118 +393,66 @@ button:disabled {
 .help-page h2 {
   margin: 20px;
 }
+/*Help MODAL ON PAGE*/
 
-.popup-content {
-  /* Overrides reactjs-popup defaults */
-  padding: 0px;
-  border: 0;
-  border-radius: 15px;
-  background-color: transparent;
-}
-
-#app {
-  width: 100%;
-  margin: none;
-}
-.container-fluid {
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-}
-.main-page {
-  translate: 60px 56px 0px;
-  /* width: 100%; */
-  min-height: 945px;
-  max-width: 1840px;
+.help-page-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(165, 150, 150, 0.5);
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-#not-redactable {
-  color: rgb(190, 190, 190);
-}
-/* REDACT MENU */
-.editor,
-.redact,
-.compare,
-.templates-manager {
-  display: grid;
-  
-  flex-direction: row;
-  justify-content: space-between;
-  width: auto;
-  grid-template-columns: 18% 60% auto;
-}
-
-
-/* REDACT MENU: R/M Preview Element */
-.right-panel {
-  width: 400px;
-}
-.ruleset_preview_modal {
-  width: 100%;
-  height: 100%;
-  font-size: 18px;
-  display:flex;
-}
-.ruleset_preview_modal > .content {
-  display: flex;
-  flex-direction: column;
-  border-radius: 15px;
-  width: 100%;
-  color: white;
-  flex-shrink: 1;
-  top:5px;
-}
-
-/* Used to implent the stick of the left and right panels and the center headers*/
-.content {
-  position: -webkit-sticky;
-  position: sticky;
-  align-self:flex-start;
-  display:flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-/* PREFERENCES ON PAGE CSS */
-/* Preferences Preview Modal */
-.preferences_preview_modal {
-  width: 100%;
-  height: 100%;
-  font-size: 18px;
-}
-
-.prefSaveButton {
-  text-align: center;
-  width: 100px;
-  height: 40px;
-}
-
-.preference-option {
-  display: flex;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  z-index: 1000;
+  
 }
 
-.preferences_preview_modal form {
-  margin-left: 10px;
+.help-page-modal-content {
+  background: rgb(68, 59, 59);
+  padding: 20px;
+  border-radius: 15px;
+  position: absolute;
+  top: 20px;
+  width: 1060px;
+  height: 1000px;
+  text-align: center;
+  
+  h1{
+    color: var(--c100);
+    padding: 20px 0px 50px 0px;
+    font-size: 60px;
+  }
+  h2{
+    color: var(--c100);
+    padding: 20px 0px 20px 0px;
+    font-size: 40px;
+  }
+  p {
+    color: #cbcbcb;
+    padding: 20px 0px 20px 0px;
+    text-align: center;
+    margin: auto;
+    font-family: "Roboto";
+    font-size: 30px;
+    font-weight: bold;
+
+  }
 }
 
-.preferences_preview_modal label {
-  padding-right: 10px;
+
+.help-page-close-button {
+  position: absolute;
+  top: 85%;
+  right: 1%;
+  width:20%;
+  height: 10%;
+  background: solid;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
-
-.preferences_preview_modal input[type="text" i] {
-  width: 85%;
-  margin-right: 5px;
-}
-
-
-
-
-
-
 
 /*FILTER ON PAGE CSS*/
 /* Filters Preview Modal */
@@ -369,380 +532,50 @@ button:disabled {
   margin-right: 10px;
 }
 
-
-/*Redact, Modify, Preference, Filters Divs CSS*/
-.redact-div,
-.modify-div, 
-.preferences-div,
-.filters_preview_modal {
-  margin-top: 10px;
-  border-radius: 15px;
-  text-align: center;
-  color: var(--n850);
-  background-color: var(--c100);
-  border: 3px solid var(--n400);
+/* PREFERENCES ON PAGE CSS */
+/* Preferences Preview Modal */
+.preferences_preview_modal {
   width: 100%;
-  position: relative;
-  h2 {
-    color: var(--n850);
-  }
-
-}
-.redact-div {
-  height: 600px;
-}
-
-
-/*ruleset-modal css had a copy at line 123? idk why*/
-/* LEFT SIDE OF PAGE, NEW BUTTON */
-/*RULESET ON PAGE CSS*/
-/* Ruleset Modal */
-.ruleset-modal {
-  max-width: 1000px;
-  max-height: 500px;
-}
-
-.ruleset-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(165, 150, 150, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  
-}
-.ruleset-modal-content {
-  background: rgb(68, 59, 59);
-  padding: 20px;
-  border-radius: 15px;
-  position: relative;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 820px;
-  height: 440px;
-
-  p {
-    color: white;
-    margin: auto;
-    font-family: "Roboto";
-    font-size: 36px;
-  font-weight: bold;
-
-  }
-}
-
-.ruleset-close-button {
-  position: absolute;
-  top: 2%;
-  right: 1.2%;
-  width: 8%;
-  height: 10%;
-  background: solid;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.ruleset-save-button {
-  position: absolute;
-  top: 85%;
-  right: 1.2%;
-  width: 20%;
-  height: 10%;
-  background: solid;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.ruleset-open-button {
-  color: var(--n0);
-  background-color: var(--p500);
-  border: none;
-  border-radius: 10px;
-  width: 300px;
-  height: 60px;
-  text-align: center;
+  height: 100%;
   font-size: 18px;
   margin-bottom: 8px;
   
   min-height: 60px;
 }
 
-.rulesetObject {
-  padding: 15px;
-}
-
-.rulesetOnPageModalContent h4{
-  color:rgb(255, 255, 255)
-
-}
-
-.rulesetOnPageModalContent select {
-  height: 35px;
-  width: 370px;
-  font-size: large;
-}
-/*Help MODAL ON PAGE*/
-
-.help-page-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(165, 150, 150, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  
-}
-
-.help-page-modal-content {
-  background: rgb(68, 59, 59);
-  padding: 20px;
-  border-radius: 15px;
-  position: absolute;
-  top: 20px;
-  width: 1060px;
-  height: 1000px;
+.prefSaveButton {
   text-align: center;
-  
-  h1{
-    color: var(--c100);
-    padding: 20px 0px 50px 0px;
-    font-size: 60px;
-  }
-  h2{
-    color: var(--c100);
-    padding: 20px 0px 20px 0px;
-    font-size: 40px;
-  }
-  p {
-    color: #cbcbcb;
-    padding: 20px 0px 20px 0px;
-    text-align: center;
-    margin: auto;
-    font-family: "Roboto";
-    font-size: 30px;
-    font-weight: bold;
-
-  }
-}
-
-
-.help-page-close-button {
-  position: absolute;
-  top: 85%;
-  right: 1%;
-  width:20%;
-  height: 10%;
-  background: solid;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.redact-div > .selections {
-  max-height: 450px;
-}
-
-.modify-div {
-  height: 400px;
-  overflow-y: auto;
-}
-.modify-div h2 {
-  color: var(--n850);
-}
-
-.modify-div > .selections {
-  position: relative;
-  text-align: center;
-  overflow-y: auto;
-}
-
-/* SAVED RULESET MODAL */
-.modal,
-.optionPaneModal,
-.name-modal {
-  display: none; /* Hidden by default */
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 5; /* Sit on top */
-  width: 100%;
-  height: 100%;
-
-}
-.optionPaneModal {
-  display: flex;
-}
-.modalHeader {
-  text-align: center;
-}
-.modalOptions {
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
-  height: 40px;
-}
-.modalOptions button {
-  text-align: center;
-  width: 40px;
-  height: 40px;
-  background-color: var(--p600);
-}
-.modalOptions button:hover {
-  background-color: var(--p700);
-}
-button.modalBack {
-  all: unset;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-color: var(--n900);
-  opacity: 0.75;
-  z-index: -1;
-}
-/* Modal Content/Box */
-.modal_content {
-  display: flex;
-  flex-direction: column;
-  z-index: 2;
-  background-color: var(--p600);
-  border-radius: 15px;
-  border: 3px solid var(--n400);
-  max-width: 600px;
-  max-height: 600px;
-}
-.savedList {
-  background-color: var(--n700);
-  width: 100%;
-  padding: 10px;
-  align-items: center;
-  overflow: auto;
-}
-.savedList h4 {
-  color: var(--p100);
-  margin: 10px;
-  font-weight: bold;
-  border-bottom: 2px solid var(--p300);
-}
-.savedList span {
-  font-weight: bold;
-  border-bottom: 2px dotted var(--n50);
-}
-.rulesetContent {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 40px;
-  justify-content: space-between;
-  padding-left: 20px;
-}
-
-button.delete {
-  all: unset;
-  display: flex;
-  width: 48px;
-  height: 48px;
-  justify-content: center;
-}
-.delete img {
-  width: 16px;
-  height: 16px;
-  align-self: center;
-}
-.rulesetContent button {
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  background: none;
-  border: none;
-  color: var(--n0);
-}
-.rulesetContent button:hover {
-  background-color: var(--p600);
-  border-radius: 10px;
-  color: white;
-}
-/* COMPARE WINDOW */
-.compare {
-  justify-content: flex-start;
-  margin: 20px;
-}
-.compare > .tabs {
-  width: 300px;
-  margin: 0px 0px 0px 20px;
-}
-button.back-nav {
   width: 100px;
-  margin: 0px 0px 60px -20px;
-}
-.compare-tabs {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-/* COMPARE WINDOW: NITF viewer */
-.nitf-tabs {
-  display: flex;
-  width: 100%;
-}
-.nitfOG,
-.nitfRed {
-  margin: 10px;
-  height: auto;
-  width: 50%;
-  max-width: 700px;
+  height: 40px;
 }
 
-/* COMPARE WINDOW: Templates Viewer */
-.template-comparison h1 {
-  position: absolute;
-  opacity: 0.25;
-  font-size: 150px;
-  color: var(--error);
-  rotate: -45deg;
-}
-.ogTab {
-  width: 50px;
-  height: 60px;
-}
-.redTab {
-  width: 40px;
-  height: 60px;
-}
-.ogTab.active:hover,
-.redTab:hover {
-  background-color: var(--n700);
-}
-.redTab.active:hover {
-  background-color: var(--p700);
-}
-/* RULESET EDITOR */
-.left-panel {
-  margin: 20px;
+.preference-option {
   display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  margin-top: 0px;
-}
-.left-panel > .content {
-  display:flex;
-  flex-direction: column;
-  flex-shrink: 1;
-  top: 0;
-  padding-top: 20px;
-  width: 100%
+  align-items: center;
+  margin-bottom: 10px;
 }
 
+.preferences_preview_modal form {
+  margin-left: 10px;
+}
+
+.preferences_preview_modal label {
+  padding-right: 10px;
+}
+
+.preferences_preview_modal input[type="text" i] {
+  width: 85%;
+  margin-right: 5px;
+}
+
+/*LEFT SIDE DONE DO NOT DELETE ABOVE THIS LINE*/
+
+
+
+
+
+
+/*MIDDLE PAGE CONTENT*/
 .nitf-headers {
   display: flex;
   flex-direction: column;
@@ -793,6 +626,7 @@ button.back-nav {
   flex-direction: column;
   row-gap: 30px;
 }
+
 .field-header {
   display: flex;
   flex-direction: row;
@@ -876,41 +710,6 @@ button.back-nav {
   padding-left: 10px;
 }
 
-/* RULES EDITOR: Preferences Modal */
-.prefModal {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 2;
-  color: var(--n0);
-  background-color: var(--p600);
-  border-radius: 15px;
-  border: 3px solid var(--n400);
-  width: 100%;
-  height: 100%;
-}
-.prefModal span {
-  border: none;
-}
-.listSelect,
-.secSelect {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 10px;
-  border-bottom: 3px dotted var(--p400);
-}
-.secSelect {
-  border-bottom: 0px;
-}
-.listSelect label {
-  display: flex;
-  flex-direction: row;
-}
-.prefSave {
-  margin: 0px;
-  border-radius: 0px 0px 15px 15px;
-}
 /* RULESET EDITOR: TRE section */
 
 .tre-fields-list {
@@ -941,91 +740,152 @@ button.back-nav {
   width: 50%;
   text-align: left;
 }
+/* MIDDLE CONTENT DONE*/
 
+/* RIGHT SIDE OF PAGE*/
 
-/* NITF VIEWER */
-.viewer {
-  display: flex;
-  /* gap: 20px; */
-}
-.nitf-data {
-  color: var(--n0);
-  display: block;
-  margin-left: 2%;
-  font-size: 16px;
-}
-.nitf-compare {
-  background-color: var(--n800);
-  padding: 1%;
-  margin-left: 5%;
-  width: 70%;
-  border-radius: 10px;
-}
-.nitf-modal {
-  overflow-y: scroll;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  margin-bottom: 5%;
-}
-.nitf-redact {
-  position: relative;
-  width: 100%;
-  border-radius: 10px;
-  height: 100%;
-}
-.side-button {
-  border: 0;
-  /* margin-bottom: 15%; */
-  border-radius: 8px;
-  width: 200px;
-  height: 48px;
-  text-align: center;
-  transition: 0.2s;
-}
-.sub-header {
-  color: var(--n0);
-  font-size: 1.15vw;
-  font-size-adjust: inherit;
-  padding: 1%;
-  display: flex;
+/* REDACT MENU */
+.editor,
+.redact,
+.compare,
+.templates-manager {
+  display: grid;
+  
   flex-direction: row;
   justify-content: space-between;
-}
-.sub-header > .sub-header-name {
-  width: 40%;
-  text-align: left;
-  border-bottom-style: solid;
-  border-bottom-color: var(--p200);
-}
-.sub-header button,
-.tre-sub button {
-  width: 5%;
-  height: 5%;
-  margin-left: 5%;
-  border-radius: 10px;
-  border: none;
-  background-color: var(--p400);
-}
-.sub-header button:hover,
-.tre-sub button:hover {
-  background-color: var(--p500);
-}
-.tre-sub {
-  color: var(--p100);
-  font-size: 1vw;
-  padding: 1%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.tre-sub > .tre-sub-name {
-  width: 15%;
-  text-align: center;
-  border-bottom-style: outset;
-  border-bottom-color: var(--n100);
+  width: auto;
+  grid-template-columns: 18% 60% auto;
 }
 
+
+/* REDACT MENU: R/M Preview Element */
+.right-panel {
+  width: 400px;
+}
+.ruleset_preview_modal {
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+  display:flex;
+}
+.ruleset_preview_modal > .content {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  width: 100%;
+  color: white;
+  flex-shrink: 1;
+  top:5px;
+}
+
+/*Redact, Modify, Preference, Filters Divs CSS*/
+.redact-div,
+.modify-div, 
+.preferences-div,
+.filters_preview_modal {
+  margin-top: 10px;
+  border-radius: 15px;
+  text-align: center;
+  color: var(--n850);
+  background-color: var(--c100);
+  border: 3px solid var(--n400);
+  width: 100%;
+  position: relative;
+  h2 {
+    color: var(--n850);
+  }
+
+}
+.redact-div {
+  height: 600px;
+}
+
+.redact-div > .selections {
+  max-height: 450px;
+}
+
+.modify-div {
+  height: 400px;
+  overflow-y: auto;
+}
+.modify-div h2 {
+  color: var(--n850);
+}
+
+.modify-div > .selections {
+  position: relative;
+  text-align: center;
+  overflow-y: auto;
+}
+/*arrows for modify being shown*/
+.arrow{
+  font-size: 150%;
+}
+
+
+
+/* RIGHT SIDE OF PAGE DONE*/
+
+
+
+/* OTHER  */
+
+
+.popup-content {
+  /* Overrides reactjs-popup defaults */
+  padding: 0px;
+  border: 0;
+  border-radius: 15px;
+  background-color: transparent;
+}
+
+#app {
+  width: 100%;
+  margin: none;
+}
+.container-fluid {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+.main-page {
+  translate: 60px 56px 0px;
+  /* width: 100%; */
+  min-height: 945px;
+  max-width: 1840px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#not-redactable {
+  color: rgb(190, 190, 190);
+}
+
+
+/* Used to implent the stick of the left and right panels and the center headers*/
+.content {
+  position: -webkit-sticky;
+  position: sticky;
+  align-self:flex-start;
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*DONT THINK WE NEED - to be discused with team*/
 /* RULESPECS */
 .rule-specs,
 .name-ruleset {
@@ -1043,27 +903,6 @@ button.back-nav {
   border: 3px solid var(--n400);
   border-top: none;
 }
-.left-panel-headers {
-  padding: 5px;
-}
-/* NAMERULESET */
-.name-ruleset {
-  border-top: 3px solid var(--n400);
-  border-left: none;
-  border-right: none;
-  border-radius: 0;
-  width: 400px;
-}
-.submitBtn {
-  margin: 0;
-  border-radius: 0px 0px 15px 15px;
-}
-
-.arrow{
-  font-size: 150%;
-}
-
-/* not sure where this is used*/
 .question {
   background-color: var(--n700);
   color: var(--n0);
@@ -1083,4 +922,87 @@ button.back-nav {
   flex-direction: column;
   width: 70%;
   border-left: 5px ridge var(--p500);
+}
+
+/* NAMERULESET */
+.name-ruleset {
+  border-top: 3px solid var(--n400);
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  width: 400px;
+}
+.submitBtn {
+  margin: 0;
+  border-radius: 0px 0px 15px 15px;
+}
+
+/* RULESPECS */
+.rule-specs,
+.name-ruleset {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+  height: auto;
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  color: var(--n0);
+  background-color: var(--n850);
+  border-radius: 0px 0px 15px 15px;
+  border: 3px solid var(--n400);
+  border-top: none;
+}
+
+.question {
+  background-color: var(--n700);
+  color: var(--n0);
+  width: 75%;
+  height: fit-content;
+  min-height: 48px;
+  font-size: 26px;
+  text-align: left;
+  margin-bottom: 5px;
+  transition: 0.2s;
+}
+.question:hover {
+  background-color: var(--n500);
+}
+.answer {
+  display: none;
+  flex-direction: column;
+  width: 70%;
+  border-left: 5px ridge var(--p500);
+}
+
+/* NAMERULESET */
+.name-ruleset {
+  border-top: 3px solid var(--n400);
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  width: 400px;
+}
+.submitBtn {
+  margin: 0;
+  border-radius: 0px 0px 15px 15px;
+}
+
+/* RULESPECS */
+.rule-specs,
+.name-ruleset {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+  height: auto;
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  color: var(--n0);
+  background-color: var(--n850);
+  border-radius: 0px 0px 15px 15px;
+  border: 3px solid var(--n400);
+  border-top: none;
 }
