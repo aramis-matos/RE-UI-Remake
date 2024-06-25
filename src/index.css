@@ -468,7 +468,7 @@ button:disabled {
   text-align: center;
   font-size: 18px;
   margin-bottom: 8px;
-  transition: 0.2s;
+  
   min-height: 60px;
 }
 
@@ -858,8 +858,11 @@ button.back-nav {
   border: 3px solid var(--n400);
   border-radius: 0px 0px 15px 15px;
   margin-bottom: 20px;
-  display: none;
   flex-direction: column;
+  visibility: hidden;
+  opacity: 0;
+  transition: height 05s ease;
+  height: 0;
 }
 .field-panel {
   padding: 20px 0px 10px 20px;

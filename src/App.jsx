@@ -428,12 +428,16 @@ const handleCheckChange = (e) => {
 function showTable(header, table) {
   const acc = document.getElementById(header);
   const panel = document.getElementById(table);
-  if (panel.style.display === "flex") {
+  if (panel.style.visibility === "visible") {
     acc.className = "accordion";
-    panel.style.display = "none";
+    panel.style.visibility = "hidden";
+    panel.style.opacity = "0";
+    panel.style.height = "0"
   } else {
     acc.className = "accordion-open";
-    panel.style.display = "flex";
+    panel.style.visibility = "visible";
+    panel.style.opacity = "1";
+    panel.style.height = "500px"
   }
 }
 
