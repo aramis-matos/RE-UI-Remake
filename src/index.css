@@ -632,7 +632,7 @@ button.delete {
   flex-direction: row;
   height: 10%;
   max-height: 48px;
-  padding-left: 5px;
+  padding-left: 15px;
   justify-content: left;
   align-items: center;
   text-align: left;
@@ -661,10 +661,9 @@ button.delete {
 .field-row {
   display: flex;
   align-items: center;
-  padding-left: 5px;
+  padding-left: 15px;
   flex-shrink: 1;
   color: black;
-  background-color: silver;
 }
 .field-row div {
   margin-left: 10px;
@@ -691,23 +690,13 @@ button.delete {
   background-color: silver;
   border: 3px solid var(--n400);
   border-radius: 0px 0px 15px 15px;
-  margin-bottom: 20px;
+  padding: 0px 0px 0px 0px;
+  margin-bottom: 0px;
   flex-direction: column;
   visibility: hidden;
   opacity: 0;
-  transition: height 05s ease;
-  height: 0;
-}
-.field-panel {
-  padding: 20px 0px 10px 20px;
-}
-
-.tre-panel {
-  padding: 20px 0px 10px 0px;
-}
-
-.tre-fields-list > .field-row, .tre-panel > .field-header {
-  padding-left: 10px;
+  transition: max-height 05s ease;
+  max-height: 0;
 }
 
 /* RULESET EDITOR: TRE section */

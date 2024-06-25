@@ -432,12 +432,20 @@ function showTable(header, table) {
     acc.className = "accordion";
     panel.style.visibility = "hidden";
     panel.style.opacity = "0";
-    panel.style.height = "0"
+    panel.style.maxHeight = "0"
+    //panel.style.padding = "0px 0px 0px 0px"
+    panel.style.paddingTop = "0px"
+    panel.style.paddingBottom = "0px"
+    panel.style.marginBottom = "0px"
   } else {
     acc.className = "accordion-open";
     panel.style.visibility = "visible";
     panel.style.opacity = "1";
-    panel.style.height = "500px"
+    panel.style.maxHeight = "500px"
+    //panel.style.padding = "20px 0px 10px 0px;"
+    panel.style.paddingTop = "20px"
+    panel.style.paddingBottom = "10px"
+    panel.style.marginBottom = "20px"
   }
 }
 
