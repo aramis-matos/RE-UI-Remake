@@ -664,6 +664,10 @@ button.delete {
   padding-left: 15px;
   flex-shrink: 1;
   color: black;
+  transition: max-height 0.5s ease;
+  max-height: 0px;
+  visibility: hidden;
+  opacity: 0;
 }
 .field-row div {
   margin-left: 10px;

@@ -428,6 +428,7 @@ const handleCheckChange = (e) => {
 function showTable(header, table) {
   const acc = document.getElementById(header);
   const panel = document.getElementById(table);
+  const rows = panel.querySelectorAll("div.field-row")
   if (panel.style.visibility === "visible") {
     acc.className = "accordion";
     panel.style.visibility = "hidden";
@@ -437,6 +438,11 @@ function showTable(header, table) {
     panel.style.paddingTop = "0px"
     panel.style.paddingBottom = "0px"
     panel.style.marginBottom = "0px"
+    for (const row of rows) {
+      row.style.visibility = "hidden";
+      row.style.opacity = "0";
+      row.style.maxHeight = "0px"
+    }
   } else {
     acc.className = "accordion-open";
     panel.style.visibility = "visible";
@@ -449,6 +455,11 @@ function showTable(header, table) {
     panel.style.paddingTop = "20px"
     panel.style.paddingBottom = "10px"
     panel.style.marginBottom = "20px"
+    for (const row of rows) {
+      row.style.visibility = "visible";
+      row.style.opacity = "1";
+      row.style.maxHeight = "40px"
+    }
   }
 }
 
