@@ -120,12 +120,12 @@ button:disabled {
   background-color: var(--n600);
 }
 
+
+
+
 /* LEFT SIDE OF PAGE*/
 /*NEW BUTTON*/
-.ruleset-modal {
-  max-width: 1000px;
-  max-height: 500px;
-}
+
 
 .ruleset-modal-overlay {
   position: fixed;
@@ -138,8 +138,25 @@ button:disabled {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  
 }
+
+.open-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(165, 150, 150, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+
+
+
+
 
 .rulesetObject {
   padding: 15px;
@@ -163,6 +180,44 @@ button:disabled {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 820px;
   height: 440px;
+
+  p {
+    color: white;
+    margin: auto;
+    font-family: "Roboto";
+    font-size: 36px;
+  font-weight: bold;
+
+  }
+}
+.OpenModalOnPageContent {
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+  }   
+
+  ul {
+      list-style-type: none;
+      padding: 0;
+  }
+
+  li {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+  }
+}
+.open-modal-content {
+  background: rgb(68, 59, 59);
+  padding: 20px;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 740px;
+  height: 480px;
 
   p {
     color: white;
@@ -211,6 +266,7 @@ button:disabled {
   transition: 0.2s;
   min-height: 60px;
 }
+
 /*OPEN Button --- i think all of this pertains but not sure*/
 .optionPaneModal {
   display: flex;
@@ -250,7 +306,7 @@ button.modalBack {
   background-color: var(--p600);
   border-radius: 15px;
   border: 3px solid var(--n400);
-  max-width: 600px;
+  max-width: 1000px;
   max-height: 600px;
 }
 .savedList {
@@ -664,8 +720,8 @@ input[type="checkbox"] {
   border-radius: 15px;
   position: relative;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 820px;
-  height: 440px;
+  width: 740px;
+  height: 480px;
 
   p {
     color: white;
@@ -678,6 +734,18 @@ input[type="checkbox"] {
 }
 
 .ruleset-close-button {
+  position: absolute;
+  top: 2%;
+  right: 1.2%;
+  width: 8%;
+  height: 10%;
+  background: solid;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.open-close-button {
   position: absolute;
   top: 2%;
   right: 1.2%;
@@ -725,6 +793,16 @@ input[type="checkbox"] {
 }
 
 .rulesetOnPageModalContent select {
+  height: 35px;
+  width: 370px;
+  font-size: large;
+}
+.openPageModalContent h4{
+  color:rgb(255, 255, 255)
+
+}
+
+.openOnPageModalContent select {
   height: 35px;
   width: 370px;
   font-size: large;
@@ -810,7 +888,7 @@ input[type="checkbox"] {
 }
 
 /* SAVED RULESET MODAL */
-.modal,
+
 .optionPaneModal,
 .name-modal {
   display: none; /* Hidden by default */

@@ -32,6 +32,8 @@ const FiltersOnPage = ({ theFunc }) => {
         <div className="filters-div">
           <h2>FILTERS</h2>
           <div>
+
+
             <h5>Filter By Field/Long Name</h5>
             <div className="filterRadioButtons">
               <input
@@ -53,6 +55,11 @@ const FiltersOnPage = ({ theFunc }) => {
             </div>
           </div>
           <div>
+
+
+
+
+            
             <h5>Filter By Section</h5>
             <form onSubmit={handleSubmit}>
               {items.map((item) => (

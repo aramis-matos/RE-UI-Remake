@@ -5,17 +5,16 @@ import ImageSubheader from "./tables/ImageSubheader";
 import GraphicSubheader from "./tables/GraphicSubheader";
 import TextSubheader from "./tables/TextSubheader";
 import DesSubheader from "./tables/DesSubheader";
-import SavedRulesetModal from "./popups/SavedRulesetModal";
 import RulesetPreviewModal from "./popups/RulesetPreviewModal";
 import PreferencesModal from "./popups/PreferencesModal";
 import SearchBar from "./components/SearchBar/SearchBar";
-import ActionConfirmed from "./popups/ActionConfirmed";
 import TRE from "./tables/TRE";
 import useModal from "./hooks/useModal";
 import PreferencesOnPage from "./popups/PreferencesOnPage";
 import FiltersOnPage from "./popups/FiltersOnPage";
 import RulesetModalOnPage from "./popups/RulesetModalOnPage";
 import HelpModalOnPage from "./popups/HelpModalOnPage";
+import OpenModalOnPage from "./popups/OpenModalOnPage";
 
 
 const App = () => {
@@ -32,7 +31,9 @@ const App = () => {
   const [name, setName] = useState("");
   const { isError, setIsError } = useModal(togglePopup, actionConfirmedMessage);
   const [isRulesetModalOpen, setIsRulesetModalOpen] = useState(false);
+  const [isOpenModalOpen, setIsOpenModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  
 
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
@@ -63,7 +64,7 @@ const App = () => {
       const longName = fieldRowElements[2].textContent;
       const setTo = fieldRowElements[3].children[0].value;
 
-      
+
      
         if (
           (value &&
@@ -85,6 +86,16 @@ const App = () => {
   const closeRulesetModal = () => {
     setIsRulesetModalOpen(false);
   };
+
+  const openOpenModal = () => {
+    setIsOpenModalOpen(true);
+  };
+
+  const closeOpenModal = () => {
+    setIsOpenModalOpen(false);
+  };
+
+
 
   const openHelpModal = () => {
     setIsHelpModalOpen(true);
@@ -168,6 +179,8 @@ const App = () => {
     showPopup("Hello World!");
   }
   //export updates and run PUT request
+
+
   const handleSave = () => {
     getAllUpdates();
     if (fieldUpdatesToExport.length === 0 && !isRuleSpecChanged()) {
@@ -181,6 +194,9 @@ const App = () => {
     setFieldUpdatesToExport([]);
     setUpdates({});
   };
+
+
+
 
   const showPopup = (message) => {
     setActionConfirmedMessage(message);
@@ -203,64 +219,14 @@ const handleCheckChange = (e) => {
 
   return (
     <div className="editor">
-      <SavedRulesetModal
-        onOpenRuleset={openSavedRuleset}
-        rulespecsChanged={
-          () => {} /* Create a function to detect when a ruleset is added */
-        }
-      />
-      <ActionConfirmed
-        message={actionConfirmedMessage}
-        isError={isError}
-        setIsError={setIsError}
-      />
       <div className="left-panel">
         <div className="content">
           <div className="ruleset-modal">
             <RulesetModalOnPage isOpen={isRulesetModalOpen} onClose={closeRulesetModal}>
-            <div className ="rulesetOnPageModalContent">
-              <h2>New Ruleset</h2>
-              <div className = "rulesetObject" >
-                <h4>Classification</h4>
-                <select>
-                  <option value="unclassifiedOp">Unclassified</option>
-                  <option value="confidentialOp">Confidential</option>
-                  <option value="secretOp">Secret</option>
-                  <option value="topSecretOp">Top Secret</option>
-                </select>
-              </div>
-              <div className = "rulesetObject" >
-                <h4>Country</h4>
-                <select>
-                  <option value="op">United States of America</option>
-                  <option value="op">Canada</option>
-                  <option value="op">Mexico</option>
-                  <option value="op">France</option>
-                  <option value="op">Newfoundland</option>
-                </select>
-              </div>
-              <div className = "rulesetObject" >
-                <h4>Releaseability</h4>
-                <select>
-                  <option value="op">An Option</option>
-                  <option value="op">Another Option </option>
-                  <option value="op">Some Other Option</option>
-                </select>
-              </div>
-              <div className = "rulesetObject" >
-                <h4>Sensor</h4>
-                <select>
-                  <option value="op">Yet Another Option</option>
-                  <option value="op">Lawd it's an Option</option>
-                  <option value="op">Too Many Options</option>
-                  <option value="op">A man cannot step into the same river twice,
-                    for it is not the same river, and he is not the same man.
-                  </option>
-                </select>
-                <button className="ruleset-save-button">Create</button>
-              </div>
-            </div>
           </RulesetModalOnPage>
+          <OpenModalOnPage isOpen={isOpenModalOpen} onClose={closeOpenModal}>
+          </OpenModalOnPage>
+          
         </div>
 
           <button
@@ -271,7 +237,7 @@ const handleCheckChange = (e) => {
           <button
             id="openRuleset"
             data-testid="openRuleset"
-            onClick={() => toggleModal("myModal", "flex")}
+            onClick={openOpenModal}
           >OPEN
           </button>
           <button
