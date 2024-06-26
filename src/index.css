@@ -960,7 +960,6 @@ button.delete {
 /*Redact, Modify, Preference, Filters Divs CSS*/
 
 .redact-div > .selections {
-  max-height: 450px;
   overflow-y: auto;
 }
 
