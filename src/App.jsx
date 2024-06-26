@@ -33,7 +33,7 @@ const App = () => {
   const { isError, setIsError } = useModal(togglePopup, actionConfirmedMessage);
   const [isRulesetModalOpen, setIsRulesetModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
+  
 
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
@@ -57,43 +57,27 @@ const App = () => {
     setFieldUpdatesToExport([]);
   }, [reset]);
 
-  
   const handleSearch = (value) => {
-    const headerArr = ["nitf", "image", "graphic", "text", "Des", "TRE"];
-    let index = 0;
-    setSearchValue(value);
-    for (const header of document.getElementsByClassName("header")){
-      let numElements = 0;
-      let numRemoved = 0;
-      const getHeader = headerArr[index];
-      for (const element of document.getElementsByClassName(getHeader.concat("-field-row"))) {
-        numElements++;
-        const fieldRowElements = element.children;
-        const fieldName = fieldRowElements[1].textContent;
-        const longName = fieldRowElements[2].textContent;
-        const setTo = fieldRowElements[3].children[0].value;
-        if 
-        (
+    for (const element of document.getElementsByClassName("field-row")) {
+      const fieldRowElements = element.children;
+      const fieldName = fieldRowElements[1].textContent;
+      const longName = fieldRowElements[2].textContent;
+      const setTo = fieldRowElements[3].children[0].value;
+
+
+     
+        if (
           (value &&
-          !(new RegExp(value, "i").test(fieldName.replace(/\s/g, '')) ||
-            new RegExp(value, "i").test(longName.replace(/\s/g, '')) ||
-            new RegExp(value, "i").test(setTo.replace(/\s/g, ''))))
+          !(new RegExp(value, "i").test(fieldName) ||
+            new RegExp(value, "i").test(longName) ||
+            new RegExp(value, "i").test(setTo)))
         ) 
         {
-          
           element.style.display = "none";
-          numRemoved++;
         } 
         else {
           element.style = {};
         }
-      }
-      if (numElements === numRemoved){
-        header.style.display = "none";
-      }else{
-        header.style = {};
-      }
-      index++;
     }
   };
 
@@ -209,17 +193,15 @@ const App = () => {
   let defaultChecked = [false, false, false, false, false, false]
   /*NITF, Image, Graphic, Text, DES, TRE*/
   const [checkedItems, setCheckedItems] = useState(defaultChecked);
-
   const updateCheckedArr = (index, booleanVal) => {
     const updatedArr = [...checkedItems];
     updatedArr[index] = booleanVal;
     setCheckedItems(updatedArr);
   }
-
-  const handleCheckChange = (e) => {
-    const {checked, id} = e.target;
-    updateCheckedArr(Number(id-1), checked)
-  }
+const handleCheckChange = (e) => {
+  const {checked, id} = e.target;
+  updateCheckedArr(Number(id-1), checked)
+}
 
 
   return (
@@ -335,11 +317,11 @@ const App = () => {
       </div>
       <div className="nitf-headers" key={reset}>
         {(checkedItems[0] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div className = "header">
+        <div>
           <button
             id="fileHeader"
             className="accordion"
-            onClick={() => {showTable("fileHeader", "filePanel"), handleSearch(searchValue)}}
+            onClick={() => showTable("fileHeader", "filePanel")}
           >
           <span>&#9660;</span> NITF FILE HEADER <span>&#9660;</span>
           </button>
@@ -350,11 +332,11 @@ const App = () => {
           />
         </div> }
         { (checkedItems[1] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div className = "header">
+        <div>
           <button
             id="imageSubheader"
             className="accordion"
-            onClick={() => {showTable("imageSubheader", "imagePanel"), handleSearch(searchValue)}}
+            onClick={() => showTable("imageSubheader", "imagePanel")}
            
           >
           <span>&#9660;</span> IMAGE SUBHEADER <span>&#9660;</span>
@@ -366,11 +348,11 @@ const App = () => {
           />
         </div> }
         {(checkedItems[2] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div className = "header">
+        <div>
           <button
             id="graphicSubheader"
             className="accordion"
-            onClick={() => {showTable("graphicSubheader", "graphicPanel"),handleSearch(searchValue)}}
+            onClick={() => showTable("graphicSubheader", "graphicPanel")}
            
           >
           <span>&#9660;</span> GRAPHIC SUBHEADER <span>&#9660;</span>
@@ -382,11 +364,11 @@ const App = () => {
           />
         </div> }
         {(checkedItems[3] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div className = "header">
+        <div>
           <button
             id="textSubheader"
             className="accordion"
-            onClick={() => {showTable("textSubheader", "textPanel"), handleSearch(searchValue)}}
+            onClick={() => showTable("textSubheader", "textPanel")}
            
           >
           <span>&#9660;</span> TEXT SUBHEADER <span>&#9660;</span>
@@ -398,11 +380,11 @@ const App = () => {
           />
         </div> }
         {(checkedItems[4] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div className = "header">
+        <div>
           <button
             id="desSubheader"
             className="accordion"
-            onClick={() => {showTable("desSubheader", "desPanel"), handleSearch(searchValue)}}
+            onClick={() => showTable("desSubheader", "desPanel")}
            
           >
           <span>&#9660;</span> DES SUBHEADER <span>&#9660;</span>
@@ -414,7 +396,7 @@ const App = () => {
           />
         </div> }
         {(checkedItems[5] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div className = "header">
+        <div>
           <button
             id="TRE"
             className="accordion"
