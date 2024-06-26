@@ -55,11 +55,14 @@ body {
   font-family: "Roboto-Medium";
   font-size: 16px;
   scrollbar-gutter: stable;
+  /* min-height: 1000px; */
+  background-color: var(--n800);
+}
+
+html {
   width: 1900px;
   height: 100%;
   min-width: 1000px;
-  /* min-height: 1000px; */
-  background-color: var(--n800);
 }
 
 /*text settings general*/
@@ -955,12 +958,10 @@ button.delete {
 }
 
 /*Redact, Modify, Preference, Filters Divs CSS*/
-.redact-div {
-  height: 600px;
-}
 
 .redact-div > .selections {
   max-height: 450px;
+  overflow-y: auto;
 }
 
 .modify-div {
