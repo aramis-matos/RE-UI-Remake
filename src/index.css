@@ -916,7 +916,7 @@ button.delete {
   background-color: var(--n500);
   border-radius: 5px;
   color: white;
-  transition: max-height 3s ease;
+  transition: max-height 1s ease;
   max-height: 0px;
   visibility: hidden;
   opacity: 0;
