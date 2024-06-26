@@ -804,11 +804,9 @@ button.delete {
   font-size: 27px;
   color: #c9c9c9;
   display:inline-block;
-
   margin: 0 auto;
 }
 .accordion-open span {
-  writing-mode: vertical-lr;
   transform: rotate(180deg);
 }
 
