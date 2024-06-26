@@ -858,12 +858,12 @@ button.delete {
   justify-content: flex-start;
   align-items: center;
 }
-.text-field-row,
-.image-field-row,
-.TRE-field-row,
-.graphic-field-row,
-.Des-field-row,
-.nitf-field-row {
+
+.tre-field {
+  max-height: 0px;
+}
+
+.field-row {
   display: flex;
   align-items: center;
   padding-left: 15px;
@@ -875,20 +875,11 @@ button.delete {
   opacity: 0;
   text-wrap: wrap;
 }
-.text-field-row div,
-.image-field-row div,
-.TRE-field-row div,
-.graphic-field-row div,
-.Des-field-row div,
-.nitf-field-row  div {
+
+.field-row div {
   margin-left: 10px;
 }
-.text-field-row:hover,
-.image-field-row:hover,
-.TRE-field-row:hover,
-.graphic-field-row:hover,
-.Des-field-row:hover,
-.nitf-field-row:hover {
+.field-row:hover {
   background-color: var(--n600);
 }
 .fieldname-box {
