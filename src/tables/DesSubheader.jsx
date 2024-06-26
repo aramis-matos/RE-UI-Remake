@@ -64,38 +64,36 @@ const DesSubheader = (props) => {
       </div>
       <div className="field-table">
         {desSubheader.map((field) => (
-          <div className = "field-row">
-            <div
-              key={field.fieldName}
-              id={!field.editable ? "not-redactable" : undefined}
-              className="Des-field-row"
-              data-testid={field.fieldName.concat("row")}
-            >
-              <Checkbox
-                className="checkAllFile"
-                id={"check".concat(field.fieldName)}
-                datatestid={"check".concat(field.fieldName)}
-                checked={
-                  props.listType === "white list"
-                    ? allowed[field.fieldName]
-                    : redact[field.fieldName]
-                }
-                onChange={handleCheck}
-                fieldName={field.fieldName}
-                disabled={
-                  !field.editable || setTo[field.fieldName] ? true : false
-                }
-              />
-              <div className="fieldname-box">{field.fieldName}</div>
-              <div className="longname-box">{field.longName}</div>
-              <SetToBox 
-                id={"set-to-box"}
-                value={setTo[field.fieldName]}
-                onChange={props.onChange}
-                fieldName={field.fieldName}
-                disabled={!field.editable}
-              />
-            </div>
+          <div
+            key={field.fieldName}
+            id={!field.editable ? "not-redactable" : undefined}
+            className="field-row"
+            data-testid={field.fieldName.concat("row")}
+          >
+            <Checkbox
+              className="checkAllFile"
+              id={"check".concat(field.fieldName)}
+              datatestid={"check".concat(field.fieldName)}
+              checked={
+                props.listType === "white list"
+                  ? allowed[field.fieldName]
+                  : redact[field.fieldName]
+              }
+              onChange={handleCheck}
+              fieldName={field.fieldName}
+              disabled={
+                !field.editable || setTo[field.fieldName] ? true : false
+              }
+            />
+            <div className="fieldname-box">{field.fieldName}</div>
+            <div className="longname-box">{field.longName}</div>
+            <SetToBox 
+              id={"set-to-box"}
+              value={setTo[field.fieldName]}
+              onChange={props.onChange}
+              fieldName={field.fieldName}
+              disabled={!field.editable}
+            />
           </div>
         ))}
       </div>

@@ -67,7 +67,7 @@ const FileHeader = (props) => {
           <div
             key={field.fieldName}
             id={!field.editable ? "not-redactable" : undefined}
-            className="nitf-field-row"
+            className="field-row"
             data-testid={field.fieldName.concat("row")}
           >
             <Checkbox
