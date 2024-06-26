@@ -143,20 +143,6 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
 
 /*NEW BUTTON*/
 
-
-.ruleset-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(165, 150, 150, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
 .open-modal-overlay {
   position: fixed;
   top: 0;
@@ -642,7 +628,7 @@ input[type="checkbox"] {
   flex-direction: column;
   border-radius: 15px;
   width: 100%;
-  color: rgb(0, 0, 0);
+  color: black;
 }
 
 .filters-div {
@@ -651,11 +637,11 @@ input[type="checkbox"] {
 }
 
 .filters-div h2 {
-  color: rgb(0, 0, 0);
+  color: black;
 }
 
-.filters-div h5 {
-  color: rgb(0, 0, 0);
+.filters-div h4 {
+  color: black;
   text-align: left;
   margin-left: 10px;
   margin-bottom: 0;

@@ -470,7 +470,7 @@ function treShowTable (header, table) {
       subHeader.style.maxHeight = "50px"
     }
     for (const field of fieldTables) {
-      field.style.maxHeight = "none";
+      field.style.maxHeight = "8000px";
     }
   }
 }

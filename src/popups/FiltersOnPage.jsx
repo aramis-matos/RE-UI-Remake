@@ -31,10 +31,8 @@ const FiltersOnPage = ({ theFunc }) => {
       <div className="content">
         <div className="filters-div">
           <h2>FILTERS</h2>
-          <div>
-
-
-            <h5>Filter By Field/Long Name</h5>
+          <div className = "fieldDiv">
+            <h4>Filter By Field/Long Name</h4>
             <div className="filterRadioButtons">
               <input
                 type="radio"
@@ -54,13 +52,8 @@ const FiltersOnPage = ({ theFunc }) => {
               <label htmlFor="blackList">Long Name</label>
             </div>
           </div>
-          <div>
-
-
-
-
-            
-            <h5>Filter By Section</h5>
+          <div className = "fieldDiv">            
+            <h4>Filter By Section</h4>
             <form onSubmit={handleSubmit}>
               {items.map((item) => (
                 <div className="filterCheckboxes" key={item.id}>
