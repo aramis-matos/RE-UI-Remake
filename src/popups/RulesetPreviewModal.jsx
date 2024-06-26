@@ -54,7 +54,9 @@ const RulesetPreviewModal = ({ initialData, data, listType }) => {
       setModified((prevModified) =>
         prevModified.some((item) => item.fieldName === data.fieldName)
           ? prevModified.map((item) =>
-              item.fieldName === data.fieldName ? { ...item, setTo: data.setTo } : item
+              item.fieldName === data.fieldName
+                ? { ...item, setTo: data.setTo }
+                : item
             )
           : [...prevModified, { fieldName: data.fieldName, setTo: data.setTo }]
       );
@@ -83,29 +85,29 @@ const RulesetPreviewModal = ({ initialData, data, listType }) => {
 
   return (
     <div id="previewRuleset" className="ruleset_preview_modal">
-    <div className="content">
-      <div className="redact-div">
-        <h2>REDACT</h2>
-        <div className="selections">
-          {redacted.length === 0 && <span>No ruleset selected</span>}
-          {redacted.length > 0 &&
-            redacted.map((field) => <p key={field + uuidv4()}>{field}</p>)}
+      <div className="content">
+        <div className="redact-div">
+          <h2>REDACT</h2>
+          <div className="selections">
+            {redacted.length === 0 && <span>No ruleset selected</span>}
+            {redacted.length > 0 &&
+              redacted.map((field) => <p key={field + uuidv4()}>{field}</p>)}
+          </div>
         </div>
-      </div>
-      <div className="modify-div">
-        <h2>MODIFY</h2>
-        <div className="selections">
-          {modified.length === 0 && <span>No ruleset selected</span>}
-          {modified.length > 0 &&
-            modified.map((item) => (
-              <p key={item.fieldName + uuidv4()}>
-                {item.fieldName} <span className="arrow">→</span> {item.setTo}
-              </p>
-            ))}
+        <div className="modify-div">
+          <h2>MODIFY</h2>
+          <div className="selections">
+            {modified.length === 0 && <span>No ruleset selected</span>}
+            {modified.length > 0 &&
+              modified.map((item) => (
+                <p key={item.fieldName + uuidv4()}>
+                  {item.fieldName} <span className="arrow">→</span> {item.setTo}
+                </p>
+              ))}
+          </div>
         </div>
       </div>
     </div>
-  </div>
   );
 };
 

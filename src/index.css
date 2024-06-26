@@ -575,21 +575,7 @@ button.delete {
 
 
 /* REDACT MENU: R/M Preview Element */
-.ruleset_preview_modal {
-  width: 100%;
-  height: 100%;
-  font-size: 18px;
-  display:flex;
-}
-.ruleset_preview_modal > .content {
-  display: flex;
-  flex-direction: column;
-  border-radius: 15px;
-  width: 100%;
-  color: white;
-  flex-shrink: 1;
-  top:5px;
-}
+
 
 .filters_preview_modal label {
   display: flex;
@@ -951,6 +937,21 @@ button.delete {
 
 .right-panel {
   width: 400px;
+}
+
+.ruleset_preview_modal {
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+}
+.ruleset_preview_modal > .content {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  width: 100%;
+  color: white;
+  flex-shrink: 1;
+  top:5px;
 }
 
 /*Redact, Modify, Preference, Filters Divs CSS*/
