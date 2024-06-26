@@ -33,7 +33,7 @@ const App = () => {
   const [isRulesetModalOpen, setIsRulesetModalOpen] = useState(false);
   const [isOpenModalOpen, setIsOpenModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
-  
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
@@ -57,27 +57,43 @@ const App = () => {
     setFieldUpdatesToExport([]);
   }, [reset]);
 
+  
   const handleSearch = (value) => {
-    for (const element of document.getElementsByClassName("field-row")) {
-      const fieldRowElements = element.children;
-      const fieldName = fieldRowElements[1].textContent;
-      const longName = fieldRowElements[2].textContent;
-      const setTo = fieldRowElements[3].children[0].value;
-
-
-     
-        if (
+    const headerArr = ["nitf", "image", "graphic", "text", "Des", "TRE"];
+    let index = 0;
+    setSearchValue(value);
+    for (const header of document.getElementsByClassName("header")){
+      let numElements = 0;
+      let numRemoved = 0;
+      const getHeader = headerArr[index];
+      for (const element of document.getElementsByClassName(getHeader.concat("-field-row"))) {
+        numElements++;
+        const fieldRowElements = element.children;
+        const fieldName = fieldRowElements[1].textContent;
+        const longName = fieldRowElements[2].textContent;
+        const setTo = fieldRowElements[3].children[0].value;
+        if 
+        (
           (value &&
-          !(new RegExp(value, "i").test(fieldName) ||
-            new RegExp(value, "i").test(longName) ||
-            new RegExp(value, "i").test(setTo)))
+          !(new RegExp(value, "i").test(fieldName.replace(/\s/g, '')) ||
+            new RegExp(value, "i").test(longName.replace(/\s/g, '')) ||
+            new RegExp(value, "i").test(setTo.replace(/\s/g, ''))))
         ) 
         {
+          
           element.style.display = "none";
+          numRemoved++;
         } 
         else {
           element.style = {};
         }
+      }
+      if (numElements === numRemoved){
+        header.style.display = "none";
+      }else{
+        header.style = {};
+      }
+      index++;
     }
   };
 
@@ -208,15 +224,17 @@ const App = () => {
   let defaultChecked = [false, false, false, false, false, false]
   /*NITF, Image, Graphic, Text, DES, TRE*/
   const [checkedItems, setCheckedItems] = useState(defaultChecked);
+
   const updateCheckedArr = (index, booleanVal) => {
     const updatedArr = [...checkedItems];
     updatedArr[index] = booleanVal;
     setCheckedItems(updatedArr);
   }
-const handleCheckChange = (e) => {
-  const {checked, id} = e.target;
-  updateCheckedArr(Number(id-1), checked)
-}
+
+  const handleCheckChange = (e) => {
+    const {checked, id} = e.target;
+    updateCheckedArr(Number(id-1), checked)
+  }
 
 
   return (
@@ -281,11 +299,11 @@ const handleCheckChange = (e) => {
       </div>
       <div className="nitf-headers" key={reset}>
         {(checkedItems[0] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="fileHeader"
             className="accordion"
-            onClick={() => showTable("fileHeader", "filePanel")}
+            onClick={() => {showTable("fileHeader", "filePanel"), handleSearch(searchValue)}}
           >
           <span>&#9660;</span> NITF FILE HEADER <span>&#9660;</span>
           </button>
@@ -296,11 +314,11 @@ const handleCheckChange = (e) => {
           />
         </div> }
         { (checkedItems[1] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="imageSubheader"
             className="accordion"
-            onClick={() => showTable("imageSubheader", "imagePanel")}
+            onClick={() => {showTable("imageSubheader", "imagePanel"), handleSearch(searchValue)}}
            
           >
           <span>&#9660;</span> IMAGE SUBHEADER <span>&#9660;</span>
@@ -312,11 +330,11 @@ const handleCheckChange = (e) => {
           />
         </div> }
         {(checkedItems[2] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="graphicSubheader"
             className="accordion"
-            onClick={() => showTable("graphicSubheader", "graphicPanel")}
+            onClick={() => {showTable("graphicSubheader", "graphicPanel"),handleSearch(searchValue)}}
            
           >
           <span>&#9660;</span> GRAPHIC SUBHEADER <span>&#9660;</span>
@@ -328,11 +346,11 @@ const handleCheckChange = (e) => {
           />
         </div> }
         {(checkedItems[3] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="textSubheader"
             className="accordion"
-            onClick={() => showTable("textSubheader", "textPanel")}
+            onClick={() => {showTable("textSubheader", "textPanel"), handleSearch(searchValue)}}
            
           >
           <span>&#9660;</span> TEXT SUBHEADER <span>&#9660;</span>
@@ -344,11 +362,11 @@ const handleCheckChange = (e) => {
           />
         </div> }
         {(checkedItems[4] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="desSubheader"
             className="accordion"
-            onClick={() => showTable("desSubheader", "desPanel")}
+            onClick={() => {showTable("desSubheader", "desPanel"), handleSearch(searchValue)}}
            
           >
           <span>&#9660;</span> DES SUBHEADER <span>&#9660;</span>
@@ -360,12 +378,11 @@ const handleCheckChange = (e) => {
           />
         </div> }
         {(checkedItems[5] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="TRE"
             className="accordion"
-            onClick={() => showTable("TRE", "trePanel")}
-           
+            onClick={() => {showTable("TRE", "trePanel"), handleSearch(searchValue);}}           
           >
           <span>&#9660;</span> TRE <span>&#9660;</span>
           </button>
@@ -395,12 +412,83 @@ const handleCheckChange = (e) => {
 function showTable(header, table) {
   const acc = document.getElementById(header);
   const panel = document.getElementById(table);
-  if (panel.style.display === "flex") {
+  let rows;
+  if (table != "trePanel") {
+    rows = panel.querySelectorAll("div.field-row")
+  } else {
+    rows = null
+  }
+  if (panel.style.visibility === "visible") {
     acc.className = "accordion";
-    panel.style.display = "none";
+    panel.style.visibility = "hidden";
+    panel.style.opacity = "0";
+    panel.style.maxHeight = "0"
+    //panel.style.padding = "0px 0px 0px 0px"
+    panel.style.paddingTop = "0px"
+    panel.style.paddingBottom = "0px"
+    panel.style.marginBottom = "0px"
+    for (const row of rows) {
+      row.style.visibility = "hidden";
+      row.style.opacity = "0";
+      row.style.maxHeight = "0px"
+    }
   } else {
     acc.className = "accordion-open";
-    panel.style.display = "flex";
+    panel.style.visibility = "visible";
+    panel.style.opacity = "1";
+    panel.style.maxHeight = "500px"
+    for (const row of rows) {
+      row.style.visibility = "visible";
+      row.style.opacity = "1";
+      row.style.maxHeight = "40px"
+    }
+    //panel.style.padding = "20px 0px 10px 0px;"
+    panel.style.paddingTop = "20px"
+    panel.style.paddingBottom = "10px"
+    panel.style.marginBottom = "20px"
+    
+  }
+}
+
+function treShowTable (header, table) {
+  const acc = document.getElementById(header); //TRE
+  const panel = document.getElementById(table); //trePanel
+  const subHeaders = panel.getElementsByClassName("tre-header");
+  const fieldTables = panel.getElementsByClassName("tre-field")
+  if (acc.className == "accordion-open") {
+    acc.className = "accordion";
+    panel.style.visibility = "hidden";
+    panel.style.opacity = "0";
+    panel.style.maxHeight = "0"
+    //panel.style.padding = "0px 0px 0px 0px"
+    panel.style.paddingTop = "0px"
+    panel.style.paddingBottom = "0px"
+    panel.style.marginBottom = "0px"
+    for (const subHeader of subHeaders) {
+      subHeader.style.visibility = "hidden";
+      subHeader.style.opacity = "0";
+      subHeader.style.maxHeight = "0px"
+    }
+    for (const field of fieldTables) {
+      field.style.maxHeight = "0px";
+    }
+  } else {
+    acc.className = "accordion-open";
+    panel.style.visibility = "visible";
+    panel.style.opacity = "1";
+    panel.style.maxHeight = "64000px"
+    //panel.style.padding = "20px 0px 10px 0px;"
+    panel.style.paddingTop = "20px"
+    panel.style.paddingBottom = "10px"
+    panel.style.marginBottom = "20px"
+    for (const subHeader of subHeaders) {
+      subHeader.style.visibility = "visible";
+      subHeader.style.opacity = "1";
+      subHeader.style.maxHeight = "50px"
+    }
+    for (const field of fieldTables) {
+      field.style.maxHeight = "none";
+    }
   }
 }
 

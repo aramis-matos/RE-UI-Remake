@@ -44,14 +44,27 @@ const TRE = (props) => {
   };
 
   const toggleTREFieldsPanel = (panelId) => {
-    const panel = document.getElementById(panelId.concat("-fields"));
-    const header = document.getElementById(panelId);
-    if (panel.style.display !== "block") {
-      panel.style.display = "block";
-      header.classList.toggle("active");
+    const panel = document.getElementById(panelId.concat("-fields")); //the actual list of items under subheader
+    const header = document.getElementById(panelId); //the button to open the list
+    const rows = panel.getElementsByClassName("field-row")
+    if (panel.style.visibility === "visible") {
+      panel.style.visibility = "hidden";
+      panel.style.opacity = "0";
+      panel.style.maxHeight = "0"
+      for (const row of rows) {
+        row.style.visibility = "hidden";
+        row.style.opacity = "0";
+        row.style.maxHeight = "0px"
+      }
     } else {
-      panel.style.display = "none";
-      header.classList.remove("active");
+      panel.style.visibility = "visible";
+      panel.style.opacity = "1";
+      panel.style.maxHeight = "8000px"
+      for (const row of rows) {
+        row.style.visibility = "visible";
+        row.style.opacity = "1";
+        row.style.maxHeight = "80px"
+      }
     }
   };
 
@@ -76,7 +89,7 @@ const TRE = (props) => {
       </div>
       <div className="field-table">
         {Object.keys(tres).map((treName) => (
-          <div key={treName}>
+          <div key={treName} className = "tre-field">
             <div
               id={treName}
               data-testid={treName}
@@ -90,7 +103,7 @@ const TRE = (props) => {
                 <div
                   key={field.key}
                   id={!field.editable ? "not-redactable" : undefined}
-                  className="field-row"
+                  className="TRE-field-row"
                 >
                   <Checkbox
                     className="checkAllTre"

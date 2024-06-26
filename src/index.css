@@ -1018,6 +1018,9 @@ input[type="checkbox"] {
   width: 100%;
   height: 100%;
   font-size: 18px;
+  margin-bottom: 8px;
+  
+  min-height: 60px;
 }
 
 .prefSaveButton {
@@ -1109,7 +1112,7 @@ input[type="checkbox"] {
   flex-direction: row;
   height: 10%;
   max-height: 48px;
-  padding-left: 5px;
+  padding-left: 15px;
   justify-content: left;
   align-items: center;
   text-align: left;
@@ -1127,31 +1130,43 @@ input[type="checkbox"] {
   justify-content: flex-start;
   align-items: center;
 }
-/*.field-table {
-  background-color: var(--n850);
-  display: flex;
-  flex-direction: column;
-  padding-right: 10px;
-  overflow: auto;
-  scrollbar-gutter: stable;
-}*/
-.field-row {
+.text-field-row,
+.image-field-row,
+.TRE-field-row,
+.graphic-field-row,
+.Des-field-row,
+.nitf-field-row {
   display: flex;
   align-items: center;
-  padding-left: 5px;
+  padding-left: 15px;
   flex-shrink: 1;
   color: black;
-  background-color: silver;
+  transition: max-height 0.5s ease;
+  max-height: 0px;
+  visibility: hidden;
+  opacity: 0;
+  text-wrap: wrap;
 }
-.field-row div {
+.text-field-row div,
+.image-field-row div,
+.TRE-field-row div,
+.graphic-field-row div,
+.Des-field-row div,
+.nitf-field-row  div {
   margin-left: 10px;
 }
-.field-row:hover {
+.text-field-row:hover,
+.image-field-row:hover,
+.TRE-field-row:hover,
+.graphic-field-row:hover,
+.Des-field-row:hover,
+.nitf-field-row:hover {
   background-color: var(--n600);
 }
 .fieldname-box {
   width: 15%;
   text-align: left;
+  text-wrap: wrap;
 }
 .file-name {
   position: -webkit-sticky;
@@ -1168,30 +1183,30 @@ input[type="checkbox"] {
   background-color: silver;
   border: 3px solid var(--n400);
   border-radius: 0px 0px 15px 15px;
-  margin-bottom: 20px;
-  display: none;
+  padding: 0px 0px 0px 0px;
+  margin-bottom: 0px;
   flex-direction: column;
-}
-.field-panel {
-  padding: 20px 0px 10px 20px;
+  visibility: hidden;
+  opacity: 0;
+  transition: max-height 0.5s ease;
+  max-height: 0;
 }
 
+/* Because tre-panel is so long*/
 .tre-panel {
-  padding: 20px 0px 10px 0px;
-}
-
-.tre-fields-list > .field-row, .tre-panel > .field-header {
-  padding-left: 10px;
+  transition: max-height 8s ease;
 }
 
 /* RULESET EDITOR: TRE section */
 
 .tre-fields-list {
-  display: none;
-  overflow: auto;
-  background-color: var(--n800);
+  background-color: silver;
   border: 3px solid var(--p300);
   border-top: 0px;
+  transition: max-height 0.5s ease;
+  max-height: 0px;
+  visibility: hidden;
+  opacity: 0;
 }
 .tre-header {
   height: 38px;
@@ -1202,7 +1217,10 @@ input[type="checkbox"] {
   background-color: var(--n500);
   border-radius: 5px;
   color: white;
-  transition: 0.2s;
+  transition: max-height 0.5s ease;
+  max-height: 0px;
+  visibility: hidden;
+  opacity: 0;
 }
 .tre-header:hover,
 .tre-header.active {
@@ -1332,7 +1350,7 @@ input[type="checkbox"] {
   justify-content: space-between;
 }
 #not-redactable {
-  color: rgb(190, 190, 190);
+  color: var(--n500);
 }
 
 
