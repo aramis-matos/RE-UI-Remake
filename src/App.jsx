@@ -63,15 +63,10 @@ const App = () => {
       const fieldName = fieldRowElements[1].textContent;
       const longName = fieldRowElements[2].textContent;
       const setTo = fieldRowElements[3].children[0].value;
-<<<<<<< HEAD
 
 
      
         if (
-=======
-        if 
-        (
->>>>>>> 778a5a18a2aa6b4b4010534e29cf83060080d9aa
           (value &&
           !(new RegExp(value, "i").test(fieldName) ||
             new RegExp(value, "i").test(longName) ||

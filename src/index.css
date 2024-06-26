@@ -141,13 +141,6 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
   width: 100%
 }
 
-<<<<<<< HEAD
-
-
-
-/* LEFT SIDE OF PAGE*/
-=======
->>>>>>> 778a5a18a2aa6b4b4010534e29cf83060080d9aa
 /*NEW BUTTON*/
 
 
@@ -469,7 +462,6 @@ button.delete {
 .help-page h2 {
   margin: 20px;
 }
-<<<<<<< HEAD
 
 .popup-content {
   /* Overrides reactjs-popup defaults */
@@ -845,8 +837,6 @@ input[type="checkbox"] {
   width: 370px;
   font-size: large;
 }
-=======
->>>>>>> 778a5a18a2aa6b4b4010534e29cf83060080d9aa
 /*Help MODAL ON PAGE*/
 
 .help-page-modal-overlay {
@@ -908,7 +898,6 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-<<<<<<< HEAD
 .redact-div > .selections {
   max-height: 450px;
 }
@@ -936,11 +925,6 @@ input[type="checkbox"] {
   justify-content: center;
   align-items: center;
   z-index: 5; /* Sit on top */
-=======
-/*FILTER ON PAGE CSS*/
-/* Filters Preview Modal */
-.filters_preview_modal {
->>>>>>> 778a5a18a2aa6b4b4010534e29cf83060080d9aa
   width: 100%;
   height: 100%;
   font-size: 18px;
