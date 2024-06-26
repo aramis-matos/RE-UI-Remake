@@ -63,25 +63,35 @@ const App = () => {
     let index = 0;
     setSearchValue(value);
     for (const header of document.getElementsByClassName("header")){
-      console.log(header);
+      let numElements = 0;
+      let numRemoved = 0;
       const getHeader = headerArr[index];
       for (const element of document.getElementsByClassName(getHeader.concat("-field-row"))) {
+        numElements++;
         const fieldRowElements = element.children;
         const fieldName = fieldRowElements[1].textContent;
         const longName = fieldRowElements[2].textContent;
         const setTo = fieldRowElements[3].children[0].value;
-          if ((value && 
-            !(new RegExp(value, "i").test(fieldName.replace(/\s/g, '')) ||
-              new RegExp(value, "i").test(longName.replace(/\s/g, '')) ||
-              new RegExp(value, "i").test(setTo.replace(/\s/g, ''))))) 
-          {
-            element.style.display = "none";
-            header.style.display = "none";
-          } 
-          else {
-            element.style = {};
-            header.style ={};
-          }
+        if 
+        (
+          (value &&
+          !(new RegExp(value, "i").test(fieldName.replace(/\s/g, '')) ||
+            new RegExp(value, "i").test(longName.replace(/\s/g, '')) ||
+            new RegExp(value, "i").test(setTo.replace(/\s/g, ''))))
+        ) 
+        {
+          
+          element.style.display = "none";
+          numRemoved++;
+        } 
+        else {
+          element.style = {};
+        }
+      }
+      if (numElements === numRemoved){
+        header.style.display = "none";
+      }else{
+        header.style = {};
       }
       index++;
     }
