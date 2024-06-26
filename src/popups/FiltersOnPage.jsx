@@ -76,22 +76,6 @@ const FiltersOnPage = ({ theFunc }) => {
             </form>
           </div>
         </div>
-        <div className = "fieldDiv">
-          <h4>Filter By Section</h4>
-          <form onSubmit={handleSubmit}>
-            {items.map((item) => (
-              <div className="filterCheckboxes" key={item.id}>
-                <input
-                  type="checkbox"
-                  name={item.label}
-                  onChange={theFunc}
-                  id={item.id}
-                />
-                <label htmlFor={item.id}>{item.label}</label>
-              </div>
-            ))}
-          </form>
-        </div>
       </div>
     </div>
   );
