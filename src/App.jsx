@@ -240,13 +240,12 @@ const handleCheckChange = (e) => {
             onClick={openOpenModal}
           >OPEN
           </button>
-          <button
+          {/* <button
             id="saveRuleset"
             data-testid="saveRuleset"
-            disabled={selectedRuleset.rulesetId === undefined ? true : false}
             onClick={handleSave}
           >SAVE
-          </button>
+          </button> */}
 
 
 
