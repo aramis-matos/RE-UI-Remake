@@ -575,9 +575,6 @@ button.delete {
 
 
 /* REDACT MENU: R/M Preview Element */
-.right-panel {
-  width: 400px;
-}
 .ruleset_preview_modal {
   width: 100%;
   height: 100%;
@@ -959,29 +956,8 @@ button.delete {
 
 /* RIGHT SIDE OF PAGE*/
 
-/* REDACT MENU */
-.editor,
-.redact,
-.compare,
-.templates-manager {
-  display: grid;
-  
-  flex-direction: row;
-  justify-content: space-between;
-  width: auto;
-  grid-template-columns: 18% 60% auto;
-}
-
-
-/* REDACT MENU: R/M Preview Element */
 .right-panel {
   width: 400px;
-}
-.ruleset_preview_modal {
-  width: 100%;
-  height: 100%;
-  font-size: 18px;
-  display:flex;
 }
 
 /*Redact, Modify, Preference, Filters Divs CSS*/
