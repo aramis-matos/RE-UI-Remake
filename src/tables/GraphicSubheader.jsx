@@ -68,7 +68,7 @@ const GraphicSubheader = (props) => {
           <div
             key={field.fieldName}
             id={!field.editable ? "not-redactable" : undefined}
-            className="field-row"
+            className="graphic-field-row"
             data-testid={field.fieldName.concat("row")}
           >
             <Checkbox
