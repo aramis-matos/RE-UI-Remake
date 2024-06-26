@@ -73,10 +73,10 @@ const App = () => {
             new RegExp(value, "i").test(setTo)))
         ) 
         {
-          element.style.display = "none";
+          element.style.visibility = "hidden";
         } 
         else {
-          element.style = {};
+          element.style.visibility = "visible";
         }
     }
   };
