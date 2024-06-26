@@ -638,6 +638,9 @@ button.delete {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+}
+
+.preference-option input[type="text"] {
   margin-left: 10px;
 }
 
