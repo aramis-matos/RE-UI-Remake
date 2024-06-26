@@ -397,7 +397,7 @@ const handleCheckChange = (e) => {
           <button
             id="TRE"
             className="accordion"
-            onClick={() => showTable("TRE", "trePanel")}
+            onClick={() => treShowTable("TRE", "trePanel")}
            
           >
           <span>&#9660;</span> TRE <span>&#9660;</span>
@@ -428,7 +428,12 @@ const handleCheckChange = (e) => {
 function showTable(header, table) {
   const acc = document.getElementById(header);
   const panel = document.getElementById(table);
-  const rows = panel.querySelectorAll("div.field-row")
+  let rows;
+  if (table != "trePanel") {
+    rows = panel.querySelectorAll("div.field-row")
+  } else {
+    rows = null
+  }
   if (panel.style.visibility === "visible") {
     acc.className = "accordion";
     panel.style.visibility = "hidden";
@@ -448,17 +453,57 @@ function showTable(header, table) {
     panel.style.visibility = "visible";
     panel.style.opacity = "1";
     panel.style.maxHeight = "500px"
-    if (table == "trePanel") {
-      panel.style.maxHeight = "64000px"
+    for (const row of rows) {
+      row.style.visibility = "visible";
+      row.style.opacity = "1";
+      row.style.maxHeight = "40px"
     }
     //panel.style.padding = "20px 0px 10px 0px;"
     panel.style.paddingTop = "20px"
     panel.style.paddingBottom = "10px"
     panel.style.marginBottom = "20px"
-    for (const row of rows) {
-      row.style.visibility = "visible";
-      row.style.opacity = "1";
-      row.style.maxHeight = "40px"
+    
+  }
+}
+
+function treShowTable (header, table) {
+  const acc = document.getElementById(header); //TRE
+  const panel = document.getElementById(table); //trePanel
+  const subHeaders = panel.getElementsByClassName("tre-header");
+  const fieldTables = panel.getElementsByClassName("tre-field")
+  if (acc.className == "accordion-open") {
+    acc.className = "accordion";
+    panel.style.visibility = "hidden";
+    panel.style.opacity = "0";
+    panel.style.maxHeight = "0"
+    //panel.style.padding = "0px 0px 0px 0px"
+    panel.style.paddingTop = "0px"
+    panel.style.paddingBottom = "0px"
+    panel.style.marginBottom = "0px"
+    for (const subHeader of subHeaders) {
+      subHeader.style.visibility = "hidden";
+      subHeader.style.opacity = "0";
+      subHeader.style.maxHeight = "0px"
+    }
+    for (const field of fieldTables) {
+      field.style.maxHeight = "0px";
+    }
+  } else {
+    acc.className = "accordion-open";
+    panel.style.visibility = "visible";
+    panel.style.opacity = "1";
+    panel.style.maxHeight = "64000px"
+    //panel.style.padding = "20px 0px 10px 0px;"
+    panel.style.paddingTop = "20px"
+    panel.style.paddingBottom = "10px"
+    panel.style.marginBottom = "20px"
+    for (const subHeader of subHeaders) {
+      subHeader.style.visibility = "visible";
+      subHeader.style.opacity = "1";
+      subHeader.style.maxHeight = "50px"
+    }
+    for (const field of fieldTables) {
+      field.style.maxHeight = "none";
     }
   }
 }

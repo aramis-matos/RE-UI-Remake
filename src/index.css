@@ -650,14 +650,11 @@ button.delete {
   justify-content: flex-start;
   align-items: center;
 }
-/*.field-table {
-  background-color: var(--n850);
-  display: flex;
-  flex-direction: column;
-  padding-right: 10px;
-  overflow: auto;
-  scrollbar-gutter: stable;
-}*/
+
+.tre-field {
+  max-height: 0px;
+}
+
 .field-row {
   display: flex;
   align-items: center;
@@ -668,7 +665,9 @@ button.delete {
   max-height: 0px;
   visibility: hidden;
   opacity: 0;
+  text-wrap: wrap;
 }
+
 .field-row div {
   margin-left: 10px;
 }
@@ -678,6 +677,7 @@ button.delete {
 .fieldname-box {
   width: 15%;
   text-align: left;
+  text-wrap: wrap;
 }
 .file-name {
   position: -webkit-sticky;
@@ -705,15 +705,19 @@ button.delete {
 
 /* Because tre-panel is so long*/
 .tre-panel {
-  transition: max-height 10s ease;
+  transition: max-height 8s ease;
 }
 
 /* RULESET EDITOR: TRE section */
 
 .tre-fields-list {
-  background-color: var(--n800);
+  background-color: silver;
   border: 3px solid var(--p300);
   border-top: 0px;
+  transition: max-height 0.5s ease;
+  max-height: 0px;
+  visibility: hidden;
+  opacity: 0;
 }
 .tre-header {
   height: 38px;
@@ -724,7 +728,10 @@ button.delete {
   background-color: var(--n500);
   border-radius: 5px;
   color: white;
-  transition: 0.2s;
+  transition: max-height 0.5s ease;
+  max-height: 0px;
+  visibility: hidden;
+  opacity: 0;
 }
 .tre-header:hover,
 .tre-header.active {
@@ -854,7 +861,7 @@ button.delete {
   justify-content: space-between;
 }
 #not-redactable {
-  color: rgb(190, 190, 190);
+  color: var(--n500);
 }
 
 
