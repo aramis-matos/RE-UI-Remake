@@ -176,8 +176,8 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
   border-radius: 15px;
   position: relative;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 680px;
-  height: 650px;
+  width: 685px;
+  height: 500px;
   max-height: 90vh; 
   overflow-y: auto;
 
@@ -194,8 +194,8 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
   position: absolute;
   top: 2%;
   right: 1.2%;
-  width: 15%;
-  height: 5%;
+  width: 8%;
+  height: 20px;
   background: solid;
   border: none;
   font-size: 1.5rem;
@@ -217,7 +217,7 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
 }
 
 .OpenModalOnPageContent {
-  max-width: 600px;
+  max-width: 550px;
   margin: 0 auto;
   padding: 20px;
   border-radius: 8px;
@@ -236,9 +236,10 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
   li {
       background-color: #4CAF50;
       color: white;
-      padding: 10px;
+      padding: 8px;
       margin-bottom: 10px;
       border-radius: 5px;
+      width: 100%;
   }
 }
 
@@ -615,6 +616,8 @@ input[type="checkbox"] {
 
 .preferences-div h2 {
   color: var(--n850);
+  font-size:30px;
+  padding:14px;
 }
 
 .preferences-div {
@@ -675,6 +678,8 @@ input[type="checkbox"] {
 
 .filters-div h2 {
   color: rgb(0, 0, 0);
+  font-size:30px;
+  padding-left: 20%;
 }
 
 .filters-div h5 {
