@@ -5,16 +5,17 @@ import ImageSubheader from "./tables/ImageSubheader";
 import GraphicSubheader from "./tables/GraphicSubheader";
 import TextSubheader from "./tables/TextSubheader";
 import DesSubheader from "./tables/DesSubheader";
+import SavedRulesetModal from "./popups/SavedRulesetModal";
 import RulesetPreviewModal from "./popups/RulesetPreviewModal";
 import PreferencesModal from "./popups/PreferencesModal";
 import SearchBar from "./components/SearchBar/SearchBar";
+import ActionConfirmed from "./popups/ActionConfirmed";
 import TRE from "./tables/TRE";
 import useModal from "./hooks/useModal";
 import PreferencesOnPage from "./popups/PreferencesOnPage";
 import FiltersOnPage from "./popups/FiltersOnPage";
 import RulesetModalOnPage from "./popups/RulesetModalOnPage";
 import HelpModalOnPage from "./popups/HelpModalOnPage";
-import OpenModalOnPage from "./popups/OpenModalOnPage";
 
 
 const App = () => {
@@ -31,7 +32,6 @@ const App = () => {
   const [name, setName] = useState("");
   const { isError, setIsError } = useModal(togglePopup, actionConfirmedMessage);
   const [isRulesetModalOpen, setIsRulesetModalOpen] = useState(false);
-  const [isOpenModalOpen, setIsOpenModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
@@ -104,16 +104,6 @@ const App = () => {
   const closeRulesetModal = () => {
     setIsRulesetModalOpen(false);
   };
-
-  const openOpenModal = () => {
-    setIsOpenModalOpen(true);
-  };
-
-  const closeOpenModal = () => {
-    setIsOpenModalOpen(false);
-  };
-
-
 
   const openHelpModal = () => {
     setIsHelpModalOpen(true);
@@ -197,8 +187,6 @@ const App = () => {
     showPopup("Hello World!");
   }
   //export updates and run PUT request
-
-
   const handleSave = () => {
     getAllUpdates();
     if (fieldUpdatesToExport.length === 0 && !isRuleSpecChanged()) {
@@ -212,9 +200,6 @@ const App = () => {
     setFieldUpdatesToExport([]);
     setUpdates({});
   };
-
-
-
 
   const showPopup = (message) => {
     setActionConfirmedMessage(message);
@@ -239,14 +224,64 @@ const App = () => {
 
   return (
     <div className="editor">
+      <SavedRulesetModal
+        onOpenRuleset={openSavedRuleset}
+        rulespecsChanged={
+          () => {} /* Create a function to detect when a ruleset is added */
+        }
+      />
+      <ActionConfirmed
+        message={actionConfirmedMessage}
+        isError={isError}
+        setIsError={setIsError}
+      />
       <div className="left-panel">
         <div className="content">
           <div className="ruleset-modal">
             <RulesetModalOnPage isOpen={isRulesetModalOpen} onClose={closeRulesetModal}>
+            <div className ="rulesetOnPageModalContent">
+              <h2>New Ruleset</h2>
+              <div className = "rulesetObject" >
+                <h4>Classification</h4>
+                <select>
+                  <option value="unclassifiedOp">Unclassified</option>
+                  <option value="confidentialOp">Confidential</option>
+                  <option value="secretOp">Secret</option>
+                  <option value="topSecretOp">Top Secret</option>
+                </select>
+              </div>
+              <div className = "rulesetObject" >
+                <h4>Country</h4>
+                <select>
+                  <option value="op">United States of America</option>
+                  <option value="op">Canada</option>
+                  <option value="op">Mexico</option>
+                  <option value="op">France</option>
+                  <option value="op">Newfoundland</option>
+                </select>
+              </div>
+              <div className = "rulesetObject" >
+                <h4>Releaseability</h4>
+                <select>
+                  <option value="op">An Option</option>
+                  <option value="op">Another Option </option>
+                  <option value="op">Some Other Option</option>
+                </select>
+              </div>
+              <div className = "rulesetObject" >
+                <h4>Sensor</h4>
+                <select>
+                  <option value="op">Yet Another Option</option>
+                  <option value="op">Lawd it's an Option</option>
+                  <option value="op">Too Many Options</option>
+                  <option value="op">A man cannot step into the same river twice,
+                    for it is not the same river, and he is not the same man.
+                  </option>
+                </select>
+                <button className="ruleset-save-button">Create</button>
+              </div>
+            </div>
           </RulesetModalOnPage>
-          <OpenModalOnPage isOpen={isOpenModalOpen} onClose={closeOpenModal}>
-          </OpenModalOnPage>
-          
         </div>
 
           <button
@@ -257,15 +292,16 @@ const App = () => {
           <button
             id="openRuleset"
             data-testid="openRuleset"
-            onClick={openOpenModal}
+            onClick={() => toggleModal("myModal", "flex")}
           >OPEN
           </button>
-          {/* <button
+          <button
             id="saveRuleset"
             data-testid="saveRuleset"
+            disabled={selectedRuleset.rulesetId === undefined ? true : false}
             onClick={handleSave}
           >SAVE
-          </button> */}
+          </button>
 
           <div className = "helpSearch">
             <SearchBar
@@ -382,7 +418,8 @@ const App = () => {
           <button
             id="TRE"
             className="accordion"
-            onClick={() => {showTable("TRE", "trePanel"), handleSearch(searchValue);}}           
+            onClick={() => {showTable("TRE", "trePanel"), handleSearch(searchValue);}}
+           
           >
           <span>&#9660;</span> TRE <span>&#9660;</span>
           </button>
@@ -412,83 +449,12 @@ const App = () => {
 function showTable(header, table) {
   const acc = document.getElementById(header);
   const panel = document.getElementById(table);
-  let rows;
-  if (table != "trePanel") {
-    rows = panel.querySelectorAll("div.field-row")
-  } else {
-    rows = null
-  }
-  if (panel.style.visibility === "visible") {
+  if (panel.style.display === "flex") {
     acc.className = "accordion";
-    panel.style.visibility = "hidden";
-    panel.style.opacity = "0";
-    panel.style.maxHeight = "0"
-    //panel.style.padding = "0px 0px 0px 0px"
-    panel.style.paddingTop = "0px"
-    panel.style.paddingBottom = "0px"
-    panel.style.marginBottom = "0px"
-    for (const row of rows) {
-      row.style.visibility = "hidden";
-      row.style.opacity = "0";
-      row.style.maxHeight = "0px"
-    }
+    panel.style.display = "none";
   } else {
     acc.className = "accordion-open";
-    panel.style.visibility = "visible";
-    panel.style.opacity = "1";
-    panel.style.maxHeight = "500px"
-    for (const row of rows) {
-      row.style.visibility = "visible";
-      row.style.opacity = "1";
-      row.style.maxHeight = "40px"
-    }
-    //panel.style.padding = "20px 0px 10px 0px;"
-    panel.style.paddingTop = "20px"
-    panel.style.paddingBottom = "10px"
-    panel.style.marginBottom = "20px"
-    
-  }
-}
-
-function treShowTable (header, table) {
-  const acc = document.getElementById(header); //TRE
-  const panel = document.getElementById(table); //trePanel
-  const subHeaders = panel.getElementsByClassName("tre-header");
-  const fieldTables = panel.getElementsByClassName("tre-field")
-  if (acc.className == "accordion-open") {
-    acc.className = "accordion";
-    panel.style.visibility = "hidden";
-    panel.style.opacity = "0";
-    panel.style.maxHeight = "0"
-    //panel.style.padding = "0px 0px 0px 0px"
-    panel.style.paddingTop = "0px"
-    panel.style.paddingBottom = "0px"
-    panel.style.marginBottom = "0px"
-    for (const subHeader of subHeaders) {
-      subHeader.style.visibility = "hidden";
-      subHeader.style.opacity = "0";
-      subHeader.style.maxHeight = "0px"
-    }
-    for (const field of fieldTables) {
-      field.style.maxHeight = "0px";
-    }
-  } else {
-    acc.className = "accordion-open";
-    panel.style.visibility = "visible";
-    panel.style.opacity = "1";
-    panel.style.maxHeight = "64000px"
-    //panel.style.padding = "20px 0px 10px 0px;"
-    panel.style.paddingTop = "20px"
-    panel.style.paddingBottom = "10px"
-    panel.style.marginBottom = "20px"
-    for (const subHeader of subHeaders) {
-      subHeader.style.visibility = "visible";
-      subHeader.style.opacity = "1";
-      subHeader.style.maxHeight = "50px"
-    }
-    for (const field of fieldTables) {
-      field.style.maxHeight = "none";
-    }
+    panel.style.display = "flex";
   }
 }
 
