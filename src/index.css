@@ -905,7 +905,7 @@ button.delete {
   background-color: silver;
   border: 3px solid var(--p300);
   border-top: 0px;
-  transition: max-height 10s ease;
+  transition: max-height 1s ease;
   max-height: 0px;
   visibility: hidden;
   opacity: 0;
