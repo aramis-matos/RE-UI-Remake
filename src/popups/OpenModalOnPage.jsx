@@ -1,23 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const OpenModalOnPage = ({ isOpen, onClose, children }) => {
-    useEffect(() => {
-        const toggles = document.querySelectorAll(".toggle");
+    const togglesRef = useRef([]);
 
-        toggles.forEach(function (toggle) {
-            toggle.addEventListener("click", function () {
-                this.nextElementSibling.classList.toggle("active");
+    useEffect(() => {
+        const handleClick = (event) => {
+            event.target.nextElementSibling.classList.toggle("active");
+        };
+
+        if (isOpen) {
+            togglesRef.current = document.querySelectorAll(".toggle");
+
+            togglesRef.current.forEach(toggle => {
+                toggle.addEventListener("click", handleClick);
             });
-        });
+        }
 
         return () => {
-            toggles.forEach(function (toggle) {
-                toggle.removeEventListener("click", function () {
-                    this.nextElementSibling.classList.toggle("active");
-                });
+            togglesRef.current.forEach(toggle => {
+                toggle.removeEventListener("click", handleClick);
             });
         };
-    }, []); 
+    }, [isOpen]);
 
     if (!isOpen) return null;
 

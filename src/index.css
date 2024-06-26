@@ -170,6 +170,80 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
   z-index: 1000;
 }
 
+.open-modal-content {
+  background: rgb(68, 59, 59);
+  padding: 20px;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 680px;
+  height: 650px;
+  max-height: 90vh; 
+  overflow-y: auto;
+
+  p {
+    color: white;
+    margin: auto;
+    font-family: "Roboto";
+    font-size: 36px;
+  font-weight: bold;
+  }
+}
+
+.open-close-button {
+  position: absolute;
+  top: 2%;
+  right: 1.2%;
+  width: 15%;
+  height: 5%;
+  background: solid;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.details {
+  display: none;
+  padding-top: 2.5%;
+}
+
+.details.active {
+  display:block;
+}
+
+.toggle {
+  cursor: pointer;
+
+}
+
+.OpenModalOnPageContent {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+  }   
+
+  ul {
+      list-style-type: none;
+      padding: 0;
+  }
+
+  li {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+  }
+}
+
+
+
 
 
 
@@ -207,60 +281,9 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
 
   }
 }
-.OpenModalOnPageContent {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  border-radius: 8px;
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    padding: 20px;
-  }   
 
-  ul {
-      list-style-type: none;
-      padding: 0;
-  }
 
-  li {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-  }
-}
-.details {
-  display: none;
-  margin-top: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
 
-.details.active {
-  display:block;
-}
-.open-modal-content {
-  background: rgb(68, 59, 59);
-  padding: 20px;
-  border-radius: 15px;
-  position: relative;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 740px;
-  height: 480px;
-
-  p {
-    color: white;
-    margin: auto;
-    font-family: "Roboto";
-    font-size: 36px;
-  font-weight: bold;
-
-  }
-}
 
 .ruleset-close-button {
   position: absolute;
@@ -724,6 +747,10 @@ input[type="checkbox"] {
 .redact-div h2 {
   color: var(--n850);
 }
+
+
+
+
 /*RULESET ON PAGE CSS*/
 /* Ruleset Modal */
 .ruleset-modal {
@@ -768,24 +795,14 @@ input[type="checkbox"] {
   top: 2%;
   right: 1.2%;
   width: 8%;
-  height: 10%;
+  height: 30px;
   background: solid;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
 }
 
-.open-close-button {
-  position: absolute;
-  top: 2%;
-  right: 1.2%;
-  width: 8%;
-  height: 10%;
-  background: solid;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
+
 
 .ruleset-save-button {
   position: absolute;
@@ -817,16 +834,6 @@ input[type="checkbox"] {
   padding: 15px;
 }
 
-.rulesetOnPageModalContent h4{
-  color:rgb(255, 255, 255)
-
-}
-
-.rulesetOnPageModalContent select {
-  height: 35px;
-  width: 370px;
-  font-size: large;
-}
 .openPageModalContent h4{
   color:rgb(255, 255, 255)
 
