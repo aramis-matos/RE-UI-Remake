@@ -1018,9 +1018,6 @@ input[type="checkbox"] {
   width: 100%;
   height: 100%;
   font-size: 18px;
-  margin-bottom: 8px;
-  
-  min-height: 60px;
 }
 
 .prefSaveButton {
@@ -1112,7 +1109,7 @@ input[type="checkbox"] {
   flex-direction: row;
   height: 10%;
   max-height: 48px;
-  padding-left: 15px;
+  padding-left: 5px;
   justify-content: left;
   align-items: center;
   text-align: left;
@@ -1130,24 +1127,22 @@ input[type="checkbox"] {
   justify-content: flex-start;
   align-items: center;
 }
-
-.tre-field {
-  max-height: 0px;
-}
-
+/*.field-table {
+  background-color: var(--n850);
+  display: flex;
+  flex-direction: column;
+  padding-right: 10px;
+  overflow: auto;
+  scrollbar-gutter: stable;
+}*/
 .field-row {
   display: flex;
   align-items: center;
-  padding-left: 15px;
+  padding-left: 5px;
   flex-shrink: 1;
   color: black;
-  transition: max-height 0.5s ease;
-  max-height: 0px;
-  visibility: hidden;
-  opacity: 0;
-  text-wrap: wrap;
+  background-color: silver;
 }
-
 .field-row div {
   margin-left: 10px;
 }
@@ -1157,7 +1152,6 @@ input[type="checkbox"] {
 .fieldname-box {
   width: 15%;
   text-align: left;
-  text-wrap: wrap;
 }
 .file-name {
   position: -webkit-sticky;
@@ -1174,30 +1168,30 @@ input[type="checkbox"] {
   background-color: silver;
   border: 3px solid var(--n400);
   border-radius: 0px 0px 15px 15px;
-  padding: 0px 0px 0px 0px;
-  margin-bottom: 0px;
+  margin-bottom: 20px;
+  display: none;
   flex-direction: column;
-  visibility: hidden;
-  opacity: 0;
-  transition: max-height 0.5s ease;
-  max-height: 0;
+}
+.field-panel {
+  padding: 20px 0px 10px 20px;
 }
 
-/* Because tre-panel is so long*/
 .tre-panel {
-  transition: max-height 8s ease;
+  padding: 20px 0px 10px 0px;
+}
+
+.tre-fields-list > .field-row, .tre-panel > .field-header {
+  padding-left: 10px;
 }
 
 /* RULESET EDITOR: TRE section */
 
 .tre-fields-list {
-  background-color: silver;
+  display: none;
+  overflow: auto;
+  background-color: var(--n800);
   border: 3px solid var(--p300);
   border-top: 0px;
-  transition: max-height 0.5s ease;
-  max-height: 0px;
-  visibility: hidden;
-  opacity: 0;
 }
 .tre-header {
   height: 38px;
@@ -1208,10 +1202,7 @@ input[type="checkbox"] {
   background-color: var(--n500);
   border-radius: 5px;
   color: white;
-  transition: max-height 0.5s ease;
-  max-height: 0px;
-  visibility: hidden;
-  opacity: 0;
+  transition: 0.2s;
 }
 .tre-header:hover,
 .tre-header.active {
@@ -1341,7 +1332,7 @@ input[type="checkbox"] {
   justify-content: space-between;
 }
 #not-redactable {
-  color: var(--n500);
+  color: rgb(190, 190, 190);
 }
 
 
