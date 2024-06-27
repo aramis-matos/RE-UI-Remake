@@ -1135,6 +1135,14 @@ input[type="checkbox"] {
   overflow: auto;
   scrollbar-gutter: stable;
 }*/
+/*.field-table {
+  background-color: var(--n850);
+  display: flex;
+  flex-direction: column;
+  padding-right: 10px;
+  overflow: auto;
+  scrollbar-gutter: stable;
+}*/
 .field-row {
   display: flex;
   align-items: center;

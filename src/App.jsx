@@ -365,6 +365,7 @@ const handleCheckChange = (e) => {
             id="TRE"
             className="accordion"
             onClick={() => showTable("TRE", "trePanel")}
+            onClick={() => showTable("TRE", "trePanel")}
            
           >
           <span>&#9660;</span> TRE <span>&#9660;</span>
