@@ -5,16 +5,17 @@ import ImageSubheader from "./tables/ImageSubheader";
 import GraphicSubheader from "./tables/GraphicSubheader";
 import TextSubheader from "./tables/TextSubheader";
 import DesSubheader from "./tables/DesSubheader";
+import SavedRulesetModal from "./popups/SavedRulesetModal";
 import RulesetPreviewModal from "./popups/RulesetPreviewModal";
 import PreferencesModal from "./popups/PreferencesModal";
 import SearchBar from "./components/SearchBar/SearchBar";
+import ActionConfirmed from "./popups/ActionConfirmed";
 import TRE from "./tables/TRE";
 import useModal from "./hooks/useModal";
 import PreferencesOnPage from "./popups/PreferencesOnPage";
 import FiltersOnPage from "./popups/FiltersOnPage";
 import RulesetModalOnPage from "./popups/RulesetModalOnPage";
 import HelpModalOnPage from "./popups/HelpModalOnPage";
-import OpenModalOnPage from "./popups/OpenModalOnPage";
 
 
 const App = () => {
@@ -31,9 +32,8 @@ const App = () => {
   const [name, setName] = useState("");
   const { isError, setIsError } = useModal(togglePopup, actionConfirmedMessage);
   const [isRulesetModalOpen, setIsRulesetModalOpen] = useState(false);
-  const [isOpenModalOpen, setIsOpenModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
-  
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
@@ -57,27 +57,43 @@ const App = () => {
     setFieldUpdatesToExport([]);
   }, [reset]);
 
+  
   const handleSearch = (value) => {
-    for (const element of document.getElementsByClassName("field-row")) {
-      const fieldRowElements = element.children;
-      const fieldName = fieldRowElements[1].textContent;
-      const longName = fieldRowElements[2].textContent;
-      const setTo = fieldRowElements[3].children[0].value;
-
-
-     
-        if (
+    const headerArr = ["nitf", "image", "graphic", "text", "Des", "TRE"];
+    let index = 0;
+    setSearchValue(value);
+    for (const header of document.getElementsByClassName("header")){
+      let numElements = 0;
+      let numRemoved = 0;
+      const getHeader = headerArr[index];
+      for (const element of document.getElementsByClassName(getHeader.concat("-field-row"))) {
+        numElements++;
+        const fieldRowElements = element.children;
+        const fieldName = fieldRowElements[1].textContent;
+        const longName = fieldRowElements[2].textContent;
+        const setTo = fieldRowElements[3].children[0].value;
+        if 
+        (
           (value &&
-          !(new RegExp(value, "i").test(fieldName) ||
-            new RegExp(value, "i").test(longName) ||
-            new RegExp(value, "i").test(setTo)))
+          !(new RegExp(value, "i").test(fieldName.replace(/\s/g, '')) ||
+            new RegExp(value, "i").test(longName.replace(/\s/g, '')) ||
+            new RegExp(value, "i").test(setTo.replace(/\s/g, ''))))
         ) 
         {
+          
           element.style.display = "none";
+          numRemoved++;
         } 
         else {
           element.style = {};
         }
+      }
+      if (numElements === numRemoved){
+        header.style.display = "none";
+      }else{
+        header.style = {};
+      }
+      index++;
     }
   };
 
@@ -88,16 +104,6 @@ const App = () => {
   const closeRulesetModal = () => {
     setIsRulesetModalOpen(false);
   };
-
-  const openOpenModal = () => {
-    setIsOpenModalOpen(true);
-  };
-
-  const closeOpenModal = () => {
-    setIsOpenModalOpen(false);
-  };
-
-
 
   const openHelpModal = () => {
     setIsHelpModalOpen(true);
@@ -181,8 +187,6 @@ const App = () => {
     showPopup("Hello World!");
   }
   //export updates and run PUT request
-
-
   const handleSave = () => {
     getAllUpdates();
     if (fieldUpdatesToExport.length === 0 && !isRuleSpecChanged()) {
@@ -197,9 +201,6 @@ const App = () => {
     setUpdates({});
   };
 
-
-
-
   const showPopup = (message) => {
     setActionConfirmedMessage(message);
     setTogglePopup(!togglePopup);
@@ -208,27 +209,79 @@ const App = () => {
   let defaultChecked = [false, false, false, false, false, false]
   /*NITF, Image, Graphic, Text, DES, TRE*/
   const [checkedItems, setCheckedItems] = useState(defaultChecked);
+
   const updateCheckedArr = (index, booleanVal) => {
     const updatedArr = [...checkedItems];
     updatedArr[index] = booleanVal;
     setCheckedItems(updatedArr);
   }
-const handleCheckChange = (e) => {
-  const {checked, id} = e.target;
-  updateCheckedArr(Number(id-1), checked)
-}
+
+  const handleCheckChange = (e) => {
+    const {checked, id} = e.target;
+    updateCheckedArr(Number(id-1), checked)
+  }
 
 
   return (
     <div className="editor">
+      <SavedRulesetModal
+        onOpenRuleset={openSavedRuleset}
+        rulespecsChanged={
+          () => {} /* Create a function to detect when a ruleset is added */
+        }
+      />
+      <ActionConfirmed
+        message={actionConfirmedMessage}
+        isError={isError}
+        setIsError={setIsError}
+      />
       <div className="left-panel">
         <div className="content">
           <div className="ruleset-modal">
             <RulesetModalOnPage isOpen={isRulesetModalOpen} onClose={closeRulesetModal}>
+            <div className ="rulesetOnPageModalContent">
+              <h2>New Ruleset</h2>
+              <div className = "rulesetObject" >
+                <h4>Classification</h4>
+                <select>
+                  <option value="unclassifiedOp">Unclassified</option>
+                  <option value="confidentialOp">Confidential</option>
+                  <option value="secretOp">Secret</option>
+                  <option value="topSecretOp">Top Secret</option>
+                </select>
+              </div>
+              <div className = "rulesetObject" >
+                <h4>Country</h4>
+                <select>
+                  <option value="op">United States of America</option>
+                  <option value="op">Canada</option>
+                  <option value="op">Mexico</option>
+                  <option value="op">France</option>
+                  <option value="op">Newfoundland</option>
+                </select>
+              </div>
+              <div className = "rulesetObject" >
+                <h4>Releaseability</h4>
+                <select>
+                  <option value="op">An Option</option>
+                  <option value="op">Another Option </option>
+                  <option value="op">Some Other Option</option>
+                </select>
+              </div>
+              <div className = "rulesetObject" >
+                <h4>Sensor</h4>
+                <select>
+                  <option value="op">Yet Another Option</option>
+                  <option value="op">Lawd it's an Option</option>
+                  <option value="op">Too Many Options</option>
+                  <option value="op">A man cannot step into the same river twice,
+                    for it is not the same river, and he is not the same man.
+                  </option>
+                </select>
+                <button className="ruleset-save-button">Create</button>
+              </div>
+            </div>
           </RulesetModalOnPage>
-          <OpenModalOnPage isOpen={isOpenModalOpen} onClose={closeOpenModal}>
-          </OpenModalOnPage>
-          
         </div>
 
           <button
@@ -239,15 +292,16 @@ const handleCheckChange = (e) => {
           <button
             id="openRuleset"
             data-testid="openRuleset"
-            onClick={openOpenModal}
+            onClick={() => toggleModal("myModal", "flex")}
           >OPEN
           </button>
-          {/* <button
+          <button
             id="saveRuleset"
             data-testid="saveRuleset"
+            disabled={selectedRuleset.rulesetId === undefined ? true : false}
             onClick={handleSave}
           >SAVE
-          </button> */}
+          </button>
 
           <div className = "helpSearch">
             <SearchBar
@@ -281,11 +335,11 @@ const handleCheckChange = (e) => {
       </div>
       <div className="nitf-headers" key={reset}>
         {(checkedItems[0] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="fileHeader"
             className="accordion"
-            onClick={() => showTable("fileHeader", "filePanel")}
+            onClick={() => {showTable("fileHeader", "filePanel"), handleSearch(searchValue)}}
           >
           <span>&#9660;</span> NITF FILE HEADER <span>&#9660;</span>
           </button>
@@ -296,11 +350,11 @@ const handleCheckChange = (e) => {
           />
         </div> }
         { (checkedItems[1] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="imageSubheader"
             className="accordion"
-            onClick={() => showTable("imageSubheader", "imagePanel")}
+            onClick={() => {showTable("imageSubheader", "imagePanel"), handleSearch(searchValue)}}
            
           >
           <span>&#9660;</span> IMAGE SUBHEADER <span>&#9660;</span>
@@ -312,11 +366,11 @@ const handleCheckChange = (e) => {
           />
         </div> }
         {(checkedItems[2] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="graphicSubheader"
             className="accordion"
-            onClick={() => showTable("graphicSubheader", "graphicPanel")}
+            onClick={() => {showTable("graphicSubheader", "graphicPanel"),handleSearch(searchValue)}}
            
           >
           <span>&#9660;</span> GRAPHIC SUBHEADER <span>&#9660;</span>
@@ -328,11 +382,11 @@ const handleCheckChange = (e) => {
           />
         </div> }
         {(checkedItems[3] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="textSubheader"
             className="accordion"
-            onClick={() => showTable("textSubheader", "textPanel")}
+            onClick={() => {showTable("textSubheader", "textPanel"), handleSearch(searchValue)}}
            
           >
           <span>&#9660;</span> TEXT SUBHEADER <span>&#9660;</span>
@@ -344,11 +398,11 @@ const handleCheckChange = (e) => {
           />
         </div> }
         {(checkedItems[4] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="desSubheader"
             className="accordion"
-            onClick={() => showTable("desSubheader", "desPanel")}
+            onClick={() => {showTable("desSubheader", "desPanel"), handleSearch(searchValue)}}
            
           >
           <span>&#9660;</span> DES SUBHEADER <span>&#9660;</span>
@@ -360,12 +414,11 @@ const handleCheckChange = (e) => {
           />
         </div> }
         {(checkedItems[5] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="TRE"
             className="accordion"
-            onClick={() => showTable("TRE", "trePanel")}
-            onClick={() => showTable("TRE", "trePanel")}
+            onClick={() => {showTable("TRE", "trePanel"), handleSearch(searchValue);}}
            
           >
           <span>&#9660;</span> TRE <span>&#9660;</span>
