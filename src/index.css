@@ -123,14 +123,6 @@ button:disabled {
   background-color: var(--n600);
 }
 
-.content {
-  position: -webkit-sticky;
-  position: sticky;
-  align-self:flex-start;
-  display:flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
 
 /* LEFT SIDE OF PAGE 
 
@@ -550,36 +542,6 @@ button.delete {
   font-size: 1.5rem;
   cursor: pointer;
 }
-
-.popup-content {
-  /* Overrides reactjs-popup defaults */
-  padding: 0px;
-  border: 0;
-  border-radius: 15px;
-  background-color: transparent;
-}
-
-#app {
-  width: 100%;
-  margin: none;
-}
-.container-fluid {
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-}
-.main-page {
-  translate: 60px 56px 0px;
-  /* width: 100%; */
-  min-height: 945px;
-  max-width: 1840px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-#not-redactable {
-  color: var(--n500);
-}
 /* REDACT MENU */
 .editor,
 .redact,
@@ -840,7 +802,7 @@ button.delete {
   flex-direction: row;
   height: 10%;
   max-height: 48px;
-  padding-left: 15px;
+  padding-left: 5px;
   justify-content: left;
   align-items: center;
   text-align: left;
@@ -858,34 +820,38 @@ button.delete {
   justify-content: flex-start;
   align-items: center;
 }
-
-.tre-field {
-  max-height: 0px;
-}
+/*.field-table {
+  background-color: var(--n850);
+  display: flex;
+  flex-direction: column;
+  padding-right: 10px;
+  overflow: auto;
+  scrollbar-gutter: stable;
+}*/
 
 .field-row {
   display: flex;
   align-items: center;
-  padding-left: 15px;
+  padding-left: 5px;
   flex-shrink: 1;
   color: black;
+  background-color: silver;
   transition: max-height 0.5s ease;
   max-height: 0px;
   visibility: hidden;
   opacity: 0;
-  text-wrap: wrap;
 }
 
-.field-row div {
+.field-row  div {
   margin-left: 10px;
 }
+
 .field-row:hover {
   background-color: var(--n600);
 }
 .fieldname-box {
   width: 15%;
   text-align: left;
-  text-wrap: wrap;
 }
 .file-name {
   position: -webkit-sticky;
@@ -902,24 +868,28 @@ button.delete {
   background-color: silver;
   border: 3px solid var(--n400);
   border-radius: 0px 0px 15px 15px;
-  padding: 0px 0px 0px 0px;
-  margin-bottom: 0px;
+  margin-bottom: 20px;
   flex-direction: column;
-  visibility: hidden;
-  opacity: 0;
-  transition: max-height 0.5s ease;
-  max-height: 0;
+}
+.field-panel {
+  padding: 20px 0px 10px 20px;
 }
 
-/* Because tre-panel is so long*/
 .tre-panel {
   transition: max-height 50s ease;
+  padding: 20px 0px 10px 0px;
+}
+
+.tre-fields-list > .field-row, .tre-panel > .field-header {
+  padding-left: 10px;
 }
 
 /* RULESET EDITOR: TRE section */
 
 .tre-fields-list {
-  background-color: silver;
+  display: none;
+  overflow: auto;
+  background-color: var(--n800);
   border: 3px solid var(--p300);
   border-top: 0px;
   transition: max-height 1s ease;
@@ -1001,6 +971,61 @@ button.delete {
 
 
 /* RIGHT SIDE OF PAGE DONE*/
+
+
+
+/* OTHER  */
+
+
+.popup-content {
+  /* Overrides reactjs-popup defaults */
+  padding: 0px;
+  border: 0;
+  border-radius: 15px;
+  background-color: transparent;
+}
+
+#app {
+  width: 100%;
+  margin: none;
+}
+.container-fluid {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+.main-page {
+  translate: 60px 56px 0px;
+  /* width: 100%; */
+  min-height: 945px;
+  max-width: 1840px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#not-redactable {
+  color: rgb(190, 190, 190);
+}
+
+
+/* Used to implent the stick of the left and right panels and the center headers*/
+.content {
+  position: -webkit-sticky;
+  position: sticky;
+  align-self:flex-start;
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+
+
+
+
+
+
+
 
 
 

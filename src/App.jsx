@@ -33,7 +33,7 @@ const App = () => {
   const [isRulesetModalOpen, setIsRulesetModalOpen] = useState(false);
   const [isOpenModalOpen, setIsOpenModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
-  
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
@@ -57,27 +57,42 @@ const App = () => {
     setFieldUpdatesToExport([]);
   }, [reset]);
 
+  
   const handleSearch = (value) => {
-    for (const element of document.getElementsByClassName("field-row")) {
-      const fieldRowElements = element.children;
-      const fieldName = fieldRowElements[1].textContent;
-      const longName = fieldRowElements[2].textContent;
-      const setTo = fieldRowElements[3].children[0].value;
-
-
-     
-        if (
+    const headerArr = ["nitf", "image", "graphic", "text", "Des", "TRE"];
+    let index = 0;
+    setSearchValue(value);
+    for (const header of document.getElementsByClassName("header")){
+      let numElements = 0;
+      let numRemoved = 0;
+      console.log(header)
+      for (const element of header.getElementsByClassName("field-row")) {
+        numElements++;
+        const fieldRowElements = element.children;
+        const fieldName = fieldRowElements[1].textContent;
+        const longName = fieldRowElements[2].textContent;
+        const setTo = fieldRowElements[3].children[0].value;
+        if 
+        (
           (value &&
-          !(new RegExp(value, "i").test(fieldName) ||
-            new RegExp(value, "i").test(longName) ||
-            new RegExp(value, "i").test(setTo)))
+          !(new RegExp(value, "i").test(fieldName.replace(/\s/g, '')) ||
+            new RegExp(value, "i").test(longName.replace(/\s/g, '')) ||
+            new RegExp(value, "i").test(setTo.replace(/\s/g, ''))))
         ) 
         {
           element.style.visibility = "hidden";
+          numRemoved++;
         } 
         else {
           element.style.visibility = "visible";
         }
+      }
+      if (numElements === numRemoved){
+        header.style.display = "";
+      }else{
+        header.style = {};
+      }
+      index++;
     }
   };
 
@@ -181,8 +196,6 @@ const App = () => {
     showPopup("Hello World!");
   }
   //export updates and run PUT request
-
-
   const handleSave = () => {
     getAllUpdates();
     if (fieldUpdatesToExport.length === 0 && !isRuleSpecChanged()) {
@@ -197,9 +210,6 @@ const App = () => {
     setUpdates({});
   };
 
-
-
-
   const showPopup = (message) => {
     setActionConfirmedMessage(message);
     setTogglePopup(!togglePopup);
@@ -208,15 +218,17 @@ const App = () => {
   let defaultChecked = [false, false, false, false, false, false]
   /*NITF, Image, Graphic, Text, DES, TRE*/
   const [checkedItems, setCheckedItems] = useState(defaultChecked);
+
   const updateCheckedArr = (index, booleanVal) => {
     const updatedArr = [...checkedItems];
     updatedArr[index] = booleanVal;
     setCheckedItems(updatedArr);
   }
-const handleCheckChange = (e) => {
-  const {checked, id} = e.target;
-  updateCheckedArr(Number(id-1), checked)
-}
+
+  const handleCheckChange = (e) => {
+    const {checked, id} = e.target;
+    updateCheckedArr(Number(id-1), checked)
+  }
 
 
   return (
@@ -281,11 +293,11 @@ const handleCheckChange = (e) => {
       </div>
       <div className="nitf-headers" key={reset}>
         {(checkedItems[0] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="fileHeader"
             className="accordion"
-            onClick={() => showTable("fileHeader", "filePanel")}
+            onClick={() => {showTable("fileHeader", "filePanel"), handleSearch(searchValue)}}
           >
           <span>&#9660;</span> NITF FILE HEADER <span>&#9660;</span>
           </button>
@@ -296,11 +308,11 @@ const handleCheckChange = (e) => {
           />
         </div> }
         { (checkedItems[1] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="imageSubheader"
             className="accordion"
-            onClick={() => showTable("imageSubheader", "imagePanel")}
+            onClick={() => {showTable("imageSubheader", "imagePanel"), handleSearch(searchValue)}}
            
           >
           <span>&#9660;</span> IMAGE SUBHEADER <span>&#9660;</span>
@@ -312,11 +324,11 @@ const handleCheckChange = (e) => {
           />
         </div> }
         {(checkedItems[2] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="graphicSubheader"
             className="accordion"
-            onClick={() => showTable("graphicSubheader", "graphicPanel")}
+            onClick={() => {showTable("graphicSubheader", "graphicPanel"),handleSearch(searchValue)}}
            
           >
           <span>&#9660;</span> GRAPHIC SUBHEADER <span>&#9660;</span>
@@ -328,11 +340,11 @@ const handleCheckChange = (e) => {
           />
         </div> }
         {(checkedItems[3] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="textSubheader"
             className="accordion"
-            onClick={() => showTable("textSubheader", "textPanel")}
+            onClick={() => {showTable("textSubheader", "textPanel"), handleSearch(searchValue)}}
            
           >
           <span>&#9660;</span> TEXT SUBHEADER <span>&#9660;</span>
@@ -344,11 +356,11 @@ const handleCheckChange = (e) => {
           />
         </div> }
         {(checkedItems[4] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="desSubheader"
             className="accordion"
-            onClick={() => showTable("desSubheader", "desPanel")}
+            onClick={() => {showTable("desSubheader", "desPanel"), handleSearch(searchValue)}}
            
           >
           <span>&#9660;</span> DES SUBHEADER <span>&#9660;</span>
@@ -360,11 +372,11 @@ const handleCheckChange = (e) => {
           />
         </div> }
         {(checkedItems[5] || !(checkedItems[0]||checkedItems[1]||checkedItems[2]||checkedItems[3]||checkedItems[4]||checkedItems[5])) &&
-        <div>
+        <div className = "header">
           <button
             id="TRE"
             className="accordion"
-            onClick={() => treShowTable("TRE", "trePanel")}
+            onClick={() => {treShowTable("TRE", "trePanel"), handleSearch(searchValue);}}
            
           >
           <span>&#9660;</span> TRE <span>&#9660;</span>
@@ -395,18 +407,10 @@ const handleCheckChange = (e) => {
 function showTable(header, table) {
   const acc = document.getElementById(header);
   const panel = document.getElementById(table);
-  let rows;
-  if (table != "trePanel") {
-    rows = panel.querySelectorAll("div.field-row")
-  } else {
-    rows = null
-  }
+  const rows = panel.querySelectorAll("div.field-row")
   if (panel.style.visibility === "visible") {
     acc.className = "accordion";
     panel.style.visibility = "hidden";
-    panel.style.opacity = "0";
-    panel.style.maxHeight = "0"
-    //panel.style.padding = "0px 0px 0px 0px"
     panel.style.paddingTop = "0px"
     panel.style.paddingBottom = "0px"
     panel.style.marginBottom = "0px"
@@ -418,18 +422,14 @@ function showTable(header, table) {
   } else {
     acc.className = "accordion-open";
     panel.style.visibility = "visible";
-    panel.style.opacity = "1";
-    panel.style.maxHeight = "500px"
+    panel.style.paddingTop = "20px"
+    panel.style.paddingBottom = "10px"
+    panel.style.marginBottom = "20px"
     for (const row of rows) {
       row.style.visibility = "visible";
       row.style.opacity = "1";
       row.style.maxHeight = "40px"
     }
-    //panel.style.padding = "20px 0px 10px 0px;"
-    panel.style.paddingTop = "20px"
-    panel.style.paddingBottom = "10px"
-    panel.style.marginBottom = "20px"
-    
   }
 }
 
