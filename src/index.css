@@ -212,8 +212,13 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
       padding: 0;
   }
 
+  span {
+    color: white;
+  }
+
+
   li {
-      background-color: #4CAF50;
+      background-color: #9034b4;
       color: white;
       padding: 8px;
       margin-bottom: 10px;
@@ -503,8 +508,7 @@ button.delete {
   margin: 0px;
 }
 .main-page {
-  translate: 60px 56px 0px;
-  /* width: 100%; */
+  /* translate: 60px 56px 0px; */
   min-height: 945px;
   max-width: 1840px;
   display: flex;
@@ -629,21 +633,7 @@ button.delete {
   margin-bottom: 10px;
 }
 
-/*FILTER ON PAGE CSS*/
-/* Filters Preview Modal */
-.filters_preview_modal {
-  width: 100%;
-  height: 100%;
-  font-size: 18px;
-  margin: 10px;
-  border-radius: 15px;
-  text-align: center;
-  color: var(--n850);
-  background-color: var(--c100);
-  border: 3px solid var(--n400);
-  position: relative;
-  left: -12px;
-}
+
 
 .filters_preview_modal .content {
   display: flex;
@@ -654,7 +644,6 @@ button.delete {
 }
 
 .filters-div {
-  height: 400px;
   margin: 15px;
 }
 
@@ -709,25 +698,7 @@ button.delete {
 }
 
 
-/*Redact, Modify, Preference, Filters Divs CSS*/
-.redact-div,
-.modify-div, 
-.preferences-div,
-.filters_preview_modal {
-  margin: 10px;
-  border-radius: 15px;
-  text-align: center;
-  color: var(--n850);
-  background-color: var(--c100);
-  border: 3px solid var(--n400);
-  width: 100%;
-  position: relative;
-  left: -12px;
-  h2 {
-    color: var(--n850);
-  }
 
-}
 .redact-div {
   height: 600px;
 }
@@ -790,18 +761,6 @@ button.delete {
 }
 
 
-
-.ruleset-save-button {
-  position: absolute;
-  top: 85%;
-  right: 1.2%;
-  width: 20%;
-  height: 10%;
-  background: solid;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
 
 .ruleset-open-button {
   color: var(--n0);
@@ -969,10 +928,6 @@ button.delete {
   max-width: 300px;
 }
 
-.filters-div {
-  height: 400px;
-  margin: 15px;
-}
 
 .filters-div h2 {
   color: black;
@@ -1027,7 +982,6 @@ button.delete {
 /*Redact, Modify, Preference, Filters Divs CSS*/
 .redact-div,
 .modify-div, 
-.preferences_preview_modal,
 .filters_preview_modal {
   margin: 10px 10px 0px 0px;
   border-radius: 15px;

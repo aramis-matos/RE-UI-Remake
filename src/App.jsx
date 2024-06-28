@@ -6,7 +6,6 @@ import GraphicSubheader from "./tables/GraphicSubheader";
 import TextSubheader from "./tables/TextSubheader";
 import DesSubheader from "./tables/DesSubheader";
 import RulesetPreviewModal from "./popups/RulesetPreviewModal";
-import PreferencesModal from "./popups/PreferencesModal";
 import SearchBar from "./components/SearchBar/SearchBar";
 import TRE from "./tables/TRE";
 import useModal from "./hooks/useModal";

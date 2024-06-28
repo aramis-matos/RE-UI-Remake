@@ -52,15 +52,6 @@ const FiltersOnPage = ({ theFunc }) => {
               <label htmlFor="blackList">Long Name</label>
             </div>
           </div>
-          <div className="filterRadioButtons">
-            <input
-              type="radio"
-              id="blackList"
-              name="listType"
-              value="Black List"
-            />
-            <label htmlFor="blackList">Long Name</label>
-          </div>
         </div>
         <div className="fieldDiv">
           <h4>Filter By Section</h4>
