@@ -65,7 +65,6 @@ const App = () => {
     for (const header of document.getElementsByClassName("header")){
       let numElements = 0;
       let numRemoved = 0;
-      console.log(header)
       for (const element of header.getElementsByClassName("field-row")) {
         numElements++;
         const fieldRowElements = element.children;
@@ -81,14 +80,16 @@ const App = () => {
         ) 
         {
           element.style.visibility = "hidden";
+          element.style.maxHeight = "0px"
           numRemoved++;
         } 
         else {
           element.style.visibility = "visible";
+          element.style.maxHeight = "40px"
         }
       }
       if (numElements === numRemoved){
-        header.style.display = "";
+        header.style.display = "none";
       }else{
         header.style = {};
       }
@@ -407,13 +408,16 @@ const App = () => {
 function showTable(header, table) {
   const acc = document.getElementById(header);
   const panel = document.getElementById(table);
-  const rows = panel.querySelectorAll("div.field-row")
+  const rows = panel.getElementsByClassName("field-row");
+  const fieldTable = panel.getElementsByClassName("field-table")
   if (panel.style.visibility === "visible") {
     acc.className = "accordion";
     panel.style.visibility = "hidden";
     panel.style.paddingTop = "0px"
     panel.style.paddingBottom = "0px"
     panel.style.marginBottom = "0px"
+    panel.style.maxHeight = "0px";
+    panel.style.opacity = "0";
     for (const row of rows) {
       row.style.visibility = "hidden";
       row.style.opacity = "0";
@@ -425,10 +429,13 @@ function showTable(header, table) {
     panel.style.paddingTop = "20px"
     panel.style.paddingBottom = "10px"
     panel.style.marginBottom = "20px"
+    panel.style.maxHeight = "500px"
+    panel.style.opacity = "1"
     for (const row of rows) {
       row.style.visibility = "visible";
       row.style.opacity = "1";
       row.style.maxHeight = "40px"
+      console.log(row);
     }
   }
 }

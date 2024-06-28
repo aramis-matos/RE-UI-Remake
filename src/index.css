@@ -868,16 +868,14 @@ button.delete {
   background-color: silver;
   border: 3px solid var(--n400);
   border-radius: 0px 0px 15px 15px;
-  margin-bottom: 20px;
   flex-direction: column;
+  transition: max-height 0.5s ease;
+  max-height: 0px;
+  visibility: hidden;
+  opacity: 0;
 }
-.field-panel {
-  padding: 20px 0px 10px 20px;
-}
-
 .tre-panel {
   transition: max-height 50s ease;
-  padding: 20px 0px 10px 0px;
 }
 
 .tre-fields-list > .field-row, .tre-panel > .field-header {
@@ -887,7 +885,8 @@ button.delete {
 /* RULESET EDITOR: TRE section */
 
 .tre-fields-list {
-  display: none;
+  display: flex;
+  flex-direction: column;
   overflow: auto;
   background-color: var(--n800);
   border: 3px solid var(--p300);
