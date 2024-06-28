@@ -290,6 +290,7 @@ const App = () => {
           <hr />
           <h2>What is a NITF?</h2>
           <p>Not If There's Fondue!!!</p>
+          <hr />
         </HelpModalOnPage>
         {(checkedItems[0] ||
           !(

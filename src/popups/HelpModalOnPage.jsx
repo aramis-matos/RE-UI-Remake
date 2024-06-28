@@ -14,6 +14,7 @@ const HelpModalOnPage = ({ isOpen, onClose, children }) => {
   return (
     <div className="help-page-modal-overlay">
       <div className="help-page-modal-content">
+        <ContactModalOnPage isOpen={showImage} onClose={toggleImage} />
         {showImage ? (
           <div className="image-container">
             <img src={img1} alt="Contact Us" />
@@ -27,17 +28,15 @@ const HelpModalOnPage = ({ isOpen, onClose, children }) => {
               className="contact-page"
               id="contactButton"
               data-testid="openContact"
-              onClick={toggleImage}
-            >
+              onClick={toggleImage}>
               Contact Us
             </button>
             <button className="help-page-close-button" onClick={onClose}>
-              back
+              Back
             </button>
             {children}
           </div>
         )}
-        <ContactModalOnPage isOpen={showImage} onClose={toggleImage} />
       </div>
     </div>
   );
