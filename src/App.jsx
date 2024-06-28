@@ -63,8 +63,8 @@ const App = () => {
     for (const header of document.getElementsByClassName("header")) {
       let numElements = 0;
       let numRemoved = 0;
-      const button = header.getElementsByClassName("accordion-open")
-      console.log(button)
+      const button = header.getElementsByClassName("accordion-open");
+      console.log(button);
       for (const element of header.getElementsByClassName("field-row")) {
         numElements++;
         const fieldRowElements = element.children;
@@ -233,25 +233,13 @@ const App = () => {
     <div className="editor">
       <div className="left-panel">
         <div className="content">
-          <div className="ruleset-modal">
-            <RulesetModalOnPage
-              isOpen={isRulesetModalOpen}
-              onClose={closeRulesetModal}
-            ></RulesetModalOnPage>
-            <OpenModalOnPage
-              isOpen={isOpenModalOpen}
-              onClose={closeOpenModal}
-            ></OpenModalOnPage>
-          </div>
-
           <button id="newRuleset" onClick={openRulesetModal}>
             NEW
           </button>
           <button
             id="openRuleset"
             data-testid="openRuleset"
-            onClick={openOpenModal}
-          >
+            onClick={openOpenModal}>
             OPEN
           </button>
           {/* <button
@@ -272,14 +260,12 @@ const App = () => {
                 className="help-page"
                 id="helpButton"
                 data-testid="openHelp"
-                onClick={openHelpModal}
-              >
+                onClick={openHelpModal}>
                 ?
               </button>
               <HelpModalOnPage
                 isOpen={isHelpModalOpen}
-                onClose={closeHelpModal}
-              >
+                onClose={closeHelpModal}>
                 <h1>Frequently Asked Questions</h1>
                 <hr />
                 <h2>What is GWER (GEOINT Workflow Enhancement Redaction)</h2>
@@ -299,6 +285,14 @@ const App = () => {
         </div>
       </div>
       <div className="nitf-headers" key={reset}>
+        <div className="ruleset-modal">
+          <RulesetModalOnPage
+            isOpen={isRulesetModalOpen}
+            onClose={closeRulesetModal}></RulesetModalOnPage>
+          <OpenModalOnPage
+            isOpen={isOpenModalOpen}
+            onClose={closeOpenModal}></OpenModalOnPage>
+        </div>
         {(checkedItems[0] ||
           !(
             checkedItems[0] ||
@@ -314,8 +308,7 @@ const App = () => {
               className="accordion"
               onClick={() => {
                 showTable("fileHeader", "filePanel"), handleSearch(searchValue);
-              }}
-            >
+              }}>
               <span>&#9660;</span> NITF FILE HEADER <span>&#9660;</span>
             </button>
             <FileHeader
@@ -341,8 +334,7 @@ const App = () => {
               onClick={() => {
                 showTable("imageSubheader", "imagePanel"),
                   handleSearch(searchValue);
-              }}
-            >
+              }}>
               <span>&#9660;</span> IMAGE SUBHEADER <span>&#9660;</span>
             </button>
             <ImageSubheader
@@ -368,8 +360,7 @@ const App = () => {
               onClick={() => {
                 showTable("graphicSubheader", "graphicPanel"),
                   handleSearch(searchValue);
-              }}
-            >
+              }}>
               <span>&#9660;</span> GRAPHIC SUBHEADER <span>&#9660;</span>
             </button>
             <GraphicSubheader
@@ -395,8 +386,7 @@ const App = () => {
               onClick={() => {
                 showTable("textSubheader", "textPanel"),
                   handleSearch(searchValue);
-              }}
-            >
+              }}>
               <span>&#9660;</span> TEXT SUBHEADER <span>&#9660;</span>
             </button>
             <TextSubheader
@@ -422,8 +412,7 @@ const App = () => {
               onClick={() => {
                 showTable("desSubheader", "desPanel"),
                   handleSearch(searchValue);
-              }}
-            >
+              }}>
               <span>&#9660;</span> DES SUBHEADER <span>&#9660;</span>
             </button>
             <DesSubheader
@@ -448,8 +437,7 @@ const App = () => {
               className="accordion"
               onClick={() => {
                 treShowTable("TRE", "trePanel"), handleSearch(searchValue);
-              }}
-            >
+              }}>
               <span>&#9660;</span> TRE <span>&#9660;</span>
             </button>
             <TRE
@@ -464,8 +452,7 @@ const App = () => {
       <div
         className="right-panel"
         data-testid="rulesetPreview"
-        ref={rulesetPreview}
-      >
+        ref={rulesetPreview}>
         <RulesetPreviewModal
           initialData={initialData}
           data={currentlyEditing}
@@ -516,7 +503,7 @@ function treShowTable(header, table) {
   const panel = document.getElementById(table); //trePanel
   const subHeaders = panel.getElementsByClassName("tre-header");
   const fieldTables = panel.getElementsByClassName("tre-field");
-  const divSubheaders = document.getElementsByClassName("tre-subheader")
+  const divSubheaders = document.getElementsByClassName("tre-subheader");
   if (acc.className == "accordion-open") {
     acc.className = "accordion";
     panel.style.visibility = "hidden";
@@ -527,7 +514,7 @@ function treShowTable(header, table) {
     panel.style.paddingBottom = "0px";
     panel.style.marginBottom = "0px";
     for (const divSubheader of divSubheaders) {
-      divSubheader.style.maxHeight = "0px"
+      divSubheader.style.maxHeight = "0px";
     }
     for (const subHeader of subHeaders) {
       subHeader.style.visibility = "hidden";
@@ -547,7 +534,7 @@ function treShowTable(header, table) {
     panel.style.paddingBottom = "10px";
     panel.style.marginBottom = "20px";
     for (const divSubheader of divSubheaders) {
-      divSubheader.style.maxHeight = "none"
+      divSubheader.style.maxHeight = "none";
     }
     for (const subHeader of subHeaders) {
       subHeader.style.visibility = "visible";
