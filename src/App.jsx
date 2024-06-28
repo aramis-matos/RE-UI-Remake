@@ -263,21 +263,6 @@ const App = () => {
                 onClick={openHelpModal}>
                 ?
               </button>
-              <HelpModalOnPage
-                isOpen={isHelpModalOpen}
-                onClose={closeHelpModal}>
-                <h1>Frequently Asked Questions</h1>
-                <hr />
-                <h2>What is GWER (GEOINT Workflow Enhancement Redaction)</h2>
-                <p>
-                  GWER is a web based redaction service for
-                  Geospatial-intelligence (GEOINT) Workflow Enhancement that
-                  allows a user to edit information within a NITF.
-                </p>
-                <hr />
-                <h2>What is a NITF?</h2>
-                <p>Not If There's Fondue!!!</p>
-              </HelpModalOnPage>
             </div>
           </div>
           <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage>
@@ -293,6 +278,19 @@ const App = () => {
             isOpen={isOpenModalOpen}
             onClose={closeOpenModal}></OpenModalOnPage>
         </div>
+        <HelpModalOnPage isOpen={isHelpModalOpen} onClose={closeHelpModal}>
+          <h1>Frequently Asked Questions</h1>
+          <hr />
+          <h2>What is GWER (GEOINT Workflow Enhancement Redaction)</h2>
+          <p>
+            GWER is a web based redaction service for Geospatial-intelligence
+            (GEOINT) Workflow Enhancement that allows a user to edit information
+            within a NITF.
+          </p>
+          <hr />
+          <h2>What is a NITF?</h2>
+          <p>Not If There's Fondue!!!</p>
+        </HelpModalOnPage>
         {(checkedItems[0] ||
           !(
             checkedItems[0] ||
