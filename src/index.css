@@ -55,11 +55,14 @@ body {
   font-family: "Roboto-Medium";
   font-size: 16px;
   scrollbar-gutter: stable;
+  /* min-height: 1000px; */
+  background-color: var(--n800);
+}
+
+html {
   width: 1900px;
   height: 100%;
   min-width: 1000px;
-  /* min-height: 1000px; */
-  background-color: var(--n800);
 }
 
 /*text settings general*/
@@ -119,6 +122,8 @@ button:disabled {
   color: var(--n400);
   background-color: var(--n600);
 }
+
+
 /* LEFT SIDE OF PAGE 
 
 GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
@@ -142,20 +147,6 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
 }
 
 /*NEW BUTTON*/
-
-
-.ruleset-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(165, 150, 150, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
 
 .open-modal-overlay {
   position: fixed;
@@ -188,18 +179,6 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
     font-size: 36px;
   font-weight: bold;
   }
-}
-
-.open-close-button {
-  position: absolute;
-  top: 2%;
-  right: 1.2%;
-  width: 8%;
-  height: 20px;
-  background: solid;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
 }
 
 .details {
@@ -415,9 +394,7 @@ button.delete {
   color: white;
 }
 /* SAVED RULESET MODAL */
-.modal,
-.optionPaneModal,
-.name-modal {
+.modal {
   display: none; /* Hidden by default */
   flex-direction: column;
   justify-content: center;
@@ -427,6 +404,27 @@ button.delete {
   height: 100%;
   /* overflow: auto; Enable scroll if needed */
 }
+
+.optionPaneModal,
+.name-modal {
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 5; /* Sit on top */
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+  margin: 10px;
+  border-radius: 15px;
+  text-align: center;
+  color: var(--n850);
+  background-color: var(--c100);
+  border: 3px solid var(--n400);
+  position: relative;
+  left: -12px;
+}
+
 /*makes help and search horizontal*/
 .helpSearch{
   height: 60px;
@@ -881,7 +879,6 @@ button.delete {
   }
 }
 
-
 .help-page-close-button {
   position: absolute;
   top: 85%;
@@ -893,53 +890,83 @@ button.delete {
   font-size: 1.5rem;
   cursor: pointer;
 }
-
-.redact-div > .selections {
-  max-height: 450px;
+/* REDACT MENU */
+.editor,
+.redact,
+.compare,
+.templates-manager {
+  display: grid;
+  
+  flex-direction: row;
+  justify-content: space-between;
+  width: auto;
+  grid-template-columns: 18% 60% auto;
 }
 
-.modify-div {
-  height: 400px;
-  overflow-y: auto;
-}
-.modify-div h2 {
-  color: var(--n850);
-}
 
-.modify-div > .selections {
-  position: relative;
-  text-align: center;
-  overflow-y: auto;
-}
+/* REDACT MENU: R/M Preview Element */
 
-/* SAVED RULESET MODAL */
 
-.optionPaneModal,
-.name-modal {
-  display: none; /* Hidden by default */
-  flex-direction: column;
-  justify-content: center;
+.filters_preview_modal label {
+  display: flex;
   align-items: center;
-  z-index: 5; /* Sit on top */
-  width: 100%;
-  height: 100%;
-  font-size: 18px;
-  margin: 10px;
-  border-radius: 15px;
-  text-align: center;
-  color: var(--n850);
-  background-color: var(--c100);
-  border: 3px solid var(--n400);
-  position: relative;
-  left: -12px;
 }
 
-.filters_preview_modal .content {
+.filters_preview_modal input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* PREFERENCES ON PAGE CSS */
+/* Preferences Preview Modal */
+.preferences_preview_modal {
+  width: 100%;
+  font-size: 18px;
+  max-height: 300px;
+}
+
+.preferences-div input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  box-sizing: border-box;
+}
+
+.preferences_preview_modal input[type="text" i] {
+  margin-right: 5px;
+}
+
+.preferences-div h2 {
+  color: var(--n850);
+}
+
+.preferences-div {
+  margin: 15px;
+}
+
+.prefSaveButton {
+  text-align: center;
+  width: 100px;
+  height: 40px;
+  margin-top: 10px;
+}
+
+.preference-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.preference-option input[type="text"] {
+  margin-left: 10px;
+}
+
+/*FILTER ON PAGE CSS*/
+/* Filters Preview Modal */
+.filters_preview_modal {
+  font-size: 18px;
   display: flex;
   flex-direction: column;
-  border-radius: 15px;
-  width: 100%;
-  color: black;
+  max-width: 300px;
 }
 
 .filters-div {
@@ -948,7 +975,7 @@ button.delete {
 }
 
 .filters-div h2 {
-  color: blue;
+  color: black;
 }
 
 .filters-div h4 {
@@ -996,40 +1023,69 @@ button.delete {
   margin-right: 10px;
 }
 
-/* PREFERENCES ON PAGE CSS */
-/* Preferences Preview Modal */
-.preferences_preview_modal {
-  width: 100%;
-  height: 100%;
-  font-size: 18px;
-  margin-bottom: 8px;
-  
-  min-height: 60px;
-}
 
-.prefSaveButton {
+/*Redact, Modify, Preference, Filters Divs CSS*/
+.redact-div,
+.modify-div, 
+.preferences_preview_modal,
+.filters_preview_modal {
+  margin: 10px 10px 0px 0px;
+  border-radius: 15px;
   text-align: center;
-  width: 100px;
-  height: 40px;
+  color: var(--n850);
+  background-color: var(--c100);
+  border: 3px solid var(--n400);
+  width: 100%;
+  position: relative;
+}
+.redact-div {
+  height: 600px;
+}
+.redact-div h2 {
+  color: var(--n850);
+}
+/*RULESET ON PAGE CSS*/
+/* Ruleset Modal */
+.ruleset-modal {
+  max-width: 1000px;
+  max-height: 500px;
 }
 
-.preference-option {
+.ruleset-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(165, 150, 150, 0.5);
   display: flex;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  z-index: 1000;
+  
 }
 
-.preferences_preview_modal form {
-  margin-left: 10px;
+.open-close-button {
+  position: absolute;
+  top: 2%;
+  right: 1.2%;
+  width: 8%;
+  height: 10%;
+  background: solid;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
-.preferences_preview_modal label {
-  padding-right: 10px;
+.openPageModalContent h4{
+  color:rgb(255, 255, 255)
+
 }
 
-.preferences_preview_modal input[type="text" i] {
-  width: 85%;
-  margin-right: 5px;
+.openOnPageModalContent select {
+  height: 35px;
+  width: 370px;
+  font-size: large;
 }
 
 /*LEFT SIDE DONE DO NOT DELETE ABOVE THIS LINE*/
@@ -1059,11 +1115,9 @@ button.delete {
   font-size: 27px;
   color: #c9c9c9;
   display:inline-block;
-
   margin: 0 auto;
 }
 .accordion-open span {
-  writing-mode: vertical-lr;
   transform: rotate(180deg);
 }
 
@@ -1096,7 +1150,7 @@ button.delete {
   flex-direction: row;
   height: 10%;
   max-height: 48px;
-  padding-left: 15px;
+  padding-left: 5px;
   justify-content: left;
   align-items: center;
   text-align: left;
@@ -1114,34 +1168,38 @@ button.delete {
   justify-content: flex-start;
   align-items: center;
 }
-
-.tre-field {
-  max-height: 0px;
-}
+/*.field-table {
+  background-color: var(--n850);
+  display: flex;
+  flex-direction: column;
+  padding-right: 10px;
+  overflow: auto;
+  scrollbar-gutter: stable;
+}*/
 
 .field-row {
   display: flex;
   align-items: center;
-  padding-left: 15px;
+  padding-left: 5px;
   flex-shrink: 1;
   color: black;
+  background-color: silver;
   transition: max-height 0.5s ease;
   max-height: 0px;
   visibility: hidden;
   opacity: 0;
-  text-wrap: wrap;
 }
 
-.field-row div {
+.field-row  div {
   margin-left: 10px;
 }
+
 .field-row:hover {
   background-color: var(--n600);
 }
 .fieldname-box {
   width: 15%;
   text-align: left;
-  text-wrap: wrap;
 }
 .file-name {
   position: -webkit-sticky;
@@ -1158,27 +1216,30 @@ button.delete {
   background-color: silver;
   border: 3px solid var(--n400);
   border-radius: 0px 0px 15px 15px;
-  padding: 0px 0px 0px 0px;
-  margin-bottom: 0px;
   flex-direction: column;
+  transition: max-height 0.5s ease;
+  max-height: 0px;
   visibility: hidden;
   opacity: 0;
-  transition: max-height 0.5s ease;
-  max-height: 0;
+}
+.tre-panel {
+  transition: max-height 50s ease;
 }
 
-/* Because tre-panel is so long*/
-.tre-panel {
-  transition: max-height 8s ease;
+.tre-fields-list > .field-row, .tre-panel > .field-header {
+  padding-left: 10px;
 }
 
 /* RULESET EDITOR: TRE section */
 
 .tre-fields-list {
-  background-color: silver;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  background-color: var(--n800);
   border: 3px solid var(--p300);
   border-top: 0px;
-  transition: max-height 0.5s ease;
+  transition: max-height 1s ease;
   max-height: 0px;
   visibility: hidden;
   opacity: 0;
@@ -1192,7 +1253,7 @@ button.delete {
   background-color: var(--n500);
   border-radius: 5px;
   color: white;
-  transition: max-height 0.5s ease;
+  transition: max-height 1s ease;
   max-height: 0px;
   visibility: hidden;
   opacity: 0;
@@ -1207,33 +1268,22 @@ button.delete {
   width: 50%;
   text-align: left;
 }
+
+.tre-subheader {
+  max-height: 0px;
+}
 /* MIDDLE CONTENT DONE*/
 
 /* RIGHT SIDE OF PAGE*/
 
-/* REDACT MENU */
-.editor,
-.redact,
-.compare,
-.templates-manager {
-  display: grid;
-  
-  flex-direction: row;
-  justify-content: space-between;
-  width: auto;
-  grid-template-columns: 18% 60% auto;
-}
-
-
-/* REDACT MENU: R/M Preview Element */
 .right-panel {
   width: 400px;
 }
+
 .ruleset_preview_modal {
   width: 100%;
   height: 100%;
   font-size: 18px;
-  display:flex;
 }
 .ruleset_preview_modal > .content {
   display: flex;
@@ -1246,29 +1296,9 @@ button.delete {
 }
 
 /*Redact, Modify, Preference, Filters Divs CSS*/
-.redact-div,
-.modify-div, 
-.preferences-div,
-.filters_preview_modal {
-  margin-top: 10px;
-  border-radius: 15px;
-  text-align: center;
-  color: var(--n850);
-  background-color: var(--c100);
-  border: 3px solid var(--n400);
-  width: 100%;
-  position: relative;
-  h2 {
-    color: var(--n850);
-  }
-
-}
-.redact-div {
-  height: 600px;
-}
 
 .redact-div > .selections {
-  max-height: 450px;
+  overflow-y: auto;
 }
 
 .modify-div {
@@ -1325,7 +1355,7 @@ button.delete {
   justify-content: space-between;
 }
 #not-redactable {
-  color: var(--n500);
+  color: rgb(190, 190, 190);
 }
 
 

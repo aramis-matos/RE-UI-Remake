@@ -56,6 +56,7 @@ const TRE = (props) => {
         row.style.opacity = "0";
         row.style.maxHeight = "0px"
       }
+      header.classList.toggle("active");
     } else {
       panel.style.visibility = "visible";
       panel.style.opacity = "1";
@@ -65,6 +66,7 @@ const TRE = (props) => {
         row.style.opacity = "1";
         row.style.maxHeight = "80px"
       }
+      header.classList.remove("active");
     }
   };
 
@@ -89,7 +91,7 @@ const TRE = (props) => {
       </div>
       <div className="field-table">
         {Object.keys(tres).map((treName) => (
-          <div key={treName} className = "tre-field">
+          <div key={treName} className="tre-subheader">
             <div
               id={treName}
               data-testid={treName}
