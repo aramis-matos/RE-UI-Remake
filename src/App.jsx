@@ -516,6 +516,7 @@ function treShowTable(header, table) {
   const panel = document.getElementById(table); //trePanel
   const subHeaders = panel.getElementsByClassName("tre-header");
   const fieldTables = panel.getElementsByClassName("tre-field");
+  const divSubheaders = document.getElementsByClassName("tre-subheader")
   if (acc.className == "accordion-open") {
     acc.className = "accordion";
     panel.style.visibility = "hidden";
@@ -525,6 +526,9 @@ function treShowTable(header, table) {
     panel.style.paddingTop = "0px";
     panel.style.paddingBottom = "0px";
     panel.style.marginBottom = "0px";
+    for (const divSubheader of divSubheaders) {
+      divSubheader.style.maxHeight = "0px"
+    }
     for (const subHeader of subHeaders) {
       subHeader.style.visibility = "hidden";
       subHeader.style.opacity = "0";
@@ -542,6 +546,9 @@ function treShowTable(header, table) {
     panel.style.paddingTop = "20px";
     panel.style.paddingBottom = "10px";
     panel.style.marginBottom = "20px";
+    for (const divSubheader of divSubheaders) {
+      divSubheader.style.maxHeight = "none"
+    }
     for (const subHeader of subHeaders) {
       subHeader.style.visibility = "visible";
       subHeader.style.opacity = "1";

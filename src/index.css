@@ -920,6 +920,10 @@ button.delete {
   width: 50%;
   text-align: left;
 }
+
+.tre-subheader {
+  max-height: 0px;
+}
 /* MIDDLE CONTENT DONE*/
 
 /* RIGHT SIDE OF PAGE*/

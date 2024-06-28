@@ -91,7 +91,7 @@ const TRE = (props) => {
       </div>
       <div className="field-table">
         {Object.keys(tres).map((treName) => (
-          <div key={treName}>
+          <div key={treName} className="tre-subheader">
             <div
               id={treName}
               data-testid={treName}
