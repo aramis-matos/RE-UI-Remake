@@ -81,6 +81,7 @@ const App = () => {
           ) {
             element.style.visibility = "hidden";
             element.style.maxHeight = "0px";
+            element.style.zIndex = 0;
             numRemoved++;
           } else {
             element.style.visibility = "visible";
@@ -91,6 +92,7 @@ const App = () => {
           header.style.display = "none";
         } else {
           header.style = {};
+          header.style.zIndex = 1;
         }
         index++;
       }
