@@ -91,6 +91,7 @@ const App = () => {
           let numRemovedTre = 0;
           for (const treElement of treHeader.getElementsByClassName("mini-field-row")) {
             numElementsTre++;
+            const treName = treHeader.children[0].id;
             const treRowElements = treElement.children;
             const fieldName = treRowElements[1].textContent;
             const longName = treRowElements[2].textContent;
@@ -99,7 +100,8 @@ const App = () => {
               !(
                 new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
                 new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
-                new RegExp(value, "i").test(setTo.replace(/\s/g, ""))
+                new RegExp(value, "i").test(setTo.replace(/\s/g, "")) ||
+                new RegExp(value, "i").test(treName.replace(/\s/g, ""))
               )
             ) {
               treElement.style.visibility = "hidden";

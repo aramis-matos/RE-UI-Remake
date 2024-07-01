@@ -431,8 +431,9 @@ button.delete {
   outline-color: var(--n500);
   width: 250px;
   text-align: center;
-  color: var(--n100);
+  color: var(--n850);
   margin: 0px 10px 0px 0px;
+  font-size: 20px;
 }
 .search-match {
   display: flex;
@@ -440,7 +441,7 @@ button.delete {
 }
 #search:hover {
   background-color: var(--c150);
-  color: white;
+  color: var(--n850);
 }
 /*help button and modal*/
 #helpButton {
