@@ -859,9 +859,9 @@ button.delete {
   padding: 10px;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 300px;
   height: 0%;
-  text-align: left;
+  text-align: center;
   font-size: 16px;
   font-size: 20px;
 }
@@ -873,7 +873,7 @@ button.delete {
   margin-top: 5px;
   position: relative; /* Ensure it can be positioned using z-index */
   z-index: 10; /* Higher value to make sure it appears on top */
-  height: 400px;
+  height: 360px;
   width: 280px;  
   border-radius: 15px;
   color: var(--n850);

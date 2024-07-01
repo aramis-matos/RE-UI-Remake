@@ -36,7 +36,7 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
                     <ul>
                         <li>
                             <span className="toggle">A1B2C: Protected, United States</span>
-                            <div className="details active">
+                            <div className="details">
                                 Coordinates: 37.7749° N, 122.4194° W<br />
                                 Security Level: Protected<br />
                                 Description: This location is under federal protection due to its strategic importance.
