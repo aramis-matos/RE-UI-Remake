@@ -64,7 +64,6 @@ const App = () => {
       let numElements = 0;
       let numRemoved = 0;
       if (headerArr[index] !== "TRE") {
-        // Handle non-TRE headers
         for (const element of header.getElementsByClassName("field-row")) {
           numElements++;
           const fieldRowElements = element.children;
