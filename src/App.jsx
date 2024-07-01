@@ -63,16 +63,15 @@ const App = () => {
     for (const header of document.getElementsByClassName("header")) {
       let numElements = 0;
       let numRemoved = 0;
-      const button = header.getElementsByClassName("accordion-open");
-      console.log(button);
-      for (const element of header.getElementsByClassName("field-row")) {
-        numElements++;
-        const fieldRowElements = element.children;
-        const fieldName = fieldRowElements[1].textContent;
-        const longName = fieldRowElements[2].textContent;
-        const setTo = fieldRowElements[3].children[0].value;
-        if (button) {
-          if (value &&
+      if (headerArr[index] !== "TRE") {
+        // Handle non-TRE headers
+        for (const element of header.getElementsByClassName("field-row")) {
+          numElements++;
+          const fieldRowElements = element.children;
+          const fieldName = fieldRowElements[1].textContent;
+          const longName = fieldRowElements[2].textContent;
+          const setTo = fieldRowElements[3].children[0].value;
+          if (value && 
             !(
               new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
               new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
@@ -81,21 +80,52 @@ const App = () => {
           ) {
             element.style.visibility = "hidden";
             element.style.maxHeight = "0px";
-            element.style.zIndex = 0;
             numRemoved++;
           } else {
             element.style.visibility = "visible";
             element.style.maxHeight = "40px";
           }
         }
-        if (numElements === numRemoved) {
-          header.style.display = "none";
-        } else {
-          header.style = {};
-          header.style.zIndex = 1;
+      } else {
+        for (const treHeader of header.getElementsByClassName("tre-subheader")) {
+          let numElementsTre = 0;
+          let numRemovedTre = 0;
+          for (const treElement of treHeader.getElementsByClassName("mini-field-row")) {
+            numElementsTre++;
+            const treRowElements = treElement.children;
+            const fieldName = treRowElements[1].textContent;
+            const longName = treRowElements[2].textContent;
+            const setTo = treRowElements[3].children[0].value;
+            if (value && 
+              !(
+                new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
+                new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
+                new RegExp(value, "i").test(setTo.replace(/\s/g, ""))
+              )
+            ) {
+              treElement.style.visibility = "hidden";
+              treElement.style.maxHeight = "0px";
+              numRemovedTre++;
+            } else {
+              treElement.style.visibility = "visible";
+              treElement.style.maxHeight = "40px";
+            }
+          }
+          numElements += numElementsTre;
+          numRemoved += numRemovedTre;
+          if (numElementsTre === numRemovedTre) {
+            treHeader.style.display = "none";
+          }else{
+            treHeader.style = {};
+          }
         }
-        index++;
       }
+      if (numElements === numRemoved) {
+        header.style.display = "none";
+      } else {
+        header.style = {};
+      }
+      index++;
     }
   };
 

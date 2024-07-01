@@ -105,7 +105,7 @@ const TRE = (props) => {
                 <div
                   key={field.key}
                   id={!field.editable ? "not-redactable" : undefined}
-                  className="field-row"
+                  className="mini-field-row"
                 >
                   <Checkbox
                     className="checkAllTre"

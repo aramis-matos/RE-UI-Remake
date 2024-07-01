@@ -773,7 +773,9 @@ button.delete {
   flex-direction: column;
   row-gap: 30px;
 }
-
+.header{
+  z-index: 1;
+}
 .field-header {
   display: flex;
   flex-direction: row;
@@ -805,7 +807,7 @@ button.delete {
   overflow: auto;
   scrollbar-gutter: stable;
 }*/
-
+.mini-field-row,
 .field-row {
   display: flex;
   align-items: center;
@@ -816,13 +818,13 @@ button.delete {
   transition: max-height 0.5s ease;
   max-height: 0px;
   visibility: hidden;
-  opacity: 0;
+  z-index: 0;
 }
-
+.mini-field-row div,
 .field-row div {
   margin-left: 10px;
 }
-
+.mini-field-row:hover,
 .field-row:hover {
   background-color: var(--n600);
 }
@@ -855,7 +857,8 @@ button.delete {
   transition: max-height 50s ease;
 }
 
-.tre-fields-list > .field-row,
+.tre-fields-list > .field-row, 
+.tre-fields-list> .mini-field-row,
 .tre-panel > .field-header {
   padding-left: 10px;
 }
@@ -866,7 +869,7 @@ button.delete {
   display: flex;
   flex-direction: column;
   overflow: auto;
-  background-color: var(--n800);
+  background-color: silver;
   border: 3px solid var(--p300);
   border-top: 0px;
   transition: max-height 1s ease;
@@ -900,7 +903,8 @@ button.delete {
 }
 
 .tre-subheader {
-  max-height: 0px;
+  display: block;
+  unicode-bidi: isolate;
 }
 /* MIDDLE CONTENT DONE*/
 
@@ -980,7 +984,7 @@ button.delete {
   justify-content: space-between;
 }
 #not-redactable {
-  color: rgb(190, 190, 190);
+  color: var(--n500);
 }
 
 /* Used to implent the stick of the left and right panels and the center headers*/
