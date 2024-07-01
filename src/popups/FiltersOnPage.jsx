@@ -52,6 +52,7 @@ const FiltersOnPage = ({ theFunc }) => {
               <label htmlFor="blackList">Long Name</label>
             </div>
           </div>
+
         </div>
         <div className="fieldDiv">
           <h4>Filter By Section</h4>

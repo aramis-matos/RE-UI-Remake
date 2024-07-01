@@ -843,6 +843,44 @@ button.delete {
   grid-template-columns: 18% auto 18;
 }
 
+/* Collapsable Filters CSS (Jack 1) */
+
+.collapsible {
+  margin: 10px 0;
+}
+
+.collapsible-toggle {
+  background-color:  #6f489d;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  height: 0%;
+  text-align: left;
+  font-size: 16px;
+  font-size: 20px;
+}
+
+.collapsible-content {
+  padding: 10px;
+  background-color: var(--c100);
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  position: relative; /* Ensure it can be positioned using z-index */
+  z-index: 10; /* Higher value to make sure it appears on top */
+  height: 400px;
+  width: 280px;  
+  border-radius: 15px;
+  color: var(--n850);
+  
+}
+
+.collapsible-content h2 {
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
+
 /* REDACT MENU: R/M Preview Element */
 
 .filters_preview_modal label {

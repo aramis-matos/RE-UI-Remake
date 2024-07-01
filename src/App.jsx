@@ -14,6 +14,7 @@ import FiltersOnPage from "./popups/FiltersOnPage";
 import RulesetModalOnPage from "./popups/RulesetModalOnPage";
 import HelpModalOnPage from "./popups/HelpModalOnPage";
 import OpenModalOnPage from "./popups/OpenModalOnPage";
+import CollapsableFilters from "./popups/CollapsableFilters";
 
 const App = () => {
   const [selectedRuleset, setSelectedRuleset] = useState({});
@@ -264,8 +265,11 @@ const App = () => {
               </button>
             </div>
           </div>
+          <CollapsableFilters theFunc={handleCheckChange}></CollapsableFilters>
           <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage>
           <PreferencesOnPage></PreferencesOnPage>
+          
+
         </div>
       </div>
       <div className="nitf-headers" key={reset}>
