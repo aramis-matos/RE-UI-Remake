@@ -71,8 +71,8 @@ const App = () => {
         const fieldName = fieldRowElements[1].textContent;
         const longName = fieldRowElements[2].textContent;
         const setTo = fieldRowElements[3].children[0].value;
-        if (value && button) {
-          if (
+        if (button) {
+          if (value &&
             !(
               new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
               new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
