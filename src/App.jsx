@@ -71,8 +71,8 @@ const App = () => {
         const fieldName = fieldRowElements[1].textContent;
         const longName = fieldRowElements[2].textContent;
         const setTo = fieldRowElements[3].children[0].value;
-        if (value && button) {
-          if (
+        if (button) {
+          if (value &&
             !(
               new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
               new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
@@ -81,6 +81,7 @@ const App = () => {
           ) {
             element.style.visibility = "hidden";
             element.style.maxHeight = "0px";
+            element.style.zIndex = 0;
             numRemoved++;
           } else {
             element.style.visibility = "visible";
@@ -91,6 +92,7 @@ const App = () => {
           header.style.display = "none";
         } else {
           header.style = {};
+          header.style.zIndex = 1;
         }
         index++;
       }
@@ -293,6 +295,7 @@ const App = () => {
           <hr />
           <h2>What is a NITF?</h2>
           <p>Not If There's Fondue!!!</p>
+          <hr />
         </HelpModalOnPage>
         {(checkedItems[0] ||
           !(

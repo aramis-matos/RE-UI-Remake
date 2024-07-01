@@ -127,7 +127,7 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
 
 /* RULESET EDITOR */
 .left-panel {
-  margin: 20px;
+  margin: 0px 0px 0px 20px;
   display: flex;
   flex-direction: column;
   max-width: 300px;
@@ -793,41 +793,45 @@ button.delete {
   padding: 20px;
   border-radius: 15px;
   position: absolute;
-  top: 20px;
-  width: 1060px;
-  height: 1000px;
+  width: 800px;
+  height: 500px;
   text-align: center;
 
   h1 {
     color: var(--c100);
-    padding: 20px 0px 50px 0px;
-    font-size: 60px;
+    padding: 0px 0px 20px 0px;
+    font-size: 40px;
   }
   h2 {
     color: var(--c100);
-    padding: 20px 0px 20px 0px;
-    font-size: 40px;
+    padding: 10px 0px 10px 0px;
+    font-size: 25px;
   }
   p {
     color: #cbcbcb;
-    padding: 20px 0px 20px 0px;
+    padding: 0px 0px 10px 0px;
     text-align: center;
     margin: auto;
     font-family: "Roboto";
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 25px;
   }
 }
-
+.contact-page {
+  position: absolute;
+  bottom: 1%;
+  left: 2%;
+  width: 70%;
+  height: 10%;
+  font-size: 25px;
+  cursor: pointer;
+}
 .help-page-close-button {
   position: absolute;
-  top: 85%;
-  right: 1%;
+  bottom: 1%;
+  right: 2%;
   width: 20%;
   height: 10%;
-  background: solid;
-  border: none;
-  font-size: 1.5rem;
+  font-size: 25px;
   cursor: pointer;
 }
 /* REDACT MENU */
@@ -1009,6 +1013,7 @@ button.delete {
   position: relative;
 }
 .redact-div {
+  margin-top: 20px;
   height: 600px;
 }
 .redact-div h2 {
@@ -1017,7 +1022,6 @@ button.delete {
 /*RULESET ON PAGE CSS*/
 /* Ruleset Modal */
 .ruleset-modal {
-  /* max-width: 1000px; */
   max-height: 500px;
 }
 
@@ -1060,9 +1064,9 @@ button.delete {
 
 /*MIDDLE PAGE CONTENT*/
 .nitf-headers {
+  width: 2400px;
   display: flex;
   flex-direction: column;
-  min-width: 600px;
   margin: 20px;
 }
 /* Style the buttons that are used to open and close the accordion panel */
@@ -1247,7 +1251,7 @@ button.delete {
 }
 
 .ruleset_preview_modal {
-  width: 100%;
+  width: 300px;
   height: 100%;
   font-size: 18px;
 }
