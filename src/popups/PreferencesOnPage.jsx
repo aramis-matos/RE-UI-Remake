@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const PreferencesOnPage = () => {
-  const [preference, setPreference] = useState('');
+  const [preference, setPreference] = useState('Black List');
   const [inputSecuritySystem, setInputSecuritySystem] = useState('');
 
   const handleChange = (event) => {

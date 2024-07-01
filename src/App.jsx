@@ -346,8 +346,9 @@ const App = () => {
             </button>
             <FileHeader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
+              idPassed="filePanel"
             />
           </div>
         )}
@@ -372,8 +373,9 @@ const App = () => {
             </button>
             <ImageSubheader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
+              idPassed="imagePanel"
             />
           </div>
         )}
@@ -398,8 +400,9 @@ const App = () => {
             </button>
             <GraphicSubheader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
+              idPassed="graphicPanel"
             />
           </div>
         )}
@@ -424,8 +427,9 @@ const App = () => {
             </button>
             <TextSubheader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
+              idPassed="textPanel"
             />
           </div>
         )}
@@ -450,8 +454,9 @@ const App = () => {
             </button>
             <DesSubheader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
+              idPassed="desPanel"
             />
           </div>
         )}
@@ -475,8 +480,9 @@ const App = () => {
             </button>
             <TRE
               data={initialData}
-              onChange={recordCheckboxChange}
+              onChange={recordCheckboxChange} //needs to changed if it works
               listType={listType}
+              idPassed="trePanel"
             />
           </div>
         )}
@@ -526,7 +532,6 @@ function showTable(header, table) {
       row.style.visibility = "visible";
       row.style.opacity = "1";
       row.style.maxHeight = "40px";
-      console.log(row);
     }
   }
 }
