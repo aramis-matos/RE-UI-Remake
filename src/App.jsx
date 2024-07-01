@@ -64,7 +64,6 @@ const App = () => {
       let numElements = 0;
       let numRemoved = 0;
       const button = header.getElementsByClassName("accordion-open");
-      console.log(button);
       for (const element of header.getElementsByClassName("field-row")) {
         numElements++;
         const fieldRowElements = element.children;
@@ -313,6 +312,7 @@ const App = () => {
               data={initialData}
               onChange={recordCheckboxChange}
               listType={listType}
+              idPassed="filePanel"
             />
           </div>
         )}
@@ -339,6 +339,7 @@ const App = () => {
               data={initialData}
               onChange={recordCheckboxChange}
               listType={listType}
+              idPassed="imagePanel"
             />
           </div>
         )}
@@ -365,6 +366,7 @@ const App = () => {
               data={initialData}
               onChange={recordCheckboxChange}
               listType={listType}
+              idPassed="graphicPanel"
             />
           </div>
         )}
@@ -391,6 +393,7 @@ const App = () => {
               data={initialData}
               onChange={recordCheckboxChange}
               listType={listType}
+              idPassed="textPanel"
             />
           </div>
         )}
@@ -417,6 +420,7 @@ const App = () => {
               data={initialData}
               onChange={recordCheckboxChange}
               listType={listType}
+              idPassed="desPanel"
             />
           </div>
         )}
@@ -442,6 +446,7 @@ const App = () => {
               data={initialData}
               onChange={recordCheckboxChange}
               listType={listType}
+              idPassed="trePanel"
             />
           </div>
         )}
@@ -491,7 +496,6 @@ function showTable(header, table) {
       row.style.visibility = "visible";
       row.style.opacity = "1";
       row.style.maxHeight = "40px";
-      console.log(row);
     }
   }
 }

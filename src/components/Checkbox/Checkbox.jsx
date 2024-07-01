@@ -22,7 +22,7 @@ const Checkbox = (props) => {
       data-testid={props.datatestid}
       className={props.className}
       id={props.id}
-      checked={checked}
+
       disabled={props.disabled}
       onChange={handleChange}
     />

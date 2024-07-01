@@ -8,29 +8,32 @@ const FileHeader = (props) => {
   const [setTo, setSetTo] = useState([]);
   const [allowed, setAllowed] = useState([]);
   const [redact, setRedact] = useState([]);
+  let idPassed = props.idPassed;
 
   useEffect(() => {
     if (props.data.length > 0) {
       setSetTo(props.data[0]);
       setAllowed(props.data[1]);
-      setRedact(props.data[2]);
+      setRedact(props.data[2])
+      idPassed = props.idPassed;
     }
   }, [props.data]);
 
-  const handleCheckAll = (checked) => {
-    const relatedCheckboxes = document.getElementsByClassName("checkAllFile");
+  const handleCheckAll = (checked) => { 
+    const checkboxesParent = document.getElementById(idPassed)
+    const relatedCheckboxes = checkboxesParent.getElementsByClassName("checkAllFile");
     if (checked) {
-      for (let i = 0; i < relatedCheckboxes.length; i++) {
-        if (!relatedCheckboxes[i].checked) {
-          relatedCheckboxes[i].checked = true;
-          props.onChange(true, relatedCheckboxes[i].id.replace("check", ""));
+      for (const checkbox of relatedCheckboxes) {
+        if (!checkbox.checked) {
+          checkbox.checked = true;
+          props.onChange(true, checkbox.id.replace("check", ""));
         }
       }
     } else {
-      for (let i = 0; i < relatedCheckboxes.length; i++) {
-        if (relatedCheckboxes[i].checked) {
-          relatedCheckboxes[i].checked = false;
-          props.onChange(false, relatedCheckboxes[i].id.replace("check", ""));
+      for (const checkbox of relatedCheckboxes) {
+        if (checkbox.checked) {
+          checkbox.checked = false;
+          props.onChange(false, checkbox.id.replace("check", ""));
         }
       }
     }
