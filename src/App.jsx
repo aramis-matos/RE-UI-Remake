@@ -266,7 +266,7 @@ const App = () => {
             </div>
           </div>
           <CollapsableFilters theFunc={handleCheckChange}></CollapsableFilters>
-          <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage>
+          {/* <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage> */}
           <PreferencesOnPage></PreferencesOnPage>
           
 

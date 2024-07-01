@@ -38,7 +38,7 @@ const CollapsableFilters = ({ theFunc}) => {
     return (
         <div className="collapsible">
           <button onClick={toggleCollapsible} className="collapsible-toggle">
-            Collapsible Filters
+          Filters
           </button>
           {isOpen && (
             <div className="collapsible-content">
