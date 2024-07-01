@@ -42,8 +42,15 @@ const App = () => {
 
   const switchTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
+    const color = newTheme === "dark" ? "var(--n50)" : "var(--n850)";
     setTheme(newTheme);
+    document.querySelector("html").style.backgroundColor = color;
+    document.querySelector("body").style.backgroundColor = color;
   };
+
+  useEffect(() => {
+    switchTheme();
+  }, []);
 
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {

@@ -90,30 +90,34 @@ body {
   font-family: "Roboto-Medium";
   font-size: 16px;
   scrollbar-gutter: stable;
-  background-color: var(--n850);
+  /* background-color: white; */
 }
-
+.html-elem[data-theme="dark"] {
+  /* background-color: black; */
+}
+.editor {
+  /* background-color: var(--n850); */
+}
 html {
   height: 100%;
 }
-
 /*text settings general*/
 h1 {
-  color: white;
+  color: var(--n0);
   margin: auto;
   font-family: "Roboto";
   font-size: 48px;
   font-weight: bold;
 }
 h2 {
-  color: white;
+  color: var(--n0);
   margin: auto;
   font-family: "Roboto";
   font-size: 36px;
   font-weight: bold;
 }
 h3 {
-  color: white;
+  color: var(--n0);
   font-family: "Roboto";
   font-size: 24px;
 }
@@ -568,7 +572,6 @@ button.delete {
 .compare,
 .templates-manager {
   display: flex;
-
   flex-direction: row;
   justify-content: space-between;
   width: auto;
