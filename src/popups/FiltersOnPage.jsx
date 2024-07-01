@@ -28,28 +28,31 @@ const FiltersOnPage = ({ theFunc }) => {
 
   return (
     <div id="filtersOnPage" className="filters_preview_modal">
-      <div className="filters-div">
-        <h2>FILTERS</h2>
-        <div className="fieldDiv">
-          <h4>Filter By Field/Long Name</h4>
-          <div className="filterRadioButtons">
-            <input
-              type="radio"
-              id="whiteList"
-              name="listType"
-              value="White List"
-            />
-            <label htmlFor="whiteList">Field Name</label>
+      <div className="content">
+        <div className="filters-div">
+          <h2>FILTERS</h2>
+          <div>
+            <h5>Filter By Field/Long Name</h5>
+            <div className="filterRadioButtons">
+              <input
+                type="radio"
+                id="whiteList"
+                name="listType"
+                value="White List"
+              />
+              <label htmlFor="whiteList">Field Name</label>
+            </div>
+            <div className="filterRadioButtons">
+              <input
+                type="radio"
+                id="blackList"
+                name="listType"
+                value="Black List"
+              />
+              <label htmlFor="blackList">Long Name</label>
+            </div>
           </div>
-          <div className="filterRadioButtons">
-            <input
-              type="radio"
-              id="blackList"
-              name="listType"
-              value="Black List"
-            />
-            <label htmlFor="blackList">Long Name</label>
-          </div>
+
         </div>
         <div className="fieldDiv">
           <h4>Filter By Section</h4>

@@ -6,7 +6,6 @@ import GraphicSubheader from "./tables/GraphicSubheader";
 import TextSubheader from "./tables/TextSubheader";
 import DesSubheader from "./tables/DesSubheader";
 import RulesetPreviewModal from "./popups/RulesetPreviewModal";
-import PreferencesModal from "./popups/PreferencesModal";
 import SearchBar from "./components/SearchBar/SearchBar";
 import TRE from "./tables/TRE";
 import useModal from "./hooks/useModal";
@@ -15,6 +14,7 @@ import FiltersOnPage from "./popups/FiltersOnPage";
 import RulesetModalOnPage from "./popups/RulesetModalOnPage";
 import HelpModalOnPage from "./popups/HelpModalOnPage";
 import OpenModalOnPage from "./popups/OpenModalOnPage";
+import CollapsableFilters from "./popups/CollapsableFilters";
 
 const App = () => {
   const [selectedRuleset, setSelectedRuleset] = useState({});
@@ -119,13 +119,13 @@ const App = () => {
           }
         }
       }
-      if (numElements === numRemoved) {
-        header.style.display = "none";
-      } else {
-        header.style = {};
+        if (numElements === numRemoved) {
+          header.style.display = "none";
+        } else {
+          header.style = {};
+        }
+        index++;
       }
-      index++;
-    }
   };
 
   const openRulesetModal = () => {
@@ -296,8 +296,11 @@ const App = () => {
               </button>
             </div>
           </div>
-          <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage>
+          <CollapsableFilters theFunc={handleCheckChange}></CollapsableFilters>
+          {/* <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage> */}
           <PreferencesOnPage></PreferencesOnPage>
+          
+
         </div>
       </div>
       <div className="nitf-headers" key={reset}>
