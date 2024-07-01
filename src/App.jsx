@@ -15,6 +15,7 @@ import FiltersOnPage from "./popups/FiltersOnPage";
 import RulesetModalOnPage from "./popups/RulesetModalOnPage";
 import HelpModalOnPage from "./popups/HelpModalOnPage";
 import OpenModalOnPage from "./popups/OpenModalOnPage";
+import useLocalStorage from "use-local-storage";
 
 const App = () => {
   const [selectedRuleset, setSelectedRuleset] = useState({});
@@ -33,6 +34,16 @@ const App = () => {
   const [isOpenModalOpen, setIsOpenModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const [theme, setTheme] = useLocalStorage(
+    "theme",
+    defaultDark ? "dark" : "light"
+  );
+
+  const switchTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+  };
 
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
@@ -232,7 +243,7 @@ const App = () => {
   };
 
   return (
-    <div className="editor">
+    <div className="editor" data-theme={theme}>
       <div className="left-panel">
         <div className="content">
           <button id="newRuleset" onClick={openRulesetModal}>
@@ -244,12 +255,9 @@ const App = () => {
             onClick={openOpenModal}>
             OPEN
           </button>
-          {/* <button
-            id="saveRuleset"
-            data-testid="saveRuleset"
-            onClick={handleSave}
-          >SAVE
-          </button> */}
+          <button id="themeButton" onClick={switchTheme}>
+            Switch to {theme === "dark" ? "light" : "dark"} Theme
+          </button>
 
           <div className="helpSearch">
             <SearchBar

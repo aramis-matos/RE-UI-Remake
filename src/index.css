@@ -17,8 +17,42 @@
   font-family: "Roboto-Medium";
   src: url(./assets/fonts/Roboto-Medium.ttf) format("truetype");
 }
-/* COLOR PALETTE */
+
+/* LIGHT MODE COLOR PALETTE */
 :root {
+  --n0: #212121;
+  --n50: #2e2e2e;
+  --n100: #3b3b3b;
+  --n200: #515151;
+  --n300: #626262;
+  --n400: #7e7e7e;
+  --n500: #9e9e9e;
+  --n600: #b1b1b1;
+  --n700: #cfcfcf;
+  --n800: #e1e1e1;
+  --n850: #f7f7f7;
+  --n900: #ffffff;
+
+  --p50: #240f3d;
+  --p100: #3c225e;
+  --p200: #533579;
+  --p300: #6f489d;
+  --p400: #7d4eb6;
+  --p500: #9469c9;
+  --p600: #ae83e2;
+  --p700: #c3a0ee;
+  --p800: #dec9f8;
+  --p900: #eee2fd;
+
+  --c100: #e9b77c;
+  --c150: #e7ab65;
+
+  --success: #6be67f;
+  --error: #e66b6b;
+}
+
+/* DARK MODE COLOR PALETTE*/
+[data-theme="dark"] {
   --n0: #ffffff;
   --n50: #f7f7f7;
   --n100: #e1e1e1;
@@ -49,13 +83,14 @@
   --success: #6be67f;
   --error: #e66b6b;
 }
+
 /* GLOBAL CSS SETTINGS */
 html,
 body {
   font-family: "Roboto-Medium";
   font-size: 16px;
   scrollbar-gutter: stable;
-  background-color: var(--n800);
+  background-color: var(--n850);
 }
 
 html {
@@ -610,11 +645,11 @@ button.delete {
 }
 
 .filters-div h2 {
-  color: black;
+  color: var(--n850);
 }
 
 .filters-div h4 {
-  color: black;
+  color: (--n850);
   text-align: left;
   margin-left: 10px;
   margin-bottom: 0;
