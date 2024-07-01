@@ -65,12 +65,12 @@ const App = () => {
       let numRemoved = 0;
       if (headerArr[index] !== "TRE") {
         // Handle non-TRE headers
-        for (const element of header.getElementsByClassName("field-row")) {
-          numElements++;
-          const fieldRowElements = element.children;
-          const fieldName = fieldRowElements[1].textContent;
-          const longName = fieldRowElements[2].textContent;
-          const setTo = fieldRowElements[3].children[0].value;
+      for (const element of header.getElementsByClassName("field-row")) {
+        numElements++;
+        const fieldRowElements = element.children;
+        const fieldName = fieldRowElements[1].textContent;
+        const longName = fieldRowElements[2].textContent;
+        const setTo = fieldRowElements[3].children[0].value;
           if (value && 
             !(
               new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
@@ -120,13 +120,13 @@ const App = () => {
           }
         }
       }
-      if (numElements === numRemoved) {
-        header.style.display = "none";
-      } else {
-        header.style = {};
+        if (numElements === numRemoved) {
+          header.style.display = "none";
+        } else {
+          header.style = {};
+        }
+        index++;
       }
-      index++;
-    }
   };
 
   const openRulesetModal = () => {
