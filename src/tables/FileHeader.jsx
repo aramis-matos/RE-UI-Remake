@@ -25,15 +25,15 @@ const FileHeader = (props) => {
     if (checked) {
       for (const checkbox of relatedCheckboxes) {
         if (!checkbox.checked) {
-          checkbox.checked = true;
-          props.onChange(true, checkbox.id.replace("check", ""));
+          checkbox.click()
+          props.onRedactChange(true, checkbox.id.replace("check", "")); //onRedactChange: recordCheckboxChange
         }
       }
     } else {
       for (const checkbox of relatedCheckboxes) {
         if (checkbox.checked) {
           checkbox.checked = false;
-          props.onChange(false, checkbox.id.replace("check", ""));
+          props.onRedactChange(false, checkbox.id.replace("check", ""));
         }
       }
     }
@@ -43,7 +43,7 @@ const FileHeader = (props) => {
     if (!checked) {
       document.getElementById("checkAllFile").checked = false;
     }
-    props.onChange(checked, fieldName);
+    props.onRedactChange(checked, fieldName);
   };
 
   return (
@@ -54,6 +54,7 @@ const FileHeader = (props) => {
             id="checkAllFile"
             datatestid="checkAllFile"
             onChange={handleCheckAll}
+            disabled={true}
           />
           {props.listType === "white list" ? (
             <div style={{ color: "green", paddingLeft: "5px" }}>✔</div>
@@ -93,7 +94,7 @@ const FileHeader = (props) => {
             <SetToBox
               id={"set-to-box"}
               value={setTo[field.fieldName]}
-              onChange={props.onChange}
+              onChange={props.onRedactChange}
               fieldName={field.fieldName}
               disabled={!field.editable}
             />
@@ -107,7 +108,7 @@ const FileHeader = (props) => {
 FileHeader.propTypes = {
   values: PropTypes.any,
   allowed: PropTypes.any,
-  onChange: PropTypes.func,
+  onRedactChange: PropTypes.func,
 };
 
 export default FileHeader;

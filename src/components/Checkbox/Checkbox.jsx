@@ -22,9 +22,8 @@ const Checkbox = (props) => {
       data-testid={props.datatestid}
       className={props.className}
       id={props.id}
-
       disabled={props.disabled}
-      onChange={handleChange}
+      onClick={handleChange}
     />
   );
 }
@@ -37,6 +36,7 @@ Checkbox.propTypes = {
   onChange: PropTypes.func,
   fieldName: PropTypes.string,
   datatestid: PropTypes.string,
+  isCheckAll: PropTypes.bool,
 };
 
 export default Checkbox;

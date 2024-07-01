@@ -310,7 +310,7 @@ const App = () => {
             </button>
             <FileHeader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="filePanel"
             />
@@ -337,7 +337,7 @@ const App = () => {
             </button>
             <ImageSubheader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="imagePanel"
             />
@@ -364,7 +364,7 @@ const App = () => {
             </button>
             <GraphicSubheader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="graphicPanel"
             />
@@ -391,7 +391,7 @@ const App = () => {
             </button>
             <TextSubheader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="textPanel"
             />
@@ -418,7 +418,7 @@ const App = () => {
             </button>
             <DesSubheader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="desPanel"
             />
@@ -444,7 +444,7 @@ const App = () => {
             </button>
             <TRE
               data={initialData}
-              onChange={recordCheckboxChange}
+              onChange={recordCheckboxChange} //needs to changed if it works
               listType={listType}
               idPassed="trePanel"
             />
