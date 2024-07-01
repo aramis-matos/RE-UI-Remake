@@ -127,7 +127,7 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
 
 /* RULESET EDITOR */
 .left-panel {
-  margin: 20px;
+  margin: 0px 0px 0px 20px;
   display: flex;
   flex-direction: column;
   max-width: 300px;
@@ -673,6 +673,7 @@ button.delete {
   position: relative;
 }
 .redact-div {
+  margin-top: 20px;
   height: 600px;
 }
 .redact-div h2 {
