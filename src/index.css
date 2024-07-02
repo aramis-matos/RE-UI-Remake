@@ -219,7 +219,8 @@ input:checked + .slider:before {
   -ms-transform: translateX(1em);
 }
 .darkLabel {
-  /* user-select: none; */
+  user-select: none;
+  -webkit-user-select: none;
   color: #f7f7f7;
   position: relative;
   top: 4px;
@@ -227,7 +228,8 @@ input:checked + .slider:before {
   font-size: 1.5em;
 }
 .lightLabel {
-  /* user-select: none; */
+  user-select: none;
+  -webkit-user-select: none;
   color: #2e2e2e;
   position: relative;
   top: 4px;
@@ -931,7 +933,7 @@ button.delete {
   align-items: center;
 }
 
-.set-to-box-class{
+.set-to-box-class {
   position: relative;
   left: -4%;
 }
