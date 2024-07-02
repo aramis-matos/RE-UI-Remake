@@ -34,6 +34,8 @@ const App = () => {
   const [isOpenModalOpen, setIsOpenModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+
+  /* Dark / Light Mode */
   const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const [theme, setTheme] = useLocalStorage(
     "theme",
@@ -47,10 +49,16 @@ const App = () => {
     document.querySelector("html").style.backgroundColor = color;
     document.querySelector("body").style.backgroundColor = color;
   };
+  const setBackground = () => {
+    const color = theme === "dark" ? "var(--n50)" : "var(--n850)";
+    document.querySelector("html").style.backgroundColor = color;
+    document.querySelector("html").style.backgroundColor = color;
+  };
 
   useEffect(() => {
-    switchTheme();
+    setBackground();
   }, []);
+  /* Dark / Light Mode */
 
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
