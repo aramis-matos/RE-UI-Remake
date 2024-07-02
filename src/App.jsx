@@ -17,7 +17,7 @@ import CollapsableFilters from "./popups/CollapsableFilters";
 import useLocalStorage from "use-local-storage";
 
 const App = () => {
-  const[filterType, setFilterType] = useState('');
+  const [filterType, setFilterType] = useState("");
   const [selectedRuleset, setSelectedRuleset] = useState({});
   const [currentlyEditing, setCurrentlyEditing] = useState({});
   const rulesetPreview = useRef();
@@ -93,11 +93,11 @@ const App = () => {
     const headerArr = ["nitf", "image", "graphic", "text", "Des", "TRE"];
     let index = 0;
     setSearchValue(value);
-  
+
     for (const header of document.getElementsByClassName("header")) {
       let numElements = 0;
       let numRemoved = 0;
-  
+
       if (headerArr[index] !== "TRE") {
         // Handle non-TRE headers
         for (const element of header.getElementsByClassName("field-row")) {
@@ -106,7 +106,7 @@ const App = () => {
           const fieldName = fieldRowElements[1].textContent;
           const longName = fieldRowElements[2].textContent;
           const setTo = fieldRowElements[3].children[0].value;
-  
+
           if (value && !filterByFieldName(fieldName, longName, setTo)) {
             element.style.visibility = "hidden";
             element.style.maxHeight = "0px";
@@ -118,18 +118,22 @@ const App = () => {
         }
       } else {
         // Handle TRE headers
-        for (const treHeader of header.getElementsByClassName("tre-subheader")) {
+        for (const treHeader of header.getElementsByClassName(
+          "tre-subheader"
+        )) {
           let numElementsTre = 0;
           let numRemovedTre = 0;
-  
-          for (const treElement of treHeader.getElementsByClassName("mini-field-row")) {
+
+          for (const treElement of treHeader.getElementsByClassName(
+            "mini-field-row"
+          )) {
             numElementsTre++;
             const treName = treHeader.children[0].id;
             const treRowElements = treElement.children;
             const fieldName = treRowElements[1].textContent;
             const longName = treRowElements[2].textContent;
             const setTo = treRowElements[3].children[0].value;
-  
+
             if (value && !filterByFieldName(fieldName, longName, setTo)) {
               treElement.style.visibility = "hidden";
               treElement.style.maxHeight = "0px";
@@ -139,10 +143,10 @@ const App = () => {
               treElement.style.maxHeight = "40px";
             }
           }
-  
+
           numElements += numElementsTre;
           numRemoved += numRemovedTre;
-  
+
           if (numElementsTre === numRemovedTre) {
             treHeader.style.display = "none";
           } else {
@@ -150,16 +154,16 @@ const App = () => {
           }
         }
       }
-  
+
       if (numElements === numRemoved) {
         header.style.display = "none";
       } else {
         header.style = {};
       }
-  
+
       index++;
     }
-  
+
     function filterByFieldName(fieldName, longName, setTo) {
       if (filterType === "Field Name") {
         return new RegExp(value, "i").test(fieldName.replace(/\s/g, ""));
@@ -171,8 +175,7 @@ const App = () => {
           new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
           new RegExp(value, "i").test(setTo.replace(/\s/g, ""))
         );
-      }
-      else {
+      } else {
         return (
           new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
           new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
@@ -181,7 +184,7 @@ const App = () => {
       }
     }
   };
-  
+
   const openRulesetModal = () => {
     setIsRulesetModalOpen(true);
   };
@@ -325,8 +328,8 @@ const App = () => {
           <label className="themeSwitch">
             <input type="checkbox" onChange={switchTheme} />
             <span className="slider">
-              <label className="darkLabel">Dark</label>
-              <label className="lightLabel">Light</label>
+              <label className="darkLabel">☾</label>
+              <label className="lightLabel"> ☀︎ </label>
             </span>
           </label>
           <button id="newRuleset" onClick={openRulesetModal}>
@@ -354,7 +357,9 @@ const App = () => {
               </button>
             </div>
           </div>
-          <CollapsableFilters theFunc={handleCheckChange} onFilterChange={handleFilterTypeChange}></CollapsableFilters>
+          <CollapsableFilters
+            theFunc={handleCheckChange}
+            onFilterChange={handleFilterTypeChange}></CollapsableFilters>
           {/* <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage> */}
           <PreferencesOnPage
             onSelectPreference={handlePreferenceChange}></PreferencesOnPage>

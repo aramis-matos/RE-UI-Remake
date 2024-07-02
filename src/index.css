@@ -224,18 +224,18 @@ input:checked + .slider:before {
   -webkit-user-select: none;
   color: #f7f7f7;
   position: relative;
-  top: 4px;
-  right: 58px;
-  font-size: 1.5em;
+  top: -11px;
+  right: 26px;
+  font-size: 2.5em;
 }
 .lightLabel {
   user-select: none;
   -webkit-user-select: none;
   color: #2e2e2e;
   position: relative;
-  top: 4px;
-  left: 7px;
-  font-size: 1.5em;
+  top: -65px;
+  left: 55px;
+  font-size: 2.5em;
 }
 /* THEME SWITCH */
 
@@ -878,15 +878,14 @@ button.delete {
 /*Traingle styling*/
 .accordion span,
 .accordion-open span,
-.collapsible span
- {
+.collapsible span {
   font-size: 27px;
   color: #c9c9c9;
   display: inline-block;
   margin: 0 auto;
 }
 .collapsible span {
-  font-size: 20px
+  font-size: 20px;
 }
 
 .accordion-open span {
