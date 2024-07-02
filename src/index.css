@@ -29,23 +29,24 @@
   --n500: #9e9e9e;
   --n600: #b1b1b1;
   --n700: #cfcfcf;
-  --n800: #e1e1e1;
+  --n800: #dcdcdc;
   --n850: #f7f7f7;
-  --n900: #ffffff;
+  --n900: #240f3d;
 
   --p50: #240f3d;
   --p100: #3c225e;
   --p200: #533579;
   --p300: #6f489d;
   --p400: #7d4eb6;
-  --p500: #9469c9;
+  --p500: #a881d6;
   --p600: #ae83e2;
   --p700: #c3a0ee;
   --p800: #dec9f8;
   --p900: #eee2fd;
 
-  --c100: #e9b77c;
-  --c150: #e7ab65;
+  --c50: #d474fa;
+  --c100: #7cb6e9;
+  --c150: #68aae3;
 
   --success: #6be67f;
   --error: #e66b6b;
@@ -77,6 +78,7 @@
   --p800: #3c225e;
   --p900: #240f3d;
 
+  --c50: #9034b4;
   --c100: #e9b77c;
   --c150: #e7ab65;
 
@@ -121,7 +123,7 @@ h4 {
 }
 p,
 span {
-  color: var(--n850);
+  color: var(--n900);
   font-family: "Roboto-Medium";
   margin: 10px;
   font-size: 16px;
@@ -249,7 +251,7 @@ input:checked + .slider:before {
 }
 
 .open-modal-content {
-  background: rgb(68, 59, 59);
+  background: var(--n800);
   padding: 20px;
   border-radius: 15px;
   position: relative;
@@ -298,12 +300,12 @@ input:checked + .slider:before {
   }
 
   span {
-    color: white;
+    color: var(--n0);
   }
 
   li {
-    background-color: #9034b4;
-    color: white;
+    background-color: var(--c50);
+    color: var(--n0);
     padding: 8px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -316,7 +318,7 @@ input:checked + .slider:before {
 }
 
 .rulesetOnPageModalContent h4 {
-  color: rgb(255, 255, 255);
+  color: var(--n0);
 }
 
 .rulesetOnPageModalContent select {
@@ -462,7 +464,7 @@ button.delete {
   border-radius: 15px;
   width: 250px;
   text-align: center;
-  color: var(--n850);
+  color: var(--n900);
   margin: 0px 10px 0px 0px;
   font-size: 15px;
 }
@@ -504,7 +506,7 @@ button.delete {
 /* Ruleset Modal */
 
 .ruleset-modal-content {
-  background: rgb(68, 59, 59);
+  background: var(--n800);
   padding: 20px;
   border-radius: 15px;
   position: relative;
@@ -574,7 +576,7 @@ button.delete {
 }
 
 .help-page-modal-content {
-  background: rgb(68, 59, 59);
+  background: var(--n800);
   padding: 20px;
   border-radius: 15px;
   position: absolute;
@@ -593,7 +595,7 @@ button.delete {
     font-size: 25px;
   }
   p {
-    color: #cbcbcb;
+    color: var(--n0);
     padding: 0px 0px 10px 0px;
     text-align: center;
     margin: auto;
@@ -647,7 +649,7 @@ button.delete {
   position: relative; /* Ensure it can be positioned using z-index */
   z-index: 10; /* Higher value to make sure it appears on top */
   border-radius: 0px 0px 15px 15px;
-  color: var(--n850);
+  color: var(--n900);
   transition: max-height 0.5s ease;
   max-height: 0px;
   visibility: hidden;
@@ -690,7 +692,7 @@ button.delete {
   border-radius: 15px;
   min-height: 300px;
   text-align: center;
-  color: var(--n850);
+  color: var(--n900);
   background-color: var(--c100);
 }
 
@@ -710,7 +712,7 @@ button.delete {
 }
 
 .preferences-div h2 {
-  color: var(--n850);
+  color: var(--n900);
   font-size: 30px;
   padding: 14px;
 }
@@ -1078,7 +1080,7 @@ button.delete {
   height: 600px;
 }
 .redact-div h2 {
-  color: var(--n850);
+  color: var(--n900);
 }
 
 .redact-div > .selections {
@@ -1090,7 +1092,7 @@ button.delete {
   overflow-y: auto;
 }
 .modify-div h2 {
-  color: var(--n850);
+  color: var(--n900);
 }
 
 .modify-div > .selections {
