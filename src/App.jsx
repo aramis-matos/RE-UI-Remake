@@ -41,9 +41,11 @@ const App = () => {
     "theme",
     defaultDark ? "dark" : "light"
   );
+  const newTheme = theme === "dark" ? "light" : "dark";
+  const newThemeCap = newTheme === "dark" ? "Dark" : "Light";
 
   const switchTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
+    // const newTheme = theme === "dark" ? "light" : "dark";
     const color = newTheme === "dark" ? "var(--n50)" : "var(--n850)";
     setTheme(newTheme);
     document.querySelector("html").style.backgroundColor = color;
@@ -270,16 +272,18 @@ const App = () => {
             onClick={openOpenModal}>
             OPEN
           </button>
-          <button id="themeButton" onClick={switchTheme}>
-            Switch to {theme === "dark" ? "light" : "dark"} Theme
-          </button>
+          <label className="themeSwitch">
+            <input type="checkbox" onChange={switchTheme} />
+            <span className="slider">
+              <label className="switchLabel">{newThemeCap}</label>
+            </span>
+          </label>
 
           <div className="helpSearch">
             <SearchBar
               handleSearch={(value) => handleSearch(value)}
               className="search"
             />
-
             <div className="help-modal">
               <button
                 className="help-page"

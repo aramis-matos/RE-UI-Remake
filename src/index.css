@@ -90,13 +90,6 @@ body {
   font-family: "Roboto-Medium";
   font-size: 16px;
   scrollbar-gutter: stable;
-  /* background-color: white; */
-}
-.html-elem[data-theme="dark"] {
-  /* background-color: black; */
-}
-.editor {
-  /* background-color: var(--n850); */
 }
 html {
   height: 100%;
@@ -181,8 +174,57 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
   width: 100%;
 }
 
-/*NEW BUTTON*/
+/* THEME SWITCH */
+.themeSwitch {
+  position: relative;
+  display: inline-block;
+  width: 4.5em;
+  height: 3.5em;
+}
+.themeSwitch > input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--p400);
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  border-radius: 1.5em;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.75em;
+  width: 1.75em;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  border-radius: 50%;
+}
+input:checked + .slider:before {
+  transform: translateX(1em);
+  -webkit-transform: translateX(1em);
+  -ms-transform: translateX(1em);
+}
+.switchLabel {
+  color: var(--p50);
+  position: relative;
+  top: 4px;
+  left: 55px;
+  font-size: 1.5em;
+}
+/* THEME SWITCH */
 
+/*NEW BUTTON*/
 .open-modal-overlay {
   position: fixed;
   top: 0;
