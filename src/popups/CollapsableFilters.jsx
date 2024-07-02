@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-const CollapsableFilters = ({ theFunc }) => {
+const CollapsableFilters = ({ theFunc, onFilterChange }) => {
+  const [filterValue, setFilterValue] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [selectedName, setSelectedName] = useState('');
   const [checkedItems, setCheckedItems] = useState({
@@ -76,13 +77,20 @@ const CollapsableFilters = ({ theFunc }) => {
     console.log(id);
   };
 
+  const handleFilterChange = (event) => {
+    const { value } = event.target;
+    setFilterValue(value);
+    onFilterChange(value);
+    console.log(value + " From CollapsableFilters.jsx");
+  };
+
   return (
     <div className="collapsible">
       <button onClick={toggleCollapsible} className="collapsible-toggle">
         FILTERS
       </button>
         <div className="collapsible-content">
-          <div className="filterByFieldLong" onChange={handleChange}>
+          <div className="filterByFieldLong" onChange={handleFilterChange}>
             <h4>Filter By Field/Long Name</h4>
             <div className="filterRadioButtons">
               <input

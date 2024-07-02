@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "reactjs-popup/dist/index.css";
 
-const RulesetPreviewModal = ({ initialData, data, listType }) => {
+const RulesetPreviewModal = ({ initialData, data, listType, selectedPreference }) => {
   const [redacted, setRedacted] = useState([]);
   const [modified, setModified] = useState([]);
 
@@ -20,6 +20,7 @@ const RulesetPreviewModal = ({ initialData, data, listType }) => {
     }
   }, [data, listType]);
 
+  
   useEffect(() => {
     setModified([]);
     setRedacted([]);
@@ -82,12 +83,19 @@ const RulesetPreviewModal = ({ initialData, data, listType }) => {
       }
     }
   };
-
+  const handleAllow = (selectedPreference) => {
+    if (selectedPreference === "White List"){
+      return "ALLOW";
+    }
+    else{
+      return "REDACT";
+    }
+  }
   return (
     <div id="previewRuleset" className="ruleset_preview_modal">
       <div className="content">
         <div className="redact-div">
-          <h2>REDACT</h2>
+          <h2>{handleAllow(selectedPreference)}</h2>
           <div className="selections">
             {redacted.length === 0 && <span>No ruleset selected</span>}
             {redacted.length > 0 &&
