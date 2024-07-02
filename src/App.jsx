@@ -10,13 +10,13 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import TRE from "./tables/TRE";
 import useModal from "./hooks/useModal";
 import PreferencesOnPage from "./popups/PreferencesOnPage";
-import FiltersOnPage from "./popups/FiltersOnPage";
 import RulesetModalOnPage from "./popups/RulesetModalOnPage";
 import HelpModalOnPage from "./popups/HelpModalOnPage";
 import OpenModalOnPage from "./popups/OpenModalOnPage";
 import CollapsableFilters from "./popups/CollapsableFilters";
 
 const App = () => {
+  const[filterType, setFilterType] = useState('');
   const [selectedRuleset, setSelectedRuleset] = useState({});
   const [currentlyEditing, setCurrentlyEditing] = useState({});
   const rulesetPreview = useRef();
@@ -33,6 +33,10 @@ const App = () => {
   const [isOpenModalOpen, setIsOpenModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+
+  const handleFilterTypeChange = (newFilterType) => {
+    setFilterType(newFilterType);
+  };
 
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
@@ -57,6 +61,7 @@ const App = () => {
   }, [reset]);
 
   const handleSearch = (value) => {
+    console.log({filterType});
     const headerArr = ["nitf", "image", "graphic", "text", "Des", "TRE"];
     let index = 0;
     setSearchValue(value);
@@ -297,7 +302,7 @@ const App = () => {
               </button>
             </div>
           </div>
-          <CollapsableFilters theFunc={handleCheckChange}></CollapsableFilters>
+          <CollapsableFilters theFunc={handleCheckChange} onFilterChange={handleFilterTypeChange}></CollapsableFilters>
           {/* <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage> */}
           <PreferencesOnPage></PreferencesOnPage>
           
