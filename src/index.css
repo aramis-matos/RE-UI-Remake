@@ -180,6 +180,7 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
   display: inline-block;
   width: 4.5em;
   height: 3.5em;
+  margin: auto;
 }
 .themeSwitch > input {
   opacity: 0;
@@ -215,11 +216,18 @@ input:checked + .slider:before {
   -webkit-transform: translateX(1em);
   -ms-transform: translateX(1em);
 }
-.switchLabel {
-  color: var(--p50);
+.darkLabel {
+  color: #f7f7f7;
   position: relative;
   top: 4px;
   left: 55px;
+  font-size: 1.5em;
+}
+.lightLabel {
+  color: #2e2e2e;
+  position: relative;
+  top: 4px;
+  right: 110px;
   font-size: 1.5em;
 }
 /* THEME SWITCH */

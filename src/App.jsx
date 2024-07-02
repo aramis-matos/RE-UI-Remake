@@ -263,6 +263,13 @@ const App = () => {
     <div className="editor" data-theme={theme}>
       <div className="left-panel">
         <div className="content">
+          <label className="themeSwitch">
+            <input type="checkbox" onChange={switchTheme} />
+            <span className="slider">
+              <label className="darkLabel">Dark</label>
+              <label className="lightLabel">Light</label>
+            </span>
+          </label>
           <button id="newRuleset" onClick={openRulesetModal}>
             NEW
           </button>
@@ -272,12 +279,6 @@ const App = () => {
             onClick={openOpenModal}>
             OPEN
           </button>
-          <label className="themeSwitch">
-            <input type="checkbox" onChange={switchTheme} />
-            <span className="slider">
-              <label className="switchLabel">{newThemeCap}</label>
-            </span>
-          </label>
 
           <div className="helpSearch">
             <SearchBar
