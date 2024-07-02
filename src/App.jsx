@@ -91,7 +91,6 @@ const App = () => {
 
 
   const handleSearch = (value) => {
-    console.log({ filterType });
     const headerArr = ["nitf", "image", "graphic", "text", "Des", "TRE"];
     let index = 0;
     setSearchValue(value);

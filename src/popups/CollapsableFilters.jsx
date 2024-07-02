@@ -74,14 +74,12 @@ const CollapsableFilters = ({ theFunc, onFilterChange }) => {
   const handleChange = (e) => {
     const { id } = e.target;
     setSelectedName(id);
-    console.log(id);
   };
 
   const handleFilterChange = (event) => {
     const { value } = event.target;
     setFilterValue(value);
     onFilterChange(value);
-    console.log(value + " From CollapsableFilters.jsx");
   };
 
   return (
