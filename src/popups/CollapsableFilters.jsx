@@ -74,14 +74,12 @@ const CollapsableFilters = ({ theFunc, onFilterChange }) => {
   const handleChange = (e) => {
     const { id } = e.target;
     setSelectedName(id);
-    console.log(id);
   };
 
   const handleFilterChange = (event) => {
     const { value } = event.target;
     setFilterValue(value);
     onFilterChange(value);
-    console.log(value + " From CollapsableFilters.jsx");
   };
 
   return (
@@ -109,6 +107,15 @@ const CollapsableFilters = ({ theFunc, onFilterChange }) => {
                 value="Long Name"
               />
               <label htmlFor="radioLongName">Long Name</label>
+            </div>
+            <div className="filterRadioButtons">
+              <input
+                type="radio"
+                id="radioBoth"
+                name="filterType"
+                value="Both"
+              />
+              <label htmlFor="radioFieldName">Both</label>
             </div>
           </div>
           <div className="fieldDiv">

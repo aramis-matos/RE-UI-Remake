@@ -90,7 +90,6 @@ const App = () => {
   }, [reset]);
 
   const handleSearch = (value) => {
-    console.log({ filterType });
     const headerArr = ["nitf", "image", "graphic", "text", "Des", "TRE"];
     let index = 0;
     setSearchValue(value);
@@ -166,7 +165,14 @@ const App = () => {
         return new RegExp(value, "i").test(fieldName.replace(/\s/g, ""));
       } else if (filterType === "Long Name") {
         return new RegExp(value, "i").test(longName.replace(/\s/g, ""));
-      } else {
+      } else if (filterType === "Both") {
+        return (
+          new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
+          new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
+          new RegExp(value, "i").test(setTo.replace(/\s/g, ""))
+        );
+      }
+      else {
         return (
           new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
           new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
@@ -400,6 +406,7 @@ const App = () => {
               onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="filePanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
@@ -427,6 +434,7 @@ const App = () => {
               onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="imagePanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
@@ -454,6 +462,7 @@ const App = () => {
               onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="graphicPanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
@@ -481,6 +490,7 @@ const App = () => {
               onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="textPanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
@@ -508,6 +518,7 @@ const App = () => {
               onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="desPanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
@@ -534,6 +545,7 @@ const App = () => {
               onChange={recordCheckboxChange} //needs to changed if it works
               listType={listType}
               idPassed="trePanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
