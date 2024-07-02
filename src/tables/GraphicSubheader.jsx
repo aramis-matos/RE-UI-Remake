@@ -54,7 +54,7 @@ const GraphicSubheader = (props) => {
             onChange={handleCheckAll}
             disabled={true}
           />
-          {props.listType === "white list" ? (
+          {props.selectedPreference === "White List" ? (
             <div style={{ color: "green", paddingLeft: "5px" }}>✔</div>
           ) : (
             <div style={{ color: "red", paddingLeft: "5px" }}>X</div>

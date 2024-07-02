@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/*import React, { useState } from "react";
 
 const FiltersOnPage = ({ theFunc }) => {
   const defaultChecked = {
@@ -76,3 +76,4 @@ const FiltersOnPage = ({ theFunc }) => {
 };
 
 export default FiltersOnPage;
+*/

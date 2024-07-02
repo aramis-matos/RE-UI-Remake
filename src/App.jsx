@@ -10,7 +10,6 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import TRE from "./tables/TRE";
 import useModal from "./hooks/useModal";
 import PreferencesOnPage from "./popups/PreferencesOnPage";
-import FiltersOnPage from "./popups/FiltersOnPage";
 import RulesetModalOnPage from "./popups/RulesetModalOnPage";
 import HelpModalOnPage from "./popups/HelpModalOnPage";
 import OpenModalOnPage from "./popups/OpenModalOnPage";
@@ -18,6 +17,7 @@ import CollapsableFilters from "./popups/CollapsableFilters";
 import useLocalStorage from "use-local-storage";
 
 const App = () => {
+  const [filterType, setFilterType] = useState("");
   const [selectedRuleset, setSelectedRuleset] = useState({});
   const [currentlyEditing, setCurrentlyEditing] = useState({});
   const rulesetPreview = useRef();
@@ -63,6 +63,10 @@ const App = () => {
   }, []);
   /* Dark / Light Mode */
 
+  const handleFilterTypeChange = (newFilterType) => {
+    setFilterType(newFilterType);
+  };
+
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
       if (selectedRuleset.name == null) {
@@ -89,24 +93,21 @@ const App = () => {
     const headerArr = ["nitf", "image", "graphic", "text", "Des", "TRE"];
     let index = 0;
     setSearchValue(value);
+
     for (const header of document.getElementsByClassName("header")) {
       let numElements = 0;
       let numRemoved = 0;
+
       if (headerArr[index] !== "TRE") {
+        // Handle non-TRE headers
         for (const element of header.getElementsByClassName("field-row")) {
           numElements++;
           const fieldRowElements = element.children;
           const fieldName = fieldRowElements[1].textContent;
           const longName = fieldRowElements[2].textContent;
           const setTo = fieldRowElements[3].children[0].value;
-          if (
-            value &&
-            !(
-              new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
-              new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
-              new RegExp(value, "i").test(setTo.replace(/\s/g, ""))
-            )
-          ) {
+
+          if (value && !filterByFieldName(fieldName, longName, setTo)) {
             element.style.visibility = "hidden";
             element.style.maxHeight = "0px";
             numRemoved++;
@@ -116,11 +117,13 @@ const App = () => {
           }
         }
       } else {
+        // Handle TRE headers
         for (const treHeader of header.getElementsByClassName(
           "tre-subheader"
         )) {
           let numElementsTre = 0;
           let numRemovedTre = 0;
+
           for (const treElement of treHeader.getElementsByClassName(
             "mini-field-row"
           )) {
@@ -130,15 +133,8 @@ const App = () => {
             const fieldName = treRowElements[1].textContent;
             const longName = treRowElements[2].textContent;
             const setTo = treRowElements[3].children[0].value;
-            if (
-              value &&
-              !(
-                new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
-                new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
-                new RegExp(value, "i").test(setTo.replace(/\s/g, "")) ||
-                new RegExp(value, "i").test(treName.replace(/\s/g, ""))
-              )
-            ) {
+
+            if (value && !filterByFieldName(fieldName, longName, setTo)) {
               treElement.style.visibility = "hidden";
               treElement.style.maxHeight = "0px";
               numRemovedTre++;
@@ -147,8 +143,10 @@ const App = () => {
               treElement.style.maxHeight = "40px";
             }
           }
+
           numElements += numElementsTre;
           numRemoved += numRemovedTre;
+
           if (numElementsTre === numRemovedTre) {
             treHeader.style.display = "none";
           } else {
@@ -156,12 +154,34 @@ const App = () => {
           }
         }
       }
+
       if (numElements === numRemoved) {
         header.style.display = "none";
       } else {
         header.style = {};
       }
+
       index++;
+    }
+
+    function filterByFieldName(fieldName, longName, setTo) {
+      if (filterType === "Field Name") {
+        return new RegExp(value, "i").test(fieldName.replace(/\s/g, ""));
+      } else if (filterType === "Long Name") {
+        return new RegExp(value, "i").test(longName.replace(/\s/g, ""));
+      } else if (filterType === "Both") {
+        return (
+          new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
+          new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
+          new RegExp(value, "i").test(setTo.replace(/\s/g, ""))
+        );
+      } else {
+        return (
+          new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
+          new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
+          new RegExp(value, "i").test(setTo.replace(/\s/g, ""))
+        );
+      }
     }
   };
 
@@ -308,8 +328,8 @@ const App = () => {
           <label className="themeSwitch">
             <input type="checkbox" onChange={switchTheme} />
             <span className="slider">
-              <label className="darkLabel">Dark</label>
-              <label className="lightLabel">Light</label>
+              <label className="darkLabel">☾</label>
+              <label className="lightLabel"> ☀︎ </label>
             </span>
           </label>
           <button id="newRuleset" onClick={openRulesetModal}>
@@ -337,7 +357,9 @@ const App = () => {
               </button>
             </div>
           </div>
-          <CollapsableFilters theFunc={handleCheckChange}></CollapsableFilters>
+          <CollapsableFilters
+            theFunc={handleCheckChange}
+            onFilterChange={handleFilterTypeChange}></CollapsableFilters>
           {/* <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage> */}
           <PreferencesOnPage
             onSelectPreference={handlePreferenceChange}></PreferencesOnPage>
@@ -389,6 +411,7 @@ const App = () => {
               onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="filePanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
@@ -416,6 +439,7 @@ const App = () => {
               onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="imagePanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
@@ -443,6 +467,7 @@ const App = () => {
               onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="graphicPanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
@@ -470,6 +495,7 @@ const App = () => {
               onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="textPanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
@@ -497,6 +523,7 @@ const App = () => {
               onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="desPanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
@@ -523,6 +550,7 @@ const App = () => {
               onChange={recordCheckboxChange} //needs to changed if it works
               listType={listType}
               idPassed="trePanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
