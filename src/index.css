@@ -924,6 +924,8 @@ button.delete {
   min-width: 206px;
 }
 .longName-header {
+  position: relative;
+  left: 3.5%;
   width: 50%;
 }
 .field-sub-header {
