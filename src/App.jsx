@@ -89,12 +89,6 @@ const App = () => {
     setFieldUpdatesToExport([]);
   }, [reset]);
 
-
-
-
-
-
-
   const handleSearch = (value) => {
     console.log({ filterType });
     const headerArr = ["nitf", "image", "graphic", "text", "Des", "TRE"];
@@ -182,22 +176,6 @@ const App = () => {
     }
   };
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const openRulesetModal = () => {
     setIsRulesetModalOpen(true);
   };

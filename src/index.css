@@ -90,6 +90,7 @@ body {
   font-family: "Roboto-Medium";
   font-size: 16px;
   scrollbar-gutter: stable;
+  transition: 0.5s ease-out;
 }
 html {
   height: 100%;
@@ -220,14 +221,14 @@ input:checked + .slider:before {
   color: #f7f7f7;
   position: relative;
   top: 4px;
-  left: 55px;
+  right: 58px;
   font-size: 1.5em;
 }
 .lightLabel {
   color: #2e2e2e;
   position: relative;
   top: 4px;
-  right: 110px;
+  left: 7px;
   font-size: 1.5em;
 }
 /* THEME SWITCH */
@@ -496,6 +497,10 @@ button.delete {
 }
 .help-page h2 {
   margin: 20px;
+}
+
+.image-container img {
+  max-width: 75%;
 }
 
 /*RULESET ON PAGE CSS*/
@@ -866,12 +871,18 @@ button.delete {
 }
 /*Traingle styling*/
 .accordion span,
-.accordion-open span {
+.accordion-open span,
+.collapsible span
+ {
   font-size: 27px;
   color: #c9c9c9;
   display: inline-block;
   margin: 0 auto;
 }
+.collapsible span {
+  font-size: 20px
+}
+
 .accordion-open span {
   transform: rotate(180deg);
 }
