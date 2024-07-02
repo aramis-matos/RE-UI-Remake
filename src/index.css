@@ -17,8 +17,42 @@
   font-family: "Roboto-Medium";
   src: url(./assets/fonts/Roboto-Medium.ttf) format("truetype");
 }
-/* COLOR PALETTE */
+
+/* LIGHT MODE COLOR PALETTE */
 :root {
+  --n0: #212121;
+  --n50: #2e2e2e;
+  --n100: #3b3b3b;
+  --n200: #515151;
+  --n300: #626262;
+  --n400: #7e7e7e;
+  --n500: #9e9e9e;
+  --n600: #b1b1b1;
+  --n700: #cfcfcf;
+  --n800: #e1e1e1;
+  --n850: #f7f7f7;
+  --n900: #ffffff;
+
+  --p50: #240f3d;
+  --p100: #3c225e;
+  --p200: #533579;
+  --p300: #6f489d;
+  --p400: #7d4eb6;
+  --p500: #9469c9;
+  --p600: #ae83e2;
+  --p700: #c3a0ee;
+  --p800: #dec9f8;
+  --p900: #eee2fd;
+
+  --c100: #e9b77c;
+  --c150: #e7ab65;
+
+  --success: #6be67f;
+  --error: #e66b6b;
+}
+
+/* DARK MODE COLOR PALETTE*/
+[data-theme="dark"] {
   --n0: #ffffff;
   --n50: #f7f7f7;
   --n100: #e1e1e1;
@@ -49,36 +83,34 @@
   --success: #6be67f;
   --error: #e66b6b;
 }
+
 /* GLOBAL CSS SETTINGS */
 html,
 body {
   font-family: "Roboto-Medium";
   font-size: 16px;
   scrollbar-gutter: stable;
-  background-color: var(--n800);
 }
-
 html {
   height: 100%;
 }
-
 /*text settings general*/
 h1 {
-  color: white;
+  color: var(--n0);
   margin: auto;
   font-family: "Roboto";
   font-size: 48px;
   font-weight: bold;
 }
 h2 {
-  color: white;
+  color: var(--n0);
   margin: auto;
   font-family: "Roboto";
   font-size: 36px;
   font-weight: bold;
 }
 h3 {
-  color: white;
+  color: var(--n0);
   font-family: "Roboto";
   font-size: 24px;
 }
@@ -142,8 +174,65 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
   width: 100%;
 }
 
-/*NEW BUTTON*/
+/* THEME SWITCH */
+.themeSwitch {
+  position: relative;
+  display: inline-block;
+  width: 4.5em;
+  height: 3.5em;
+  margin: auto;
+}
+.themeSwitch > input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--p400);
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  border-radius: 1.5em;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.75em;
+  width: 1.75em;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  border-radius: 50%;
+}
+input:checked + .slider:before {
+  transform: translateX(1em);
+  -webkit-transform: translateX(1em);
+  -ms-transform: translateX(1em);
+}
+.darkLabel {
+  color: #f7f7f7;
+  position: relative;
+  top: 4px;
+  left: 55px;
+  font-size: 1.5em;
+}
+.lightLabel {
+  color: #2e2e2e;
+  position: relative;
+  top: 4px;
+  right: 110px;
+  font-size: 1.5em;
+}
+/* THEME SWITCH */
 
+/*NEW BUTTON*/
 .open-modal-overlay {
   position: fixed;
   top: 0;
@@ -210,14 +299,13 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
     color: white;
   }
 
-
   li {
-      background-color: #9034b4;
-      color: white;
-      padding: 8px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      width: 100%;
+    background-color: #9034b4;
+    color: white;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: 100%;
   }
 }
 
@@ -233,62 +321,6 @@ GROUPING BY PAGE SIDES. DO NOT DELETE BETWEEN THIS AND THE LINE THAT SAYS
   height: 35px;
   width: 370px;
   font-size: large;
-}
-
-.ruleset-modal-content {
-  background: rgb(68, 59, 59);
-  padding: 20px;
-  border-radius: 15px;
-  position: relative;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 500px;
-  height: 440px;
-
-  p {
-    color: white;
-    margin: auto;
-    font-family: "Roboto";
-    font-size: 36px;
-    font-weight: bold;
-  }
-}
-
-.ruleset-close-button {
-  position: absolute;
-  top: 2%;
-  right: 2%;
-  width: 18%;
-  height: 10%;
-  background: solid;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.ruleset-save-button {
-  position: absolute;
-  top: 85%;
-  right: 2%;
-  width: 18%;
-  height: 10%;
-  background: solid;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.ruleset-open-button {
-  color: var(--n0);
-  background-color: var(--p500);
-  border: none;
-  border-radius: 10px;
-  width: 300px;
-  height: 60px;
-  text-align: center;
-  font-size: 18px;
-  margin-bottom: 8px;
-  transition: 0.2s;
-  min-height: 60px;
 }
 
 /*OPEN Button --- i think all of this pertains but not sure*/
@@ -426,42 +458,35 @@ button.delete {
   border: 3px solid var(--n400);
   background-color: var(--c100);
   border-radius: 15px;
-  outline: solid;
-  outline-width: 0px;
-  outline-color: var(--n500);
   width: 250px;
   text-align: center;
-  color: var(--n100);
+  color: var(--n850);
   margin: 0px 10px 0px 0px;
+  font-size: 15px;
 }
 .search-match {
   display: flex;
   gap: 20px;
 }
-#search:hover {
+.search:hover {
   background-color: var(--c150);
-  color: white;
+  color: var(--n850);
 }
 /*help button and modal*/
-#helpButton {
+.help-page {
   border: 3px solid var(--n400);
   border-radius: 15px;
   background-color: var(--c100);
   height: 44px;
   width: 44px;
+  justify-content: center;
+  align-items: center;
 }
-#helpButton:hover {
+.help-page:hover {
   background-color: var(--c150);
   color: white;
 }
 
-.help-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  background-color: var(--c100);
-}
 .faq {
   display: flex;
   flex-direction: column;
@@ -473,245 +498,9 @@ button.delete {
   margin: 20px;
 }
 
-.popup-content {
-  /* Overrides reactjs-popup defaults */
-  padding: 0px;
-  border: 0;
-  border-radius: 15px;
-  background-color: transparent;
-}
-
-#app {
-  width: 100%;
-  margin: none;
-}
-.container-fluid {
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-}
-.main-page {
-  /* translate: 60px 56px 0px; */
-  min-height: 945px;
-  max-width: 1840px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-#not-redactable {
-  color: rgb(190, 190, 190);
-}
-/* REDACT MENU */
-.editor,
-.redact,
-.compare,
-.templates-manager {
-  display: grid;
-  
-  flex-direction: row;
-  justify-content: space-between;
-  width: auto;
-  grid-template-columns: 18% 60% auto;
-}
-
-
-/* REDACT MENU: R/M Preview Element */
-.right-panel {
-  width: 400px;
-}
-.ruleset_preview_modal {
-  width: 100%;
-  height: 100%;
-  font-size: 18px;
-  display:flex;
-}
-.ruleset_preview_modal > .content {
-  display: flex;
-  flex-direction: column;
-  border-radius: 15px;
-  width: 100%;
-  color: white;
-  flex-shrink: 1;
-  top:5px;
-}
-.content {
-  position: -webkit-sticky;
-  position: sticky;
-  align-self:flex-start;
-  display:flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-
-
-
-
-
-
-
-
-
-/* PREFERENCES ON PAGE CSS */
-/* Preferences Preview Modal */
-.preferences_preview_modal {
-  width: 100%;
-  height: 100%;
-  font-size: 18px;
-}
-
-.preferences_preview_modal > .content {
-  display: flex;
-  flex-direction: column;
-  border-radius: 15px;
-  width: 100%;
-  color: white;
-}
-
-.preferences_preview_modal .content .preferences-div input[type="text"] {
-  width: 100%;
-  padding: 8px;
-  margin-top: 10px;
-  box-sizing: border-box;
-}
-
-.preferences_preview_modal .content .preferences-div input[type="radio"] {
-  margin-right: 5px;
-}
-
-.preferences_preview_modal .content .preferences-div label {
-  margin-right: 20px;
-}
-
-.preferences-div h2 {
-  color: var(--n850);
-  font-size:30px;
-  padding:14px;
-}
-
-.preferences-div {
-  height: 300px;
-  margin: 10px;
-  border-radius: 15px;
-  text-align: center;
-  color: var(--n850);
-  background-color: var(--c100);
-  border: 3px solid var(--n400);
-  width: 100%;
-  position: relative;
-  left: -12px;
-  padding: 0px;
-}
-
-.prefSaveButton {
-  text-align: center;
-  width: 100px;
-  height: 40px;
-  margin-top: 10px;
-}
-
-.preference-option {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-
-
-.filters_preview_modal .content {
-  display: flex;
-  flex-direction: column;
-  border-radius: 15px;
-  width: 100%;
-  color: rgb(0, 0, 0);
-}
-
-.filters-div {
-  margin: 15px;
-}
-
-.filters-div h2 {
-  color: rgb(0, 0, 0);
-  font-size:30px;
-  padding-left: 20%;
-}
-
-.filters-div h5 {
-  color: rgb(0, 0, 0);
-  text-align: left;
-  margin-left: 10px;
-  margin-bottom: 0;
-}
-
-.filters_preview_modal h2 {
-  color: var(--n850);
-}
-
-.filters-div input[type="text"] {
-  width: 100%;
-  padding: 8px;
-  margin-top: 10px;
-  box-sizing: border-box;
-}
-
-.filters-div label {
-  margin: 0;
-}
-
-/* Container for radio buttons and labels */
-.filterRadioButtons {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.filters-div input[type="radio"] {
-  margin-right: 10px;
-}
-
-/* Container for checkboxes and labels */
-.filterCheckboxes {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.filters-div input[type="checkbox"] {
-  margin-right: 10px;
-}
-
-
-
-.redact-div {
-  height: 600px;
-}
-.redact-div h2 {
-  color: var(--n850);
-}
-
-
-
-
 /*RULESET ON PAGE CSS*/
 /* Ruleset Modal */
-.ruleset-modal {
-  max-width: 1000px;
-  max-height: 500px;
-}
 
-.ruleset-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(165, 150, 150, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  
-}
 .ruleset-modal-content {
   background: rgb(68, 59, 59);
   padding: 20px;
@@ -726,24 +515,33 @@ button.delete {
     margin: auto;
     font-family: "Roboto";
     font-size: 36px;
-  font-weight: bold;
-
+    font-weight: bold;
   }
 }
 
 .ruleset-close-button {
   position: absolute;
   top: 2%;
-  right: 1.2%;
-  width: 8%;
-  height: 30px;
+  right: 2%;
+  width: 18%;
+  height: 10%;
   background: solid;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
 }
 
-
+.ruleset-save-button {
+  position: absolute;
+  top: 85%;
+  right: 2%;
+  width: 18%;
+  height: 10%;
+  background: solid;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
 
 .ruleset-open-button {
   color: var(--n0);
@@ -757,21 +555,6 @@ button.delete {
   margin-bottom: 8px;
   transition: 0.2s;
   min-height: 60px;
-}
-
-.rulesetObject {
-  padding: 15px;
-}
-
-.openPageModalContent h4{
-  color:rgb(255, 255, 255)
-
-}
-
-.openOnPageModalContent select {
-  height: 35px;
-  width: 370px;
-  font-size: large;
 }
 /*Help MODAL ON PAGE*/
 
@@ -840,7 +623,6 @@ button.delete {
 .compare,
 .templates-manager {
   display: flex;
-
   flex-direction: row;
   justify-content: space-between;
   width: auto;
@@ -854,7 +636,7 @@ button.delete {
 }
 
 .collapsible-toggle {
-  background-color:  #6f489d;
+  background-color: #6f489d;
   color: white;
   padding: 10px;
   border: none;
@@ -874,14 +656,13 @@ button.delete {
   position: relative; /* Ensure it can be positioned using z-index */
   z-index: 10; /* Higher value to make sure it appears on top */
   height: 360px;
-  width: 280px;  
+  width: 280px;
   border-radius: 15px;
   color: var(--n850);
-  
 }
 
 .collapsible-content h2 {
-  color: rgb(0, 0, 0);
+  color: var(--n800);
   text-align: center;
 }
 
@@ -902,6 +683,13 @@ button.delete {
   width: 100%;
   font-size: 18px;
   height: auto;
+  border: 3px solid var(--n400);
+  margin: 10px 0px 10px 0px;
+  border-radius: 15px;
+  min-height: 300px;
+  text-align: center;
+  color: var(--n850);
+  background-color: var(--c100);
 }
 
 .preferences-div input[type="text"] {
@@ -915,12 +703,14 @@ button.delete {
   margin-right: 5px;
 }
 
-.preferences-div h2 {
-  color: var(--n850);
+.preferences_preview_modal label {
+  margin-right: 20px;
 }
 
-.preferences-div {
-  margin: 15px;
+.preferences-div h2 {
+  color: var(--n850);
+  font-size: 30px;
+  padding: 14px;
 }
 
 .prefSaveButton {
@@ -934,10 +724,11 @@ button.delete {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .preference-option input[type="text"] {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 /*FILTER ON PAGE CSS*/
@@ -949,13 +740,27 @@ button.delete {
   max-width: 300px;
 }
 
+.filters_preview_modal .content {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  width: 100%;
+  color: var(--n800);
+}
+
+.filters-div {
+  margin: 15px;
+  color: var(--n850);
+}
 
 .filters-div h2 {
-  color: black;
+  color: var(--n800);
+  font-size: 30px;
+  padding-left: 20%;
 }
 
 .filters-div h4 {
-  color: black;
+  color: (--n850);
   text-align: left;
   margin-left: 10px;
   margin-bottom: 0;
@@ -999,30 +804,12 @@ button.delete {
   margin-right: 10px;
 }
 
-/*Redact, Modify, Preference, Filters Divs CSS*/
-.redact-div,
-.modify-div, 
-.filters_preview_modal {
-  margin: 10px 10px 0px 0px;
-  border-radius: 15px;
-  text-align: center;
-  color: var(--n850);
-  background-color: var(--c100);
-  border: 3px solid var(--n400);
-  width: 100%;
-  position: relative;
-}
-.redact-div {
-  margin-top: 20px;
-  height: 600px;
-}
-.redact-div h2 {
-  color: var(--n850);
-}
+/*rest of filters css: around line 970
 /*RULESET ON PAGE CSS*/
 /* Ruleset Modal */
 .ruleset-modal {
   max-height: 500px;
+  max-width: 1000px;
 }
 
 .ruleset-modal-overlay {
@@ -1051,7 +838,7 @@ button.delete {
 }
 
 .openPageModalContent h4 {
-  color: rgb(255, 255, 255);
+  color: white;
 }
 
 .openOnPageModalContent select {
@@ -1113,7 +900,7 @@ button.delete {
   flex-direction: column;
   row-gap: 30px;
 }
-.header{
+.header {
   z-index: 1;
 }
 .field-header {
@@ -1194,11 +981,11 @@ button.delete {
   opacity: 0;
 }
 .tre-panel {
-  transition: max-height 50s ease;
+  transition: max-height 30s ease;
 }
 
-.tre-fields-list > .field-row, 
-.tre-fields-list> .mini-field-row,
+.tre-fields-list > .field-row,
+.tre-fields-list > .mini-field-row,
 .tre-panel > .field-header {
   padding-left: 10px;
 }
@@ -1258,6 +1045,7 @@ button.delete {
   width: 300px;
   height: 100%;
   font-size: 18px;
+  display: flex;
 }
 .ruleset_preview_modal > .content {
   display: flex;
@@ -1270,6 +1058,25 @@ button.delete {
 }
 
 /*Redact, Modify, Preference, Filters Divs CSS*/
+.redact-div,
+.modify-div,
+.filters_preview_modal {
+  margin: 10px 10px 0px 0px;
+  border-radius: 15px;
+  text-align: center;
+  color: var(--n850);
+  background-color: var(--c100);
+  border: 3px solid var(--n400);
+  width: 100%;
+  position: relative;
+}
+.redact-div {
+  margin-top: 20px;
+  height: 600px;
+}
+.redact-div h2 {
+  color: var(--n850);
+}
 
 .redact-div > .selections {
   overflow-y: auto;
@@ -1387,74 +1194,4 @@ button.delete {
 .submitBtn {
   margin: 0;
   border-radius: 0px 0px 15px 15px;
-}
-
-/* RULESPECS */
-.rule-specs,
-.name-ruleset {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 12px;
-  height: auto;
-  width: 100%;
-  max-width: 350px;
-  text-align: center;
-  color: var(--n0);
-  background-color: var(--n850);
-  border-radius: 0px 0px 15px 15px;
-  border: 3px solid var(--n400);
-  border-top: none;
-}
-
-.question {
-  background-color: var(--n700);
-  color: var(--n0);
-  width: 75%;
-  height: fit-content;
-  min-height: 48px;
-  font-size: 26px;
-  text-align: left;
-  margin-bottom: 5px;
-  transition: 0.2s;
-}
-.question:hover {
-  background-color: var(--n500);
-}
-.answer {
-  display: none;
-  flex-direction: column;
-  width: 70%;
-  border-left: 5px ridge var(--p500);
-}
-
-/* NAMERULESET */
-.name-ruleset {
-  border-top: 3px solid var(--n400);
-  border-left: none;
-  border-right: none;
-  border-radius: 0;
-  width: 400px;
-}
-.submitBtn {
-  margin: 0;
-  border-radius: 0px 0px 15px 15px;
-}
-
-/* RULESPECS */
-.rule-specs,
-.name-ruleset {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 12px;
-  height: auto;
-  width: 100%;
-  max-width: 350px;
-  text-align: center;
-  color: var(--n0);
-  background-color: var(--n850);
-  border-radius: 0px 0px 15px 15px;
-  border: 3px solid var(--n400);
-  border-top: none;
 }

@@ -14,6 +14,7 @@ import RulesetModalOnPage from "./popups/RulesetModalOnPage";
 import HelpModalOnPage from "./popups/HelpModalOnPage";
 import OpenModalOnPage from "./popups/OpenModalOnPage";
 import CollapsableFilters from "./popups/CollapsableFilters";
+import useLocalStorage from "use-local-storage";
 
 const App = () => {
   const[filterType, setFilterType] = useState('');
@@ -33,6 +34,34 @@ const App = () => {
   const [isOpenModalOpen, setIsOpenModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [selectedPreference, setSelectedPreference] = useState();
+
+  /* Dark / Light Mode */
+  const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const [theme, setTheme] = useLocalStorage(
+    "theme",
+    defaultDark ? "dark" : "light"
+  );
+  const newTheme = theme === "dark" ? "light" : "dark";
+  const newThemeCap = newTheme === "dark" ? "Dark" : "Light";
+
+  const switchTheme = () => {
+    // const newTheme = theme === "dark" ? "light" : "dark";
+    const color = newTheme === "dark" ? "var(--n50)" : "var(--n850)";
+    setTheme(newTheme);
+    document.querySelector("html").style.backgroundColor = color;
+    document.querySelector("body").style.backgroundColor = color;
+  };
+  const setBackground = () => {
+    const color = theme === "dark" ? "var(--n50)" : "var(--n850)";
+    document.querySelector("html").style.backgroundColor = color;
+    document.querySelector("html").style.backgroundColor = color;
+  };
+
+  useEffect(() => {
+    setBackground();
+  }, []);
+  /* Dark / Light Mode */
 
   const handleFilterTypeChange = (newFilterType) => {
     setFilterType(newFilterType);
@@ -102,6 +131,7 @@ const App = () => {
   
           for (const treElement of treHeader.getElementsByClassName("mini-field-row")) {
             numElementsTre++;
+            const treName = treHeader.children[0].id;
             const treRowElements = treElement.children;
             const fieldName = treRowElements[1].textContent;
             const longName = treRowElements[2].textContent;
@@ -300,10 +330,21 @@ const App = () => {
     updateCheckedArr(Number(id - 1), checked);
   };
 
+  const handlePreferenceChange = (preference) => {
+    setSelectedPreference(preference);
+  };
+
   return (
-    <div className="editor">
+    <div className="editor" data-theme={theme}>
       <div className="left-panel">
         <div className="content">
+          <label className="themeSwitch">
+            <input type="checkbox" onChange={switchTheme} />
+            <span className="slider">
+              <label className="darkLabel">Dark</label>
+              <label className="lightLabel">Light</label>
+            </span>
+          </label>
           <button id="newRuleset" onClick={openRulesetModal}>
             NEW
           </button>
@@ -313,19 +354,12 @@ const App = () => {
             onClick={openOpenModal}>
             OPEN
           </button>
-          {/* <button
-            id="saveRuleset"
-            data-testid="saveRuleset"
-            onClick={handleSave}
-          >SAVE
-          </button> */}
 
           <div className="helpSearch">
             <SearchBar
               handleSearch={(value) => handleSearch(value)}
               className="search"
             />
-
             <div className="help-modal">
               <button
                 className="help-page"
@@ -338,9 +372,8 @@ const App = () => {
           </div>
           <CollapsableFilters theFunc={handleCheckChange} onFilterChange={handleFilterTypeChange}></CollapsableFilters>
           {/* <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage> */}
-          <PreferencesOnPage></PreferencesOnPage>
-          
-
+          <PreferencesOnPage
+            onSelectPreference={handlePreferenceChange}></PreferencesOnPage>
         </div>
       </div>
       <div className="nitf-headers" key={reset}>
@@ -386,8 +419,9 @@ const App = () => {
             </button>
             <FileHeader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
+              idPassed="filePanel"
             />
           </div>
         )}
@@ -412,8 +446,9 @@ const App = () => {
             </button>
             <ImageSubheader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
+              idPassed="imagePanel"
             />
           </div>
         )}
@@ -438,8 +473,9 @@ const App = () => {
             </button>
             <GraphicSubheader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
+              idPassed="graphicPanel"
             />
           </div>
         )}
@@ -464,8 +500,9 @@ const App = () => {
             </button>
             <TextSubheader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
+              idPassed="textPanel"
             />
           </div>
         )}
@@ -490,8 +527,9 @@ const App = () => {
             </button>
             <DesSubheader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
+              idPassed="desPanel"
             />
           </div>
         )}
@@ -515,8 +553,9 @@ const App = () => {
             </button>
             <TRE
               data={initialData}
-              onChange={recordCheckboxChange}
+              onChange={recordCheckboxChange} //needs to changed if it works
               listType={listType}
+              idPassed="trePanel"
             />
           </div>
         )}
@@ -530,6 +569,7 @@ const App = () => {
           initialData={initialData}
           data={currentlyEditing}
           listType={listType}
+          selectedPreference={selectedPreference}
         />
       </div>
     </div>
@@ -566,7 +606,6 @@ function showTable(header, table) {
       row.style.visibility = "visible";
       row.style.opacity = "1";
       row.style.maxHeight = "40px";
-      console.log(row);
     }
   }
 }

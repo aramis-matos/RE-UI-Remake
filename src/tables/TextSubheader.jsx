@@ -51,6 +51,7 @@ const TextSubheader = (props) => {
             id="checkAllText"
             datatestid="checkAllText"
             onChange={handleCheckAll}
+            disabled={true}
           />
           {props.listType === "white list" ? (
             <div style={{ color: "green", paddingLeft: "5px" }}>✔</div>
