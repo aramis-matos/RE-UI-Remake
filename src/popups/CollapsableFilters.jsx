@@ -110,6 +110,15 @@ const CollapsableFilters = ({ theFunc, onFilterChange }) => {
               />
               <label htmlFor="radioLongName">Long Name</label>
             </div>
+            <div className="filterRadioButtons">
+              <input
+                type="radio"
+                id="radioBoth"
+                name="filterType"
+                value="Both"
+              />
+              <label htmlFor="radioFieldName">Both</label>
+            </div>
           </div>
           <div className="fieldDiv">
             <h4>Filter By Section</h4>
