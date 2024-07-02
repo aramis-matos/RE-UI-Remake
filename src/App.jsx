@@ -33,6 +33,7 @@ const App = () => {
   const [isOpenModalOpen, setIsOpenModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [selectedPreference, setSelectedPreference] = useState();
 
   useEffect(() => {
     if (selectedRuleset.rulesetId !== undefined) {
@@ -261,6 +262,10 @@ const App = () => {
     const { checked, id } = e.target;
     updateCheckedArr(Number(id - 1), checked);
   };
+  
+  const handlePreferenceChange = (preference) => {
+    setSelectedPreference(preference);
+  };
 
   return (
     <div className="editor">
@@ -300,7 +305,7 @@ const App = () => {
           </div>
           <CollapsableFilters theFunc={handleCheckChange}></CollapsableFilters>
           {/* <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage> */}
-          <PreferencesOnPage></PreferencesOnPage>
+          <PreferencesOnPage onSelectPreference={handlePreferenceChange}></PreferencesOnPage>
           
 
         </div>
@@ -498,6 +503,7 @@ const App = () => {
           initialData={initialData}
           data={currentlyEditing}
           listType={listType}
+          selectedPreference = {selectedPreference}
         />
       </div>
     </div>
