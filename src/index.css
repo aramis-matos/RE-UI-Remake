@@ -719,26 +719,7 @@ button.delete {
   margin-right: 10px;
 }
 
-/*Redact, Modify, Preference, Filters Divs CSS*/
-.redact-div,
-.modify-div, 
-.filters_preview_modal {
-  margin: 10px 10px 0px 0px;
-  border-radius: 15px;
-  text-align: center;
-  color: var(--n850);
-  background-color: var(--c100);
-  border: 3px solid var(--n400);
-  width: 100%;
-  position: relative;
-}
-.redact-div {
-  margin-top: 20px;
-  height: 600px;
-}
-.redact-div h2 {
-  color: var(--n850);
-}
+/*rest of filters css: around line 970
 /*RULESET ON PAGE CSS*/
 /* Ruleset Modal */
 .ruleset-modal {
@@ -915,7 +896,7 @@ button.delete {
   opacity: 0;
 }
 .tre-panel {
-  transition: max-height 50s ease;
+  transition: max-height 30s ease;
 }
 
 .tre-fields-list > .field-row, 
@@ -992,6 +973,25 @@ button.delete {
 }
 
 /*Redact, Modify, Preference, Filters Divs CSS*/
+.redact-div,
+.modify-div, 
+.filters_preview_modal {
+  margin: 10px 10px 0px 0px;
+  border-radius: 15px;
+  text-align: center;
+  color: var(--n850);
+  background-color: var(--c100);
+  border: 3px solid var(--n400);
+  width: 100%;
+  position: relative;
+}
+.redact-div {
+  margin-top: 20px;
+  height: 600px;
+}
+.redact-div h2 {
+  color: var(--n850);
+}
 
 .redact-div > .selections {
   overflow-y: auto;
@@ -1109,74 +1109,4 @@ button.delete {
 .submitBtn {
   margin: 0;
   border-radius: 0px 0px 15px 15px;
-}
-
-/* RULESPECS */
-.rule-specs,
-.name-ruleset {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 12px;
-  height: auto;
-  width: 100%;
-  max-width: 350px;
-  text-align: center;
-  color: var(--n0);
-  background-color: var(--n850);
-  border-radius: 0px 0px 15px 15px;
-  border: 3px solid var(--n400);
-  border-top: none;
-}
-
-.question {
-  background-color: var(--n700);
-  color: var(--n0);
-  width: 75%;
-  height: fit-content;
-  min-height: 48px;
-  font-size: 26px;
-  text-align: left;
-  margin-bottom: 5px;
-  transition: 0.2s;
-}
-.question:hover {
-  background-color: var(--n500);
-}
-.answer {
-  display: none;
-  flex-direction: column;
-  width: 70%;
-  border-left: 5px ridge var(--p500);
-}
-
-/* NAMERULESET */
-.name-ruleset {
-  border-top: 3px solid var(--n400);
-  border-left: none;
-  border-right: none;
-  border-radius: 0;
-  width: 400px;
-}
-.submitBtn {
-  margin: 0;
-  border-radius: 0px 0px 15px 15px;
-}
-
-/* RULESPECS */
-.rule-specs,
-.name-ruleset {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 12px;
-  height: auto;
-  width: 100%;
-  max-width: 350px;
-  text-align: center;
-  color: var(--n0);
-  background-color: var(--n850);
-  border-radius: 0px 0px 15px 15px;
-  border: 3px solid var(--n400);
-  border-top: none;
 }
