@@ -85,7 +85,7 @@ const CollapsableFilters = ({ theFunc, onFilterChange }) => {
   return (
     <div className="collapsible">
       <button onClick={toggleCollapsible} className="collapsible-toggle">
-        FILTERS
+      <span>&#9660;</span>FILTERS<span>&#9660;</span>
       </button>
         <div className="collapsible-content">
           <div className="filterByFieldLong" onChange={handleFilterChange}>

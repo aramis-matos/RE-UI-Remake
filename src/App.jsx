@@ -89,7 +89,6 @@ const App = () => {
     setFieldUpdatesToExport([]);
   }, [reset]);
 
-
   const handleSearch = (value) => {
     const headerArr = ["nitf", "image", "graphic", "text", "Des", "TRE"];
     let index = 0;
