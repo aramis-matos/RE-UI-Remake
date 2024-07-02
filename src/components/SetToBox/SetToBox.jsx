@@ -42,7 +42,7 @@ const SetToBox = (props) => {
   };
 
   return (
-    <div>
+    <div className = "set-to-box-class">
       <input
         id={props.id}
         type="text"
