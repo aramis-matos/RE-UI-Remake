@@ -262,6 +262,8 @@ const App = () => {
     updateCheckedArr(Number(id - 1), checked);
   };
 
+
+
   return (
     <div className="editor">
       <div className="left-panel">

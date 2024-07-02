@@ -545,40 +545,40 @@ button.delete {
 
 /* Collapsable Filters CSS (Jack 1) */
 
-.collapsible {
-  margin: 10px 0;
-}
-
 .collapsible-toggle {
-  background-color:  #6f489d;
-  color: white;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 0px;
   width: 300px;
-  height: 0%;
   text-align: center;
-  font-size: 16px;
-  font-size: 20px;
+  border-radius: 15px;
 }
 
 .collapsible-content {
-  padding: 10px;
   background-color: var(--c100);
-  border: 1px solid #ccc;
-  margin-top: 5px;
+  border: 3px solid var(--n400);
   position: relative; /* Ensure it can be positioned using z-index */
   z-index: 10; /* Higher value to make sure it appears on top */
-  height: 360px;
-  width: 280px;  
-  border-radius: 15px;
+  border-radius: 0px 0px 15px 15px;
   color: var(--n850);
-  
+  transition: max-height 0.5s ease;
+  max-height: 0px;
+  visibility: hidden;
+  z-index: 0;
+  padding: 0px;
 }
 
 .collapsible-content h2 {
   color: var(--n800);
   text-align: center;
+}
+
+.collapsible-content div,
+.collapsible-content label,
+.collapsible-content input {
+  transition: max-height 0.6s ease;
+  max-height: 0px;
+  visibility: hidden;
+  z-index: 0;
 }
 
 /* REDACT MENU: R/M Preview Element */
@@ -595,7 +595,6 @@ button.delete {
 /* PREFERENCES ON PAGE CSS */
 /* Preferences Preview Modal */
 .preferences_preview_modal {
-  width: 100%;
   font-size: 18px;
   height: auto;
   border: 3px solid var(--n400);
@@ -873,6 +872,7 @@ button.delete {
 .fieldname-box {
   width: 15%;
   text-align: left;
+  overflow-wrap: anywhere;
 }
 .file-name {
   position: -webkit-sticky;
