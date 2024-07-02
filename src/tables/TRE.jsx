@@ -78,6 +78,7 @@ const TRE = (props) => {
             id="checkAllTre"
             datatestid="checkAllTre"
             onChange={handleCheckAll}
+            disabled={true}
           />
           {props.listType === "white list" ? (
             <div style={{ color: "green", paddingLeft: "5px" }}>✔</div>
@@ -105,7 +106,7 @@ const TRE = (props) => {
                 <div
                   key={field.key}
                   id={!field.editable ? "not-redactable" : undefined}
-                  className="field-row"
+                  className="mini-field-row"
                 >
                   <Checkbox
                     className="checkAllTre"

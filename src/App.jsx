@@ -6,7 +6,6 @@ import GraphicSubheader from "./tables/GraphicSubheader";
 import TextSubheader from "./tables/TextSubheader";
 import DesSubheader from "./tables/DesSubheader";
 import RulesetPreviewModal from "./popups/RulesetPreviewModal";
-import PreferencesModal from "./popups/PreferencesModal";
 import SearchBar from "./components/SearchBar/SearchBar";
 import TRE from "./tables/TRE";
 import useModal from "./hooks/useModal";
@@ -15,6 +14,7 @@ import FiltersOnPage from "./popups/FiltersOnPage";
 import RulesetModalOnPage from "./popups/RulesetModalOnPage";
 import HelpModalOnPage from "./popups/HelpModalOnPage";
 import OpenModalOnPage from "./popups/OpenModalOnPage";
+import CollapsableFilters from "./popups/CollapsableFilters";
 import useLocalStorage from "use-local-storage";
 
 const App = () => {
@@ -34,6 +34,7 @@ const App = () => {
   const [isOpenModalOpen, setIsOpenModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [selectedPreference, setSelectedPreference] = useState();
 
   /* Dark / Light Mode */
   const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -91,16 +92,15 @@ const App = () => {
     for (const header of document.getElementsByClassName("header")) {
       let numElements = 0;
       let numRemoved = 0;
-      const button = header.getElementsByClassName("accordion-open");
-      console.log(button);
-      for (const element of header.getElementsByClassName("field-row")) {
-        numElements++;
-        const fieldRowElements = element.children;
-        const fieldName = fieldRowElements[1].textContent;
-        const longName = fieldRowElements[2].textContent;
-        const setTo = fieldRowElements[3].children[0].value;
-        if (value && button) {
+      if (headerArr[index] !== "TRE") {
+        for (const element of header.getElementsByClassName("field-row")) {
+          numElements++;
+          const fieldRowElements = element.children;
+          const fieldName = fieldRowElements[1].textContent;
+          const longName = fieldRowElements[2].textContent;
+          const setTo = fieldRowElements[3].children[0].value;
           if (
+            value &&
             !(
               new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
               new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
@@ -109,21 +109,59 @@ const App = () => {
           ) {
             element.style.visibility = "hidden";
             element.style.maxHeight = "0px";
-            element.style.zIndex = 0;
             numRemoved++;
           } else {
             element.style.visibility = "visible";
             element.style.maxHeight = "40px";
           }
         }
-        if (numElements === numRemoved) {
-          header.style.display = "none";
-        } else {
-          header.style = {};
-          header.style.zIndex = 1;
+      } else {
+        for (const treHeader of header.getElementsByClassName(
+          "tre-subheader"
+        )) {
+          let numElementsTre = 0;
+          let numRemovedTre = 0;
+          for (const treElement of treHeader.getElementsByClassName(
+            "mini-field-row"
+          )) {
+            numElementsTre++;
+            const treName = treHeader.children[0].id;
+            const treRowElements = treElement.children;
+            const fieldName = treRowElements[1].textContent;
+            const longName = treRowElements[2].textContent;
+            const setTo = treRowElements[3].children[0].value;
+            if (
+              value &&
+              !(
+                new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
+                new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
+                new RegExp(value, "i").test(setTo.replace(/\s/g, "")) ||
+                new RegExp(value, "i").test(treName.replace(/\s/g, ""))
+              )
+            ) {
+              treElement.style.visibility = "hidden";
+              treElement.style.maxHeight = "0px";
+              numRemovedTre++;
+            } else {
+              treElement.style.visibility = "visible";
+              treElement.style.maxHeight = "40px";
+            }
+          }
+          numElements += numElementsTre;
+          numRemoved += numRemovedTre;
+          if (numElementsTre === numRemovedTre) {
+            treHeader.style.display = "none";
+          } else {
+            treHeader.style = {};
+          }
         }
-        index++;
       }
+      if (numElements === numRemoved) {
+        header.style.display = "none";
+      } else {
+        header.style = {};
+      }
+      index++;
     }
   };
 
@@ -259,6 +297,10 @@ const App = () => {
     updateCheckedArr(Number(id - 1), checked);
   };
 
+  const handlePreferenceChange = (preference) => {
+    setSelectedPreference(preference);
+  };
+
   return (
     <div className="editor" data-theme={theme}>
       <div className="left-panel">
@@ -295,8 +337,10 @@ const App = () => {
               </button>
             </div>
           </div>
-          <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage>
-          <PreferencesOnPage></PreferencesOnPage>
+          <CollapsableFilters theFunc={handleCheckChange}></CollapsableFilters>
+          {/* <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage> */}
+          <PreferencesOnPage
+            onSelectPreference={handlePreferenceChange}></PreferencesOnPage>
         </div>
       </div>
       <div className="nitf-headers" key={reset}>
@@ -342,8 +386,9 @@ const App = () => {
             </button>
             <FileHeader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
+              idPassed="filePanel"
             />
           </div>
         )}
@@ -368,8 +413,9 @@ const App = () => {
             </button>
             <ImageSubheader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
+              idPassed="imagePanel"
             />
           </div>
         )}
@@ -394,8 +440,9 @@ const App = () => {
             </button>
             <GraphicSubheader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
+              idPassed="graphicPanel"
             />
           </div>
         )}
@@ -420,8 +467,9 @@ const App = () => {
             </button>
             <TextSubheader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
+              idPassed="textPanel"
             />
           </div>
         )}
@@ -446,8 +494,9 @@ const App = () => {
             </button>
             <DesSubheader
               data={initialData}
-              onChange={recordCheckboxChange}
+              onRedactChange={recordCheckboxChange}
               listType={listType}
+              idPassed="desPanel"
             />
           </div>
         )}
@@ -471,8 +520,9 @@ const App = () => {
             </button>
             <TRE
               data={initialData}
-              onChange={recordCheckboxChange}
+              onChange={recordCheckboxChange} //needs to changed if it works
               listType={listType}
+              idPassed="trePanel"
             />
           </div>
         )}
@@ -486,6 +536,7 @@ const App = () => {
           initialData={initialData}
           data={currentlyEditing}
           listType={listType}
+          selectedPreference={selectedPreference}
         />
       </div>
     </div>
@@ -522,7 +573,6 @@ function showTable(header, table) {
       row.style.visibility = "visible";
       row.style.opacity = "1";
       row.style.maxHeight = "40px";
-      console.log(row);
     }
   }
 }

@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 
-const PreferencesOnPage = () => {
-  const [preference, setPreference] = useState('');
+const PreferencesOnPage = ({onSelectPreference}) => {
+  const [preference, setPreference] = useState('Black List');
   const [inputSecuritySystem, setInputSecuritySystem] = useState('');
 
   const handleChange = (event) => {
     setPreference(event.target.value);
+    handlePreferenceSelect(event);
+  };
+
+  const handlePreferenceSelect = (event) => {
+    onSelectPreference(event.target.value);
   };
 
   const handleSubmit = (event) => {

@@ -295,8 +295,12 @@ input:checked + .slider:before {
     padding: 0;
   }
 
+  span {
+    color: white;
+  }
+
   li {
-    background-color: #4caf50;
+    background-color: #9034b4;
     color: white;
     padding: 8px;
     margin-bottom: 10px;
@@ -317,62 +321,6 @@ input:checked + .slider:before {
   height: 35px;
   width: 370px;
   font-size: large;
-}
-
-.ruleset-modal-content {
-  background: rgb(68, 59, 59);
-  padding: 20px;
-  border-radius: 15px;
-  position: relative;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 500px;
-  height: 440px;
-
-  p {
-    color: white;
-    margin: auto;
-    font-family: "Roboto";
-    font-size: 36px;
-    font-weight: bold;
-  }
-}
-
-.ruleset-close-button {
-  position: absolute;
-  top: 2%;
-  right: 2%;
-  width: 18%;
-  height: 10%;
-  background: solid;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.ruleset-save-button {
-  position: absolute;
-  top: 85%;
-  right: 2%;
-  width: 18%;
-  height: 10%;
-  background: solid;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.ruleset-open-button {
-  color: var(--n0);
-  background-color: var(--p500);
-  border: none;
-  border-radius: 10px;
-  width: 300px;
-  height: 60px;
-  text-align: center;
-  font-size: 18px;
-  margin-bottom: 8px;
-  transition: 0.2s;
-  min-height: 60px;
 }
 
 /*OPEN Button --- i think all of this pertains but not sure*/
@@ -510,42 +458,35 @@ button.delete {
   border: 3px solid var(--n400);
   background-color: var(--c100);
   border-radius: 15px;
-  outline: solid;
-  outline-width: 0px;
-  outline-color: var(--n500);
   width: 250px;
   text-align: center;
-  color: var(--n100);
+  color: var(--n850);
   margin: 0px 10px 0px 0px;
+  font-size: 15px;
 }
 .search-match {
   display: flex;
   gap: 20px;
 }
-#search:hover {
+.search:hover {
   background-color: var(--c150);
-  color: white;
+  color: var(--n850);
 }
 /*help button and modal*/
-#helpButton {
+.help-page {
   border: 3px solid var(--n400);
   border-radius: 15px;
   background-color: var(--c100);
   height: 44px;
   width: 44px;
+  justify-content: center;
+  align-items: center;
 }
-#helpButton:hover {
+.help-page:hover {
   background-color: var(--c150);
   color: white;
 }
 
-.help-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  background-color: var(--c100);
-}
 .faq {
   display: flex;
   flex-direction: column;
@@ -556,6 +497,66 @@ button.delete {
 .help-page h2 {
   margin: 20px;
 }
+
+/*RULESET ON PAGE CSS*/
+/* Ruleset Modal */
+
+.ruleset-modal-content {
+  background: rgb(68, 59, 59);
+  padding: 20px;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 740px;
+  height: 480px;
+
+  p {
+    color: white;
+    margin: auto;
+    font-family: "Roboto";
+    font-size: 36px;
+    font-weight: bold;
+  }
+}
+
+.ruleset-close-button {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  width: 18%;
+  height: 10%;
+  background: solid;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.ruleset-save-button {
+  position: absolute;
+  top: 85%;
+  right: 2%;
+  width: 18%;
+  height: 10%;
+  background: solid;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.ruleset-open-button {
+  color: var(--n0);
+  background-color: var(--p500);
+  border: none;
+  border-radius: 10px;
+  width: 300px;
+  height: 60px;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 8px;
+  transition: 0.2s;
+  min-height: 60px;
+}
+/*Help MODAL ON PAGE*/
 
 .help-page-modal-overlay {
   position: fixed;
@@ -628,6 +629,43 @@ button.delete {
   grid-template-columns: 18% auto 18;
 }
 
+/* Collapsable Filters CSS (Jack 1) */
+
+.collapsible {
+  margin: 10px 0;
+}
+
+.collapsible-toggle {
+  background-color: #6f489d;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  width: 300px;
+  height: 0%;
+  text-align: center;
+  font-size: 16px;
+  font-size: 20px;
+}
+
+.collapsible-content {
+  padding: 10px;
+  background-color: var(--c100);
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  position: relative; /* Ensure it can be positioned using z-index */
+  z-index: 10; /* Higher value to make sure it appears on top */
+  height: 360px;
+  width: 280px;
+  border-radius: 15px;
+  color: var(--n850);
+}
+
+.collapsible-content h2 {
+  color: var(--n800);
+  text-align: center;
+}
+
 /* REDACT MENU: R/M Preview Element */
 
 .filters_preview_modal label {
@@ -645,6 +683,13 @@ button.delete {
   width: 100%;
   font-size: 18px;
   height: auto;
+  border: 3px solid var(--n400);
+  margin: 10px 0px 10px 0px;
+  border-radius: 15px;
+  min-height: 300px;
+  text-align: center;
+  color: var(--n850);
+  background-color: var(--c100);
 }
 
 .preferences-div input[type="text"] {
@@ -658,12 +703,14 @@ button.delete {
   margin-right: 5px;
 }
 
-.preferences-div h2 {
-  color: var(--n850);
+.preferences_preview_modal label {
+  margin-right: 20px;
 }
 
-.preferences-div {
-  margin: 15px;
+.preferences-div h2 {
+  color: var(--n850);
+  font-size: 30px;
+  padding: 14px;
 }
 
 .prefSaveButton {
@@ -677,10 +724,11 @@ button.delete {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .preference-option input[type="text"] {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 /*FILTER ON PAGE CSS*/
@@ -692,13 +740,23 @@ button.delete {
   max-width: 300px;
 }
 
+.filters_preview_modal .content {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  width: 100%;
+  color: var(--n800);
+}
+
 .filters-div {
-  height: auto;
   margin: 15px;
+  color: var(--n850);
 }
 
 .filters-div h2 {
-  color: var(--n850);
+  color: var(--n800);
+  font-size: 30px;
+  padding-left: 20%;
 }
 
 .filters-div h4 {
@@ -746,31 +804,12 @@ button.delete {
   margin-right: 10px;
 }
 
-/*Redact, Modify, Preference, Filters Divs CSS*/
-.redact-div,
-.modify-div,
-.preferences_preview_modal,
-.filters_preview_modal {
-  margin: 10px 10px 0px 0px;
-  border-radius: 15px;
-  text-align: center;
-  color: var(--n850);
-  background-color: var(--c100);
-  border: 3px solid var(--n400);
-  width: 100%;
-  position: relative;
-}
-.redact-div {
-  margin-top: 20px;
-  height: 600px;
-}
-.redact-div h2 {
-  color: var(--n850);
-}
+/*rest of filters css: around line 970
 /*RULESET ON PAGE CSS*/
 /* Ruleset Modal */
 .ruleset-modal {
   max-height: 500px;
+  max-width: 1000px;
 }
 
 .ruleset-modal-overlay {
@@ -799,7 +838,7 @@ button.delete {
 }
 
 .openPageModalContent h4 {
-  color: rgb(255, 255, 255);
+  color: white;
 }
 
 .openOnPageModalContent select {
@@ -861,7 +900,9 @@ button.delete {
   flex-direction: column;
   row-gap: 30px;
 }
-
+.header {
+  z-index: 1;
+}
 .field-header {
   display: flex;
   flex-direction: row;
@@ -893,7 +934,7 @@ button.delete {
   overflow: auto;
   scrollbar-gutter: stable;
 }*/
-
+.mini-field-row,
 .field-row {
   display: flex;
   align-items: center;
@@ -904,13 +945,13 @@ button.delete {
   transition: max-height 0.5s ease;
   max-height: 0px;
   visibility: hidden;
-  opacity: 0;
+  z-index: 0;
 }
-
+.mini-field-row div,
 .field-row div {
   margin-left: 10px;
 }
-
+.mini-field-row:hover,
 .field-row:hover {
   background-color: var(--n600);
 }
@@ -940,10 +981,11 @@ button.delete {
   opacity: 0;
 }
 .tre-panel {
-  transition: max-height 50s ease;
+  transition: max-height 30s ease;
 }
 
 .tre-fields-list > .field-row,
+.tre-fields-list > .mini-field-row,
 .tre-panel > .field-header {
   padding-left: 10px;
 }
@@ -954,7 +996,7 @@ button.delete {
   display: flex;
   flex-direction: column;
   overflow: auto;
-  background-color: var(--n800);
+  background-color: silver;
   border: 3px solid var(--p300);
   border-top: 0px;
   transition: max-height 1s ease;
@@ -988,7 +1030,8 @@ button.delete {
 }
 
 .tre-subheader {
-  max-height: 0px;
+  display: block;
+  unicode-bidi: isolate;
 }
 /* MIDDLE CONTENT DONE*/
 
@@ -1002,6 +1045,7 @@ button.delete {
   width: 300px;
   height: 100%;
   font-size: 18px;
+  display: flex;
 }
 .ruleset_preview_modal > .content {
   display: flex;
@@ -1014,6 +1058,25 @@ button.delete {
 }
 
 /*Redact, Modify, Preference, Filters Divs CSS*/
+.redact-div,
+.modify-div,
+.filters_preview_modal {
+  margin: 10px 10px 0px 0px;
+  border-radius: 15px;
+  text-align: center;
+  color: var(--n850);
+  background-color: var(--c100);
+  border: 3px solid var(--n400);
+  width: 100%;
+  position: relative;
+}
+.redact-div {
+  margin-top: 20px;
+  height: 600px;
+}
+.redact-div h2 {
+  color: var(--n850);
+}
 
 .redact-div > .selections {
   overflow-y: auto;
@@ -1068,7 +1131,7 @@ button.delete {
   justify-content: space-between;
 }
 #not-redactable {
-  color: rgb(190, 190, 190);
+  color: var(--n500);
 }
 
 /* Used to implent the stick of the left and right panels and the center headers*/
@@ -1131,74 +1194,4 @@ button.delete {
 .submitBtn {
   margin: 0;
   border-radius: 0px 0px 15px 15px;
-}
-
-/* RULESPECS */
-.rule-specs,
-.name-ruleset {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 12px;
-  height: auto;
-  width: 100%;
-  max-width: 350px;
-  text-align: center;
-  color: var(--n0);
-  background-color: var(--n850);
-  border-radius: 0px 0px 15px 15px;
-  border: 3px solid var(--n400);
-  border-top: none;
-}
-
-.question {
-  background-color: var(--n700);
-  color: var(--n0);
-  width: 75%;
-  height: fit-content;
-  min-height: 48px;
-  font-size: 26px;
-  text-align: left;
-  margin-bottom: 5px;
-  transition: 0.2s;
-}
-.question:hover {
-  background-color: var(--n500);
-}
-.answer {
-  display: none;
-  flex-direction: column;
-  width: 70%;
-  border-left: 5px ridge var(--p500);
-}
-
-/* NAMERULESET */
-.name-ruleset {
-  border-top: 3px solid var(--n400);
-  border-left: none;
-  border-right: none;
-  border-radius: 0;
-  width: 400px;
-}
-.submitBtn {
-  margin: 0;
-  border-radius: 0px 0px 15px 15px;
-}
-
-/* RULESPECS */
-.rule-specs,
-.name-ruleset {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 12px;
-  height: auto;
-  width: 100%;
-  max-width: 350px;
-  text-align: center;
-  color: var(--n0);
-  background-color: var(--n850);
-  border-radius: 0px 0px 15px 15px;
-  border: 3px solid var(--n400);
-  border-top: none;
 }
