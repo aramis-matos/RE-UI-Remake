@@ -408,6 +408,7 @@ const App = () => {
               onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="filePanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
@@ -435,6 +436,7 @@ const App = () => {
               onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="imagePanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
@@ -462,6 +464,7 @@ const App = () => {
               onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="graphicPanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
@@ -489,6 +492,7 @@ const App = () => {
               onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="textPanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
@@ -516,6 +520,7 @@ const App = () => {
               onRedactChange={recordCheckboxChange}
               listType={listType}
               idPassed="desPanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
@@ -542,6 +547,7 @@ const App = () => {
               onChange={recordCheckboxChange} //needs to changed if it works
               listType={listType}
               idPassed="trePanel"
+              selectedPreference={selectedPreference}
             />
           </div>
         )}
