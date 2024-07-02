@@ -90,11 +90,6 @@ const App = () => {
   }, [reset]);
 
 
-
-
-
-
-
   const handleSearch = (value) => {
     console.log({ filterType });
     const headerArr = ["nitf", "image", "graphic", "text", "Des", "TRE"];
@@ -172,7 +167,14 @@ const App = () => {
         return new RegExp(value, "i").test(fieldName.replace(/\s/g, ""));
       } else if (filterType === "Long Name") {
         return new RegExp(value, "i").test(longName.replace(/\s/g, ""));
-      } else {
+      } else if (filterType === "Both") {
+        return (
+          new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
+          new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
+          new RegExp(value, "i").test(setTo.replace(/\s/g, ""))
+        );
+      }
+      else {
         return (
           new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
           new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
@@ -182,22 +184,6 @@ const App = () => {
     }
   };
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const openRulesetModal = () => {
     setIsRulesetModalOpen(true);
   };
