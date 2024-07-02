@@ -60,29 +60,32 @@ const App = () => {
     setFieldUpdatesToExport([]);
   }, [reset]);
 
+
+
+
+
+
+
   const handleSearch = (value) => {
-    console.log({filterType});
+    console.log({ filterType });
     const headerArr = ["nitf", "image", "graphic", "text", "Des", "TRE"];
     let index = 0;
     setSearchValue(value);
+  
     for (const header of document.getElementsByClassName("header")) {
       let numElements = 0;
       let numRemoved = 0;
+  
       if (headerArr[index] !== "TRE") {
         // Handle non-TRE headers
-      for (const element of header.getElementsByClassName("field-row")) {
-        numElements++;
-        const fieldRowElements = element.children;
-        const fieldName = fieldRowElements[1].textContent;
-        const longName = fieldRowElements[2].textContent;
-        const setTo = fieldRowElements[3].children[0].value;
-          if (value && 
-            !(
-              new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
-              new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
-              new RegExp(value, "i").test(setTo.replace(/\s/g, ""))
-            )
-          ) {
+        for (const element of header.getElementsByClassName("field-row")) {
+          numElements++;
+          const fieldRowElements = element.children;
+          const fieldName = fieldRowElements[1].textContent;
+          const longName = fieldRowElements[2].textContent;
+          const setTo = fieldRowElements[3].children[0].value;
+  
+          if (value && !filterByFieldName(fieldName, longName, setTo)) {
             element.style.visibility = "hidden";
             element.style.maxHeight = "0px";
             numRemoved++;
@@ -92,22 +95,19 @@ const App = () => {
           }
         }
       } else {
+        // Handle TRE headers
         for (const treHeader of header.getElementsByClassName("tre-subheader")) {
           let numElementsTre = 0;
           let numRemovedTre = 0;
+  
           for (const treElement of treHeader.getElementsByClassName("mini-field-row")) {
             numElementsTre++;
             const treRowElements = treElement.children;
             const fieldName = treRowElements[1].textContent;
             const longName = treRowElements[2].textContent;
             const setTo = treRowElements[3].children[0].value;
-            if (value && 
-              !(
-                new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
-                new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
-                new RegExp(value, "i").test(setTo.replace(/\s/g, ""))
-              )
-            ) {
+  
+            if (value && !filterByFieldName(fieldName, longName, setTo)) {
               treElement.style.visibility = "hidden";
               treElement.style.maxHeight = "0px";
               numRemovedTre++;
@@ -116,23 +116,57 @@ const App = () => {
               treElement.style.maxHeight = "40px";
             }
           }
+  
           numElements += numElementsTre;
           numRemoved += numRemovedTre;
+  
           if (numElementsTre === numRemovedTre) {
             treHeader.style.display = "none";
-          }else{
+          } else {
             treHeader.style = {};
           }
         }
       }
-        if (numElements === numRemoved) {
-          header.style.display = "none";
-        } else {
-          header.style = {};
-        }
-        index++;
+  
+      if (numElements === numRemoved) {
+        header.style.display = "none";
+      } else {
+        header.style = {};
       }
+  
+      index++;
+    }
+  
+    function filterByFieldName(fieldName, longName, setTo) {
+      if (filterType === "Field Name") {
+        return new RegExp(value, "i").test(fieldName.replace(/\s/g, ""));
+      } else if (filterType === "Long Name") {
+        return new RegExp(value, "i").test(longName.replace(/\s/g, ""));
+      } else {
+        return (
+          new RegExp(value, "i").test(fieldName.replace(/\s/g, "")) ||
+          new RegExp(value, "i").test(longName.replace(/\s/g, "")) ||
+          new RegExp(value, "i").test(setTo.replace(/\s/g, ""))
+        );
+      }
+    }
   };
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   const openRulesetModal = () => {
     setIsRulesetModalOpen(true);
