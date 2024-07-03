@@ -23,14 +23,14 @@ const TextSubheader = (props) => {
       for (let i = 0; i < relatedCheckboxes.length; i++) {
         if (!relatedCheckboxes[i].checked) {
           relatedCheckboxes[i].checked = true;
-          props.onChange(true, relatedCheckboxes[i].id.replace("check", ""));
+          props.onRedactChange(true, relatedCheckboxes[i].id.replace("check", ""));
         }
       }
     } else {
       for (let i = 0; i < relatedCheckboxes.length; i++) {
         if (relatedCheckboxes[i].checked) {
           relatedCheckboxes[i].checked = false;
-          props.onChange(false, relatedCheckboxes[i].id.replace("check", ""));
+          props.onRedactChange(false, relatedCheckboxes[i].id.replace("check", ""));
         }
       }
     }
@@ -40,7 +40,7 @@ const TextSubheader = (props) => {
     if (!checked) {
       document.getElementById("checkAllText").checked = false;
     }
-    props.onChange(checked, fieldName);
+    props.onRedactChange(checked, fieldName);
   };
 
   return (
@@ -91,7 +91,7 @@ const TextSubheader = (props) => {
             <SetToBox
               id={"set-to-box"}
               value={setTo[field.fieldName]}
-              onChange={props.onChange}
+              onChange={props.onRedactChange}
               fieldName={field.fieldName}
               disabled={!field.editable}
             />
