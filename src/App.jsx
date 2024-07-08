@@ -260,6 +260,7 @@ const App = () => {
     setUpdates((prevUpdates) => {
       return { ...prevUpdates, [fieldName + "setTo"]: value };
     });
+    handleSearch(searchValue);
   };
 
   const createNewRuleset = (name) => {
