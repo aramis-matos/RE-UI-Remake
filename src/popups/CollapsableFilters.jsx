@@ -89,7 +89,7 @@ const CollapsableFilters = ({ theFunc, onFilterChange }) => {
       </button>
         <div className="collapsible-content">
           <div className="filterByFieldLong" onChange={handleFilterChange}>
-            <h4>Filter By Field/Long Name</h4>
+            <h4>Search By Field/Long Name</h4>
             <div className="filterRadioButtons">
               <input
                 type="radio"
@@ -114,7 +114,7 @@ const CollapsableFilters = ({ theFunc, onFilterChange }) => {
                 id="radioBoth"
                 name="filterType"
                 value="Both"
-                checked="true"
+                defaultChecked="true"
               />
               <label htmlFor="radioFieldName">Both</label>
             </div>
