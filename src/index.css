@@ -808,7 +808,7 @@ button.delete {
 .filterCheckboxes {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .filters-div input[type="checkbox"] {

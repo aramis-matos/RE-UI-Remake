@@ -114,7 +114,7 @@ const CollapsableFilters = ({ theFunc, onFilterChange }) => {
                 id="radioBoth"
                 name="filterType"
                 value="Both"
-                checked="true"
+                defaultChecked={true}
               />
               <label htmlFor="radioFieldName">Both</label>
             </div>
