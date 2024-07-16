@@ -165,7 +165,7 @@ const App = () => {
       index++;
     }
 
-    function filterByFieldName(fieldName, longName, setTo) {
+    function filterByFieldName(fieldName, longName, setTo, filterType) {
       if (filterType === "Field Name") {
         return new RegExp(value, "i").test(fieldName.replace(/\s/g, ""));
       } else if (filterType === "Long Name") {
