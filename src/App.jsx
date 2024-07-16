@@ -65,6 +65,7 @@ const App = () => {
 
   const handleFilterTypeChange = (newFilterType) => {
     setFilterType(newFilterType);
+    handleSearch(searchValue, newFilterType);
   };
 
   useEffect(() => {
@@ -89,7 +90,7 @@ const App = () => {
     setFieldUpdatesToExport([]);
   }, [reset]);
 
-  const handleSearch = (value) => {
+  const handleSearch = (value, filterType) => {
     const headerArr = ["nitf", "image", "graphic", "text", "Des", "TRE"];
     let index = 0;
     setSearchValue(value);
@@ -106,7 +107,7 @@ const App = () => {
           const longName = fieldRowElements[2].textContent;
           const setTo = fieldRowElements[3].children[0].value;
 
-          if (value && !filterByFieldName(fieldName, longName, setTo)) {
+          if (value && !filterByFieldName(fieldName, longName, setTo, filterType)) {
             element.style.visibility = "hidden";
             element.style.maxHeight = "0px";
             numRemoved++;
@@ -169,7 +170,7 @@ const App = () => {
       index++;
     }
 
-    function filterByFieldName(fieldName, longName, setTo) {
+    function filterByFieldName(fieldName, longName, setTo, filterType) {
       if (filterType === "Field Name") {
         return new RegExp(value, "i").test(fieldName.replace(/\s/g, ""));
       } else if (filterType === "Long Name") {
