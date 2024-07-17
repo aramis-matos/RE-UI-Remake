@@ -167,8 +167,11 @@ const App = () => {
         }
       }
 
-      const panel = header.getElementsByClassName("field-panel")[0]
-      console.log(header)
+      let panel = header.getElementsByClassName("field-panel")[0]
+      if (panel == null) {
+        panel = document.getElementById("trePanel")
+      }
+      console.log(panel)
       if (numElements === numRemoved) {
         header.style.visibility = "hidden"
         header.style.maxHeight = "0px"
@@ -213,7 +216,7 @@ const App = () => {
   };
 
   const updateSearchShow = (index, newVal) => {
-    let tempArr = [...searchShow];
+    let tempArr = searchShow
     tempArr[index] = newVal;
     setSearchShow(tempArr)
   }
