@@ -67,6 +67,7 @@ const App = () => {
 
   const handleFilterTypeChange = (newFilterType) => {
     setFilterType(newFilterType);
+    handleSearch(searchValue, newFilterType);
   };
 
   useEffect(() => {
@@ -91,7 +92,7 @@ const App = () => {
     setFieldUpdatesToExport([]);
   }, [reset]);
 
-  const handleSearch = (value) => {
+  const handleSearch = (value, filterType) => {
     const headerArr = ["nitf", "image", "graphic", "text", "Des", "TRE"];
     let index = 0;
     setSearchValue(value);
@@ -99,8 +100,7 @@ const App = () => {
     for (const header of document.getElementsByClassName("header")) {
       let numElements = 0;
       let numRemoved = 0;
-
-      if (headerArr[index] !== "TRE") {
+      if (headerArr[index] !== "TRE" && shouldBeVisibile(index)) {
         // Handle non-TRE headers
         for (const element of header.getElementsByClassName("field-row")) {
           numElements++;
@@ -109,7 +109,7 @@ const App = () => {
           const longName = fieldRowElements[2].textContent;
           const setTo = fieldRowElements[3].children[0].value;
 
-          if (value && !filterByFieldName(fieldName, longName, setTo)) {
+          if (value && !filterByFieldName(fieldName, longName, setTo, filterType)) {
             element.style.visibility = "hidden";
             element.style.maxHeight = "0px";
             numRemoved++;
@@ -119,54 +119,60 @@ const App = () => {
           }
         }
       } else {
-        // Handle TRE headers
-        for (const treHeader of header.getElementsByClassName(
-          "tre-subheader"
-        )) {
-          let numElementsTre = 0;
-          let numRemovedTre = 0;
-
-          for (const treElement of treHeader.getElementsByClassName(
-            "mini-field-row"
+        if (shouldBeVisibile(5)) {
+          // Handle TRE headers
+          for (const treHeader of header.getElementsByClassName(
+            "tre-subheader"
           )) {
-            numElementsTre++;
-            const treName = treHeader.children[0].id;
-            const treRowElements = treElement.children;
-            const fieldName = treRowElements[1].textContent;
-            const longName = treRowElements[2].textContent;
-            const setTo = treRowElements[3].children[0].value;
+            let numElementsTre = 0;
+            let numRemovedTre = 0;
 
-            if (value && !filterByFieldName(fieldName, longName, setTo)) {
-              treElement.style.visibility = "hidden";
-              treElement.style.maxHeight = "0px";
-              numRemovedTre++;
-            } else {
-              treElement.style.visibility = "visible";
-              treElement.style.maxHeight = "40px";
+            for (const treElement of treHeader.getElementsByClassName(
+              "mini-field-row"
+            )) {
+              numElementsTre++;
+              const treName = treHeader.children[0].id;
+              const treRowElements = treElement.children;
+              const fieldName = treRowElements[1].textContent;
+              const longName = treRowElements[2].textContent;
+              const setTo = treRowElements[3].children[0].value;
+
+              if (value && !filterByFieldName(fieldName, longName, setTo)) {
+                treElement.style.visibility = "hidden";
+                treElement.style.maxHeight = "0px";
+                numRemovedTre++;
+              } else {
+                treElement.style.visibility = "visible";
+                treElement.style.maxHeight = "40px";
+              }
             }
-          }
 
-          numElements += numElementsTre;
-          numRemoved += numRemovedTre;
+            numElements += numElementsTre;
+            numRemoved += numRemovedTre;
 
-          if (numElementsTre === numRemovedTre) {
-            treHeader.style.display = "none";
-          } else {
-            treHeader.style = {};
+            if (numElementsTre === numRemovedTre) {
+              treHeader.style.visibility = "hidden"
+              treHeader.style.maxHeight = "0px"
+            } else {
+              treHeader.style.visibility = "visible"
+              treHeader.style.maxHeight = "600px"
+            }
           }
         }
       }
 
       if (numElements === numRemoved) {
-        header.style.display = "none";
+        header.style.visibility = "hidden"
+        header.style.maxHeight = "0px"
       } else {
-        header.style = {};
+        header.style.visibility = "visible"
+        header.style.maxHeight = "600px"
       }
 
       index++;
     }
 
-    function filterByFieldName(fieldName, longName, setTo) {
+    function filterByFieldName(fieldName, longName, setTo, filterType) {
       if (filterType === "Field Name") {
         return new RegExp(value, "i").test(fieldName.replace(/\s/g, ""));
       } else if (filterType === "Long Name") {
@@ -186,6 +192,27 @@ const App = () => {
       }
     }
   };
+
+  const hiddenStyle = {
+    visibility: 'hidden',
+    maxHeight: '0px',
+  }
+
+  const visStyle = {
+    visibility: 'visible',
+    maxHeight: '600px'
+  }
+
+  const shouldBeVisibile = (headerInd) => {
+    return checkedItems[headerInd] ||
+      !(
+        checkedItems[0] ||
+        checkedItems[1] ||
+        checkedItems[2] ||
+        checkedItems[3] ||
+        checkedItems[4] ||
+        checkedItems[5] )
+  }
 
   const openRulesetModal = () => {
     setIsRulesetModalOpen(true);
@@ -317,7 +344,7 @@ const App = () => {
 
   const handleCheckChange = (e) => {
     const { checked, id } = e.target;
-    updateCheckedArr(Number(id - 1), checked);
+    updateCheckedArr(Number(id - 1), checked);    
   };
 
   const handlePreferenceChange = (preference) => {
@@ -406,21 +433,20 @@ const App = () => {
           <p>Not If There's Fondue!!!</p>
           <hr />
         </HelpModalOnPage>
-        {(checkedItems[0] ||
-          !(
-            checkedItems[0] ||
-            checkedItems[1] ||
-            checkedItems[2] ||
-            checkedItems[3] ||
-            checkedItems[4] ||
-            checkedItems[5]
-          )) && (
-          <div className="header">
+          <div className="header" style = {(checkedItems[0] ||
+            !(
+              checkedItems[0] ||
+              checkedItems[1] ||
+              checkedItems[2] ||
+              checkedItems[3] ||
+              checkedItems[4] ||
+              checkedItems[5]
+            )) ? visStyle : hiddenStyle}>
             <button
               id="fileHeader"
               className="accordion"
               onClick={() => {
-                showTable("fileHeader", "filePanel"), handleSearch(searchValue);
+                showTable("fileHeader", "filePanel", 0), handleSearch(searchValue);
               }}>
               <span>&#9660;</span> NITF FILE HEADER <span>&#9660;</span>
             </button>
@@ -432,22 +458,20 @@ const App = () => {
               selectedPreference={selectedPreference}
             />
           </div>
-        )}
-        {(checkedItems[1] ||
-          !(
-            checkedItems[0] ||
-            checkedItems[1] ||
-            checkedItems[2] ||
-            checkedItems[3] ||
-            checkedItems[4] ||
-            checkedItems[5]
-          )) && (
-          <div className="header">
+          <div className="header" style = {(checkedItems[1] ||
+            !(
+              checkedItems[0] ||
+              checkedItems[1] ||
+              checkedItems[2] ||
+              checkedItems[3] ||
+              checkedItems[4] ||
+              checkedItems[5]
+            )) ? visStyle : hiddenStyle}>
             <button
               id="imageSubheader"
               className="accordion"
               onClick={() => {
-                showTable("imageSubheader", "imagePanel"),
+                showTable("imageSubheader", "imagePanel", 1),
                   handleSearch(searchValue);
               }}>
               <span>&#9660;</span> IMAGE SUBHEADER <span>&#9660;</span>
@@ -460,22 +484,20 @@ const App = () => {
               selectedPreference={selectedPreference}
             />
           </div>
-        )}
-        {(checkedItems[2] ||
-          !(
-            checkedItems[0] ||
-            checkedItems[1] ||
-            checkedItems[2] ||
-            checkedItems[3] ||
-            checkedItems[4] ||
-            checkedItems[5]
-          )) && (
-          <div className="header">
+          <div className="header" style = {(checkedItems[2] ||
+            !(
+              checkedItems[0] ||
+              checkedItems[1] ||
+              checkedItems[2] ||
+              checkedItems[3] ||
+              checkedItems[4] ||
+              checkedItems[5]
+            )) ? visStyle : hiddenStyle}>
             <button
               id="graphicSubheader"
               className="accordion"
               onClick={() => {
-                showTable("graphicSubheader", "graphicPanel"),
+                showTable("graphicSubheader", "graphicPanel", 2),
                   handleSearch(searchValue);
               }}>
               <span>&#9660;</span> GRAPHIC SUBHEADER <span>&#9660;</span>
@@ -488,22 +510,20 @@ const App = () => {
               selectedPreference={selectedPreference}
             />
           </div>
-        )}
-        {(checkedItems[3] ||
-          !(
-            checkedItems[0] ||
-            checkedItems[1] ||
-            checkedItems[2] ||
-            checkedItems[3] ||
-            checkedItems[4] ||
-            checkedItems[5]
-          )) && (
-          <div className="header">
+          <div className="header" style = {(checkedItems[3] ||
+            !(
+              checkedItems[0] ||
+              checkedItems[1] ||
+              checkedItems[2] ||
+              checkedItems[3] ||
+              checkedItems[4] ||
+              checkedItems[5]
+            )) ? visStyle : hiddenStyle}>
             <button
               id="textSubheader"
               className="accordion"
               onClick={() => {
-                showTable("textSubheader", "textPanel"),
+                showTable("textSubheader", "textPanel", 3),
                   handleSearch(searchValue);
               }}>
               <span>&#9660;</span> TEXT SUBHEADER <span>&#9660;</span>
@@ -516,22 +536,20 @@ const App = () => {
               selectedPreference={selectedPreference}
             />
           </div>
-        )}
-        {(checkedItems[4] ||
-          !(
-            checkedItems[0] ||
-            checkedItems[1] ||
-            checkedItems[2] ||
-            checkedItems[3] ||
-            checkedItems[4] ||
-            checkedItems[5]
-          )) && (
-          <div className="header">
+          <div className="header" style = {(checkedItems[4] ||
+            !(
+              checkedItems[0] ||
+              checkedItems[1] ||
+              checkedItems[2] ||
+              checkedItems[3] ||
+              checkedItems[4] ||
+              checkedItems[5]
+            )) ? visStyle : hiddenStyle}>
             <button
               id="desSubheader"
               className="accordion"
               onClick={() => {
-                showTable("desSubheader", "desPanel"),
+                showTable("desSubheader", "desPanel", 4),
                   handleSearch(searchValue);
               }}>
               <span>&#9660;</span> DES SUBHEADER <span>&#9660;</span>
@@ -544,17 +562,15 @@ const App = () => {
               selectedPreference={selectedPreference}
             />
           </div>
-        )}
-        {(checkedItems[5] ||
-          !(
-            checkedItems[0] ||
-            checkedItems[1] ||
-            checkedItems[2] ||
-            checkedItems[3] ||
-            checkedItems[4] ||
-            checkedItems[5]
-          )) && (
-          <div className="header">
+          <div className="header" style = {(checkedItems[5] ||
+            !(
+              checkedItems[0] ||
+              checkedItems[1] ||
+              checkedItems[2] ||
+              checkedItems[3] ||
+              checkedItems[4] ||
+              checkedItems[5]
+            )) ? visStyle : hiddenStyle}>
             <button
               id="TRE"
               className="accordion"
@@ -571,7 +587,6 @@ const App = () => {
               selectedPreference={selectedPreference}
             />
           </div>
-        )}
       </div>
 
       <div
@@ -589,7 +604,7 @@ const App = () => {
   );
 };
 
-function showTable(header, table) {
+function showTable(header, table, num) {
   const acc = document.getElementById(header);
   const panel = document.getElementById(table);
   const rows = panel.getElementsByClassName("field-row");
