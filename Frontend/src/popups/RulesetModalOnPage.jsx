@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 
 const RulesetModalOnPage = ({isOpen, onClose, children}) => {
+    const [name, setName] = useState('');
     if (!isOpen) return null;
 
+    const handleNameChange = (event) => {
+      setName(event.target.value);
+    };
   return (
     <div className="ruleset-modal-overlay">
     <div className="ruleset-modal-content">
@@ -13,6 +17,12 @@ const RulesetModalOnPage = ({isOpen, onClose, children}) => {
       <div className ="rulesetOnPageModalContent">
               <h2>New Ruleset</h2>
               <div className = "rulesetObject" >
+              <input className= "name-box-ruleset"
+                type = "text" 
+                placeholder = "Enter Ruleset Name..."
+                value = {name}
+                onChange = {handleNameChange}
+              />
                 <h4>Classification</h4>
                 <select>
                   <option value="unclassifiedOp">Unclassified</option>
