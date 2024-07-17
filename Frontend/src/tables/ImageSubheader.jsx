@@ -43,8 +43,24 @@ const ImageSubheader = (props) => {
     props.onRedactChange(checked, fieldName);
   };
 
+  const hiddenStyle = {
+    display: "none"
+  }
+
+  const visStyle = {
+    display: ""
+  }
+
   return (
-    <div id="imagePanel" className="field-panel">
+    <div id="imagePanel" className="field-panel" style = {(props.toShow[1] ||
+        !(
+          props.toShow[0] ||
+          props.toShow[1] ||
+          props.toShow[2] ||
+          props.toShow[3] ||
+          props.toShow[4] ||
+          props.toShow[5]
+        )) ? visStyle : hiddenStyle}>
       <div className="field-header">
         <div className="field-sub-header">
           <Checkbox
@@ -63,7 +79,15 @@ const ImageSubheader = (props) => {
         <h4 className="longName-header">Long Name</h4>
         <h4>Set To</h4>
       </div>
-      <div className="field-table">
+      <div className="field-table" style = {(props.toShow[0] ||
+        !(
+          props.toShow[0] ||
+          props.toShow[1] ||
+          props.toShow[2] ||
+          props.toShow[3] ||
+          props.toShow[4] ||
+          props.toShow[5]
+        )) ? visStyle : hiddenStyle}>
         {imageSubHeader.map((field) => (
           <div
             key={field.fieldName}
