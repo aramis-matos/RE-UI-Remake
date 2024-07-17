@@ -11,8 +11,9 @@ import {
   imagesubheader,
   graphicsubheader,
   textsubheader,
-  dessubheader
+  dessubheader,
 } from "./TableResources.js";
+import { tres } from "./tresList.js";
 
 const app = express();
 
@@ -39,23 +40,23 @@ app.listen(8080, () => {
   // backend server listening for requests on port 8080
 });
 
-// INSERT TS OBJECTS INTO DB
-
-let headers = [
+// INSERT TABLE DATA INTO DB
+async function insertData() {
+  let headers = [
   fileheader,
   imagesubheader,
   graphicsubheader,
   textsubheader,
-  dessubheader
+  dessubheader,
 ];
 let headerNames = [
   "fileheader",
   "imagesubheader",
   "graphicsubheader",
   "textsubheader",
-  "dessubheader"
+  "dessubheader",
 ];
-async function insertData() {
+const treName = Object.keys(tres);
   try {
     const connection = mysql.createConnection({
       host: "localhost",
@@ -66,21 +67,20 @@ async function insertData() {
     let i = 0;
     for (const element of headers) {
       for (const obj of element) {
-        // data insertion loop
         const sql = `INSERT INTO ${headerNames[i]} VALUES ('${obj.fieldName}','${obj.longName}',${obj.editable})`;
-        // Execute INSERT statement
         connection.query(sql);
-        console.log(sql);
       }
       i++;
-    };
-    console.log('Data Inserted Successfully!');
+    }
+    for (i = 0; i < treName.length; i++) {
+      for (const element of tres[treName[i]]) {
+        const sql = `INSERT INTO tre VALUES ('${treName[i]}','${element.fieldname}',"${element.longname}",${element.editable})`;
+        connection.query(sql);
+      }
+    }
+    console.log("Data Inserted Successfully!");
     connection.end();
-  }
-  catch (error) {
-    console.error('Error inserting data:', error);
+  } catch (error) {
+    console.error("Error inserting data:", error);
   }
 }
-// insertData();
-
-// INSERT TS OBJECTS INTO DB
