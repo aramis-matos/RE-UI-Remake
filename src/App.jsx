@@ -15,8 +15,6 @@ import HelpModalOnPage from "./popups/HelpModalOnPage";
 import OpenModalOnPage from "./popups/OpenModalOnPage";
 import CollapsableFilters from "./popups/CollapsableFilters";
 import useLocalStorage from "use-local-storage";
-import axios from "axios";
-import { fileHeader } from "./tables/TableResources";
 
 const App = () => {
   const [filterType, setFilterType] = useState("");
@@ -170,8 +168,10 @@ const App = () => {
       }
 
       let panel = header.getElementsByClassName("field-panel")[0]
+      let maxHeightSpec = "500px"
       if (panel == null) {
         panel = document.getElementById("trePanel")
+        maxHeightSpec = "64000px"
       }
       console.log(panel)
       if (numElements === numRemoved) {
@@ -185,8 +185,7 @@ const App = () => {
         header.style.maxHeight = "600px"
         if (header.getElementsByClassName("accordion-open")[0] != null) {
           panel.style.visibility = "visible"
-          panel.style.maxHeight = "500px"
-          if (index == 5) panel.style.maxHeight = "64000px";
+          panel.style.maxHeight = maxHeightSpec
         }
         updateSearchShow(index, true)
       }
@@ -389,16 +388,6 @@ const App = () => {
     setSelectedPreference(preference);
   };
 
-  const callAPI = () => {
-    // get request from frontend to backend
-    axios.get("http://localhost:8080").then((data) => {
-      // console.log(data);
-      // console.log(fileHeader[0].fieldName);
-      // console.log(Object.keys(fileHeader).length);
-      // show backend response in console
-    });
-  };
-
   return (
     <div className="editor" data-theme={theme}>
       <div className="left-panel">
@@ -410,12 +399,7 @@ const App = () => {
               <label className="lightLabel"> ☀︎ </label>
             </span>
           </label>
-          <button
-            id="newRuleset"
-            onClick={() => {
-              openRulesetModal();
-              callAPI(); // test API call
-            }}>
+          <button id="newRuleset" onClick={openRulesetModal}>
             NEW
           </button>
           <button
@@ -618,7 +602,8 @@ const App = () => {
               id="TRE"
               className="accordion"
               onClick={() => {
-                treShowTable("TRE", "trePanel"), handleSearch(searchValue);
+                treShowTable("TRE", "trePanel")
+                handleSearch(searchValue);
               }}>
               <span>&#9660;</span> TRE <span>&#9660;</span>
             </button>

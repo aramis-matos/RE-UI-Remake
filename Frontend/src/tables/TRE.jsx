@@ -66,7 +66,7 @@ const TRE = (props) => {
         row.style.opacity = "1";
         row.style.maxHeight = "80px"
       }
-      header.classList.remove("active");
+      header.classList.toggle("active");
     }
   };
 
