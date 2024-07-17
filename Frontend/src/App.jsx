@@ -166,7 +166,6 @@ const App = () => {
               actualTreHeader.style.maxHeight = "0px"
               actualTreHeader.style.opacity = "0"
               updateSearchShow(index, false)
-              console.log("a")
             } else {
               treHeader.style.visibility = "visible"
               treHeader.style.maxHeight = "600px"
