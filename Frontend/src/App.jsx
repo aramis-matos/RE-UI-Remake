@@ -141,6 +141,8 @@ const App = () => {
               const longName = treRowElements[2].textContent;
               const setTo = treRowElements[3].children[0].value;
 
+              //treHeader is class tre-subheader
+
               if (value && !filterByFieldName(fieldName, longName, setTo)) {
                 treElement.style.visibility = "hidden";
                 treElement.style.maxHeight = "0px";
@@ -154,15 +156,24 @@ const App = () => {
             numElements += numElementsTre;
             numRemoved += numRemovedTre;
 
+            const actualTreHeader = treHeader.getElementsByClassName("tre-header")[0]
+
             if (numElementsTre === numRemovedTre) {
               treHeader.style.visibility = "hidden"
               treHeader.style.maxHeight = "0px"
               treHeader.style.opacity = "0"
+              actualTreHeader.style.visibility = "hidden"
+              actualTreHeader.style.maxHeight = "0px"
+              actualTreHeader.style.opacity = "0"
               updateSearchShow(index, false)
+              console.log("a")
             } else {
               treHeader.style.visibility = "visible"
               treHeader.style.maxHeight = "600px"
               treHeader.style.opacity = "1"
+              actualTreHeader.style.visibility = "visible"
+              actualTreHeader.style.maxHeight = "50px"
+              actualTreHeader.style.opacity = "1"
               updateSearchShow(index, true)
             }
           }
@@ -173,7 +184,6 @@ const App = () => {
       if (panel == null) {
         panel = document.getElementById("trePanel")
       }
-      console.log(panel)
       if (numElements === numRemoved) {
         header.style.visibility = "hidden"
         header.style.maxHeight = "0px"
@@ -214,8 +224,6 @@ const App = () => {
         );
       }
     }
-    console.log('search done')
-    console.log(searchShow)
   };
 
   const updateSearchShow = (index, newVal) => {
