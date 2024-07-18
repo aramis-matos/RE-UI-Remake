@@ -139,4 +139,5 @@ const CollapsableFilters = ({ theFunc, onFilterChange }) => {
   );
 };
 
+
 export default CollapsableFilters;
