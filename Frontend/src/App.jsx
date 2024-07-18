@@ -112,12 +112,11 @@ const App = () => {
           const fieldName = fieldRowElements[1].textContent;
           const longName = fieldRowElements[2].textContent;
           const setTo = fieldRowElements[3].children[0].value;
-
           if (value && !filterByFieldName(fieldName, longName, setTo, filterType)) {
             element.style.visibility = "hidden";
             element.style.maxHeight = "0px";
             numRemoved++;
-          } else {
+          } else if (value) {
             element.style.visibility = "visible";
             element.style.maxHeight = "40px";
           }
@@ -167,12 +166,14 @@ const App = () => {
               actualTreHeader.style.opacity = "0"
               updateSearchShow(index, false)
             } else {
-              treHeader.style.visibility = "visible"
-              treHeader.style.maxHeight = "600px"
-              treHeader.style.opacity = "1"
-              actualTreHeader.style.visibility = "visible"
-              actualTreHeader.style.maxHeight = "50px"
-              actualTreHeader.style.opacity = "1"
+              if (header.getElementsByClassName("accordion-open")[0] != null) {
+                treHeader.style.visibility = "visible"
+                treHeader.style.maxHeight = "600px"
+                treHeader.style.opacity = "1"
+                actualTreHeader.style.visibility = "visible"
+                actualTreHeader.style.maxHeight = "50px"
+                actualTreHeader.style.opacity = "1"
+              }
               updateSearchShow(index, true)
             }
           }
