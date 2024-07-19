@@ -9,6 +9,7 @@ const FileHeader = (props) => {
   const [allowed, setAllowed] = useState([]);
   const [redact, setRedact] = useState([]);
   let idPassed = props.idPassed;
+  let toShow = props.toShow;
 
   useEffect(() => {
     if (props.data.length > 0) {
@@ -16,6 +17,7 @@ const FileHeader = (props) => {
       setAllowed(props.data[1]);
       setRedact(props.data[2])
       idPassed = props.idPassed;
+      toShow = props.toShow
     }
   }, [props.data]);
 
@@ -46,8 +48,24 @@ const FileHeader = (props) => {
     props.onRedactChange(checked, fieldName);
   };
 
+  const hiddenStyle = {
+    display: "none"
+  }
+
+  const visStyle = {
+    display: ""
+  }
+
   return (
-    <div id="filePanel" className="field-panel">
+    <div id="filePanel" className="field-panel" style = {(props.toShow[0] ||
+        !(
+          props.toShow[0] ||
+          props.toShow[1] ||
+          props.toShow[2] ||
+          props.toShow[3] ||
+          props.toShow[4] ||
+          props.toShow[5]
+        )) ? visStyle : hiddenStyle}>
       <div className="field-header">
         <div className="field-sub-header">
           <Checkbox
@@ -66,13 +84,30 @@ const FileHeader = (props) => {
         <h4 className="longName-header">Long Name</h4>
         <h4>Set To</h4>
       </div>
-      <div className="field-table">
+      <div className="field-table" style = {(props.toShow[0] ||
+        !(
+          props.toShow[0] ||
+          props.toShow[1] ||
+          props.toShow[2] ||
+          props.toShow[3] ||
+          props.toShow[4] ||
+          props.toShow[5]
+        )) ? visStyle : hiddenStyle}>
         {fileHeader.map((field) => (
           <div
             key={field.fieldName}
             id={!field.editable ? "not-redactable" : undefined}
             className="field-row"
             data-testid={field.fieldName.concat("row")}
+            style = {(props.toShow[0] ||
+              !(
+                props.toShow[0] ||
+                props.toShow[1] ||
+                props.toShow[2] ||
+                props.toShow[3] ||
+                props.toShow[4] ||
+                props.toShow[5]
+              )) ? visStyle : hiddenStyle}
           >
             <Checkbox
               className="checkAllFile"

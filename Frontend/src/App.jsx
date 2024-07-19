@@ -37,6 +37,7 @@ const App = () => {
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [selectedPreference, setSelectedPreference] = useState();
+  const [searchShow, setSearchShow] = useState([true, true, true, true, true, true]);
 
   /* Dark / Light Mode */
   const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -67,7 +68,7 @@ const App = () => {
 
   const handleFilterTypeChange = (newFilterType) => {
     setFilterType(newFilterType);
-    handleSearch(searchValue, newFilterType);
+    handleSearch(searchValue, newFilterType, checkedItems);
   };
 
   useEffect(() => {
@@ -92,15 +93,18 @@ const App = () => {
     setFieldUpdatesToExport([]);
   }, [reset]);
 
-  const handleSearch = (value, filterType) => {
+  const handleSearch = (value, filterType, filterSections) => {
     const headerArr = ["nitf", "image", "graphic", "text", "Des", "TRE"];
     let index = 0;
     setSearchValue(value);
+    if (filterSections == null) {
+      filterSections = checkedItems;
+    }
 
     for (const header of document.getElementsByClassName("header")) {
       let numElements = 0;
       let numRemoved = 0;
-      if (headerArr[index] !== "TRE" && shouldBeVisibile(index)) {
+      if (headerArr[index] !== "TRE" && shouldBeVisible(index, filterSections)) {
         // Handle non-TRE headers
         for (const element of header.getElementsByClassName("field-row")) {
           numElements++;
@@ -108,18 +112,17 @@ const App = () => {
           const fieldName = fieldRowElements[1].textContent;
           const longName = fieldRowElements[2].textContent;
           const setTo = fieldRowElements[3].children[0].value;
-
           if (value && !filterByFieldName(fieldName, longName, setTo, filterType)) {
             element.style.visibility = "hidden";
             element.style.maxHeight = "0px";
             numRemoved++;
-          } else {
+          } else if (value) {
             element.style.visibility = "visible";
             element.style.maxHeight = "40px";
           }
         }
       } else {
-        if (shouldBeVisibile(5)) {
+        if (shouldBeVisible(index, filterSections)) {
           // Handle TRE headers
           for (const treHeader of header.getElementsByClassName(
             "tre-subheader"
@@ -137,6 +140,8 @@ const App = () => {
               const longName = treRowElements[2].textContent;
               const setTo = treRowElements[3].children[0].value;
 
+              //treHeader is class tre-subheader
+
               if (value && !filterByFieldName(fieldName, longName, setTo)) {
                 treElement.style.visibility = "hidden";
                 treElement.style.maxHeight = "0px";
@@ -150,26 +155,54 @@ const App = () => {
             numElements += numElementsTre;
             numRemoved += numRemovedTre;
 
+            const actualTreHeader = treHeader.getElementsByClassName("tre-header")[0]
+
             if (numElementsTre === numRemovedTre) {
               treHeader.style.visibility = "hidden"
               treHeader.style.maxHeight = "0px"
+              treHeader.style.opacity = "0"
+              actualTreHeader.style.visibility = "hidden"
+              actualTreHeader.style.maxHeight = "0px"
+              actualTreHeader.style.opacity = "0"
+              updateSearchShow(index, false)
             } else {
-              treHeader.style.visibility = "visible"
-              treHeader.style.maxHeight = "600px"
+              if (header.getElementsByClassName("accordion-open")[0] != null) {
+                treHeader.style.visibility = "visible"
+                treHeader.style.maxHeight = "600px"
+                treHeader.style.opacity = "1"
+                actualTreHeader.style.visibility = "visible"
+                actualTreHeader.style.maxHeight = "50px"
+                actualTreHeader.style.opacity = "1"
+              }
+              updateSearchShow(index, true)
             }
           }
         }
       }
 
+      let panel = header.getElementsByClassName("field-panel")[0]
+      if (panel == null) {
+        panel = document.getElementById("trePanel")
+      }
       if (numElements === numRemoved) {
         header.style.visibility = "hidden"
         header.style.maxHeight = "0px"
+        panel.style.visibility = "hidden"
+        panel.style.maxHeight = "0px"
+        updateSearchShow(index, false)
       } else {
         header.style.visibility = "visible"
         header.style.maxHeight = "600px"
+        if (header.getElementsByClassName("accordion-open")[0] != null) {
+          panel.style.visibility = "visible"
+          panel.style.maxHeight = "500px"
+          if (index == 5) panel.style.maxHeight = "64000px";
+        }
+        updateSearchShow(index, true)
       }
 
       index++;
+      
     }
 
     function filterByFieldName(fieldName, longName, setTo, filterType) {
@@ -193,6 +226,12 @@ const App = () => {
     }
   };
 
+  const updateSearchShow = (index, newVal) => {
+    let tempArr = searchShow
+    tempArr[index] = newVal;
+    setSearchShow(tempArr)
+  }
+
   const hiddenStyle = {
     visibility: 'hidden',
     maxHeight: '0px',
@@ -203,15 +242,20 @@ const App = () => {
     maxHeight: '600px'
   }
 
-  const shouldBeVisibile = (headerInd) => {
-    return checkedItems[headerInd] ||
+  const visStyleTre = {
+    visibility: "visible",
+    maxHeight: '60000px'
+  }
+
+  const shouldBeVisible = (headerInd, filterSections) => {
+    return filterSections[headerInd] ||
       !(
-        checkedItems[0] ||
-        checkedItems[1] ||
-        checkedItems[2] ||
-        checkedItems[3] ||
-        checkedItems[4] ||
-        checkedItems[5] )
+        filterSections[0] ||
+        filterSections[1] ||
+        filterSections[2] ||
+        filterSections[3] ||
+        filterSections[4] ||
+        filterSections[5] )
   }
 
   const openRulesetModal = () => {
@@ -340,11 +384,13 @@ const App = () => {
     const updatedArr = [...checkedItems];
     updatedArr[index] = booleanVal;
     setCheckedItems(updatedArr);
+    handleSearch(searchValue, filterType, updatedArr)
   };
 
   const handleCheckChange = (e) => {
     const { checked, id } = e.target;
-    updateCheckedArr(Number(id - 1), checked);    
+    updateCheckedArr(Number(id - 1), checked);
+    
   };
 
   const handlePreferenceChange = (preference) => {
@@ -435,7 +481,7 @@ const App = () => {
           <p>Not If There's Fondue!!!</p>
           <hr />
         </HelpModalOnPage>
-          <div className="header" style = {(checkedItems[0] ||
+          <div className="header" style = {((checkedItems[0] ||
             !(
               checkedItems[0] ||
               checkedItems[1] ||
@@ -443,7 +489,7 @@ const App = () => {
               checkedItems[3] ||
               checkedItems[4] ||
               checkedItems[5]
-            )) ? visStyle : hiddenStyle}>
+            )) && searchShow[0])? visStyle : hiddenStyle}>
             <button
               id="fileHeader"
               className="accordion"
@@ -458,9 +504,10 @@ const App = () => {
               listType={listType}
               idPassed="filePanel"
               selectedPreference={selectedPreference}
+              toShow = {checkedItems}
             />
           </div>
-          <div className="header" style = {(checkedItems[1] ||
+          <div className="header" style = {((checkedItems[1] ||
             !(
               checkedItems[0] ||
               checkedItems[1] ||
@@ -468,7 +515,7 @@ const App = () => {
               checkedItems[3] ||
               checkedItems[4] ||
               checkedItems[5]
-            )) ? visStyle : hiddenStyle}>
+            )) && searchShow[1]) ? visStyle : hiddenStyle}>
             <button
               id="imageSubheader"
               className="accordion"
@@ -484,9 +531,10 @@ const App = () => {
               listType={listType}
               idPassed="imagePanel"
               selectedPreference={selectedPreference}
+              toShow = {checkedItems}
             />
           </div>
-          <div className="header" style = {(checkedItems[2] ||
+          <div className="header" style = {((checkedItems[2] ||
             !(
               checkedItems[0] ||
               checkedItems[1] ||
@@ -494,7 +542,7 @@ const App = () => {
               checkedItems[3] ||
               checkedItems[4] ||
               checkedItems[5]
-            )) ? visStyle : hiddenStyle}>
+            )) && searchShow[2]) ? visStyle : hiddenStyle}>
             <button
               id="graphicSubheader"
               className="accordion"
@@ -510,9 +558,10 @@ const App = () => {
               listType={listType}
               idPassed="graphicPanel"
               selectedPreference={selectedPreference}
+              toShow = {checkedItems}
             />
           </div>
-          <div className="header" style = {(checkedItems[3] ||
+          <div className="header" style = {((checkedItems[3] ||
             !(
               checkedItems[0] ||
               checkedItems[1] ||
@@ -520,7 +569,7 @@ const App = () => {
               checkedItems[3] ||
               checkedItems[4] ||
               checkedItems[5]
-            )) ? visStyle : hiddenStyle}>
+            )) && searchShow[3]) ? visStyle : hiddenStyle}>
             <button
               id="textSubheader"
               className="accordion"
@@ -536,9 +585,10 @@ const App = () => {
               listType={listType}
               idPassed="textPanel"
               selectedPreference={selectedPreference}
+              toShow = {checkedItems}
             />
           </div>
-          <div className="header" style = {(checkedItems[4] ||
+          <div className="header" style = {((checkedItems[4] ||
             !(
               checkedItems[0] ||
               checkedItems[1] ||
@@ -546,7 +596,7 @@ const App = () => {
               checkedItems[3] ||
               checkedItems[4] ||
               checkedItems[5]
-            )) ? visStyle : hiddenStyle}>
+            )) && searchShow[4]) ? visStyle : hiddenStyle}>
             <button
               id="desSubheader"
               className="accordion"
@@ -562,9 +612,10 @@ const App = () => {
               listType={listType}
               idPassed="desPanel"
               selectedPreference={selectedPreference}
+              toShow = {checkedItems}
             />
           </div>
-          <div className="header" style = {(checkedItems[5] ||
+          <div className="header" style = {((checkedItems[5] ||
             !(
               checkedItems[0] ||
               checkedItems[1] ||
@@ -572,7 +623,7 @@ const App = () => {
               checkedItems[3] ||
               checkedItems[4] ||
               checkedItems[5]
-            )) ? visStyle : hiddenStyle}>
+            )) && searchShow[5]) ? visStyleTre : hiddenStyle}>
             <button
               id="TRE"
               className="accordion"
@@ -587,6 +638,7 @@ const App = () => {
               listType={listType}
               idPassed="trePanel"
               selectedPreference={selectedPreference}
+              toShow = {checkedItems}
             />
           </div>
       </div>

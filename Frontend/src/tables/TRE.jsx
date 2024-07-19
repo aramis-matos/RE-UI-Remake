@@ -66,12 +66,28 @@ const TRE = (props) => {
         row.style.opacity = "1";
         row.style.maxHeight = "80px"
       }
-      header.classList.remove("active");
+      header.classList.toggle("active");
     }
   };
 
+  const hiddenStyle = {
+    display: "none"
+  }
+
+  const visStyle = {
+    display: ""
+  }
+  
   return (
-    <div id="trePanel" className="tre-panel">
+    <div id="trePanel" className="tre-panel" style = {(props.toShow[5] ||
+      !(
+        props.toShow[0] ||
+        props.toShow[1] ||
+        props.toShow[2] ||
+        props.toShow[3] ||
+        props.toShow[4] ||
+        props.toShow[5]
+      )) ? visStyle : hiddenStyle}>
       <div className="field-header">
         <div className="field-sub-header">
           <Checkbox
@@ -90,7 +106,15 @@ const TRE = (props) => {
         <h4 className="longName-header">Long Name</h4>
         <h4>Set To</h4>
       </div>
-      <div className="field-table">
+      <div className="field-table" style = {(props.toShow[5] ||
+        !(
+          props.toShow[0] ||
+          props.toShow[1] ||
+          props.toShow[2] ||
+          props.toShow[3] ||
+          props.toShow[4] ||
+          props.toShow[5]
+        )) ? visStyle : hiddenStyle}>
         {Object.keys(tres).map((treName) => (
           <div key={treName} className="tre-subheader">
             <div
