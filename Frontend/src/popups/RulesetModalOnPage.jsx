@@ -44,6 +44,8 @@ const RulesetModalOnPage = ({isOpen, onClose, children}) =>{
       releaseability : '',
       sensor : ''
     })
+    alert(`Ruleset Created Successfully`);
+    onClose();
   }
 
   if (!isOpen) {return(null)};
