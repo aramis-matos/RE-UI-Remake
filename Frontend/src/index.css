@@ -542,7 +542,7 @@ button.delete {
   cursor: pointer;
 }
 
-.ruleset-save-button {
+.createRulesetButton {
   position: absolute;
   top: 85%;
   right: 2%;
