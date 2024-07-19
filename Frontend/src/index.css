@@ -271,7 +271,11 @@ input:checked + .slider:before {
     font-weight: bold;
   }
 }
-
+.nameBox{
+  height: 30px;
+  width: 51%;
+  margin-bottom: 20px;
+}
 .details {
   display: none;
   padding-top: 2.5%;

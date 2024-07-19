@@ -59,15 +59,14 @@ const RulesetModalOnPage = ({isOpen, onClose, children}) =>{
         <div className ="rulesetOnPageModalContent">
                 <h2>New Ruleset</h2>
                 <div className = "rulesetObject" >
-                  <h4>Name</h4>
-                    <input
-                      name="name"
-                      id="nameBox"
-                      className="nameBox"
-                      type="text"
-                      placeholder="Enter a name..."
-                      onChange={handleInput}
-                    ></input>
+                  <input
+                    name="name"
+                    id="nameBox"
+                    className="nameBox"
+                    type="text"
+                    placeholder="Name Your Ruleset..."
+                    onChange={handleInput}
+                  ></input>
                   <h4>Classification</h4>
                   <select name="classification" id="classification" onChange={handleInput}>
                     <option value="unclassified">Unclassified</option>
