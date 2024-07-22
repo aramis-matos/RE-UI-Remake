@@ -64,18 +64,21 @@ app.post("/new", (req, res, next) => {
   next();
 })
 
-
+let savedRulesets = [];
 app.get('/open', (req, res, next) => {
-  try {
-    const queryText = `SELECT * FROM savedrulesets`;
-    sqlConnection.query(queryText, (error,results)=> {
-      console.log(results)
-      if (error) throw error;
-    })
-  } catch(error) {
-    console.log("Error fetching from database: ", error);
-  }
-  next();
+  // try {
+  const queryText = `SELECT * FROM savedrulesets`;
+  sqlConnection.query(queryText, (error,results)=> {
+    console.log("Results: ", results)
+    savedRulesets = results; //this is a thread, need to wait for completion first. see await() and .then
+    if (error) console.log("Error fetching from database: ", error);
+  })
+  // } catch
+  // if (error) {
+  //   console.log("Error fetching from database: ", error);
+  // }
+  console.log("Saved Rulesets: ", savedRulesets)
+  res.send(savedRulesets)
 })
 
 app.listen(8080, () => {
