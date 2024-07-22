@@ -35,9 +35,9 @@ app.get("/", (req, res, next) => {
   // backend response
 });
 
-app.listen(8080, () => {
-  console.log("Listening on port 8080!");
-  // backend server listening for requests on port 8080
+app.listen(3306, () => {
+  console.log("Listening on port 3306!");
+  // backend server listening for requests on port 8080 or 3306
 });
 
 // INSERT TABLE DATA INTO DB

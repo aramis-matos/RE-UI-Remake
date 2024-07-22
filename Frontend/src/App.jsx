@@ -394,13 +394,15 @@ const App = () => {
   };
 
   const handlePreferenceChange = (preference) => {
-    setSelectedPreference(preference);
+    setSelectedPreference(preaaference);
   };
 
   const callAPI = () => {
+    const axiosUse = axios.create({baseURL: 'http://127.0.0.1:3306'})
     // get request from frontend to backend
-    axios.get("http://localhost:8080").then((data) => {
-      // console.log(data);
+    axiosUse.get("/new_table").then((data) => {
+      console.log(data);
+      console.log("conned!")
       // console.log(fileHeader[0].fieldName);
       // console.log(Object.keys(fileHeader).length);
       // show backend response in console
