@@ -40,7 +40,7 @@ app.post("/new", (req, res, next) => {
     name : req.body.name,
     classification : req.body.classification,
     country : req.body.country,
-    releaseability : req.body.releaseability,
+    releasability : req.body.releasability,
     sensor : req.body.sensor
   }
    try {

@@ -16,6 +16,7 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
                 .get("http://localhost:8080/open")
                 .then((response) => {
                     setRules(response.data)
+                    
                     setReqDone(true)
                 })
                 .catch((error) => {
@@ -46,9 +47,9 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
         setReqDone(false)
     }
 
-    if (!isOpen) return null;
+    if (!isOpen || !rules) return null;
 
-    return reqDone ? (
+    return reqDone && rules ? (
         <div className="open-modal-overlay">
             <div className="open-modal-content">
                 <button className="open-close-button" onClick={handleModalClose}>
@@ -58,7 +59,7 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
                     <h2>Rulesets</h2>
                     <div>
                         {rules.map((rule) => (
-                            <li key={rule.id}>{rule.Name}</li>
+                            <li key={rule.id}>Name: {rule.Name + ' | Created: ' + rule.Created}</li>
                         ))}
                     </div>
                     {/* <ul>

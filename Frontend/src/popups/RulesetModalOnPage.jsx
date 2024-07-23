@@ -7,7 +7,7 @@ const RulesetModalOnPage = ({isOpen, onClose, children}) =>{
       name : '',
       classification : 'Unclassified',
       country : 'United States of America',
-      releaseability : 'An Option',
+      releasability : 'An Option',
       sensor : 'Yet Another Option',
   })
 
@@ -41,7 +41,7 @@ const RulesetModalOnPage = ({isOpen, onClose, children}) =>{
       name : '',
       classification : '',
       country : '',
-      releaseability : '',
+      releasability : '',
       sensor : ''
     })
     alert(`Ruleset Created Successfully`);
@@ -87,7 +87,7 @@ const RulesetModalOnPage = ({isOpen, onClose, children}) =>{
                 </div>
                 <div className = "rulesetObject" onChange={handleInput}>
                   <h4>Releaseability</h4>
-                  <select name="releaseability" id="releaseability">
+                  <select name="releasability" id="releasability">
                     <option value="An Option">An Option</option>
                     <option value="Another Option">Another Option</option>
                     <option value="Some Other Option">Some Other Option</option>
