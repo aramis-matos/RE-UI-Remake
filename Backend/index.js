@@ -52,8 +52,8 @@ app.post("/new", (req, res, next) => {
     sensor : req.body.sensor
   }
    try {
-    const queryText = `INSERT INTO savedrulesets (Name, Classification, Country, Releaseability, Sensor) VALUES (?,?,?,?,?)`;
-    const params = [newRule.name, newRule.classification, newRule.country, newRule.releaseability, newRule.sensor];
+    const queryText = `INSERT INTO savedrulesets (Name, Classification, Country, Releasability, Sensor) VALUES (?,?,?,?,?)`;
+    const params = [newRule.name, newRule.classification, newRule.country, newRule.releasability, newRule.sensor];
     sqlConnection.query(queryText, params, (error, results)=> {
       console.log(results);
       if (error) throw error;
