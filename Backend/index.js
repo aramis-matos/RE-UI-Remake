@@ -84,3 +84,5 @@ const treName = Object.keys(tres);
     console.error("Error inserting data:", error);
   }
 }
+
+insertData();
