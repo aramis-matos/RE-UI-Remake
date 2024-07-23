@@ -6,6 +6,7 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
         id: 1,
         name: '',
     }]);
+    const [reqDone, setReqDone] = useState(false);
     const togglesRef = useRef([]);
     useEffect(() => {
         const handleClick = (event) => {
@@ -24,6 +25,7 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
                     }
                     setRules(tempArr)
                     console.log(tempArr)
+                    setReqDone(true)
                 })
                 .catch((error) => {
                     if (error.response) {
@@ -48,12 +50,17 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
         };
     }, [isOpen]);
 
+    const handleModalClose = () => {
+        onClose();
+        setReqDone(false)
+    }
+
     if (!isOpen) return null;
 
-    return (
+    return reqDone ? (
         <div className="open-modal-overlay">
             <div className="open-modal-content">
-                <button className="open-close-button" onClick={onClose}>
+                <button className="open-close-button" onClick={handleModalClose}>
                     &times;
                 </button>
                 <div className="OpenModalOnPageContent">
@@ -134,7 +141,9 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
                 {children}
             </div>
         </div>
-    );
+    ) : (
+        <p>Loading...</p>
+    )
 }
 
 export default OpenModalOnPage;
