@@ -7,14 +7,6 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import sqlConnection from "./sqlConnection.js"
-import {
-  fileheader,
-  imagesubheader,
-  graphicsubheader,
-  textsubheader,
-  dessubheader,
-} from "./TableResources.js";
-import { tres } from "./tresList.js";
 
 const app = express();
 
@@ -55,7 +47,6 @@ app.post("/new", (req, res, next) => {
     const queryText = `INSERT INTO savedrulesets (Name, Classification, Country, Releasability, Sensor) VALUES (?,?,?,?,?)`;
     const params = [newRule.name, newRule.classification, newRule.country, newRule.releasability, newRule.sensor];
     sqlConnection.query(queryText, params, (error, results)=> {
-      console.log(results);
       if (error) throw error;
     });
   } catch(error) {
@@ -66,17 +57,15 @@ app.post("/new", (req, res, next) => {
 
 let savedRulesets = [];
 app.get('/open', (req, res, next) => {
-  // try {
+  try {
   const queryText = `SELECT * FROM savedrulesets`;
   sqlConnection.query(queryText, (error,results)=> {
-    console.log("Results: ", results)
     savedRulesets = results; //this is a thread, need to wait for completion first. see await() and .then
-    if (error) console.log("Error fetching from database: ", error);
+    if (error) throw error;
   })
-  // } catch
-  // if (error) {
-  //   console.log("Error fetching from database: ", error);
-  // }
+  } catch (error) {
+    console.log("Error fetching from database: ", error);
+  }
   console.log("Saved Rulesets: ", savedRulesets)
   res.send(savedRulesets)
 })
@@ -86,41 +75,3 @@ app.listen(8080, () => {
   // backend server listening for requests on port 8080
 });
 
-// INSERT TABLE DATA INTO DB
-async function insertData() {
-  let headers = [
-  fileheader,
-  imagesubheader,
-  graphicsubheader,
-  textsubheader,
-  dessubheader,
-];
-let headerNames = [
-  "fileheader",
-  "imagesubheader",
-  "graphicsubheader",
-  "textsubheader",
-  "dessubheader",
-];
-const treName = Object.keys(tres);
-  try {
-    let i = 0;
-    for (const element of headers) {
-      for (const obj of element) {
-        const sql = `INSERT INTO ${headerNames[i]} VALUES ('${obj.fieldName}','${obj.longName}',${obj.editable})`;
-        connection.query(sql);
-      }
-      i++;
-    }
-    for (i = 0; i < treName.length; i++) {
-      for (const element of tres[treName[i]]) {
-        const sql = `INSERT INTO tre VALUES ('${treName[i]}','${element.fieldname}',"${element.longname}",${element.editable})`;
-        connection.query(sql);
-      }
-    }
-    console.log("Data Inserted Successfully!");
-    connection.end();
-  } catch (error) {
-    console.error("Error inserting data:", error);
-  }
-}

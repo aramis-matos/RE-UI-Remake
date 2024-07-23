@@ -1,3 +1,12 @@
+import {
+  fileheader,
+  imagesubheader,
+  graphicsubheader,
+  textsubheader,
+  dessubheader,
+} from "./TableResources.js";
+import { tres } from "./tresList.js";
+
 export async function insertData() {
   let headers = [
   fileheader,
