@@ -6,6 +6,7 @@ import express from "express";
 import cors from "cors";
 import mysql from "mysql2";
 import helmet from "helmet";
+import morgan from "morgan";
 import {
   fileheader,
   imagesubheader,
@@ -17,23 +18,58 @@ import { tres } from "./tresList.js";
 
 const app = express();
 
+let rule = [];
+
 app.use(helmet());
-app.use(cors());
-app.use(express.static("public"));
+app.use(
+  cors({
+    origin : 'http://localhost:5173',
+    credentials : true
+  })
+);
+app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.all("/*", (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Headers", "*");
   next();
 });
 
 // route for "get" requests to "/" (root/homepage)
 app.get("/", (req, res, next) => {
   res.json({ msg: "Message from the backend!!" });
-  // backend response
+  next();
 });
+// route for handling new ruleset creation
+app.post("/new", (req, res, next) => {
+  res.json({msg: "Create Ruleset Button Pressed"})
+  const newRule = {
+    name : req.body.name,
+    classification : req.body.classification,
+    country : req.body.country,
+    releaseability : req.body.releaseability,
+    sensor : req.body.sensor
+  }
+  rule = newRule;
+  console.log(rule);
+   try {
+    const connection = mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "Password!",
+      database: "db",
+    });
+    const sql = `INSERT INTO savedrulesets (Name, Classification, Country, Releaseability, Sensor)\
+ VALUES ('${rule.name}', '${rule.classification}', '${rule.country}', '${rule.releaseability}', '${rule.sensor}')`;
+    connection.query(sql);
+    console.log("New Ruleset Added to Database. SQL Query: ", sql);
+    connection.end();
+  } catch(error) {
+    console.log("Error adding New Ruleset to Database: ", error);
+  }
+})
 
 app.listen(8080, () => {
   console.log("Listening on port 8080!");

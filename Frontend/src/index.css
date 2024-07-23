@@ -26,7 +26,7 @@
   --n200: #9a9898;
   --n300: #626262;
   --n400: #0e0e0e;
-  --n500: #9e9e9e;
+  --n500: #868383;
   --n600: #b1b1b1;
   --n700: #cfcfcf;
   --n800: #dcdcdc;
@@ -271,7 +271,11 @@ input:checked + .slider:before {
     font-weight: bold;
   }
 }
-
+.nameBox{
+  height: 30px;
+  width: 51%;
+  margin-bottom: 20px;
+}
 .details {
   display: none;
   padding-top: 2.5%;
@@ -542,7 +546,7 @@ button.delete {
   cursor: pointer;
 }
 
-.ruleset-save-button {
+.createRulesetButton {
   position: absolute;
   top: 85%;
   right: 2%;

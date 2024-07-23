@@ -407,6 +407,8 @@ const App = () => {
     });
   };
 
+
+  // console.log(sensor.value)
   return (
     <div className="editor" data-theme={theme}>
       <div className="left-panel">
@@ -422,7 +424,7 @@ const App = () => {
             id="newRuleset"
             onClick={() => {
               openRulesetModal();
-              callAPI(); // test API call
+              // callAPI(); // test API call
             }}>
             NEW
           </button>
