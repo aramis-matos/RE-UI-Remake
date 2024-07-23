@@ -2,7 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
 const OpenModalOnPage = ({ isOpen, onClose, children }) => {
-    const [rules, setRules] = useState([]);
+    const [rules, setRules] = useState([{
+        id: 1,
+        name: '',
+    }]);
     const togglesRef = useRef([]);
     useEffect(() => {
         const handleClick = (event) => {
@@ -15,7 +18,12 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
                 .get("http://localhost:8080/open")
                 .then((response) => {
                     // console.log(response); //THIS IS WHERE YOU SET RESULTS, use states. then map it
-                    setRules(response)
+                    var tempArr = [];
+                    for (var i in response.data) {
+                        tempArr.push([response.data[i]])
+                    }
+                    setRules(tempArr)
+                    console.log(tempArr)
                 })
                 .catch((error) => {
                     if (error.response) {
@@ -26,7 +34,6 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
                         console.log("Other error: ", error);
                     }
                 })
-            console.log(rules);
             togglesRef.current = document.querySelectorAll(".toggle");
 
             togglesRef.current.forEach(toggle => {
@@ -53,7 +60,7 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
                     <h2>Rulesets</h2>
                     <div>
                         {rules.map((rule) => (
-                            <li key={rule.id}>{rule.name}</li>
+                            <li key={rule[0].id}>{rule[0].Name}</li>
                         ))}
                     </div>
                     {/* <ul>
