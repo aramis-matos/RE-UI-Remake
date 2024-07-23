@@ -66,6 +66,23 @@ const App = () => {
   }, []);
   /* Dark / Light Mode */
 
+  // const getSavedRulesets = () => {
+  //   axios
+  //     .get("http://localhost:8080/")
+  //     .then((response) => {
+  //         console.log(response);
+  //   })
+  //   .catch((error) => {
+  //       if (error.response) {
+  //           console.log("Server responded with error: ", error.response);
+  //       } else if (error.request) {
+  //           console.log("Network error: ", error.request)
+  //       } else {
+  //           console.log("Other error: ", error);
+  //       }
+  //   })
+  // }
+
   const handleFilterTypeChange = (newFilterType) => {
     setFilterType(newFilterType);
     handleSearch(searchValue, newFilterType, checkedItems);
@@ -91,6 +108,7 @@ const App = () => {
     setCurrentlyEditing({});
     setUpdates({});
     setFieldUpdatesToExport([]);
+    // getSavedRulesets();
   }, [reset]);
 
   const handleSearch = (value, filterType, filterSections) => {

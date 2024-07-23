@@ -1,14 +1,39 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 
 const OpenModalOnPage = ({ isOpen, onClose, children }) => {
+    const [rules, setRules] = useState([{
+        id: 1,
+        name: '',
+    }]);
     const togglesRef = useRef([]);
-
     useEffect(() => {
         const handleClick = (event) => {
             event.target.children[1].classList.toggle("active");
         };
 
         if (isOpen) {
+            
+            axios
+                .get("http://localhost:8080/open")
+                .then((response) => {
+                    // console.log(response); //THIS IS WHERE YOU SET RESULTS, use states. then map it
+                    var tempArr = [];
+                    for (var i in response.data) {
+                        tempArr.push([response.data[i]])
+                    }
+                    setRules(tempArr)
+                    console.log(tempArr)
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        console.log("Server responded with error: ", error.response);
+                    } else if (error.request) {
+                        console.log("Network error: ", error.request)
+                    } else {
+                        console.log("Other error: ", error);
+                    }
+                })
             togglesRef.current = document.querySelectorAll(".toggle");
 
             togglesRef.current.forEach(toggle => {
@@ -33,7 +58,12 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
                 </button>
                 <div className="OpenModalOnPageContent">
                     <h2>Rulesets</h2>
-                    <ul>
+                    <div>
+                        {rules.map((rule) => (
+                            <li key={rule[0].id}>{rule[0].Name}</li>
+                        ))}
+                    </div>
+                    {/* <ul>
                         <li className="toggle">
                             <span>A1B2C: Protected, United States</span>
                             <div className="details">
@@ -99,7 +129,7 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
                                 Description: The location is safeguarded because of its critical technological assets.
                             </div>
                         </li>
-                    </ul>
+                    </ul> */}
                 </div>
                 {children}
             </div>

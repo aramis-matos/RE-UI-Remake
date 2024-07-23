@@ -4,9 +4,9 @@
 
 import express from "express";
 import cors from "cors";
-import mysql from "mysql2";
 import helmet from "helmet";
 import morgan from "morgan";
+import sqlConnection from "./sqlConnection.js"
 import {
   fileheader,
   imagesubheader,
@@ -17,8 +17,6 @@ import {
 import { tres } from "./tresList.js";
 
 const app = express();
-
-let rule = [];
 
 app.use(helmet());
 app.use(
@@ -42,6 +40,7 @@ app.get("/", (req, res, next) => {
   res.json({ msg: "Message from the backend!!" });
   next();
 });
+
 // route for handling new ruleset creation
 app.post("/new", (req, res, next) => {
   res.json({msg: "Create Ruleset Button Pressed"})
@@ -52,23 +51,34 @@ app.post("/new", (req, res, next) => {
     releaseability : req.body.releaseability,
     sensor : req.body.sensor
   }
-  rule = newRule;
-  console.log(rule);
    try {
-    const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "Password!",
-      database: "db",
+    const queryText = `INSERT INTO savedrulesets (Name, Classification, Country, Releaseability, Sensor) VALUES (?,?,?,?,?)`;
+    const params = [newRule.name, newRule.classification, newRule.country, newRule.releaseability, newRule.sensor];
+    sqlConnection.query(queryText, params, (error, results)=> {
+      console.log(results);
+      if (error) throw error;
     });
-    const sql = `INSERT INTO savedrulesets (Name, Classification, Country, Releaseability, Sensor)\
- VALUES ('${rule.name}', '${rule.classification}', '${rule.country}', '${rule.releaseability}', '${rule.sensor}')`;
-    connection.query(sql);
-    console.log("New Ruleset Added to Database. SQL Query: ", sql);
-    connection.end();
   } catch(error) {
     console.log("Error adding New Ruleset to Database: ", error);
   }
+  next();
+})
+
+let savedRulesets = [];
+app.get('/open', (req, res, next) => {
+  // try {
+  const queryText = `SELECT * FROM savedrulesets`;
+  sqlConnection.query(queryText, (error,results)=> {
+    console.log("Results: ", results)
+    savedRulesets = results; //this is a thread, need to wait for completion first. see await() and .then
+    if (error) console.log("Error fetching from database: ", error);
+  })
+  // } catch
+  // if (error) {
+  //   console.log("Error fetching from database: ", error);
+  // }
+  console.log("Saved Rulesets: ", savedRulesets)
+  res.send(savedRulesets)
 })
 
 app.listen(8080, () => {
@@ -94,12 +104,6 @@ let headerNames = [
 ];
 const treName = Object.keys(tres);
   try {
-    const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "Password!",
-      database: "db",
-    });
     let i = 0;
     for (const element of headers) {
       for (const obj of element) {
