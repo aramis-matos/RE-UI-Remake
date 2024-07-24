@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
-import OpenModalOnPage, {getRuleset} from './OpenModalOnPage';
+import OpenModalOnPage, {GetRuleset} from './OpenModalOnPage';
 
 const RulesetModalOnPage = ({isOpen, onClose, children}) =>{
 
@@ -15,8 +15,6 @@ const RulesetModalOnPage = ({isOpen, onClose, children}) =>{
   const handleInput = (e) => {
     const name = e.target.name
     const value = e.target.value
-    console.log(e.target.name)
-    console.log(e.target.value)
     setRule(prevRule => ({...prevRule, [name]: value}))
 
   }
@@ -26,7 +24,6 @@ const RulesetModalOnPage = ({isOpen, onClose, children}) =>{
     axios
       .post("http://localhost:8080/new", rule)
       .then((response) => {
-        console.log(response);
       })
       .catch((error) => {
         if (error.response) {
@@ -46,7 +43,7 @@ const RulesetModalOnPage = ({isOpen, onClose, children}) =>{
       sensor : ''
     })
     alert(`Ruleset Created Successfully`);
-    getRuleset();
+    GetRuleset();
     onClose();
   }
 

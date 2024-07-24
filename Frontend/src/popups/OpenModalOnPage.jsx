@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
-export const getRuleset = (rules, setRules, reqDone, setReqDone) => {
+export const GetRuleset = (rules, setRules, reqDone, setReqDone) => {
         axios
                 .get("http://localhost:8080/open")
                 .then((response) => {
