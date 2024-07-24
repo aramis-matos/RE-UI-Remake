@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import OpenModalOnPage, {getRuleset} from './OpenModalOnPage';
 
 const RulesetModalOnPage = ({isOpen, onClose, children}) =>{
 
@@ -45,6 +46,7 @@ const RulesetModalOnPage = ({isOpen, onClose, children}) =>{
       sensor : ''
     })
     alert(`Ruleset Created Successfully`);
+    getRuleset();
     onClose();
   }
 

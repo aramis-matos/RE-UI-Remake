@@ -1,18 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
-const OpenModalOnPage = ({ isOpen, onClose, children }) => {
-    const [rules, setRules] = useState();
-    const [reqDone, setReqDone] = useState(false);
-    const togglesRef = useRef([]);
-    useEffect(() => {
-        const handleClick = (event) => {
-            event.target.children[1].classList.toggle("active");
-        };
-
-        if (isOpen) {
-            
-            axios
+export const getRuleset = (rules, setRules, reqDone, setReqDone) => {
+        axios
                 .get("http://localhost:8080/open")
                 .then((response) => {
                     setRules(response.data)
@@ -28,6 +18,20 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
                         console.log("Other error: ", error);
                     }
                 })
+}
+
+const OpenModalOnPage = ({ isOpen, onClose, children }) => {
+    const [rules, setRules] = useState();
+    const [reqDone, setReqDone] = useState(false);
+    const togglesRef = useRef([]);
+    useEffect(() => {
+        const handleClick = (event) => {
+            event.target.children[1].classList.toggle("active");
+        };
+
+        if (isOpen) {
+            
+            getRuleset(rules,setRules,reqDone,setReqDone);
             togglesRef.current = document.querySelectorAll(".toggle");
 
             togglesRef.current.forEach(toggle => {
@@ -42,10 +46,12 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
         };
     }, [isOpen]);
 
+    
     const handleModalClose = () => {
         onClose();
         setReqDone(false)
     }
+    
 
     if (!isOpen || !rules) return null;
 
@@ -138,4 +144,4 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
     )
 }
 
-export default OpenModalOnPage;
+export default OpenModalOnPage; 

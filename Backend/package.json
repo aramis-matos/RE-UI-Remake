@@ -16,7 +16,7 @@
     "express": "^4.19.2",
     "helmet": "^7.1.0",
     "mysql": "^2.18.1",
-    "mysql2": "^3.10.2"
+    "mysql2": "^3.10.3"
   },
   "devDependencies": {
     "morgan": "^1.10.0",
