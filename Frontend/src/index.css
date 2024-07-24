@@ -267,8 +267,11 @@ input:checked + .slider:before {
     color: white;
     margin: auto;
     font-family: "Roboto";
-    font-size: 36px;
     font-weight: bold;
+    max-height: 0px;
+    opacity: 0;
+    transition: max-height 0.2s ease;
+    margin-bottom: 0;
   }
 }
 .nameBox{
@@ -279,7 +282,7 @@ input:checked + .slider:before {
 .details {
   max-height: 0px;
   opacity: 0;
-  padding-top: 2.5%;
+  transition: max-height 0.2s ease;
 }
 
 .toggle {

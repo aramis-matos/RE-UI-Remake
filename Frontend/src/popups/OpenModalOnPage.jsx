@@ -4,28 +4,29 @@ import axios from 'axios';
 const OpenModalOnPage = ({ isOpen, onClose, children }) => {
     const [rules, setRules] = useState();
     const [reqDone, setReqDone] = useState(false);
-    const togglesRef = useRef([]);
+    const [reqMade, setReqMade] = useState(false)
 
     const handleRuleOpen = (key) => {
         const index = key-1;
         const header = document.getElementsByClassName("toggle")[index];
-        const details = header.document.getElementsByClassName("details")[0];
-        if (details.style.maxHeight == 0) { //Not open to open
+        const details = document.getElementsByTagName('div')[0];
+        if (details.style.maxHeight === "80px") { //Not open to open
+            details.style.maxHeight = '';
+            details.style.opacity = '';
+        } else { //open to not open
             details.style.maxHeight = "80px";
             details.style.opacity = "1"
-        } else { //open to not open
-            details.style.maxHeight = "0px";
-            details.style.opacity = "0"
         }
     }
 
-    if (isOpen) {
+    if (isOpen && !reqMade) {
             
         axios
             .get("http://localhost:8080/open")
             .then((response) => {
                 setRules(response.data)
                 setReqDone(true)
+                setReqMade(true)
             })
             .catch((error) => {
                 if (error.response) {
@@ -41,11 +42,12 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
     const handleModalClose = () => {
         onClose();
         setReqDone(false)
+        setReqMade(false)
     }
 
     if (!isOpen) return null;
 
-    return reqDone ? (
+    return (
         <div className="open-modal-overlay">
             <div className="open-modal-content">
                 <button className="open-close-button" onClick={handleModalClose}>
@@ -54,17 +56,46 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
                 <div className="OpenModalOnPageContent">
                     <h2>Rulesets</h2>
                     <ul>
-                        {rules.map((rule) => (
-                            <li className="toggle" key={rule.id} onClick = {handleRuleOpen(rule.id)}>
+                        { reqDone ? (
+                            rules.map((rule) => (
+                            <li className="toggle" key={rule.id} onClick = {() => {
+                                const index = rule.id - 1;
+                                const header = document.getElementsByClassName("toggle")[index];
+                                const details = header.getElementsByClassName("details")[0];
+                                const deets = header.getElementsByClassName("detail")
+                                if (details.style.maxHeight == "0px") { //Not open to open
+                                    details.style.paddingTop = '5px'
+                                    details.style.maxHeight = "100px";
+                                    details.style.opacity = "1"
+                                    for (const deet of deets) {
+                                        deet.style.maxHeight = '90px';
+                                        deet.style.opacity = '1'
+                                        deet.style.marginBottom = "5px"
+                                    }
+                                } else { //open to not open
+                                    details.style.paddingTop = '0px'
+                                    details.style.maxHeight = "0px";
+                                    details.style.opacity = "0"
+                                    for (const deet of deets) {
+                                        deet.style.maxHeight = '0px';
+                                        deet.style.opacity = '0'
+                                        deet.style.marginBottom = "0px"
+                                    }
+                                }
+                            }
+                            }>
                                 <span>{rule.Name}</span>
                                 <div className="details">
-                                    Classification: {rule.Classification}\n
-                                    Country: {rule.Country}<br />
-                                    Releasability: {rule.Releasability}<br />
-                                    Sensor: {rule.Sensor}
+                                    <p className='detail'>Classification: {rule.Classification}</p>
+                                    <p className='detail'>Country: {rule.Country}</p>
+                                    <p className='detail'>Releasability: {rule.Releasability}</p>
+                                    <p className='detail'>Sensor: {rule.Sensor}</p>
                                 </div>
                             </li>
-                        ))}
+                        ))) : (
+                            <p color="grey">Loading...</p>
+                    
+                        ) }
                     </ul>
                     {/*
                     <ul>
@@ -155,7 +186,7 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
                 {children}
             </div>
         </div>
-    ) : (
+    ) /*} (
         <div className="open-modal-overlay">
             <div className="open-modal-content">
                 <button className="open-close-button" onClick={handleModalClose}>
@@ -167,7 +198,7 @@ const OpenModalOnPage = ({ isOpen, onClose, children }) => {
                 </div>
             </div>
         </div>
-    )
+    ) */
 }
 
 export default OpenModalOnPage;
