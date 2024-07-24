@@ -49,7 +49,6 @@ const App = () => {
   const newThemeCap = newTheme === "dark" ? "Dark" : "Light";
 
   const switchTheme = () => {
-    // const newTheme = theme === "dark" ? "light" : "dark";
     const color = newTheme === "dark" ? "var(--n50)" : "var(--n850)";
     setTheme(newTheme);
     document.querySelector("html").style.backgroundColor = color;
@@ -64,24 +63,6 @@ const App = () => {
   useEffect(() => {
     setBackground();
   }, []);
-  /* Dark / Light Mode */
-
-  // const getSavedRulesets = () => {
-  //   axios
-  //     .get("http://localhost:8080/")
-  //     .then((response) => {
-  //         console.log(response);
-  //   })
-  //   .catch((error) => {
-  //       if (error.response) {
-  //           console.log("Server responded with error: ", error.response);
-  //       } else if (error.request) {
-  //           console.log("Network error: ", error.request)
-  //       } else {
-  //           console.log("Other error: ", error);
-  //       }
-  //   })
-  // }
 
   const handleFilterTypeChange = (newFilterType) => {
     setFilterType(newFilterType);
@@ -108,7 +89,6 @@ const App = () => {
     setCurrentlyEditing({});
     setUpdates({});
     setFieldUpdatesToExport([]);
-    // getSavedRulesets();
   }, [reset]);
 
   const handleSearch = (value, filterType, filterSections) => {
@@ -314,7 +294,6 @@ const App = () => {
 
   const openSavedRuleset = (ruleset) => {
     resetAll();
-    // GET request for rulesets here
     toggleModal("myModal", "none");
   };
 
@@ -358,7 +337,6 @@ const App = () => {
     toggleModal("nameRulesetModal", "none");
     resetAll();
     //create new ruleset with default list type, empty class and rel.
-    // POST Request for ruleset
   };
 
   //sets up the updates object to be exported
@@ -415,18 +393,6 @@ const App = () => {
     setSelectedPreference(preference);
   };
 
-  const callAPI = () => {
-    // get request from frontend to backend
-    axios.get("http://localhost:8080").then((data) => {
-      // console.log(data);
-      // console.log(fileHeader[0].fieldName);
-      // console.log(Object.keys(fileHeader).length);
-      // show backend response in console
-    });
-  };
-
-
-  // console.log(sensor.value)
   return (
     <div className="editor" data-theme={theme}>
       <div className="left-panel">
@@ -442,7 +408,6 @@ const App = () => {
             id="newRuleset"
             onClick={() => {
               openRulesetModal();
-              // callAPI(); // test API call
             }}>
             NEW
           </button>
@@ -471,7 +436,6 @@ const App = () => {
           <CollapsableFilters
             theFunc={handleCheckChange}
             onFilterChange={handleFilterTypeChange}></CollapsableFilters>
-          {/* <FiltersOnPage theFunc={handleCheckChange}></FiltersOnPage> */}
           <PreferencesOnPage
             onSelectPreference={handlePreferenceChange}></PreferencesOnPage>
         </div>
@@ -721,7 +685,6 @@ function treShowTable(header, table) {
     panel.style.visibility = "hidden";
     panel.style.opacity = "0";
     panel.style.maxHeight = "0";
-    //panel.style.padding = "0px 0px 0px 0px"
     panel.style.paddingTop = "0px";
     panel.style.paddingBottom = "0px";
     panel.style.marginBottom = "0px";
@@ -741,7 +704,6 @@ function treShowTable(header, table) {
     panel.style.visibility = "visible";
     panel.style.opacity = "1";
     panel.style.maxHeight = "64000px";
-    //panel.style.padding = "20px 0px 10px 0px;"
     panel.style.paddingTop = "20px";
     panel.style.paddingBottom = "10px";
     panel.style.marginBottom = "20px";

@@ -60,7 +60,7 @@ app.get('/open', (req, res, next) => {
   try {
   const queryText = `SELECT * FROM savedrulesets`;
   sqlConnection.query(queryText, (error,results)=> {
-    savedRulesets = results; //this is a thread, need to wait for completion first. see await() and .then
+    savedRulesets = results;
     if (error) throw error;
   })
   } catch (error) {
