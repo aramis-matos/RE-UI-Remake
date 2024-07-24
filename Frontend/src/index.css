@@ -277,16 +277,17 @@ input:checked + .slider:before {
   margin-bottom: 20px;
 }
 .details {
-  display: none;
+  max-height: 0px;
+  opacity: 0;
   padding-top: 2.5%;
-}
-
-.details.active {
-  display: block;
 }
 
 .toggle {
   cursor: pointer;
+}
+
+.toggle span {
+  font-size: 1.5rem;
 }
 
 .OpenModalOnPageContent {
@@ -846,10 +847,6 @@ button.delete {
   right: 1.2%;
   width: 8%;
   height: 10%;
-  background: solid;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
 }
 
 .openPageModalContent h4 {
