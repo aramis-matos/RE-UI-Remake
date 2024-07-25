@@ -199,8 +199,10 @@ const App = () => {
       }
 
       let panel = header.getElementsByClassName("field-panel")[0]
+      let isTre = false;
       if (panel == null) {
         panel = document.getElementById("trePanel")
+        isTre = true;
       }
       if (numElements === numRemoved) {
         header.style.visibility = "hidden"
@@ -214,7 +216,10 @@ const App = () => {
         if (header.getElementsByClassName("accordion-open")[0] != null) {
           panel.style.visibility = "visible"
           panel.style.maxHeight = "500px"
-          if (index == 5) panel.style.maxHeight = "64000px";
+          if (isTre) {
+            panel.style.maxHeight = "64000px";
+            header.style.maxHeight = "64000px";
+          }
         }
         updateSearchShow(index, true)
       }
